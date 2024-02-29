@@ -24,7 +24,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="OmokPacket.pb.h">
-      <Filter>헤더 파일</Filter>
+      <Filter>리소스 파일</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

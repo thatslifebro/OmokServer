@@ -37,28 +37,15 @@ public:
 			
 			if (n > 0)
 			{
-				//OmokServer::Person person;
+
 				std::cout << "Received from client " << std::endl;
-				//person.ParseFromArray(buffer, n);
-				//std::cout << "Received form client buffer : " << buffer << std::endl;
-				//std::cout << "Received from client - person.id = " << person.id() << std::endl;
-				//Thread::sleep(3000);
-				//어떤 packet인지 헤더에서 확인
-				//버퍼에서 헤더 잘라내기 + 나머지 처리하기
-				//계속 packet을 job queue에 쌓아서 처리하는 방법이 있고
-				//coroutine을 어떻게 쓸 수 있을까 생각해보자 => c++20 
-				//코루틴
-				//요청 처리
+
 				if(PacketBuffer->Write(buffer, n)==false)
 				{
 					std::cout << "Fail PacketBuffer->Write" << std::endl;
 				}
 				std::cout << "success!" << std::endl;
-				//응답
-				//char szSendMessage[1024] = { 0, };
-				////sprintf_s(szSendMessage, 1024 - 1, "Received Message: - id:  %d", person.id());
-				//auto nMsgLen = strnlen_s(szSendMessage, 1024 - 1);
-				//_socket.sendBytes(szSendMessage, nMsgLen);
+
 			}
 			else
 			{

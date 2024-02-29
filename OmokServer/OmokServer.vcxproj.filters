@@ -24,14 +24,11 @@
     <ClCompile Include="PacketBufferManager.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="PacketData.h">
-      <Filter>헤더 파일</Filter>
-    </ClCompile>
     <ClCompile Include="OmokPacket.pb.cc">
       <Filter>리소스 파일</Filter>
     </ClCompile>
     <ClCompile Include="PacketId.h">
-      <Filter>헤더 파일</Filter>
+      <Filter>리소스 파일</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -41,10 +38,10 @@
     <ClInclude Include="PacketBufferManager.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="OmokPacket.pb.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
     <ClInclude Include="PacketInfo.h">
+      <Filter>리소스 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="OmokPacket.pb.h">
       <Filter>리소스 파일</Filter>
     </ClInclude>
   </ItemGroup>

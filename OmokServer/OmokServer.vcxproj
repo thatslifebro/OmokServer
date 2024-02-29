@@ -167,7 +167,6 @@
     <ClCompile Include="OmokPacket.pb.cc" />
     <ClCompile Include="OmokServer.cpp" />
     <ClCompile Include="PacketBufferManager.cpp" />
-    <ClCompile Include="PacketData.h" />
     <ClCompile Include="PacketManager.cpp" />
     <ClCompile Include="PacketId.h" />
   </ItemGroup>
