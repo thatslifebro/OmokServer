@@ -1,0 +1,101 @@
+syntax = "proto3";
+
+package OmokPacket;
+
+message ReqLogin {
+  optional string userId = 1;
+  optional string pw = 2;
+}
+
+message ResLogin {
+  optional int32 result = 1;
+}
+
+message ReqRoomEnter {
+  optional int32 roomId = 1;
+  optional int32 roomNumber = 2;
+}
+
+message ResRoomEnter {
+  optional int32 result = 1;
+}
+
+message NtfRoomUserList { // resRoomEnter 이후 바로 보내기 
+  repeated string userIdList = 1;
+}
+
+message NtfRoomNewUser { // 새유저 broadcast
+  optional string userId = 1;
+}
+
+message ReqRoomLeave {
+  optional string userId = 1;
+}
+
+message ResRoomLeave { 
+  optional int32 result = 1;
+}
+
+message NtfRoomLeaveUser {// 나간 유저 broadcast
+  optional string userId = 1;
+}
+
+message ReqRoomChat {
+  optional string userId = 1;
+  optional string chat = 2;
+}
+
+message ResRoomChat { // 내 채팅 다시 보내기
+  optional string userId = 1;
+  optional string chat = 2;
+}
+
+message NtfRoomChat { // broadcast
+  optional string userId = 1;
+  optional string chat = 2;
+}
+
+message ReqMatch {
+  optional string userId = 1;
+}
+
+message ResMatch { // 매칭 중 이라는 알림
+  optional int32 result = 1;
+}
+
+message NtfMatchUser { // 매칭 중 이라는 알림
+  optional string userId = 1;
+}
+
+message ReqReadyOmok {
+  optional string userId = 1;
+}
+
+message ResReadyOmok { // 레디 되었다고 알림
+  optional int32 result = 1;
+}
+
+message NtfStartOmok { // 게임 시작 알림
+  optional string firstUserId  = 1;
+  optional string secondUserId = 2;
+}
+
+message ReqPutMok {
+  optional string userId = 1;
+  optional int32 x = 2;
+  optional int32 y = 3;
+}
+
+message ResPutMok {
+  optional int32 result=1; // 0: 성공, 1: 내차례 아님, 2: 이미 놓인 자리, 3: 규칙상 불가, 4: 게임 끝남
+}
+
+message NtfPutMok {
+  optional string userId = 1;
+  optional int32 x = 2;
+  optional int32 y = 3;
+}
+
+message NtfEndOmok {
+  optional string winnerUserId = 1;
+}

@@ -30,3 +30,12 @@
 *.exe
 *.out
 *.app
+
+*.json
+*.command
+.vs
+*.tlog
+*.tlog/
+*.lastbuildstate
+x64/
+protobuf/
