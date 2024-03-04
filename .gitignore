@@ -37,5 +37,7 @@
 *.tlog
 *.tlog/
 *.lastbuildstate
+*.vcxproj.user
 x64/
-protobuf/
+/OmokClient/OmokClient.vcxproj.user
+/OmokServer/OmokServer.vcxproj.user
