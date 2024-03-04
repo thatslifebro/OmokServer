@@ -15,15 +15,15 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="OmokClient.cpp">
+    <ClCompile Include="main.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="OmokPacket.pb.cc">
+    <ClCompile Include="protobuf\OmokPacket.pb.cc">
       <Filter>리소스 파일</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="OmokPacket.pb.h">
+    <ClInclude Include="protobuf\OmokPacket.pb.h">
       <Filter>리소스 파일</Filter>
     </ClInclude>
   </ItemGroup>

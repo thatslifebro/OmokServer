@@ -15,38 +15,50 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="OmokServer.cpp">
+    <ClCompile Include="main.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="PacketManager.cpp">
+    <ClCompile Include="packet_processor.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="PacketBufferManager.cpp">
+    <ClCompile Include="packet_buffer_manager.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="OmokPacket.pb.cc">
+    <ClCompile Include="packet_id.h">
       <Filter>리소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="PacketId.h">
+    <ClCompile Include="protobuf\OmokPacket.pb.cc">
       <Filter>리소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="poco_session.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="omok_server.cpp">
+      <Filter>소스 파일</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="PacketManager.h">
+    <ClInclude Include="packet_processor.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="PacketBufferManager.h">
+    <ClInclude Include="packet_buffer_manager.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="PacketInfo.h">
+    <ClInclude Include="packet_info.h">
       <Filter>리소스 파일</Filter>
     </ClInclude>
-    <ClInclude Include="OmokPacket.pb.h">
+    <ClInclude Include="protobuf\OmokPacket.pb.h">
       <Filter>리소스 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="poco_session.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="omok_server.h">
+      <Filter>헤더 파일</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <None Include="OmokPacket.proto">
+    <None Include="protobuf\OmokPacket.proto">
       <Filter>리소스 파일</Filter>
     </None>
   </ItemGroup>

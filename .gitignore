@@ -10,11 +10,12 @@
 # Precompiled Headers
 *.gch
 *.pch
+*.pdb
 
 # Compiled Dynamic libraries
 *.so
 *.dylib
-*.dll
+# *.dll
 
 # Fortran module files
 *.mod
@@ -37,7 +38,6 @@
 *.tlog
 *.tlog/
 *.lastbuildstate
-*.vcxproj.user
 x64/
 /OmokClient/OmokClient.vcxproj.user
 /OmokServer/OmokServer.vcxproj.user

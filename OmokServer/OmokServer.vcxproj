@@ -71,20 +71,30 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <IncludePath>C:\Users\ksy\github-repository\vcpkg\installed\x64-windows\include;$(IncludePath);C:\Users\ksy\github-repository\vcpkg\installed\x64-windows\include</IncludePath>
-    <LibraryPath>C:\Users\ksy\github-repository\vcpkg\installed\x64-windows\debug\lib;$(LibraryPath)</LibraryPath>
+    <IncludePath>$(IncludePath)</IncludePath>
+    <LibraryPath>$(LibraryPath)</LibraryPath>
+    <OutDir>$(SolutionDir)thirdparty\libs\debug\</OutDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <IncludePath>C:\Users\ksy\github-repository\vcpkg\installed\x64-windows\include;$(IncludePath);C:\Users\ksy\github-repository\vcpkg\installed\x64-windows\include</IncludePath>
-    <LibraryPath>C:\Users\ksy\github-repository\vcpkg\installed\x64-windows\debug\lib;$(LibraryPath)</LibraryPath>
+    <IncludePath>$(IncludePath)</IncludePath>
+    <LibraryPath>$(LibraryPath)</LibraryPath>
+    <OutDir>$(SolutionDir)thirdparty\libs\debug\</OutDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <IncludePath>$(VC_IncludePath);$(WindowsSDK_IncludePath);;C:\Users\ksy\github-repository\vcpkg\installed\x64-windows\include</IncludePath>
     <LibraryPath>C:\Users\ksy\github-repository\vcpkg\installed\x64-windows\lib;$(LibraryPath)</LibraryPath>
+    <OutDir>$(SolutionDir)thirdparty\libs\release\</OutDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <IncludePath>$(VC_IncludePath);$(WindowsSDK_IncludePath);;C:\Users\ksy\github-repository\vcpkg\installed\x64-windows\include</IncludePath>
     <LibraryPath>C:\Users\ksy\github-repository\vcpkg\installed\x64-windows\lib;$(LibraryPath)</LibraryPath>
+    <OutDir>$(SolutionDir)thirdparty\libs\release\</OutDir>
+  </PropertyGroup>
+  <PropertyGroup Label="Vcpkg">
+    <VcpkgEnabled>true</VcpkgEnabled>
+    <VcpkgManifestInstall>true</VcpkgManifestInstall>
+    <VcpkgAutoLink>true</VcpkgAutoLink>
+    <VcpkgApplocalDeps>true</VcpkgApplocalDeps>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -94,13 +104,13 @@
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpplatest</LanguageStandard>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
-      <AdditionalIncludeDirectories>$(SolutionDir)protobuf\src</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)thirdparty\poco\include;$(SolutionDir)thirdparty\protobuf\src</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>libprotobufd.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <AdditionalLibraryDirectories>$(SolutionDir)protobuf\Debug;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>PocoFoundationd.lib;PocoNetd.lib;PocoUtild.lib;PocoDatad.lib;pcre2-8d.lib;pcre2-16d.lib;pcre2-32d.lib;pcre2-posixd.lib;libprotobufd.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(SolutionDir)thirdparty\poco\debug\lib;$(SolutionDir)thirdparty\protobuf\Debug;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -112,15 +122,15 @@
       <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpplatest</LanguageStandard>
-      <AdditionalIncludeDirectories>$(SolutionDir)protobuf\src</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)thirdparty\poco;$(SolutionDir)thirdparty\protobuf\src</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>libprotobuf.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <AdditionalLibraryDirectories>$(SolutionDir)protobuf\Release\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>PocoFoundation.lib;libprotobuf.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(SolutionDir)thirdparty\poco\lib\;$(SolutionDir)thirdparty\protobuf\Release\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -131,13 +141,13 @@
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpplatest</LanguageStandard>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
-      <AdditionalIncludeDirectories>$(SolutionDir)protobuf\src</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)thirdparty\poco\include;$(SolutionDir)thirdparty\protobuf\src</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>libprotobufd.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <AdditionalLibraryDirectories>$(SolutionDir)protobuf\Debug;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>PocoFoundationd.lib;PocoNetd.lib;PocoUtild.lib;PocoDatad.lib;pcre2-8d.lib;pcre2-16d.lib;pcre2-32d.lib;pcre2-posixd.lib;libprotobufd.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(SolutionDir)thirdparty\poco\debug\lib;$(SolutionDir)thirdparty\protobuf\Debug;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -149,32 +159,36 @@
       <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpplatest</LanguageStandard>
-      <AdditionalIncludeDirectories>$(SolutionDir)protobuf\src</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)thirdparty\poco;$(SolutionDir)thirdparty\protobuf\src</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>libprotobuf.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <AdditionalLibraryDirectories>$(SolutionDir)protobuf\Release\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>PocoFoundation.lib;libprotobuf.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(SolutionDir)thirdparty\poco\lib\;$(SolutionDir)thirdparty\protobuf\Release\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <None Include="OmokPacket.proto" />
+    <ClCompile Include="main.cpp" />
+    <ClCompile Include="omok_server.cpp" />
+    <ClCompile Include="packet_buffer_manager.cpp" />
+    <ClCompile Include="packet_processor.cpp" />
+    <ClCompile Include="packet_id.h" />
+    <ClCompile Include="poco_session.cpp" />
+    <ClCompile Include="protobuf\OmokPacket.pb.cc" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="OmokPacket.pb.cc" />
-    <ClCompile Include="OmokServer.cpp" />
-    <ClCompile Include="PacketBufferManager.cpp" />
-    <ClCompile Include="PacketManager.cpp" />
-    <ClCompile Include="PacketId.h" />
+    <ClInclude Include="omok_server.h" />
+    <ClInclude Include="packet_buffer_manager.h" />
+    <ClInclude Include="packet_info.h" />
+    <ClInclude Include="packet_processor.h" />
+    <ClInclude Include="poco_session.h" />
+    <ClInclude Include="protobuf\OmokPacket.pb.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="OmokPacket.pb.h" />
-    <ClInclude Include="PacketBufferManager.h" />
-    <ClInclude Include="PacketInfo.h" />
-    <ClInclude Include="PacketManager.h" />
+    <None Include="protobuf\OmokPacket.proto" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
