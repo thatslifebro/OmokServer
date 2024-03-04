@@ -20,5 +20,5 @@ private:
 	StreamSocket socket_;
 	SocketReactor& reactor_;
 	std::string peer_address_;
-	PacketBufferManager* PacketBuffer;
+	PacketBufferManager* packet_manager_;
 };

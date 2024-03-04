@@ -39,7 +39,7 @@ bool PacketBufferManager::Write(char* data, uint32_t size)
 	std::copy(data, data + size, packet_buffer_ + write_pos_);
 	write_pos_ += size;
 
-	if (NextFree() == false) {
+	if (HasEnoughBufferSpace() == false) {
 		BufferRelocate();
 	}
 	return true;
@@ -54,7 +54,7 @@ char* PacketBufferManager::Read() {
 		return nullptr;
 	}
 
-	auto packet_size = ((packet_buffer_ + read_pos_)[0] << 8) | ((packet_buffer_ + read_pos_)[1]);
+	auto packet_size = ((packet_buffer_ + read_pos_)[1] << 8) | ((packet_buffer_ + read_pos_)[0]);
 	std::cout<< "pktSize : " << packet_size << std::endl;
 
 	if (readable_size < packet_size) {
@@ -67,7 +67,7 @@ char* PacketBufferManager::Read() {
 	return packet_data;
 }
 
-bool PacketBufferManager::NextFree()
+bool PacketBufferManager::HasEnoughBufferSpace()
 {
 	return (buffer_size_ - read_pos_) >= max_packet_size_;
 }

@@ -7,12 +7,11 @@
 
 #include "packet_buffer_manager.h"
 
-
 struct Packet
 {
-	uint16_t packet_size;
-	uint16_t packet_id;
-	char* packet_body;
+	uint16_t packet_size_;
+	uint16_t packet_id_;
+	char* packet_body_;
 };
 
 class PacketProcessor
@@ -23,6 +22,6 @@ public:
 	void ReqLoginHandler(const Packet& pkt);
 
 private:
-	PacketBufferManager* PacketBuffer;
-	std::unordered_map<uint16_t, std::function<void(const Packet&) >> packetHandlerMap;
+	PacketBufferManager* packet_buffer_;
+	std::unordered_map<uint16_t, std::function<void(const Packet&) >> packet_handler_map_;
 };

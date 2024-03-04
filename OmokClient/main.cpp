@@ -65,8 +65,8 @@ public:
 		char sendBuf[1024] = { 0, };
 		sendBuf[0] = 0x00;
 		sendBuf[1] = 0x00;
-		sendBuf[2] = (1001 >> 8) & 0xFF;
-		sendBuf[3] = (1001 & 0xFF);
+		sendBuf[2] = (1001 & 0xFF);
+		sendBuf[3] = (1001 >> 8) & 0xFF;
 
 		short bufLength = 4;
 
@@ -78,8 +78,8 @@ public:
 		reqLogin.SerializeToArray(sendBuf + bufLength, reqLoginLength);
 		bufLength += reqLoginLength;
 
-		sendBuf[0] = (bufLength >> 8);
-		sendBuf[1] = (bufLength & 0xFF);
+		sendBuf[0] = (bufLength & 0xFF);
+		sendBuf[1] = (bufLength >> 8) & 0xFF;
 
 		_socket.sendBytes(sendBuf, bufLength);
 		std::cout << "Send to server: Send Message" << std::endl;

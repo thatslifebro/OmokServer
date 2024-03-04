@@ -15,5 +15,6 @@ class OmokServer
 {
 public:
 	void Init();
+private:
 	void PacketProcess();
 };

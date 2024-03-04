@@ -2,7 +2,7 @@
 
 Session::Session(StreamSocket& socket, SocketReactor& reactor) : socket_(socket), reactor_(reactor)
 {
-	PacketBuffer = PacketBufferManager::GetInstance();
+	packet_manager_ = PacketBufferManager::GetInstance();
 
 	reactor_.addEventHandler(socket_, Poco::Observer<Session, ReadableNotification>(*this, &Session::onReadable));
 	peer_address_ = socket_.peerAddress().toString();
@@ -24,7 +24,7 @@ void Session::onReadable(ReadableNotification* pNotification)
 
 			std::cout << "Received from client " << std::endl;
 
-			if (PacketBuffer->Write(buffer, n) == false) {
+			if (packet_manager_->Write(buffer, n) == false) {
 				std::cout << "Fail PacketBuffer->Write" << std::endl;
 			}
 			std::cout << "success!" << std::endl;

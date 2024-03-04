@@ -16,7 +16,7 @@ public:
 	void Init(uint32_t bufferSize, uint32_t headerSize, uint32_t maxPacketSize);
 	bool Write(char* data, uint32_t size);
 	char* Read();
-	bool NextFree();
+	bool HasEnoughBufferSpace();
 	void BufferRelocate();
 
 private:
