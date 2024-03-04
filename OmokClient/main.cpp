@@ -1,7 +1,9 @@
 ﻿#include <iostream>
 #include <string>
+
 #include "Poco/Net/SocketReactor.h"
 #include "Poco/Net/SocketConnector.h"
+
 #include "protobuf/OmokPacket.pb.h"
 
 using namespace Poco::Net;
@@ -22,8 +24,6 @@ public:
 			SendMessage();
 			std::this_thread::sleep_for(std::chrono::milliseconds(1000));
 		}
-
-
 	}
 
 	~Session()
@@ -45,12 +45,8 @@ public:
 		pNf->release();
 		char buffer[1024] = { 0, };
 		auto n = _socket.receiveBytes(buffer, sizeof(buffer));
-		if (n > 0)
-		{
-			//std::cout << "Received from server: " << buffer << std::endl;
-			//std::cout << "Received from server: person.id = " << person.id() << std::endl;
-			if (_sendCount < 7)
-			{
+		if (n > 0) {
+			if (_sendCount < 7) {
 				_sendCount++;
 				SendMessage();
 			}
@@ -59,8 +55,7 @@ public:
 				delete this;
 			}
 		}
-		else
-		{
+		else {
 			delete this;
 		}
 	}
@@ -89,8 +84,6 @@ public:
 		_socket.sendBytes(sendBuf, bufLength);
 		std::cout << "Send to server: Send Message" << std::endl;
 	}
-
-
 
 private:
 	StreamSocket _socket;

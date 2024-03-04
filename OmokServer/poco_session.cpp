@@ -20,20 +20,16 @@ void Session::onReadable(ReadableNotification* pNotification)
 
 		int n = socket_.receiveBytes(buffer, sizeof(buffer));
 
-		if (n > 0)
-		{
+		if (n > 0) {
 
 			std::cout << "Received from client " << std::endl;
 
-			if (PacketBuffer->Write(buffer, n) == false)
-			{
+			if (PacketBuffer->Write(buffer, n) == false) {
 				std::cout << "Fail PacketBuffer->Write" << std::endl;
 			}
 			std::cout << "success!" << std::endl;
-
 		}
-		else
-		{
+		else {
 			socket_.shutdown();
 			delete this;
 		}

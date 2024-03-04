@@ -1,9 +1,12 @@
 #pragma once
+#include <functional>
 #include <iostream>
 #include <unordered_map>
-#include <functional>
-#include "packet_buffer_manager.h"
+
 #include "protobuf/OmokPacket.pb.h"
+
+#include "packet_buffer_manager.h"
+
 
 struct Packet
 {
