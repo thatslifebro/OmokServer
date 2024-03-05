@@ -1,17 +1,15 @@
 #include "packet_buffer_manager.h"
 
-PacketBufferManager* PacketBufferManager::instance_ = nullptr;
 std::mutex PacketBufferManager::mutex_;
+char* PacketBufferManager::packet_buffer_;
+char* PacketBufferManager::packet_buffer_temp_;
+uint32_t PacketBufferManager::buffer_size_;
+uint32_t PacketBufferManager::read_pos_;
+uint32_t PacketBufferManager::write_pos_;
+uint32_t PacketBufferManager::header_size_;
+uint32_t PacketBufferManager::max_packet_size_;
 
-// Singleton (parellel reactor에서 하나의 버퍼에 담기 위해)
-PacketBufferManager* PacketBufferManager::GetInstance() {
-	if (instance_ == nullptr) {
-		instance_ = new PacketBufferManager();
-	}
-	return instance_;
-}
-
-PacketBufferManager::~PacketBufferManager() {
+void PacketBufferManager::ClearBuffer() {
 	delete[] packet_buffer_;
 	delete[] packet_buffer_temp_;
 };
@@ -32,14 +30,14 @@ bool PacketBufferManager::Write(char* data, uint32_t size)
 	
 	auto remain_buffer_size = buffer_size_ - write_pos_;
 	if (remain_buffer_size < size) {
-		std::cout << "Buffer is full" << std::endl;
+		std::print("Buffer is full\n");
 		return false;
 	}
 
 	std::copy(data, data + size, packet_buffer_ + write_pos_);
 	write_pos_ += size;
 
-	if (HasEnoughBufferSpace() == false) {
+	if (HasEnoughBufferSpace()  == false) {
 		BufferRelocate();
 	}
 	return true;
@@ -54,15 +52,16 @@ char* PacketBufferManager::Read() {
 		return nullptr;
 	}
 
-	auto packet_size = ((packet_buffer_ + read_pos_)[1] << 8) | ((packet_buffer_ + read_pos_)[0]);
-	std::cout<< "pktSize : " << packet_size << std::endl;
+	char size[2] = { (packet_buffer_ + read_pos_)[0], (packet_buffer_ + read_pos_)[1] };
+	auto packet_size = *reinterpret_cast<uint16_t*>(size);
+
+	std::print("pktSize : {}\n", packet_size);
 
 	if (readable_size < packet_size) {
 		return nullptr;
 	}
 
-	auto packet_data = new char[packet_size];
-	std::copy(packet_buffer_ + read_pos_, packet_buffer_ + read_pos_ + packet_size, packet_data);
+	auto packet_data = packet_buffer_ + read_pos_;
 	read_pos_ += packet_size;
 	return packet_data;
 }

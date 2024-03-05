@@ -7,5 +7,6 @@ int main()
 {	
 	OmokServer server;
 	server.Init();
+	server.Start();
 }
 

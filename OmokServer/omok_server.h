@@ -1,11 +1,13 @@
 #pragma once
+#include <print>
+
 #include <Poco/Net/SocketReactor.h>
 #include <Poco/Net/ServerSocket.h>
 #include <Poco/Net/ParallelSocketAcceptor.h>
 
 #include "packet_info.h"
 #include "packet_processor.h"
-#include "poco_session.h"
+#include "session.h"
 
 
 constexpr Poco::UInt16 SERVER_PORT = 32452;
@@ -15,6 +17,8 @@ class OmokServer
 {
 public:
 	void Init();
+	void Start();
+	~OmokServer();
 private:
 	void PacketProcess();
 };

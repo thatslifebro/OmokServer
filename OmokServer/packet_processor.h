@@ -2,6 +2,7 @@
 #include <functional>
 #include <iostream>
 #include <unordered_map>
+#include <bit>
 
 #include "protobuf/OmokPacket.pb.h"
 
@@ -22,6 +23,5 @@ public:
 	void ReqLoginHandler(const Packet& pkt);
 
 private:
-	PacketBufferManager* packet_buffer_;
 	std::unordered_map<uint16_t, std::function<void(const Packet&) >> packet_handler_map_;
 };
