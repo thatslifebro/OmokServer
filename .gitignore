@@ -6,6 +6,8 @@
 *.lo
 *.o
 *.obj
+obj/
+*.settings
 
 # Precompiled Headers
 *.gch
@@ -41,3 +43,6 @@
 x64/
 /OmokClient/OmokClient.vcxproj.user
 /OmokServer/OmokServer.vcxproj.user
+/OmokServer/bin
+/OmokTestClient
+/OmokClient/OmokClient.csproj.user
