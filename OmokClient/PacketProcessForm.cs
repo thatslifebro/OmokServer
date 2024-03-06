@@ -1,4 +1,6 @@
 ﻿using CSCommon;
+using Google.Protobuf;
+using OmokPacket;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -106,8 +108,9 @@ namespace csharp_test_client
 
         void PacketProcess_Loginin(byte[] bodyData)
         {
-            //var responsePkt = MessagePackSerializer.Deserialize<PKTResLogin>(packetData);
-            //DevLog.Write($"로그인 결과: {(ErrorCode)responsePkt.Result}");
+            ResLogin reslogin = new ResLogin();
+            reslogin.MergeFrom(bodyData);
+            DevLog.Write($"로그인 결과: {reslogin.Result}");
         }
 
         void PacketProcess_RoomEnterResponse(byte[] bodyData)

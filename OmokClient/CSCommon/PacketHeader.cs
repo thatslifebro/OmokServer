@@ -15,7 +15,7 @@ namespace CSCommon
         public struct MsgPackPacketHeaderInfo
     {
         const int PacketHeaderMsgPackStartPos = 3;
-        public const int HeadSize = 8;
+        public const int HeadSize = 4;
 
         public UInt16 TotalSize;
         public UInt16 ID;

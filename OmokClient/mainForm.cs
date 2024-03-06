@@ -41,7 +41,7 @@ namespace csharp_test_client
 
         private void mainForm_Load(object sender, EventArgs e)
         {
-            PacketBuffer.Init((8096 * 10), MsgPackPacketHeaderInfo.HeadSize, 2048);
+            PacketBuffer.Init((8096 * 10), PacketHeaderInfo.HeadSize, 1024);
 
             IsNetworkThreadRunning = true;
             NetworkReadThread = new System.Threading.Thread(this.NetworkReadProcess);
@@ -138,10 +138,10 @@ namespace csharp_test_client
                         packet.Type = (SByte)data.Array[(data.Offset + 4)];
                         packet.BodyData = new byte[packet.DataSize];
                         Buffer.BlockCopy(data.Array, (data.Offset + PacketHeaderSize), packet.BodyData, 0, (data.Count - PacketHeaderSize));
-                        lock (((System.Collections.ICollection)RecvPacketQueue).SyncRoot)
-                        {
+                        //lock (((System.Collections.ICollection)RecvPacketQueue).SyncRoot)
+                        //{
                             RecvPacketQueue.Enqueue(packet);
-                        }
+                        //}
                     }
                     //DevLog.Write($"받은 데이터: {recvData.Item2}", LOG_LEVEL.INFO);
                 }
@@ -325,11 +325,11 @@ namespace csharp_test_client
         // 로그인 요청
         private void button2_Click(object sender, EventArgs e)
         {
-
             var loginReq = new ReqLogin();
             loginReq.UserId = textBoxUserID.Text;
             loginReq.Pw = textBoxUserPW.Text;
             PostSendPacket(PacketID.ReqLogin, loginReq.ToByteArray());
+            
             DevLog.Write($"로그인 요청:  {textBoxUserID.Text}, {textBoxUserPW.Text}");
         }
 

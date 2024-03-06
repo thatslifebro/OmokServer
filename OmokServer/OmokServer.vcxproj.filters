@@ -15,6 +15,7 @@
     <ClCompile Include="session.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="packet_queue.cpp" />
+    <ClCompile Include="session_manager.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="protobuf\OmokPacket.pb.h">
@@ -26,6 +27,7 @@
     <ClInclude Include="packet_processor.h" />
     <ClInclude Include="session.h" />
     <ClInclude Include="user_info.h" />
+    <ClInclude Include="session_manager.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="protobuf\OmokPacket.proto">

@@ -178,6 +178,7 @@
     <ClCompile Include="packet_queue.cpp" />
     <ClCompile Include="session.cpp" />
     <ClCompile Include="protobuf\OmokPacket.pb.cc" />
+    <ClCompile Include="session_manager.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="omok_server.h" />
@@ -186,6 +187,7 @@
     <ClInclude Include="packet_processor.h" />
     <ClInclude Include="session.h" />
     <ClInclude Include="protobuf\OmokPacket.pb.h" />
+    <ClInclude Include="session_manager.h" />
     <ClInclude Include="user_info.h" />
   </ItemGroup>
   <ItemGroup>

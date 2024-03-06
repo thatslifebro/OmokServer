@@ -2,24 +2,24 @@
 
 void OmokServer::Init()
 {
-	// todo : init
+	Poco::Net::ServerSocket server_socket(SERVER_PORT);
+	
+	server_socket_ = server_socket;
 }
 
 void OmokServer::Start()
 {
-	SocketReactor reactor;
-	Poco::Net::ServerSocket server_socket(SERVER_PORT);
-	Poco::Net::ParallelSocketAcceptor<Session, Poco::Net::SocketReactor> acceptor(server_socket, reactor);
+	Poco::Net::SocketReactor reactor;
+	Poco::Net::ParallelSocketAcceptor<Session, Poco::Net::SocketReactor> acceptor(server_socket_, reactor);
 	std::jthread packet_processor_thread(&OmokServer::PacketProcessorStart, this);
 	reactor.run();
 }
 
-
 void OmokServer::PacketProcessorStart()
 {
 	PacketProcessor packet_processor;
+	packet_processor.Init();
 
-	// todo : C++20의 coroutine 사용하여 무한으로 돌지 않고 버퍼가 차있을 때 다시 실행하도록 할 수 있을 것 같다.
 	while (true)
 	{
 		auto process =  packet_processor.ProcessPacket();
