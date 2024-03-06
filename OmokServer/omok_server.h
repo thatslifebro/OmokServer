@@ -10,7 +10,7 @@
 #include "session.h"
 
 
-constexpr Poco::UInt16 SERVER_PORT = 32452;
+constexpr Poco::UInt16 SERVER_PORT = 32451;
 constexpr uint32_t BUFFER_SIZE = 8096 * 10;
 
 class OmokServer
@@ -18,7 +18,7 @@ class OmokServer
 public:
 	void Init();
 	void Start();
-	~OmokServer();
+
 private:
-	void PacketProcess();
+	void PacketProcessorStart();
 };

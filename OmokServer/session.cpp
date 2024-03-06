@@ -2,11 +2,6 @@
 
 Session::Session(StreamSocket& socket, SocketReactor& reactor) : socket_(socket), reactor_(reactor)
 {
-	WriteData = [&](char* data, uint32_t size) {
-		PacketBufferManager packet_manager;
-		return packet_manager.Write(data, size);
-	};
-
 	reactor_.addEventHandler(socket_, Poco::Observer<Session, ReadableNotification>(*this, &Session::onReadable));
 	peer_address_ = socket_.peerAddress().toString();
 	std::print("Connection from {}\n",peer_address_);
@@ -27,10 +22,7 @@ void Session::onReadable(ReadableNotification* pNotification)
 
 			std::print("Received from client\n");
 
-			if (WriteData(buffer, n) == false) {
-				std::print("Fail PacketBuffer->Write\n");
-			}
-			std::print("success!\n");
+			SavePacket(buffer);
 		}
 		else {
 			socket_.shutdown();
@@ -55,4 +47,18 @@ Session::~Session()
 	std::print("Connection from {} closed\n", peer_address_);
 	reactor_.removeEventHandler(socket_, Poco::Observer<Session, ShutdownNotification
 	>(*this, &Session::onShutdown));
+}
+
+void Session::SavePacket(char* buffer)
+{
+	Packet packet;
+	char size[2] = { buffer[0], buffer[1] };
+	packet.packet_body_size_ = *reinterpret_cast<uint16_t*>(size) - PacketInfo::header_size_;
+	char id[2] = { buffer[2], buffer[3] };
+	packet.packet_id_ = *reinterpret_cast<uint16_t*>(id);
+	packet.packet_body_ = buffer + 4;
+	packet.socket_ = &socket_;
+
+	PacketQueue pq;
+	pq.Save(packet);
 }

@@ -10,11 +10,11 @@
       <Filter>protobuf</Filter>
     </ClCompile>
     <ClCompile Include="packet_id.h" />
-    <ClCompile Include="main.cpp" />
     <ClCompile Include="omok_server.cpp" />
-    <ClCompile Include="packet_buffer_manager.cpp" />
     <ClCompile Include="packet_processor.cpp" />
     <ClCompile Include="session.cpp" />
+    <ClCompile Include="main.cpp" />
+    <ClCompile Include="packet_queue.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="protobuf\OmokPacket.pb.h">
@@ -22,9 +22,10 @@
     </ClInclude>
     <ClInclude Include="packet_info.h" />
     <ClInclude Include="omok_server.h" />
-    <ClInclude Include="packet_buffer_manager.h" />
+    <ClInclude Include="packet_queue.h" />
     <ClInclude Include="packet_processor.h" />
     <ClInclude Include="session.h" />
+    <ClInclude Include="user_info.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="protobuf\OmokPacket.proto">

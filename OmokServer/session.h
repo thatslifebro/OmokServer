@@ -1,10 +1,12 @@
 #pragma once
 #include <functional>
+#include <unordered_map>
 
 #include "Poco/Net/SocketReactor.h"
 #include "Poco/Net/ParallelSocketAcceptor.h"
 
-#include "packet_buffer_manager.h"
+#include "packet_queue.h"
+#include "packet_info.h"
 
 
 class Session
@@ -18,7 +20,7 @@ public:
 
 	~Session();
 
-	std::function<bool(char*, uint32_t)> WriteData;
+	void SavePacket(char* buffer);
 
 private:
 	StreamSocket socket_;
