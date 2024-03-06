@@ -40,8 +40,6 @@ void Session::onReadable(ReadableNotification* pNotification)
 void Session::onShutdown(ShutdownNotification* pNotification)
 {
 	pNotification->release();
-	SessionManager session_manager;
-	session_manager.RemoveSession(session_id_);
 }
 
 Session::~Session()
