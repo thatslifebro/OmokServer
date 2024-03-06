@@ -26,17 +26,32 @@ void PacketProcessor::ReqLoginHandler(Packet packet)
 	reqLogin.ParseFromArray(packet.packet_body_, packet.packet_size_);
 
 	std::print("받은 메시지 : reqLogin.userid = {}, pw = {}\n", reqLogin.userid(), reqLogin.pw());
-	//todo : 로그인 처리 (로그인 목록에 세션 id 넣기)
+	
+	auto session = GetSession(packet.session_id_);
+	if(session == nullptr)
+	{
+		return;
+	}
 
 	//protobuf
 	OmokPacket::ResLogin res_login;
-	res_login.set_result(0);
+
+	if (user_auth_map[reqLogin.userid()] == reqLogin.pw())
+	{
+		session->Login();
+		res_login.set_result(0);
+	}
+	else
+	{
+		res_login.set_result(-1);
+	}
 
 	//ResLogin packet
 	auto [res_data, res_length] = MakeResData(res_login);
 
 	// 응답
-	SendResData(res_data, res_length, packet.session_id_);
+	session->SendPacket(res_data, res_length);
+	std::print("ResLogin to SessionId : {}\n",packet.session_id_);
 
 	delete res_data;
 }
@@ -53,17 +68,14 @@ std::tuple<char*, uint16_t> PacketProcessor::MakeResData(T packet_body)
 	return res_login_packet.ToByteArray();
 }
 
-void PacketProcessor::SendResData(char* res_data, int res_length, int session_id)
+Session* PacketProcessor::GetSession(int session_id)
 {
 	SessionManager session_manager;
 	if (session_manager.IsSessionExist(session_id) == false)
 	{
 		std::print("Session is not exist\n");
-		return;
+		return nullptr;
 	}
 
-	auto session = session_manager.GetSession(session_id);
-	session->SendPacket(res_data, res_length);
-
-	std::print("Send to SessionId : {}\n", session_id);
+	return session_manager.GetSession(session_id);
 }

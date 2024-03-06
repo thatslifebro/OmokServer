@@ -17,11 +17,12 @@ public:
 	~Session();
 	void SavePacket(char* buffer);
 	void SendPacket(char* buffer, int length);
+	void Login() { is_logged_in_ = true; }
 
 private:
 	Poco::Net::StreamSocket socket_;
 	Poco::Net::SocketReactor& reactor_;
 	std::string peer_address_;
 	int session_id_;
-	
+	bool is_logged_in_ = false;
 };

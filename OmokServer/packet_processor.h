@@ -10,6 +10,7 @@
 #include "packet_id.h"
 #include "session_manager.h"
 #include "session.h"
+#include "user_info.h"
 
 class PacketProcessor
 {
@@ -24,7 +25,6 @@ private:
 	template <typename T>
 	std::tuple<char*, uint16_t> MakeResData(T packet_body);
 
-	void SendResData(char* buffer, int length, int session_id);
+	Session* GetSession(int session_id);
 
-	
 };
