@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using OmokPacket;
 
 namespace CSCommon
 {
@@ -28,7 +29,7 @@ namespace CSCommon
 
     class PacketDef
     {
-        public const Int16 PACKET_HEADER_SIZE = 5;
+        public const Int16 PACKET_HEADER_SIZE = 4;
         public const int MAX_USER_ID_BYTE_LENGTH = 16;
         public const int MAX_USER_PW_BYTE_LENGTH = 16;
     }
@@ -36,7 +37,6 @@ namespace CSCommon
 
     public class LoginReqPacket
     {
-        OmokPacket::
         byte[] UserID = new byte[PacketDef.MAX_USER_ID_BYTE_LENGTH];
         byte[] UserPW = new byte[PacketDef.MAX_USER_PW_BYTE_LENGTH];
 

@@ -1,4 +1,6 @@
 ﻿using CSCommon;
+using Google.Protobuf;
+using OmokPacket;
 using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
@@ -267,7 +269,6 @@ namespace csharp_test_client
             List<byte> dataSource = new List<byte>();
             dataSource.AddRange(BitConverter.GetBytes((Int16)packetSize));
             dataSource.AddRange(BitConverter.GetBytes((Int16)packetID));
-            dataSource.AddRange(new byte[] { (byte)0 });
 
             if (bodyData != null)
             {
@@ -324,10 +325,11 @@ namespace csharp_test_client
         // 로그인 요청
         private void button2_Click(object sender, EventArgs e)
         {
-            var loginReq = new LoginReqPacket();
-            loginReq.SetValue(textBoxUserID.Text, textBoxUserPW.Text);
 
-            PostSendPacket(PacketID.ReqLogin, loginReq.ToBytes());
+            var loginReq = new ReqLogin();
+            loginReq.UserId = textBoxUserID.Text;
+            loginReq.Pw = textBoxUserPW.Text;
+            PostSendPacket(PacketID.ReqLogin, loginReq.ToByteArray());
             DevLog.Write($"로그인 요청:  {textBoxUserID.Text}, {textBoxUserPW.Text}");
         }
 
