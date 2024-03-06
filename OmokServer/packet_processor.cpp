@@ -36,6 +36,7 @@ void PacketProcessor::ReqLoginHandler(Packet packet)
 	//protobuf
 	OmokPacket::ResLogin res_login;
 
+	//login check
 	if (user_auth_map[reqLogin.userid()] == reqLogin.pw())
 	{
 		session->Login();
