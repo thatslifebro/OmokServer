@@ -9,7 +9,7 @@ void PacketProcessor::Init()
 bool PacketProcessor::ProcessPacket()
 {
 	PacketQueue packet_queue;
-	const auto& packet = packet_queue.PopAndGetPacket();
+	auto packet = packet_queue.PopAndGetPacket();
 
 	if (packet.packet_size_ <= 0)
 	{

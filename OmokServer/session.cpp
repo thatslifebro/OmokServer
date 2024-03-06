@@ -19,7 +19,7 @@ void Session::onReadable(ReadableNotification* pNotification)
 	try
 	{
 		char buffer[1024] = { 0, };
-		int n = socket_.receiveBytes(buffer, sizeof(buffer));
+		auto n = socket_.receiveBytes(buffer, sizeof(buffer));
 
 		if (n > 0) {
 			std::print("Received from client\n");
