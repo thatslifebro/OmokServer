@@ -344,8 +344,10 @@ namespace csharp_test_client
 
         private void btn_RoomLeave_Click(object sender, EventArgs e)
         {
-            //PostSendPacket(PACKET_ID.ROOM_LEAVE_REQ,  null);
-            DevLog.Write($"방 입장 요청:  {textBoxRoomNumber.Text} 번");
+            var reqRoomLeave = new ReqRoomLeave();
+
+            PostSendPacket(PacketID.ReqRoomLeave, reqRoomLeave.ToByteArray());
+            DevLog.Write($"방 나감 요청");
         }
 
         private void btnRoomChat_Click(object sender, EventArgs e)

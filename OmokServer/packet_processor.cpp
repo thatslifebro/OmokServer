@@ -4,6 +4,7 @@ void PacketProcessor::Init()
 {
 	packet_handler_map_.insert(std::make_pair(static_cast<uint16_t>(PacketId::ReqLogin), [&](Packet packet) { ReqLoginHandler(packet); }));
 	packet_handler_map_.insert(std::make_pair(static_cast<uint16_t>(PacketId::ReqRoomEnter), [&](Packet packet) { ReqRoomEnterHandler(packet); }));
+	packet_handler_map_.insert(std::make_pair(static_cast<uint16_t>(PacketId::ReqRoomLeave), [&](Packet packet) { ReqRoomLeaveHandler(packet); }));
 	//todo: 패킷에 대한 핸들러 등록
 }
 
@@ -25,13 +26,14 @@ void PacketProcessor::ReqLoginHandler(Packet packet)
 {
 	OmokPacket::ReqLogin req_login;
 	req_login.ParseFromArray(packet.packet_body_, packet.packet_size_);
-	std::print("받은 메시지 : reqLogin.userid = {}, pw = {}\n", req_login.userid(), req_login.pw());
 	
 	auto session = session_manager_.GetSession(packet.session_id_);
 	if(session == nullptr)
 	{
 		return;
 	}
+
+	std::print("받은 메시지 : reqLogin.userid = {}, pw = {}\n", req_login.userid(), req_login.pw());
 
 	//로그인 
 	uint32_t result = -1;
@@ -51,13 +53,14 @@ void PacketProcessor::ReqRoomEnterHandler(Packet packet)
 {
 	OmokPacket::ReqRoomEnter req_room_enter;
 	req_room_enter.ParseFromArray(packet.packet_body_, packet.packet_size_);
-	std::print("받은 메시지 : reqRoomEnter.room_number = {}\n", req_room_enter.roomid());
-
+	
 	auto session = session_manager_.GetSession(packet.session_id_);
 	if (session == nullptr)
 	{
 		return;
 	}
+
+	std::print("받은 메시지 : user_id = {}, reqRoomEnter.room_number = {}\n", session->user_id_ ,req_room_enter.roomid());
 
 	//방 입장 처리
 	uint32_t result = -1;
@@ -82,5 +85,43 @@ void PacketProcessor::ReqRoomEnterHandler(Packet packet)
 		packet_sender_.NtfRoomUserList(session, room_session_ids);
 		packet_sender_.BroadcastRoomUserEnter(room_session_ids, session);
 	}
+}
 
+void PacketProcessor::ReqRoomLeaveHandler(Packet packet)
+{
+	OmokPacket::ReqRoomLeave req_room_leave;
+	req_room_leave.ParseFromArray(packet.packet_body_, packet.packet_size_);
+
+	auto session = session_manager_.GetSession(packet.session_id_);
+	if (session == nullptr)
+	{
+		return;
+	}
+
+	std::print("받은 메시지 : user_id = {}, reqRoomLeave\n", session->user_id_);
+
+	auto room_id = session->session_room_id_;
+
+	//방 나감 처리
+	uint32_t result = -1;
+
+	if (session->is_logged_in_ == true && room_id != 0)
+	{
+		auto success = room_manager_.RemoveSession(session->session_id_, room_id);
+		if (success == true)
+		{
+			result = 0;
+			session->session_room_id_ = 0;
+			std::print("SessionId : {}, UserId : {} 가 방에서 나감.\n", session->session_id_, session->user_id_);
+		}
+	}
+
+	//방 나감 결과 전송
+	packet_sender_.ResRoomLeave(session, result);
+
+	if (result == 0)
+	{
+		auto room_session_ids = room_manager_.GetSessionList(room_id);
+		packet_sender_.BroadcastRoomUserLeave(room_session_ids, session);
+	}
 }

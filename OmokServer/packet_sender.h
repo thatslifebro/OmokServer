@@ -12,6 +12,8 @@ public:
 	void ResRoomEnter(Session* session, uint32_t result);
 	void BroadcastRoomUserEnter(std::vector<uint32_t> room_session_ids, Session* session);
 	void NtfRoomUserList(Session* session, std::vector<uint32_t> room_session_ids);
+	void ResRoomLeave(Session* session, uint32_t result);
+	void BroadcastRoomUserLeave(std::vector<uint32_t> room_session_ids, Session* session);
 
 private:
 	template <typename T>

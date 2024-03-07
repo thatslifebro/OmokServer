@@ -81,6 +81,49 @@ void PacketSender::BroadcastRoomUserEnter(std::vector<uint32_t> room_session_ids
 	}
 }
 
+void PacketSender::ResRoomLeave(Session* session, uint32_t result)
+{
+	OmokPacket::ResRoomLeave res_room_leave;
+	res_room_leave.set_result(result);
+
+	auto [res_data, res_length] = MakeResData(PacketId::ResRoomLeave, res_room_leave);
+
+	session->SendPacket(res_data, res_length);
+
+	delete res_data;
+}
+
+void PacketSender::BroadcastRoomUserLeave(std::vector<uint32_t> room_session_ids, Session* session)
+{
+	for (auto session_id : room_session_ids)
+	{
+		if (session_id == session->session_id_)
+		{
+			continue;
+		}
+
+		auto other_session = session_manager_.GetSession(session_id);
+		if (other_session == nullptr)
+		{
+			continue;
+		}
+
+		// 傈价 菩哦 积己
+		OmokPacket::NtfRoomLeaveUser ntf_room_leave_user;
+		ntf_room_leave_user.set_allocated_user(new OmokPacket::User());
+		ntf_room_leave_user.mutable_user()->set_sessionid(session->session_id_);
+		ntf_room_leave_user.mutable_user()->set_userid(session->user_id_);
+
+		// 傈价 单捞磐 积己
+		auto [res_data, res_length] = MakeResData(PacketId::NtfRoomLeaveUser, ntf_room_leave_user);
+
+		// 傈价
+		other_session->SendPacket(res_data, res_length);
+
+		delete res_data;
+	}
+}
+
 template <typename T>
 std::tuple<char*, uint16_t> PacketSender::MakeResData(PacketId packet_id, T packet_body)
 {

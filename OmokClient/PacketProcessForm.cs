@@ -144,18 +144,22 @@ namespace csharp_test_client
 
         void PacketProcess_RoomLeaveResponse(byte[] bodyData)
         {
-            //var responsePkt = MessagePackSerializer.Deserialize<PKTResRoomLeave>(packetData);
-
-            //DevLog.Write($"방 나가기 결과:  {(ErrorCode)responsePkt.Result}");
+            var resRoomLeave = new ResRoomLeave();
+            resRoomLeave.MergeFrom(bodyData);
+            DevLog.Write($"방 나감 결과:  {resRoomLeave.Result}");
+            if(resRoomLeave.Result == 0)
+            {
+                listBoxRoomUserList.Items.Clear();
+            }
         }
 
         void PacketProcess_RoomLeaveUserNotify(byte[] bodyData)
         {
-            //var notifyPkt = MessagePackSerializer.Deserialize<PKTNtfRoomLeaveUser>(packetData);
+            var ntfRoomLeaveUser = new NtfRoomLeaveUser();
+            ntfRoomLeaveUser.MergeFrom(bodyData);
+            listBoxRoomUserList.Items.Remove(ntfRoomLeaveUser.User.UserId);
 
-            //RemoveRoomUserList(notifyPkt.UserID);
-
-            DevLog.Write($"방에서 나간 유저 받음");
+            DevLog.Write($"방에서 유저 나감");
         }
 
 

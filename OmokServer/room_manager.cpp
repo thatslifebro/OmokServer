@@ -21,9 +21,14 @@ bool RoomManager::AddSession(uint32_t session_id, uint16_t room_id)
 	return true;
 }
 
-void RoomManager::RemoveSession(uint32_t session_id, uint16_t room_id)
+bool RoomManager::RemoveSession(uint32_t session_id, uint16_t room_id)
 {
-
+	if (room_id > MAX_ROOM_NUM || room_id < 1)
+	{
+		return false;
+	}
+	room_vec_[room_id - 1].RemoveSession(session_id);
+	return true;
 }
 
 std::vector<uint32_t> RoomManager::GetSessionList(uint16_t room_id)
