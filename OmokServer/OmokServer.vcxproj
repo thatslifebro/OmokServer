@@ -171,6 +171,8 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="game_room.cpp" />
+    <ClCompile Include="game_room_manager.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="omok_server.cpp" />
     <ClCompile Include="packet_processor.cpp" />
@@ -184,6 +186,8 @@
     <ClCompile Include="session_manager.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="game_room.h" />
+    <ClInclude Include="game_room_manager.h" />
     <ClInclude Include="omok_server.h" />
     <ClInclude Include="packet_queue.h" />
     <ClInclude Include="packet_info.h" />

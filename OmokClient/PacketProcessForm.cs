@@ -25,12 +25,14 @@ namespace csharp_test_client
             PacketFuncDic.Add(PacketID.NtfRoomLeaveUser, PacketProcess_RoomLeaveUserNotify);
             PacketFuncDic.Add(PacketID.ResRoomChat, PacketProcess_RoomChatResponse);
             PacketFuncDic.Add(PacketID.NtfRoomChat, PacketProcess_RoomChatNotify);
+            PacketFuncDic.Add(PacketID.ResMatch, PacketProcess_MatchResponse);
+            PacketFuncDic.Add(PacketID.NtfMatched, PacketProcess_MatchedNotify);
+
             PacketFuncDic.Add(PacketID.ResReadyOmok, PacketProcess_ReadyOmokResponse);
-            PacketFuncDic.Add(PacketID.NtfReadyOmok, PacketProcess_ReadyOmokNotify);
+
             PacketFuncDic.Add(PacketID.NtfStartOmok, PacketProcess_StartOmokNotify);
             PacketFuncDic.Add(PacketID.ResPutMok, PacketProcess_PutMokResponse);
-            PacketFuncDic.Add(PacketID.NTFPutMok, PacketProcess_PutMokNotify);
-            PacketFuncDic.Add(PacketID.NTFEndOmok, PacketProcess_EndOmokNotify);
+
         }
 
         void PacketProcess(PacketData packet)
@@ -125,9 +127,9 @@ namespace csharp_test_client
             var ntfRoomUserList = new NtfRoomUserList();
             ntfRoomUserList.MergeFrom(bodyData);
             listBoxRoomUserList.Items.Clear();
-            foreach (var user in ntfRoomUserList.User)
+            foreach (var userid in ntfRoomUserList.UserId)
             {
-                listBoxRoomUserList.Items.Add(user.UserId);
+                listBoxRoomUserList.Items.Add(userid);
             }
             DevLog.Write($"방의 기존 유저 리스트 받음");
         }
@@ -136,7 +138,7 @@ namespace csharp_test_client
         {
             NtfRoomNewUser ntfRoomNewUser = new NtfRoomNewUser();
             ntfRoomNewUser.MergeFrom(bodyData);
-            listBoxRoomUserList.Items.Add(ntfRoomNewUser.User.UserId);
+            listBoxRoomUserList.Items.Add(ntfRoomNewUser.UserId);
 
             DevLog.Write($"방에 새로 들어온 유저 받음");
         }
@@ -150,6 +152,7 @@ namespace csharp_test_client
             if(resRoomLeave.Result == 0)
             {
                 listBoxRoomUserList.Items.Clear();
+                listBoxRoomChatMsg.Items.Clear();
             }
         }
 
@@ -157,7 +160,7 @@ namespace csharp_test_client
         {
             var ntfRoomLeaveUser = new NtfRoomLeaveUser();
             ntfRoomLeaveUser.MergeFrom(bodyData);
-            listBoxRoomUserList.Items.Remove(ntfRoomLeaveUser.User.UserId);
+            listBoxRoomUserList.Items.Remove(ntfRoomLeaveUser.UserId);
 
             DevLog.Write($"방에서 유저 나감");
         }
@@ -182,7 +185,20 @@ namespace csharp_test_client
         {
             var ntfRoomChat = new NtfRoomChat();
             ntfRoomChat.MergeFrom(bodyData);
-            AddRoomChatMessageList(ntfRoomChat.User.UserId, ntfRoomChat.Chat);
+            AddRoomChatMessageList(ntfRoomChat.UserId, ntfRoomChat.Chat);
+        }
+
+        void PacketProcess_MatchResponse(byte[] bodyData)
+        {
+            DevLog.Write("매칭 중");
+        }
+
+        void PacketProcess_MatchedNotify(byte[] bodyData)
+        {
+            var ntfMatched = new NtfMatched();
+            ntfMatched.MergeFrom(bodyData);
+            
+            DevLog.Write($"매칭 완료 \n\n 상대 : {ntfMatched.UserId}\n 준비를 눌러 게임을 시작하십시오.\n");
         }
 
         void AddRoomChatMessageList(string userID, string message)
@@ -195,6 +211,8 @@ namespace csharp_test_client
             listBoxRoomChatMsg.Items.Add($"[{userID}]: {message}");
             listBoxRoomChatMsg.SelectedIndex = listBoxRoomChatMsg.Items.Count - 1;
         }
+
+        
 
         void PacketProcess_ReadyOmokResponse(byte[] bodyData)
         {

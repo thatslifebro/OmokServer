@@ -48,8 +48,7 @@ Session::~Session()
 {
 	reactor_.removeEventHandler(socket_, Poco::Observer<Session, ReadableNotification>(*this, &Session::onReadable));
 	std::print("Connection from {} closed\n", peer_address_);
-	reactor_.removeEventHandler(socket_, Poco::Observer<Session, ShutdownNotification
-	>(*this, &Session::onShutdown));
+	reactor_.removeEventHandler(socket_, Poco::Observer<Session, ShutdownNotification>(*this, &Session::onShutdown));
 }
 
 void Session::SavePacket(char* buffer)

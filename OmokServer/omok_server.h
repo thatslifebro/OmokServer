@@ -16,6 +16,9 @@ constexpr uint32_t BUFFER_SIZE = 8096 * 10;
 class OmokServer
 {
 public:
+	RoomManager room_manager_;
+	GameRoomManager game_room_manager_;
+
 	void Init();
 	void Start();
 

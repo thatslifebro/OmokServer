@@ -17,7 +17,7 @@ enum class PacketId
 
 	ReqMatch = 1301,
 	ResMatch = 1302,
-	NtfMatchUser = 1303,
+	NtfMatched = 1303,
 
 	ReqReadyOmok = 1401,
 	ResReadyOmok = 1402,

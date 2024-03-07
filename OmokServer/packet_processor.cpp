@@ -6,6 +6,7 @@ void PacketProcessor::Init()
 	packet_handler_map_.insert(std::make_pair(static_cast<uint16_t>(PacketId::ReqRoomEnter), [&](Packet packet) { ReqRoomEnterHandler(packet); }));
 	packet_handler_map_.insert(std::make_pair(static_cast<uint16_t>(PacketId::ReqRoomLeave), [&](Packet packet) { ReqRoomLeaveHandler(packet); }));
 	packet_handler_map_.insert(std::make_pair(static_cast<uint16_t>(PacketId::ReqRoomChat), [&](Packet packet) { ReqRoomChatHandler(packet); }));
+	packet_handler_map_.insert(std::make_pair(static_cast<uint16_t>(PacketId::ReqMatch), [&](Packet packet) { ReqMatchHandler(packet); }));
 	//todo: 패킷에 대한 핸들러 등록
 }
 
@@ -157,5 +158,35 @@ void PacketProcessor::ReqRoomChatHandler(Packet packet)
 	{
 		auto room_session_ids = room_manager_.GetSessionList(session->session_room_id_);
 		packet_sender_.BroadcastRoomChat(room_session_ids, session, req_room_chat.chat());
+	}
+}
+
+void PacketProcessor::ReqMatchHandler(Packet packet)
+{
+	// body 없는 패킷
+
+	auto session = session_manager_.GetSession(packet.session_id_);
+	if (session == nullptr)
+	{
+		return;
+	}
+
+	std::print("받은 메시지 : user_id = {}, reqMatch\n", session->user_id_);
+
+	//매칭 처리
+	if(session->is_matching_ == true || session->game_room_id_!=0)
+	{
+		return;
+	}
+
+	auto oponent_id = game_room_manager_.Match(session);
+
+	//매칭 결과 전송
+	packet_sender_.ResMatch(session);
+
+	if (oponent_id != 0)
+	{
+		auto oponent_session = session_manager_.GetSession(oponent_id);
+		packet_sender_.NtfMatched(session, oponent_session);
 	}
 }

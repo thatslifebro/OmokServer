@@ -26,17 +26,18 @@ namespace CSCommon
         public const UInt16 ResRoomChat = 1202;
         public const UInt16 NtfRoomChat = 1203;
 
-        public const UInt16 ReqReadyOmok = 1031;
-        public const UInt16 ResReadyOmok = 1032;
-        public const UInt16 NtfReadyOmok = 1033;
+        public const UInt16 ReqMatch = 1301;
+        public const UInt16 ResMatch = 1302;
+        public const UInt16 NtfMatched = 1303;
 
-        public const UInt16 NtfStartOmok = 1034;
+        public const UInt16 ReqReadyOmok = 1401;
+        public const UInt16 ResReadyOmok = 1402;
+        public const UInt16 NtfStartOmok = 1403;
 
-        public const UInt16 ReqPutMok = 1035;
-        public const UInt16 ResPutMok = 1036;
-        public const UInt16 NTFPutMok = 1037;
-
-        public const UInt16 NTFEndOmok = 1038;
+        public const UInt16 ReqPutMok = 1501;
+        public const UInt16 ResPutMok = 1502;
+        public const UInt16 NtfPutMok = 1503;
+        public const UInt16 NtfEndOmok = 1504;
 
 
     }

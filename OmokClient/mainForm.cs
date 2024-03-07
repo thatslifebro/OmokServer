@@ -367,7 +367,9 @@ namespace csharp_test_client
 
         private void btnMatching_Click(object sender, EventArgs e)
         {
-            //PostSendPacket(PACKET_ID.MATCH_USER_REQ, null);
+            var reqMatch = new ReqMatch();
+
+            PostSendPacket(PacketID.ReqMatch, reqMatch.ToByteArray());
             DevLog.Write($"매칭 요청");
         }
 
