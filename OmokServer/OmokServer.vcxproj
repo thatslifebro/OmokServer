@@ -177,6 +177,7 @@
     <ClCompile Include="packet_id.h" />
     <ClCompile Include="packet_queue.cpp" />
     <ClCompile Include="packet_sender.cpp" />
+    <ClCompile Include="room.cpp" />
     <ClCompile Include="room_manager.cpp" />
     <ClCompile Include="session.cpp" />
     <ClCompile Include="protobuf\OmokPacket.pb.cc" />

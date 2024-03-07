@@ -1,4 +1,6 @@
 #pragma once
+#include <vector>
+#include <set>
 
 class Room
 {
@@ -9,15 +11,7 @@ public:
 
 	void RemoveSession (uint16_t session_id) { session_ids_.erase(session_id); }
 
-	std::vector<uint32_t> GetSessionList() const
-	{
-		std::vector<uint32_t> session_list;
-		for (auto session_id : session_ids_)
-		{
-			session_list.push_back(session_id);
-		}
-		return session_list;
-	}
+	std::vector<uint32_t> GetSessionList() const;
 
 private:
 	std::set<uint16_t> session_ids_;

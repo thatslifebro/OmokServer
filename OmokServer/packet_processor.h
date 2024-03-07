@@ -25,7 +25,4 @@ public:
 
 private:
 	std::unordered_map<uint16_t, std::function<void(Packet) >> packet_handler_map_;
-
-	template <typename T>
-	std::tuple<char*, uint16_t> MakeResData(PacketId packet_id, T packet_body);
 };
