@@ -31,7 +31,7 @@ void PacketSender::NtfRoomUserList(Session* session, std::vector<uint32_t> room_
 	OmokPacket::NtfRoomUserList ntf_room_user_list;
 	for (auto session_id : room_session_ids)
 	{
-		auto session = GetSession(session_id);
+		auto session = session_manager_.GetSession(session_id);
 		if (session == nullptr)
 		{
 			continue;
@@ -59,7 +59,7 @@ void PacketSender::BroadcastRoomUserEnter(std::vector<uint32_t> room_session_ids
 			continue;
 		}
 
-		auto other_session = GetSession(session_id);
+		auto other_session = session_manager_.GetSession(session_id);
 		if (other_session == nullptr)
 		{
 			continue;
@@ -91,16 +91,4 @@ std::tuple<char*, uint16_t> PacketSender::MakeResData(PacketId packet_id, T pack
 	packet_body.SerializeToArray(res_login_packet.packet_body_, packet_body.ByteSizeLong());
 
 	return res_login_packet.ToByteArray();
-}
-
-Session* PacketSender::GetSession(uint32_t session_id)
-{
-	SessionManager session_manager;
-	if (session_manager.IsSessionExist(session_id) == false)
-	{
-		std::print("Session is not exist\n");
-		return nullptr;
-	}
-
-	return session_manager.GetSession(session_id);
 }

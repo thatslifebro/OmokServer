@@ -6,13 +6,14 @@
 class PacketSender
 {
 public:
-	static void ResLogin(Session* session, uint32_t result);
-	static void ResRoomEnter(Session* session, uint32_t result);
-	static void BroadcastRoomUserEnter(std::vector<uint32_t> room_session_ids, Session* session);
-	static void NtfRoomUserList(Session* session, std::vector<uint32_t> room_session_ids);
+	SessionManager session_manager_;
+
+	void ResLogin(Session* session, uint32_t result);
+	void ResRoomEnter(Session* session, uint32_t result);
+	void BroadcastRoomUserEnter(std::vector<uint32_t> room_session_ids, Session* session);
+	void NtfRoomUserList(Session* session, std::vector<uint32_t> room_session_ids);
 
 private:
 	template <typename T>
-	static std::tuple<char*, uint16_t> MakeResData(PacketId packet_id, T packet_body);
-	static Session* GetSession(uint32_t session_id);
+	std::tuple<char*, uint16_t> MakeResData(PacketId packet_id, T packet_body);
 };

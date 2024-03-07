@@ -14,6 +14,10 @@
 class PacketProcessor
 {
 public:
+	PacketSender packet_sender_;
+	RoomManager room_manager_;
+	SessionManager session_manager_;
+
 	void Init();
 	bool ProcessPacket();
 	void ReqLoginHandler(Packet packet);
@@ -24,6 +28,4 @@ private:
 
 	template <typename T>
 	std::tuple<char*, uint16_t> MakeResData(PacketId packet_id, T packet_body);
-
-	Session* GetSession(uint32_t session_id);
 };

@@ -27,7 +27,7 @@ void PacketProcessor::ReqLoginHandler(Packet packet)
 	req_login.ParseFromArray(packet.packet_body_, packet.packet_size_);
 	std::print("받은 메시지 : reqLogin.userid = {}, pw = {}\n", req_login.userid(), req_login.pw());
 	
-	auto session = GetSession(packet.session_id_);
+	auto session = session_manager_.GetSession(packet.session_id_);
 	if(session == nullptr)
 	{
 		return;
@@ -44,7 +44,7 @@ void PacketProcessor::ReqLoginHandler(Packet packet)
 	}
 
 	//로그인 결과 전송
-	PacketSender::ResLogin(session, result);
+	packet_sender_.ResLogin(session, result);
 }
 
 void PacketProcessor::ReqRoomEnterHandler(Packet packet)
@@ -53,7 +53,7 @@ void PacketProcessor::ReqRoomEnterHandler(Packet packet)
 	req_room_enter.ParseFromArray(packet.packet_body_, packet.packet_size_);
 	std::print("받은 메시지 : reqRoomEnter.room_number = {}\n", req_room_enter.roomid());
 
-	auto session = GetSession(packet.session_id_);
+	auto session = session_manager_.GetSession(packet.session_id_);
 	if (session == nullptr)
 	{
 		return;
@@ -64,7 +64,7 @@ void PacketProcessor::ReqRoomEnterHandler(Packet packet)
 
 	if (session->is_logged_in_ == true && session->session_room_id_ == 0)
 	{
-		auto success = RoomManager::AddSession(session->session_id_, req_room_enter.roomid());
+		auto success = room_manager_.AddSession(session->session_id_, req_room_enter.roomid());
 		if (success == true)
 		{
 			result = 0;
@@ -74,26 +74,13 @@ void PacketProcessor::ReqRoomEnterHandler(Packet packet)
 	}
 
 	//방 입장 결과 전송
-	PacketSender::ResRoomEnter(session, result);
+	packet_sender_.ResRoomEnter(session, result);
 	
 	if (result == 0)
 	{
-		auto room_session_ids = RoomManager::GetSessionList(session->session_room_id_);
-		PacketSender::NtfRoomUserList(session, room_session_ids);
-		PacketSender::BroadcastRoomUserEnter(room_session_ids, session);
+		auto room_session_ids = room_manager_.GetSessionList(session->session_room_id_);
+		packet_sender_.NtfRoomUserList(session, room_session_ids);
+		packet_sender_.BroadcastRoomUserEnter(room_session_ids, session);
 	}
 
-}
-
-
-Session* PacketProcessor::GetSession(uint32_t session_id)
-{
-	SessionManager session_manager;
-	if (session_manager.IsSessionExist(session_id) == false)
-	{
-		std::print("Session is not exist\n");
-		return nullptr;
-	}
-
-	return session_manager.GetSession(session_id);
 }

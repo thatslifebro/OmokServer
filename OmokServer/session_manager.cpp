@@ -21,6 +21,10 @@ void SessionManager::RemoveSession(uint32_t session_id)
 
 Session* SessionManager::GetSession(uint32_t session_id)
 {
+	if (IsSessionExist(session_id) == false)
+	{
+		return nullptr;
+	};
 	return session_map_[session_id];
 }
 
