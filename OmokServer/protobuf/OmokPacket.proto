@@ -44,17 +44,16 @@ message NtfRoomLeaveUser {// 나간 유저 broadcast
 }
 
 message ReqRoomChat {
-  optional string sessionId = 1;
-  optional string chat = 2;
+  optional string chat = 1;
 }
 
 message ResRoomChat { // 내 채팅 다시 보내기
-  optional string userId = 1;
+  optional int32 result = 1;
   optional string chat = 2;
 }
 
 message NtfRoomChat { // broadcast
-  optional string userId = 1;
+  optional User user = 1;
   optional string chat = 2;
 }
 

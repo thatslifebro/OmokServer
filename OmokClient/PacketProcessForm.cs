@@ -165,17 +165,24 @@ namespace csharp_test_client
 
         void PacketProcess_RoomChatResponse(byte[] bodyData)
         {
-            //var responsePkt = MessagePackSerializer.Deserialize<PKTResRoomChat>(packetData);
-
-            //DevLog.Write($"방 채팅 결과:  {(ErrorCode)responsePkt.Result}");
+            var resRoomChat = new ResRoomChat();
+            resRoomChat.MergeFrom(bodyData);
+            if(resRoomChat.Result == 0)
+            {
+                AddRoomChatMessageList(textBoxUserID.Text, resRoomChat.Chat);
+            }
+            else
+            {
+                DevLog.Write($"방 채팅 보내기: 실패");
+            }
         }
 
 
         void PacketProcess_RoomChatNotify(byte[] bodyData)
         {
-            //var notifyPkt = MessagePackSerializer.Deserialize<PKTNtfRoomChat>(packetData);
-
-            //AddRoomChatMessageList(notifyPkt.UserID, notifyPkt.ChatMessage);
+            var ntfRoomChat = new NtfRoomChat();
+            ntfRoomChat.MergeFrom(bodyData);
+            AddRoomChatMessageList(ntfRoomChat.User.UserId, ntfRoomChat.Chat);
         }
 
         void AddRoomChatMessageList(string userID, string message)

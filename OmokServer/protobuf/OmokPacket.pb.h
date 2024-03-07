@@ -1820,28 +1820,9 @@ class ReqRoomChat final :
   // accessors -------------------------------------------------------
 
   enum : int {
-    kSessionIdFieldNumber = 1,
-    kChatFieldNumber = 2,
+    kChatFieldNumber = 1,
   };
-  // optional string sessionId = 1;
-  bool has_sessionid() const;
-  private:
-  bool _internal_has_sessionid() const;
-  public:
-  void clear_sessionid();
-  const std::string& sessionid() const;
-  template <typename ArgT0 = const std::string&, typename... ArgT>
-  void set_sessionid(ArgT0&& arg0, ArgT... args);
-  std::string* mutable_sessionid();
-  PROTOBUF_NODISCARD std::string* release_sessionid();
-  void set_allocated_sessionid(std::string* sessionid);
-  private:
-  const std::string& _internal_sessionid() const;
-  inline PROTOBUF_ALWAYS_INLINE void _internal_set_sessionid(const std::string& value);
-  std::string* _internal_mutable_sessionid();
-  public:
-
-  // optional string chat = 2;
+  // optional string chat = 1;
   bool has_chat() const;
   private:
   bool _internal_has_chat() const;
@@ -1869,7 +1850,6 @@ class ReqRoomChat final :
   struct Impl_ {
     ::PROTOBUF_NAMESPACE_ID::internal::HasBits<1> _has_bits_;
     mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
-    ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr sessionid_;
     ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr chat_;
   };
   union { Impl_ _impl_; };
@@ -1998,27 +1978,9 @@ class ResRoomChat final :
   // accessors -------------------------------------------------------
 
   enum : int {
-    kUserIdFieldNumber = 1,
     kChatFieldNumber = 2,
+    kResultFieldNumber = 1,
   };
-  // optional string userId = 1;
-  bool has_userid() const;
-  private:
-  bool _internal_has_userid() const;
-  public:
-  void clear_userid();
-  const std::string& userid() const;
-  template <typename ArgT0 = const std::string&, typename... ArgT>
-  void set_userid(ArgT0&& arg0, ArgT... args);
-  std::string* mutable_userid();
-  PROTOBUF_NODISCARD std::string* release_userid();
-  void set_allocated_userid(std::string* userid);
-  private:
-  const std::string& _internal_userid() const;
-  inline PROTOBUF_ALWAYS_INLINE void _internal_set_userid(const std::string& value);
-  std::string* _internal_mutable_userid();
-  public:
-
   // optional string chat = 2;
   bool has_chat() const;
   private:
@@ -2037,6 +1999,19 @@ class ResRoomChat final :
   std::string* _internal_mutable_chat();
   public:
 
+  // optional int32 result = 1;
+  bool has_result() const;
+  private:
+  bool _internal_has_result() const;
+  public:
+  void clear_result();
+  int32_t result() const;
+  void set_result(int32_t value);
+  private:
+  int32_t _internal_result() const;
+  void _internal_set_result(int32_t value);
+  public:
+
   // @@protoc_insertion_point(class_scope:OmokPacket.ResRoomChat)
  private:
   class _Internal;
@@ -2047,8 +2022,8 @@ class ResRoomChat final :
   struct Impl_ {
     ::PROTOBUF_NAMESPACE_ID::internal::HasBits<1> _has_bits_;
     mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
-    ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr userid_;
     ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr chat_;
+    int32_t result_;
   };
   union { Impl_ _impl_; };
   friend struct ::TableStruct_OmokPacket_2eproto;
@@ -2176,27 +2151,9 @@ class NtfRoomChat final :
   // accessors -------------------------------------------------------
 
   enum : int {
-    kUserIdFieldNumber = 1,
     kChatFieldNumber = 2,
+    kUserFieldNumber = 1,
   };
-  // optional string userId = 1;
-  bool has_userid() const;
-  private:
-  bool _internal_has_userid() const;
-  public:
-  void clear_userid();
-  const std::string& userid() const;
-  template <typename ArgT0 = const std::string&, typename... ArgT>
-  void set_userid(ArgT0&& arg0, ArgT... args);
-  std::string* mutable_userid();
-  PROTOBUF_NODISCARD std::string* release_userid();
-  void set_allocated_userid(std::string* userid);
-  private:
-  const std::string& _internal_userid() const;
-  inline PROTOBUF_ALWAYS_INLINE void _internal_set_userid(const std::string& value);
-  std::string* _internal_mutable_userid();
-  public:
-
   // optional string chat = 2;
   bool has_chat() const;
   private:
@@ -2215,6 +2172,24 @@ class NtfRoomChat final :
   std::string* _internal_mutable_chat();
   public:
 
+  // optional .OmokPacket.User user = 1;
+  bool has_user() const;
+  private:
+  bool _internal_has_user() const;
+  public:
+  void clear_user();
+  const ::OmokPacket::User& user() const;
+  PROTOBUF_NODISCARD ::OmokPacket::User* release_user();
+  ::OmokPacket::User* mutable_user();
+  void set_allocated_user(::OmokPacket::User* user);
+  private:
+  const ::OmokPacket::User& _internal_user() const;
+  ::OmokPacket::User* _internal_mutable_user();
+  public:
+  void unsafe_arena_set_allocated_user(
+      ::OmokPacket::User* user);
+  ::OmokPacket::User* unsafe_arena_release_user();
+
   // @@protoc_insertion_point(class_scope:OmokPacket.NtfRoomChat)
  private:
   class _Internal;
@@ -2225,8 +2200,8 @@ class NtfRoomChat final :
   struct Impl_ {
     ::PROTOBUF_NAMESPACE_ID::internal::HasBits<1> _has_bits_;
     mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
-    ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr userid_;
     ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr chat_;
+    ::OmokPacket::User* user_;
   };
   union { Impl_ _impl_; };
   friend struct ::TableStruct_OmokPacket_2eproto;
@@ -4491,77 +4466,9 @@ inline void NtfRoomLeaveUser::set_allocated_user(::OmokPacket::User* user) {
 
 // ReqRoomChat
 
-// optional string sessionId = 1;
-inline bool ReqRoomChat::_internal_has_sessionid() const {
-  bool value = (_impl_._has_bits_[0] & 0x00000001u) != 0;
-  return value;
-}
-inline bool ReqRoomChat::has_sessionid() const {
-  return _internal_has_sessionid();
-}
-inline void ReqRoomChat::clear_sessionid() {
-  _impl_.sessionid_.ClearToEmpty();
-  _impl_._has_bits_[0] &= ~0x00000001u;
-}
-inline const std::string& ReqRoomChat::sessionid() const {
-  // @@protoc_insertion_point(field_get:OmokPacket.ReqRoomChat.sessionId)
-  return _internal_sessionid();
-}
-template <typename ArgT0, typename... ArgT>
-inline PROTOBUF_ALWAYS_INLINE
-void ReqRoomChat::set_sessionid(ArgT0&& arg0, ArgT... args) {
- _impl_._has_bits_[0] |= 0x00000001u;
- _impl_.sessionid_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
-  // @@protoc_insertion_point(field_set:OmokPacket.ReqRoomChat.sessionId)
-}
-inline std::string* ReqRoomChat::mutable_sessionid() {
-  std::string* _s = _internal_mutable_sessionid();
-  // @@protoc_insertion_point(field_mutable:OmokPacket.ReqRoomChat.sessionId)
-  return _s;
-}
-inline const std::string& ReqRoomChat::_internal_sessionid() const {
-  return _impl_.sessionid_.Get();
-}
-inline void ReqRoomChat::_internal_set_sessionid(const std::string& value) {
-  _impl_._has_bits_[0] |= 0x00000001u;
-  _impl_.sessionid_.Set(value, GetArenaForAllocation());
-}
-inline std::string* ReqRoomChat::_internal_mutable_sessionid() {
-  _impl_._has_bits_[0] |= 0x00000001u;
-  return _impl_.sessionid_.Mutable(GetArenaForAllocation());
-}
-inline std::string* ReqRoomChat::release_sessionid() {
-  // @@protoc_insertion_point(field_release:OmokPacket.ReqRoomChat.sessionId)
-  if (!_internal_has_sessionid()) {
-    return nullptr;
-  }
-  _impl_._has_bits_[0] &= ~0x00000001u;
-  auto* p = _impl_.sessionid_.Release();
-#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  if (_impl_.sessionid_.IsDefault()) {
-    _impl_.sessionid_.Set("", GetArenaForAllocation());
-  }
-#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  return p;
-}
-inline void ReqRoomChat::set_allocated_sessionid(std::string* sessionid) {
-  if (sessionid != nullptr) {
-    _impl_._has_bits_[0] |= 0x00000001u;
-  } else {
-    _impl_._has_bits_[0] &= ~0x00000001u;
-  }
-  _impl_.sessionid_.SetAllocated(sessionid, GetArenaForAllocation());
-#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  if (_impl_.sessionid_.IsDefault()) {
-    _impl_.sessionid_.Set("", GetArenaForAllocation());
-  }
-#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  // @@protoc_insertion_point(field_set_allocated:OmokPacket.ReqRoomChat.sessionId)
-}
-
-// optional string chat = 2;
+// optional string chat = 1;
 inline bool ReqRoomChat::_internal_has_chat() const {
-  bool value = (_impl_._has_bits_[0] & 0x00000002u) != 0;
+  bool value = (_impl_._has_bits_[0] & 0x00000001u) != 0;
   return value;
 }
 inline bool ReqRoomChat::has_chat() const {
@@ -4569,7 +4476,7 @@ inline bool ReqRoomChat::has_chat() const {
 }
 inline void ReqRoomChat::clear_chat() {
   _impl_.chat_.ClearToEmpty();
-  _impl_._has_bits_[0] &= ~0x00000002u;
+  _impl_._has_bits_[0] &= ~0x00000001u;
 }
 inline const std::string& ReqRoomChat::chat() const {
   // @@protoc_insertion_point(field_get:OmokPacket.ReqRoomChat.chat)
@@ -4578,7 +4485,7 @@ inline const std::string& ReqRoomChat::chat() const {
 template <typename ArgT0, typename... ArgT>
 inline PROTOBUF_ALWAYS_INLINE
 void ReqRoomChat::set_chat(ArgT0&& arg0, ArgT... args) {
- _impl_._has_bits_[0] |= 0x00000002u;
+ _impl_._has_bits_[0] |= 0x00000001u;
  _impl_.chat_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
   // @@protoc_insertion_point(field_set:OmokPacket.ReqRoomChat.chat)
 }
@@ -4591,11 +4498,11 @@ inline const std::string& ReqRoomChat::_internal_chat() const {
   return _impl_.chat_.Get();
 }
 inline void ReqRoomChat::_internal_set_chat(const std::string& value) {
-  _impl_._has_bits_[0] |= 0x00000002u;
+  _impl_._has_bits_[0] |= 0x00000001u;
   _impl_.chat_.Set(value, GetArenaForAllocation());
 }
 inline std::string* ReqRoomChat::_internal_mutable_chat() {
-  _impl_._has_bits_[0] |= 0x00000002u;
+  _impl_._has_bits_[0] |= 0x00000001u;
   return _impl_.chat_.Mutable(GetArenaForAllocation());
 }
 inline std::string* ReqRoomChat::release_chat() {
@@ -4603,7 +4510,7 @@ inline std::string* ReqRoomChat::release_chat() {
   if (!_internal_has_chat()) {
     return nullptr;
   }
-  _impl_._has_bits_[0] &= ~0x00000002u;
+  _impl_._has_bits_[0] &= ~0x00000001u;
   auto* p = _impl_.chat_.Release();
 #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
   if (_impl_.chat_.IsDefault()) {
@@ -4614,9 +4521,9 @@ inline std::string* ReqRoomChat::release_chat() {
 }
 inline void ReqRoomChat::set_allocated_chat(std::string* chat) {
   if (chat != nullptr) {
-    _impl_._has_bits_[0] |= 0x00000002u;
+    _impl_._has_bits_[0] |= 0x00000001u;
   } else {
-    _impl_._has_bits_[0] &= ~0x00000002u;
+    _impl_._has_bits_[0] &= ~0x00000001u;
   }
   _impl_.chat_.SetAllocated(chat, GetArenaForAllocation());
 #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
@@ -4631,77 +4538,37 @@ inline void ReqRoomChat::set_allocated_chat(std::string* chat) {
 
 // ResRoomChat
 
-// optional string userId = 1;
-inline bool ResRoomChat::_internal_has_userid() const {
-  bool value = (_impl_._has_bits_[0] & 0x00000001u) != 0;
+// optional int32 result = 1;
+inline bool ResRoomChat::_internal_has_result() const {
+  bool value = (_impl_._has_bits_[0] & 0x00000002u) != 0;
   return value;
 }
-inline bool ResRoomChat::has_userid() const {
-  return _internal_has_userid();
+inline bool ResRoomChat::has_result() const {
+  return _internal_has_result();
 }
-inline void ResRoomChat::clear_userid() {
-  _impl_.userid_.ClearToEmpty();
-  _impl_._has_bits_[0] &= ~0x00000001u;
+inline void ResRoomChat::clear_result() {
+  _impl_.result_ = 0;
+  _impl_._has_bits_[0] &= ~0x00000002u;
 }
-inline const std::string& ResRoomChat::userid() const {
-  // @@protoc_insertion_point(field_get:OmokPacket.ResRoomChat.userId)
-  return _internal_userid();
+inline int32_t ResRoomChat::_internal_result() const {
+  return _impl_.result_;
 }
-template <typename ArgT0, typename... ArgT>
-inline PROTOBUF_ALWAYS_INLINE
-void ResRoomChat::set_userid(ArgT0&& arg0, ArgT... args) {
- _impl_._has_bits_[0] |= 0x00000001u;
- _impl_.userid_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
-  // @@protoc_insertion_point(field_set:OmokPacket.ResRoomChat.userId)
+inline int32_t ResRoomChat::result() const {
+  // @@protoc_insertion_point(field_get:OmokPacket.ResRoomChat.result)
+  return _internal_result();
 }
-inline std::string* ResRoomChat::mutable_userid() {
-  std::string* _s = _internal_mutable_userid();
-  // @@protoc_insertion_point(field_mutable:OmokPacket.ResRoomChat.userId)
-  return _s;
+inline void ResRoomChat::_internal_set_result(int32_t value) {
+  _impl_._has_bits_[0] |= 0x00000002u;
+  _impl_.result_ = value;
 }
-inline const std::string& ResRoomChat::_internal_userid() const {
-  return _impl_.userid_.Get();
-}
-inline void ResRoomChat::_internal_set_userid(const std::string& value) {
-  _impl_._has_bits_[0] |= 0x00000001u;
-  _impl_.userid_.Set(value, GetArenaForAllocation());
-}
-inline std::string* ResRoomChat::_internal_mutable_userid() {
-  _impl_._has_bits_[0] |= 0x00000001u;
-  return _impl_.userid_.Mutable(GetArenaForAllocation());
-}
-inline std::string* ResRoomChat::release_userid() {
-  // @@protoc_insertion_point(field_release:OmokPacket.ResRoomChat.userId)
-  if (!_internal_has_userid()) {
-    return nullptr;
-  }
-  _impl_._has_bits_[0] &= ~0x00000001u;
-  auto* p = _impl_.userid_.Release();
-#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  if (_impl_.userid_.IsDefault()) {
-    _impl_.userid_.Set("", GetArenaForAllocation());
-  }
-#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  return p;
-}
-inline void ResRoomChat::set_allocated_userid(std::string* userid) {
-  if (userid != nullptr) {
-    _impl_._has_bits_[0] |= 0x00000001u;
-  } else {
-    _impl_._has_bits_[0] &= ~0x00000001u;
-  }
-  _impl_.userid_.SetAllocated(userid, GetArenaForAllocation());
-#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  if (_impl_.userid_.IsDefault()) {
-    _impl_.userid_.Set("", GetArenaForAllocation());
-  }
-#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  // @@protoc_insertion_point(field_set_allocated:OmokPacket.ResRoomChat.userId)
+inline void ResRoomChat::set_result(int32_t value) {
+  _internal_set_result(value);
+  // @@protoc_insertion_point(field_set:OmokPacket.ResRoomChat.result)
 }
 
 // optional string chat = 2;
 inline bool ResRoomChat::_internal_has_chat() const {
-  bool value = (_impl_._has_bits_[0] & 0x00000002u) != 0;
+  bool value = (_impl_._has_bits_[0] & 0x00000001u) != 0;
   return value;
 }
 inline bool ResRoomChat::has_chat() const {
@@ -4709,7 +4576,7 @@ inline bool ResRoomChat::has_chat() const {
 }
 inline void ResRoomChat::clear_chat() {
   _impl_.chat_.ClearToEmpty();
-  _impl_._has_bits_[0] &= ~0x00000002u;
+  _impl_._has_bits_[0] &= ~0x00000001u;
 }
 inline const std::string& ResRoomChat::chat() const {
   // @@protoc_insertion_point(field_get:OmokPacket.ResRoomChat.chat)
@@ -4718,7 +4585,7 @@ inline const std::string& ResRoomChat::chat() const {
 template <typename ArgT0, typename... ArgT>
 inline PROTOBUF_ALWAYS_INLINE
 void ResRoomChat::set_chat(ArgT0&& arg0, ArgT... args) {
- _impl_._has_bits_[0] |= 0x00000002u;
+ _impl_._has_bits_[0] |= 0x00000001u;
  _impl_.chat_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
   // @@protoc_insertion_point(field_set:OmokPacket.ResRoomChat.chat)
 }
@@ -4731,11 +4598,11 @@ inline const std::string& ResRoomChat::_internal_chat() const {
   return _impl_.chat_.Get();
 }
 inline void ResRoomChat::_internal_set_chat(const std::string& value) {
-  _impl_._has_bits_[0] |= 0x00000002u;
+  _impl_._has_bits_[0] |= 0x00000001u;
   _impl_.chat_.Set(value, GetArenaForAllocation());
 }
 inline std::string* ResRoomChat::_internal_mutable_chat() {
-  _impl_._has_bits_[0] |= 0x00000002u;
+  _impl_._has_bits_[0] |= 0x00000001u;
   return _impl_.chat_.Mutable(GetArenaForAllocation());
 }
 inline std::string* ResRoomChat::release_chat() {
@@ -4743,7 +4610,7 @@ inline std::string* ResRoomChat::release_chat() {
   if (!_internal_has_chat()) {
     return nullptr;
   }
-  _impl_._has_bits_[0] &= ~0x00000002u;
+  _impl_._has_bits_[0] &= ~0x00000001u;
   auto* p = _impl_.chat_.Release();
 #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
   if (_impl_.chat_.IsDefault()) {
@@ -4754,9 +4621,9 @@ inline std::string* ResRoomChat::release_chat() {
 }
 inline void ResRoomChat::set_allocated_chat(std::string* chat) {
   if (chat != nullptr) {
-    _impl_._has_bits_[0] |= 0x00000002u;
+    _impl_._has_bits_[0] |= 0x00000001u;
   } else {
-    _impl_._has_bits_[0] &= ~0x00000002u;
+    _impl_._has_bits_[0] &= ~0x00000001u;
   }
   _impl_.chat_.SetAllocated(chat, GetArenaForAllocation());
 #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
@@ -4771,77 +4638,99 @@ inline void ResRoomChat::set_allocated_chat(std::string* chat) {
 
 // NtfRoomChat
 
-// optional string userId = 1;
-inline bool NtfRoomChat::_internal_has_userid() const {
-  bool value = (_impl_._has_bits_[0] & 0x00000001u) != 0;
+// optional .OmokPacket.User user = 1;
+inline bool NtfRoomChat::_internal_has_user() const {
+  bool value = (_impl_._has_bits_[0] & 0x00000002u) != 0;
+  PROTOBUF_ASSUME(!value || _impl_.user_ != nullptr);
   return value;
 }
-inline bool NtfRoomChat::has_userid() const {
-  return _internal_has_userid();
+inline bool NtfRoomChat::has_user() const {
+  return _internal_has_user();
 }
-inline void NtfRoomChat::clear_userid() {
-  _impl_.userid_.ClearToEmpty();
-  _impl_._has_bits_[0] &= ~0x00000001u;
+inline void NtfRoomChat::clear_user() {
+  if (_impl_.user_ != nullptr) _impl_.user_->Clear();
+  _impl_._has_bits_[0] &= ~0x00000002u;
 }
-inline const std::string& NtfRoomChat::userid() const {
-  // @@protoc_insertion_point(field_get:OmokPacket.NtfRoomChat.userId)
-  return _internal_userid();
+inline const ::OmokPacket::User& NtfRoomChat::_internal_user() const {
+  const ::OmokPacket::User* p = _impl_.user_;
+  return p != nullptr ? *p : reinterpret_cast<const ::OmokPacket::User&>(
+      ::OmokPacket::_User_default_instance_);
 }
-template <typename ArgT0, typename... ArgT>
-inline PROTOBUF_ALWAYS_INLINE
-void NtfRoomChat::set_userid(ArgT0&& arg0, ArgT... args) {
- _impl_._has_bits_[0] |= 0x00000001u;
- _impl_.userid_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
-  // @@protoc_insertion_point(field_set:OmokPacket.NtfRoomChat.userId)
+inline const ::OmokPacket::User& NtfRoomChat::user() const {
+  // @@protoc_insertion_point(field_get:OmokPacket.NtfRoomChat.user)
+  return _internal_user();
 }
-inline std::string* NtfRoomChat::mutable_userid() {
-  std::string* _s = _internal_mutable_userid();
-  // @@protoc_insertion_point(field_mutable:OmokPacket.NtfRoomChat.userId)
-  return _s;
-}
-inline const std::string& NtfRoomChat::_internal_userid() const {
-  return _impl_.userid_.Get();
-}
-inline void NtfRoomChat::_internal_set_userid(const std::string& value) {
-  _impl_._has_bits_[0] |= 0x00000001u;
-  _impl_.userid_.Set(value, GetArenaForAllocation());
-}
-inline std::string* NtfRoomChat::_internal_mutable_userid() {
-  _impl_._has_bits_[0] |= 0x00000001u;
-  return _impl_.userid_.Mutable(GetArenaForAllocation());
-}
-inline std::string* NtfRoomChat::release_userid() {
-  // @@protoc_insertion_point(field_release:OmokPacket.NtfRoomChat.userId)
-  if (!_internal_has_userid()) {
-    return nullptr;
+inline void NtfRoomChat::unsafe_arena_set_allocated_user(
+    ::OmokPacket::User* user) {
+  if (GetArenaForAllocation() == nullptr) {
+    delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(_impl_.user_);
   }
-  _impl_._has_bits_[0] &= ~0x00000001u;
-  auto* p = _impl_.userid_.Release();
-#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  if (_impl_.userid_.IsDefault()) {
-    _impl_.userid_.Set("", GetArenaForAllocation());
-  }
-#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  return p;
-}
-inline void NtfRoomChat::set_allocated_userid(std::string* userid) {
-  if (userid != nullptr) {
-    _impl_._has_bits_[0] |= 0x00000001u;
+  _impl_.user_ = user;
+  if (user) {
+    _impl_._has_bits_[0] |= 0x00000002u;
   } else {
-    _impl_._has_bits_[0] &= ~0x00000001u;
+    _impl_._has_bits_[0] &= ~0x00000002u;
   }
-  _impl_.userid_.SetAllocated(userid, GetArenaForAllocation());
-#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  if (_impl_.userid_.IsDefault()) {
-    _impl_.userid_.Set("", GetArenaForAllocation());
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:OmokPacket.NtfRoomChat.user)
+}
+inline ::OmokPacket::User* NtfRoomChat::release_user() {
+  _impl_._has_bits_[0] &= ~0x00000002u;
+  ::OmokPacket::User* temp = _impl_.user_;
+  _impl_.user_ = nullptr;
+#ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
+  auto* old =  reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(temp);
+  temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  if (GetArenaForAllocation() == nullptr) { delete old; }
+#else  // PROTOBUF_FORCE_COPY_IN_RELEASE
+  if (GetArenaForAllocation() != nullptr) {
+    temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
   }
-#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  // @@protoc_insertion_point(field_set_allocated:OmokPacket.NtfRoomChat.userId)
+#endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
+  return temp;
+}
+inline ::OmokPacket::User* NtfRoomChat::unsafe_arena_release_user() {
+  // @@protoc_insertion_point(field_release:OmokPacket.NtfRoomChat.user)
+  _impl_._has_bits_[0] &= ~0x00000002u;
+  ::OmokPacket::User* temp = _impl_.user_;
+  _impl_.user_ = nullptr;
+  return temp;
+}
+inline ::OmokPacket::User* NtfRoomChat::_internal_mutable_user() {
+  _impl_._has_bits_[0] |= 0x00000002u;
+  if (_impl_.user_ == nullptr) {
+    auto* p = CreateMaybeMessage<::OmokPacket::User>(GetArenaForAllocation());
+    _impl_.user_ = p;
+  }
+  return _impl_.user_;
+}
+inline ::OmokPacket::User* NtfRoomChat::mutable_user() {
+  ::OmokPacket::User* _msg = _internal_mutable_user();
+  // @@protoc_insertion_point(field_mutable:OmokPacket.NtfRoomChat.user)
+  return _msg;
+}
+inline void NtfRoomChat::set_allocated_user(::OmokPacket::User* user) {
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaForAllocation();
+  if (message_arena == nullptr) {
+    delete _impl_.user_;
+  }
+  if (user) {
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
+        ::PROTOBUF_NAMESPACE_ID::Arena::InternalGetOwningArena(user);
+    if (message_arena != submessage_arena) {
+      user = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, user, submessage_arena);
+    }
+    _impl_._has_bits_[0] |= 0x00000002u;
+  } else {
+    _impl_._has_bits_[0] &= ~0x00000002u;
+  }
+  _impl_.user_ = user;
+  // @@protoc_insertion_point(field_set_allocated:OmokPacket.NtfRoomChat.user)
 }
 
 // optional string chat = 2;
 inline bool NtfRoomChat::_internal_has_chat() const {
-  bool value = (_impl_._has_bits_[0] & 0x00000002u) != 0;
+  bool value = (_impl_._has_bits_[0] & 0x00000001u) != 0;
   return value;
 }
 inline bool NtfRoomChat::has_chat() const {
@@ -4849,7 +4738,7 @@ inline bool NtfRoomChat::has_chat() const {
 }
 inline void NtfRoomChat::clear_chat() {
   _impl_.chat_.ClearToEmpty();
-  _impl_._has_bits_[0] &= ~0x00000002u;
+  _impl_._has_bits_[0] &= ~0x00000001u;
 }
 inline const std::string& NtfRoomChat::chat() const {
   // @@protoc_insertion_point(field_get:OmokPacket.NtfRoomChat.chat)
@@ -4858,7 +4747,7 @@ inline const std::string& NtfRoomChat::chat() const {
 template <typename ArgT0, typename... ArgT>
 inline PROTOBUF_ALWAYS_INLINE
 void NtfRoomChat::set_chat(ArgT0&& arg0, ArgT... args) {
- _impl_._has_bits_[0] |= 0x00000002u;
+ _impl_._has_bits_[0] |= 0x00000001u;
  _impl_.chat_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
   // @@protoc_insertion_point(field_set:OmokPacket.NtfRoomChat.chat)
 }
@@ -4871,11 +4760,11 @@ inline const std::string& NtfRoomChat::_internal_chat() const {
   return _impl_.chat_.Get();
 }
 inline void NtfRoomChat::_internal_set_chat(const std::string& value) {
-  _impl_._has_bits_[0] |= 0x00000002u;
+  _impl_._has_bits_[0] |= 0x00000001u;
   _impl_.chat_.Set(value, GetArenaForAllocation());
 }
 inline std::string* NtfRoomChat::_internal_mutable_chat() {
-  _impl_._has_bits_[0] |= 0x00000002u;
+  _impl_._has_bits_[0] |= 0x00000001u;
   return _impl_.chat_.Mutable(GetArenaForAllocation());
 }
 inline std::string* NtfRoomChat::release_chat() {
@@ -4883,7 +4772,7 @@ inline std::string* NtfRoomChat::release_chat() {
   if (!_internal_has_chat()) {
     return nullptr;
   }
-  _impl_._has_bits_[0] &= ~0x00000002u;
+  _impl_._has_bits_[0] &= ~0x00000001u;
   auto* p = _impl_.chat_.Release();
 #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
   if (_impl_.chat_.IsDefault()) {
@@ -4894,9 +4783,9 @@ inline std::string* NtfRoomChat::release_chat() {
 }
 inline void NtfRoomChat::set_allocated_chat(std::string* chat) {
   if (chat != nullptr) {
-    _impl_._has_bits_[0] |= 0x00000002u;
+    _impl_._has_bits_[0] |= 0x00000001u;
   } else {
-    _impl_._has_bits_[0] &= ~0x00000002u;
+    _impl_._has_bits_[0] &= ~0x00000001u;
   }
   _impl_.chat_.SetAllocated(chat, GetArenaForAllocation());
 #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING

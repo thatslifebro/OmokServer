@@ -5,6 +5,7 @@ void PacketProcessor::Init()
 	packet_handler_map_.insert(std::make_pair(static_cast<uint16_t>(PacketId::ReqLogin), [&](Packet packet) { ReqLoginHandler(packet); }));
 	packet_handler_map_.insert(std::make_pair(static_cast<uint16_t>(PacketId::ReqRoomEnter), [&](Packet packet) { ReqRoomEnterHandler(packet); }));
 	packet_handler_map_.insert(std::make_pair(static_cast<uint16_t>(PacketId::ReqRoomLeave), [&](Packet packet) { ReqRoomLeaveHandler(packet); }));
+	packet_handler_map_.insert(std::make_pair(static_cast<uint16_t>(PacketId::ReqRoomChat), [&](Packet packet) { ReqRoomChatHandler(packet); }));
 	//todo: 패킷에 대한 핸들러 등록
 }
 
@@ -123,5 +124,38 @@ void PacketProcessor::ReqRoomLeaveHandler(Packet packet)
 	{
 		auto room_session_ids = room_manager_.GetSessionList(room_id);
 		packet_sender_.BroadcastRoomUserLeave(room_session_ids, session);
+	}
+}
+
+void PacketProcessor::ReqRoomChatHandler(Packet packet)
+{
+	OmokPacket::ReqRoomChat req_room_chat;
+	req_room_chat.ParseFromArray(packet.packet_body_, packet.packet_size_);
+
+	auto session = session_manager_.GetSession(packet.session_id_);
+	if (session == nullptr)
+	{
+		return;
+	}
+
+	std::print("받은 메시지 : user_id = {}, reqRoomChat\n", session->user_id_);
+
+	//채팅 처리
+	uint32_t result = -1;
+
+	if (session->is_logged_in_ == true && session->session_room_id_ != 0)
+	{
+		result = 0;
+		std::print("SessionId : {}, UserId : {} 가 채팅을 보냄.\n", session->session_id_, session->user_id_);
+	}
+
+	//자신에게 채팅 결과 전송
+	packet_sender_.ResRoomChat(session, result, req_room_chat.chat());
+
+	//다른 유저에게 채팅 전송
+	if (result == 0)
+	{
+		auto room_session_ids = room_manager_.GetSessionList(session->session_room_id_);
+		packet_sender_.BroadcastRoomChat(room_session_ids, session, req_room_chat.chat());
 	}
 }

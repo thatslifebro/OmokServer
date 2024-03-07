@@ -358,10 +358,10 @@ namespace csharp_test_client
                 return;
             }
 
-            //var requestPkt = new RoomChatReqPacket();
-            //requestPkt.SetValue(textBoxRoomSendMsg.Text);
+            var reqRoomChat = new ReqRoomChat();
+            reqRoomChat.Chat = textBoxRoomSendMsg.Text;
 
-            //PostSendPacket(PACKET_ID.ROOM_CHAT_REQ, requestPkt.ToBytes());
+            PostSendPacket(PacketID.ReqRoomChat, reqRoomChat.ToByteArray());
             DevLog.Write($"방 채팅 요청");
         }
 

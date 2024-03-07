@@ -14,6 +14,8 @@ public:
 	void NtfRoomUserList(Session* session, std::vector<uint32_t> room_session_ids);
 	void ResRoomLeave(Session* session, uint32_t result);
 	void BroadcastRoomUserLeave(std::vector<uint32_t> room_session_ids, Session* session);
+	void ResRoomChat(Session* session, uint32_t result, std::string chat);
+	void BroadcastRoomChat(std::vector<uint32_t> room_session_ids, Session* session, std::string chat);
 
 private:
 	template <typename T>
