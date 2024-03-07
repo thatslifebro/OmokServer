@@ -335,7 +335,10 @@ namespace csharp_test_client
 
         private void btn_RoomEnter_Click(object sender, EventArgs e)
         {
-            PostSendPacket(PacketID.ReqRoomEnter, null);
+            var reqRoomEnter = new ReqRoomEnter();
+            reqRoomEnter.RoomId = textBoxRoomNumber.Text.ToInt32();
+
+            PostSendPacket(PacketID.ReqRoomEnter, reqRoomEnter.ToByteArray());
             DevLog.Write($"방 입장 요청:  {textBoxRoomNumber.Text} 번");
         }
 

@@ -27,47 +27,49 @@ namespace OmokPacket {
             "ChBPbW9rUGFja2V0LnByb3RvEgpPbW9rUGFja2V0IkIKCFJlcUxvZ2luEhMK",
             "BnVzZXJJZBgBIAEoCUgAiAEBEg8KAnB3GAIgASgJSAGIAQFCCQoHX3VzZXJJ",
             "ZEIFCgNfcHciKgoIUmVzTG9naW4SEwoGcmVzdWx0GAEgASgFSACIAQFCCQoH",
-            "X3Jlc3VsdCJWCgxSZXFSb29tRW50ZXISEwoGcm9vbUlkGAEgASgFSACIAQES",
-            "FwoKcm9vbU51bWJlchgCIAEoBUgBiAEBQgkKB19yb29tSWRCDQoLX3Jvb21O",
-            "dW1iZXIiLgoMUmVzUm9vbUVudGVyEhMKBnJlc3VsdBgBIAEoBUgAiAEBQgkK",
-            "B19yZXN1bHQiJQoPTnRmUm9vbVVzZXJMaXN0EhIKCnVzZXJJZExpc3QYASAD",
-            "KAkiMAoOTnRmUm9vbU5ld1VzZXISEwoGdXNlcklkGAEgASgJSACIAQFCCQoH",
-            "X3VzZXJJZCIuCgxSZXFSb29tTGVhdmUSEwoGdXNlcklkGAEgASgJSACIAQFC",
-            "CQoHX3VzZXJJZCIuCgxSZXNSb29tTGVhdmUSEwoGcmVzdWx0GAEgASgFSACI",
-            "AQFCCQoHX3Jlc3VsdCIyChBOdGZSb29tTGVhdmVVc2VyEhMKBnVzZXJJZBgB",
-            "IAEoCUgAiAEBQgkKB191c2VySWQiSQoLUmVxUm9vbUNoYXQSEwoGdXNlcklk",
-            "GAEgASgJSACIAQESEQoEY2hhdBgCIAEoCUgBiAEBQgkKB191c2VySWRCBwoF",
-            "X2NoYXQiSQoLUmVzUm9vbUNoYXQSEwoGdXNlcklkGAEgASgJSACIAQESEQoE",
-            "Y2hhdBgCIAEoCUgBiAEBQgkKB191c2VySWRCBwoFX2NoYXQiSQoLTnRmUm9v",
-            "bUNoYXQSEwoGdXNlcklkGAEgASgJSACIAQESEQoEY2hhdBgCIAEoCUgBiAEB",
-            "QgkKB191c2VySWRCBwoFX2NoYXQiKgoIUmVxTWF0Y2gSEwoGdXNlcklkGAEg",
-            "ASgJSACIAQFCCQoHX3VzZXJJZCIqCghSZXNNYXRjaBITCgZyZXN1bHQYASAB",
-            "KAVIAIgBAUIJCgdfcmVzdWx0Ii4KDE50Zk1hdGNoVXNlchITCgZ1c2VySWQY",
-            "ASABKAlIAIgBAUIJCgdfdXNlcklkIi4KDFJlcVJlYWR5T21vaxITCgZ1c2Vy",
-            "SWQYASABKAlIAIgBAUIJCgdfdXNlcklkIi4KDFJlc1JlYWR5T21vaxITCgZy",
-            "ZXN1bHQYASABKAVIAIgBAUIJCgdfcmVzdWx0ImQKDE50ZlN0YXJ0T21vaxIY",
-            "CgtmaXJzdFVzZXJJZBgBIAEoCUgAiAEBEhkKDHNlY29uZFVzZXJJZBgCIAEo",
-            "CUgBiAEBQg4KDF9maXJzdFVzZXJJZEIPCg1fc2Vjb25kVXNlcklkIlcKCVJl",
-            "cVB1dE1vaxITCgZ1c2VySWQYASABKAlIAIgBARIOCgF4GAIgASgFSAGIAQES",
-            "DgoBeRgDIAEoBUgCiAEBQgkKB191c2VySWRCBAoCX3hCBAoCX3kiKwoJUmVz",
-            "UHV0TW9rEhMKBnJlc3VsdBgBIAEoBUgAiAEBQgkKB19yZXN1bHQiVwoJTnRm",
-            "UHV0TW9rEhMKBnVzZXJJZBgBIAEoCUgAiAEBEg4KAXgYAiABKAVIAYgBARIO",
-            "CgF5GAMgASgFSAKIAQFCCQoHX3VzZXJJZEIECgJfeEIECgJfeSI4CgpOdGZF",
-            "bmRPbW9rEhkKDHdpbm5lclVzZXJJZBgBIAEoCUgAiAEBQg8KDV93aW5uZXJV",
-            "c2VySWRiBnByb3RvMw=="));
+            "X3Jlc3VsdCIuCgxSZXFSb29tRW50ZXISEwoGcm9vbUlkGAEgASgFSACIAQFC",
+            "CQoHX3Jvb21JZCJMCgRVc2VyEhMKBnVzZXJJZBgBIAEoCUgAiAEBEhYKCXNl",
+            "c3Npb25JZBgCIAEoDUgBiAEBQgkKB191c2VySWRCDAoKX3Nlc3Npb25JZCIu",
+            "CgxSZXNSb29tRW50ZXISEwoGcmVzdWx0GAEgASgFSACIAQFCCQoHX3Jlc3Vs",
+            "dCIxCg9OdGZSb29tVXNlckxpc3QSHgoEdXNlchgBIAMoCzIQLk9tb2tQYWNr",
+            "ZXQuVXNlciI+Cg5OdGZSb29tTmV3VXNlchIjCgR1c2VyGAEgASgLMhAuT21v",
+            "a1BhY2tldC5Vc2VySACIAQFCBwoFX3VzZXIiDgoMUmVxUm9vbUxlYXZlIi4K",
+            "DFJlc1Jvb21MZWF2ZRITCgZyZXN1bHQYASABKAVIAIgBAUIJCgdfcmVzdWx0",
+            "IkAKEE50ZlJvb21MZWF2ZVVzZXISIwoEdXNlchgBIAEoCzIQLk9tb2tQYWNr",
+            "ZXQuVXNlckgAiAEBQgcKBV91c2VyIk8KC1JlcVJvb21DaGF0EhYKCXNlc3Np",
+            "b25JZBgBIAEoCUgAiAEBEhEKBGNoYXQYAiABKAlIAYgBAUIMCgpfc2Vzc2lv",
+            "bklkQgcKBV9jaGF0IkkKC1Jlc1Jvb21DaGF0EhMKBnVzZXJJZBgBIAEoCUgA",
+            "iAEBEhEKBGNoYXQYAiABKAlIAYgBAUIJCgdfdXNlcklkQgcKBV9jaGF0IkkK",
+            "C050ZlJvb21DaGF0EhMKBnVzZXJJZBgBIAEoCUgAiAEBEhEKBGNoYXQYAiAB",
+            "KAlIAYgBAUIJCgdfdXNlcklkQgcKBV9jaGF0IioKCFJlcU1hdGNoEhMKBnVz",
+            "ZXJJZBgBIAEoCUgAiAEBQgkKB191c2VySWQiKgoIUmVzTWF0Y2gSEwoGcmVz",
+            "dWx0GAEgASgFSACIAQFCCQoHX3Jlc3VsdCIuCgxOdGZNYXRjaFVzZXISEwoG",
+            "dXNlcklkGAEgASgJSACIAQFCCQoHX3VzZXJJZCIuCgxSZXFSZWFkeU9tb2sS",
+            "EwoGdXNlcklkGAEgASgJSACIAQFCCQoHX3VzZXJJZCIuCgxSZXNSZWFkeU9t",
+            "b2sSEwoGcmVzdWx0GAEgASgFSACIAQFCCQoHX3Jlc3VsdCJkCgxOdGZTdGFy",
+            "dE9tb2sSGAoLZmlyc3RVc2VySWQYASABKAlIAIgBARIZCgxzZWNvbmRVc2Vy",
+            "SWQYAiABKAlIAYgBAUIOCgxfZmlyc3RVc2VySWRCDwoNX3NlY29uZFVzZXJJ",
+            "ZCJXCglSZXFQdXRNb2sSEwoGdXNlcklkGAEgASgJSACIAQESDgoBeBgCIAEo",
+            "BUgBiAEBEg4KAXkYAyABKAVIAogBAUIJCgdfdXNlcklkQgQKAl94QgQKAl95",
+            "IisKCVJlc1B1dE1vaxITCgZyZXN1bHQYASABKAVIAIgBAUIJCgdfcmVzdWx0",
+            "IlcKCU50ZlB1dE1vaxITCgZ1c2VySWQYASABKAlIAIgBARIOCgF4GAIgASgF",
+            "SAGIAQESDgoBeRgDIAEoBUgCiAEBQgkKB191c2VySWRCBAoCX3hCBAoCX3ki",
+            "OAoKTnRmRW5kT21vaxIZCgx3aW5uZXJVc2VySWQYASABKAlIAIgBAUIPCg1f",
+            "d2lubmVyVXNlcklkYgZwcm90bzM="));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { },
           new pbr::GeneratedClrTypeInfo(null, null, new pbr::GeneratedClrTypeInfo[] {
             new pbr::GeneratedClrTypeInfo(typeof(global::OmokPacket.ReqLogin), global::OmokPacket.ReqLogin.Parser, new[]{ "UserId", "Pw" }, new[]{ "UserId", "Pw" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::OmokPacket.ResLogin), global::OmokPacket.ResLogin.Parser, new[]{ "Result" }, new[]{ "Result" }, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::OmokPacket.ReqRoomEnter), global::OmokPacket.ReqRoomEnter.Parser, new[]{ "RoomId", "RoomNumber" }, new[]{ "RoomId", "RoomNumber" }, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::OmokPacket.ReqRoomEnter), global::OmokPacket.ReqRoomEnter.Parser, new[]{ "RoomId" }, new[]{ "RoomId" }, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::OmokPacket.User), global::OmokPacket.User.Parser, new[]{ "UserId", "SessionId" }, new[]{ "UserId", "SessionId" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::OmokPacket.ResRoomEnter), global::OmokPacket.ResRoomEnter.Parser, new[]{ "Result" }, new[]{ "Result" }, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::OmokPacket.NtfRoomUserList), global::OmokPacket.NtfRoomUserList.Parser, new[]{ "UserIdList" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::OmokPacket.NtfRoomNewUser), global::OmokPacket.NtfRoomNewUser.Parser, new[]{ "UserId" }, new[]{ "UserId" }, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::OmokPacket.ReqRoomLeave), global::OmokPacket.ReqRoomLeave.Parser, new[]{ "UserId" }, new[]{ "UserId" }, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::OmokPacket.NtfRoomUserList), global::OmokPacket.NtfRoomUserList.Parser, new[]{ "User" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::OmokPacket.NtfRoomNewUser), global::OmokPacket.NtfRoomNewUser.Parser, new[]{ "User" }, new[]{ "User" }, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::OmokPacket.ReqRoomLeave), global::OmokPacket.ReqRoomLeave.Parser, null, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::OmokPacket.ResRoomLeave), global::OmokPacket.ResRoomLeave.Parser, new[]{ "Result" }, new[]{ "Result" }, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::OmokPacket.NtfRoomLeaveUser), global::OmokPacket.NtfRoomLeaveUser.Parser, new[]{ "UserId" }, new[]{ "UserId" }, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::OmokPacket.ReqRoomChat), global::OmokPacket.ReqRoomChat.Parser, new[]{ "UserId", "Chat" }, new[]{ "UserId", "Chat" }, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::OmokPacket.NtfRoomLeaveUser), global::OmokPacket.NtfRoomLeaveUser.Parser, new[]{ "User" }, new[]{ "User" }, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::OmokPacket.ReqRoomChat), global::OmokPacket.ReqRoomChat.Parser, new[]{ "SessionId", "Chat" }, new[]{ "SessionId", "Chat" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::OmokPacket.ResRoomChat), global::OmokPacket.ResRoomChat.Parser, new[]{ "UserId", "Chat" }, new[]{ "UserId", "Chat" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::OmokPacket.NtfRoomChat), global::OmokPacket.NtfRoomChat.Parser, new[]{ "UserId", "Chat" }, new[]{ "UserId", "Chat" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::OmokPacket.ReqMatch), global::OmokPacket.ReqMatch.Parser, new[]{ "UserId" }, new[]{ "UserId" }, null, null, null),
@@ -577,7 +579,6 @@ namespace OmokPacket {
     public ReqRoomEnter(ReqRoomEnter other) : this() {
       _hasBits0 = other._hasBits0;
       roomId_ = other.roomId_;
-      roomNumber_ = other.roomNumber_;
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
 
@@ -612,31 +613,6 @@ namespace OmokPacket {
       _hasBits0 &= ~1;
     }
 
-    /// <summary>Field number for the "roomNumber" field.</summary>
-    public const int RoomNumberFieldNumber = 2;
-    private int roomNumber_;
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public int RoomNumber {
-      get { if ((_hasBits0 & 2) != 0) { return roomNumber_; } else { return 0; } }
-      set {
-        _hasBits0 |= 2;
-        roomNumber_ = value;
-      }
-    }
-    /// <summary>Gets whether the "roomNumber" field is set</summary>
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public bool HasRoomNumber {
-      get { return (_hasBits0 & 2) != 0; }
-    }
-    /// <summary>Clears the value of the "roomNumber" field</summary>
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public void ClearRoomNumber() {
-      _hasBits0 &= ~2;
-    }
-
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public override bool Equals(object other) {
@@ -653,7 +629,6 @@ namespace OmokPacket {
         return true;
       }
       if (RoomId != other.RoomId) return false;
-      if (RoomNumber != other.RoomNumber) return false;
       return Equals(_unknownFields, other._unknownFields);
     }
 
@@ -662,7 +637,6 @@ namespace OmokPacket {
     public override int GetHashCode() {
       int hash = 1;
       if (HasRoomId) hash ^= RoomId.GetHashCode();
-      if (HasRoomNumber) hash ^= RoomNumber.GetHashCode();
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
       }
@@ -685,10 +659,6 @@ namespace OmokPacket {
         output.WriteRawTag(8);
         output.WriteInt32(RoomId);
       }
-      if (HasRoomNumber) {
-        output.WriteRawTag(16);
-        output.WriteInt32(RoomNumber);
-      }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(output);
       }
@@ -703,10 +673,6 @@ namespace OmokPacket {
         output.WriteRawTag(8);
         output.WriteInt32(RoomId);
       }
-      if (HasRoomNumber) {
-        output.WriteRawTag(16);
-        output.WriteInt32(RoomNumber);
-      }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(ref output);
       }
@@ -719,9 +685,6 @@ namespace OmokPacket {
       int size = 0;
       if (HasRoomId) {
         size += 1 + pb::CodedOutputStream.ComputeInt32Size(RoomId);
-      }
-      if (HasRoomNumber) {
-        size += 1 + pb::CodedOutputStream.ComputeInt32Size(RoomNumber);
       }
       if (_unknownFields != null) {
         size += _unknownFields.CalculateSize();
@@ -737,9 +700,6 @@ namespace OmokPacket {
       }
       if (other.HasRoomId) {
         RoomId = other.RoomId;
-      }
-      if (other.HasRoomNumber) {
-        RoomNumber = other.RoomNumber;
       }
       _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
     }
@@ -758,10 +718,6 @@ namespace OmokPacket {
             break;
           case 8: {
             RoomId = input.ReadInt32();
-            break;
-          }
-          case 16: {
-            RoomNumber = input.ReadInt32();
             break;
           }
         }
@@ -783,8 +739,257 @@ namespace OmokPacket {
             RoomId = input.ReadInt32();
             break;
           }
+        }
+      }
+    }
+    #endif
+
+  }
+
+  public sealed partial class User : pb::IMessage<User>
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      , pb::IBufferMessage
+  #endif
+  {
+    private static readonly pb::MessageParser<User> _parser = new pb::MessageParser<User>(() => new User());
+    private pb::UnknownFieldSet _unknownFields;
+    private int _hasBits0;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public static pb::MessageParser<User> Parser { get { return _parser; } }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public static pbr::MessageDescriptor Descriptor {
+      get { return global::OmokPacket.OmokPacketReflection.Descriptor.MessageTypes[3]; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    pbr::MessageDescriptor pb::IMessage.Descriptor {
+      get { return Descriptor; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public User() {
+      OnConstruction();
+    }
+
+    partial void OnConstruction();
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public User(User other) : this() {
+      _hasBits0 = other._hasBits0;
+      userId_ = other.userId_;
+      sessionId_ = other.sessionId_;
+      _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public User Clone() {
+      return new User(this);
+    }
+
+    /// <summary>Field number for the "userId" field.</summary>
+    public const int UserIdFieldNumber = 1;
+    private string userId_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public string UserId {
+      get { return userId_ ?? ""; }
+      set {
+        userId_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+      }
+    }
+    /// <summary>Gets whether the "userId" field is set</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public bool HasUserId {
+      get { return userId_ != null; }
+    }
+    /// <summary>Clears the value of the "userId" field</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void ClearUserId() {
+      userId_ = null;
+    }
+
+    /// <summary>Field number for the "sessionId" field.</summary>
+    public const int SessionIdFieldNumber = 2;
+    private uint sessionId_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public uint SessionId {
+      get { if ((_hasBits0 & 1) != 0) { return sessionId_; } else { return 0; } }
+      set {
+        _hasBits0 |= 1;
+        sessionId_ = value;
+      }
+    }
+    /// <summary>Gets whether the "sessionId" field is set</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public bool HasSessionId {
+      get { return (_hasBits0 & 1) != 0; }
+    }
+    /// <summary>Clears the value of the "sessionId" field</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void ClearSessionId() {
+      _hasBits0 &= ~1;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public override bool Equals(object other) {
+      return Equals(other as User);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public bool Equals(User other) {
+      if (ReferenceEquals(other, null)) {
+        return false;
+      }
+      if (ReferenceEquals(other, this)) {
+        return true;
+      }
+      if (UserId != other.UserId) return false;
+      if (SessionId != other.SessionId) return false;
+      return Equals(_unknownFields, other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public override int GetHashCode() {
+      int hash = 1;
+      if (HasUserId) hash ^= UserId.GetHashCode();
+      if (HasSessionId) hash ^= SessionId.GetHashCode();
+      if (_unknownFields != null) {
+        hash ^= _unknownFields.GetHashCode();
+      }
+      return hash;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public override string ToString() {
+      return pb::JsonFormatter.ToDiagnosticString(this);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void WriteTo(pb::CodedOutputStream output) {
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      output.WriteRawMessage(this);
+    #else
+      if (HasUserId) {
+        output.WriteRawTag(10);
+        output.WriteString(UserId);
+      }
+      if (HasSessionId) {
+        output.WriteRawTag(16);
+        output.WriteUInt32(SessionId);
+      }
+      if (_unknownFields != null) {
+        _unknownFields.WriteTo(output);
+      }
+    #endif
+    }
+
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
+      if (HasUserId) {
+        output.WriteRawTag(10);
+        output.WriteString(UserId);
+      }
+      if (HasSessionId) {
+        output.WriteRawTag(16);
+        output.WriteUInt32(SessionId);
+      }
+      if (_unknownFields != null) {
+        _unknownFields.WriteTo(ref output);
+      }
+    }
+    #endif
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public int CalculateSize() {
+      int size = 0;
+      if (HasUserId) {
+        size += 1 + pb::CodedOutputStream.ComputeStringSize(UserId);
+      }
+      if (HasSessionId) {
+        size += 1 + pb::CodedOutputStream.ComputeUInt32Size(SessionId);
+      }
+      if (_unknownFields != null) {
+        size += _unknownFields.CalculateSize();
+      }
+      return size;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void MergeFrom(User other) {
+      if (other == null) {
+        return;
+      }
+      if (other.HasUserId) {
+        UserId = other.UserId;
+      }
+      if (other.HasSessionId) {
+        SessionId = other.SessionId;
+      }
+      _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void MergeFrom(pb::CodedInputStream input) {
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      input.ReadRawMessage(this);
+    #else
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+        switch(tag) {
+          default:
+            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
+            break;
+          case 10: {
+            UserId = input.ReadString();
+            break;
+          }
           case 16: {
-            RoomNumber = input.ReadInt32();
+            SessionId = input.ReadUInt32();
+            break;
+          }
+        }
+      }
+    #endif
+    }
+
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+        switch(tag) {
+          default:
+            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
+            break;
+          case 10: {
+            UserId = input.ReadString();
+            break;
+          }
+          case 16: {
+            SessionId = input.ReadUInt32();
             break;
           }
         }
@@ -809,7 +1014,7 @@ namespace OmokPacket {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::OmokPacket.OmokPacketReflection.Descriptor.MessageTypes[3]; }
+      get { return global::OmokPacket.OmokPacketReflection.Descriptor.MessageTypes[4]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -1015,7 +1220,7 @@ namespace OmokPacket {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::OmokPacket.OmokPacketReflection.Descriptor.MessageTypes[4]; }
+      get { return global::OmokPacket.OmokPacketReflection.Descriptor.MessageTypes[5]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -1035,7 +1240,7 @@ namespace OmokPacket {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public NtfRoomUserList(NtfRoomUserList other) : this() {
-      userIdList_ = other.userIdList_.Clone();
+      user_ = other.user_.Clone();
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
 
@@ -1045,15 +1250,15 @@ namespace OmokPacket {
       return new NtfRoomUserList(this);
     }
 
-    /// <summary>Field number for the "userIdList" field.</summary>
-    public const int UserIdListFieldNumber = 1;
-    private static readonly pb::FieldCodec<string> _repeated_userIdList_codec
-        = pb::FieldCodec.ForString(10);
-    private readonly pbc::RepeatedField<string> userIdList_ = new pbc::RepeatedField<string>();
+    /// <summary>Field number for the "user" field.</summary>
+    public const int UserFieldNumber = 1;
+    private static readonly pb::FieldCodec<global::OmokPacket.User> _repeated_user_codec
+        = pb::FieldCodec.ForMessage(10, global::OmokPacket.User.Parser);
+    private readonly pbc::RepeatedField<global::OmokPacket.User> user_ = new pbc::RepeatedField<global::OmokPacket.User>();
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public pbc::RepeatedField<string> UserIdList {
-      get { return userIdList_; }
+    public pbc::RepeatedField<global::OmokPacket.User> User {
+      get { return user_; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -1071,7 +1276,7 @@ namespace OmokPacket {
       if (ReferenceEquals(other, this)) {
         return true;
       }
-      if(!userIdList_.Equals(other.userIdList_)) return false;
+      if(!user_.Equals(other.user_)) return false;
       return Equals(_unknownFields, other._unknownFields);
     }
 
@@ -1079,7 +1284,7 @@ namespace OmokPacket {
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public override int GetHashCode() {
       int hash = 1;
-      hash ^= userIdList_.GetHashCode();
+      hash ^= user_.GetHashCode();
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
       }
@@ -1098,7 +1303,7 @@ namespace OmokPacket {
     #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       output.WriteRawMessage(this);
     #else
-      userIdList_.WriteTo(output, _repeated_userIdList_codec);
+      user_.WriteTo(output, _repeated_user_codec);
       if (_unknownFields != null) {
         _unknownFields.WriteTo(output);
       }
@@ -1109,7 +1314,7 @@ namespace OmokPacket {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
-      userIdList_.WriteTo(ref output, _repeated_userIdList_codec);
+      user_.WriteTo(ref output, _repeated_user_codec);
       if (_unknownFields != null) {
         _unknownFields.WriteTo(ref output);
       }
@@ -1120,7 +1325,7 @@ namespace OmokPacket {
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public int CalculateSize() {
       int size = 0;
-      size += userIdList_.CalculateSize(_repeated_userIdList_codec);
+      size += user_.CalculateSize(_repeated_user_codec);
       if (_unknownFields != null) {
         size += _unknownFields.CalculateSize();
       }
@@ -1133,7 +1338,7 @@ namespace OmokPacket {
       if (other == null) {
         return;
       }
-      userIdList_.Add(other.userIdList_);
+      user_.Add(other.user_);
       _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
     }
 
@@ -1150,7 +1355,7 @@ namespace OmokPacket {
             _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
             break;
           case 10: {
-            userIdList_.AddEntriesFrom(input, _repeated_userIdList_codec);
+            user_.AddEntriesFrom(input, _repeated_user_codec);
             break;
           }
         }
@@ -1169,7 +1374,7 @@ namespace OmokPacket {
             _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
             break;
           case 10: {
-            userIdList_.AddEntriesFrom(ref input, _repeated_userIdList_codec);
+            user_.AddEntriesFrom(ref input, _repeated_user_codec);
             break;
           }
         }
@@ -1196,7 +1401,7 @@ namespace OmokPacket {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::OmokPacket.OmokPacketReflection.Descriptor.MessageTypes[5]; }
+      get { return global::OmokPacket.OmokPacketReflection.Descriptor.MessageTypes[6]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -1216,7 +1421,7 @@ namespace OmokPacket {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public NtfRoomNewUser(NtfRoomNewUser other) : this() {
-      userId_ = other.userId_;
+      user_ = other.user_ != null ? other.user_.Clone() : null;
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
 
@@ -1226,28 +1431,16 @@ namespace OmokPacket {
       return new NtfRoomNewUser(this);
     }
 
-    /// <summary>Field number for the "userId" field.</summary>
-    public const int UserIdFieldNumber = 1;
-    private string userId_;
+    /// <summary>Field number for the "user" field.</summary>
+    public const int UserFieldNumber = 1;
+    private global::OmokPacket.User user_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public string UserId {
-      get { return userId_ ?? ""; }
+    public global::OmokPacket.User User {
+      get { return user_; }
       set {
-        userId_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+        user_ = value;
       }
-    }
-    /// <summary>Gets whether the "userId" field is set</summary>
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public bool HasUserId {
-      get { return userId_ != null; }
-    }
-    /// <summary>Clears the value of the "userId" field</summary>
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public void ClearUserId() {
-      userId_ = null;
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -1265,7 +1458,7 @@ namespace OmokPacket {
       if (ReferenceEquals(other, this)) {
         return true;
       }
-      if (UserId != other.UserId) return false;
+      if (!object.Equals(User, other.User)) return false;
       return Equals(_unknownFields, other._unknownFields);
     }
 
@@ -1273,7 +1466,7 @@ namespace OmokPacket {
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public override int GetHashCode() {
       int hash = 1;
-      if (HasUserId) hash ^= UserId.GetHashCode();
+      if (user_ != null) hash ^= User.GetHashCode();
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
       }
@@ -1292,9 +1485,9 @@ namespace OmokPacket {
     #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       output.WriteRawMessage(this);
     #else
-      if (HasUserId) {
+      if (user_ != null) {
         output.WriteRawTag(10);
-        output.WriteString(UserId);
+        output.WriteMessage(User);
       }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(output);
@@ -1306,9 +1499,9 @@ namespace OmokPacket {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
-      if (HasUserId) {
+      if (user_ != null) {
         output.WriteRawTag(10);
-        output.WriteString(UserId);
+        output.WriteMessage(User);
       }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(ref output);
@@ -1320,8 +1513,8 @@ namespace OmokPacket {
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public int CalculateSize() {
       int size = 0;
-      if (HasUserId) {
-        size += 1 + pb::CodedOutputStream.ComputeStringSize(UserId);
+      if (user_ != null) {
+        size += 1 + pb::CodedOutputStream.ComputeMessageSize(User);
       }
       if (_unknownFields != null) {
         size += _unknownFields.CalculateSize();
@@ -1335,8 +1528,11 @@ namespace OmokPacket {
       if (other == null) {
         return;
       }
-      if (other.HasUserId) {
-        UserId = other.UserId;
+      if (other.user_ != null) {
+        if (user_ == null) {
+          User = new global::OmokPacket.User();
+        }
+        User.MergeFrom(other.User);
       }
       _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
     }
@@ -1354,7 +1550,10 @@ namespace OmokPacket {
             _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
             break;
           case 10: {
-            UserId = input.ReadString();
+            if (user_ == null) {
+              User = new global::OmokPacket.User();
+            }
+            input.ReadMessage(User);
             break;
           }
         }
@@ -1373,7 +1572,10 @@ namespace OmokPacket {
             _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
             break;
           case 10: {
-            UserId = input.ReadString();
+            if (user_ == null) {
+              User = new global::OmokPacket.User();
+            }
+            input.ReadMessage(User);
             break;
           }
         }
@@ -1397,7 +1599,7 @@ namespace OmokPacket {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::OmokPacket.OmokPacketReflection.Descriptor.MessageTypes[6]; }
+      get { return global::OmokPacket.OmokPacketReflection.Descriptor.MessageTypes[7]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -1417,7 +1619,6 @@ namespace OmokPacket {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public ReqRoomLeave(ReqRoomLeave other) : this() {
-      userId_ = other.userId_;
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
 
@@ -1425,30 +1626,6 @@ namespace OmokPacket {
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public ReqRoomLeave Clone() {
       return new ReqRoomLeave(this);
-    }
-
-    /// <summary>Field number for the "userId" field.</summary>
-    public const int UserIdFieldNumber = 1;
-    private string userId_;
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public string UserId {
-      get { return userId_ ?? ""; }
-      set {
-        userId_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
-      }
-    }
-    /// <summary>Gets whether the "userId" field is set</summary>
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public bool HasUserId {
-      get { return userId_ != null; }
-    }
-    /// <summary>Clears the value of the "userId" field</summary>
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public void ClearUserId() {
-      userId_ = null;
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -1466,7 +1643,6 @@ namespace OmokPacket {
       if (ReferenceEquals(other, this)) {
         return true;
       }
-      if (UserId != other.UserId) return false;
       return Equals(_unknownFields, other._unknownFields);
     }
 
@@ -1474,7 +1650,6 @@ namespace OmokPacket {
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public override int GetHashCode() {
       int hash = 1;
-      if (HasUserId) hash ^= UserId.GetHashCode();
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
       }
@@ -1493,10 +1668,6 @@ namespace OmokPacket {
     #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       output.WriteRawMessage(this);
     #else
-      if (HasUserId) {
-        output.WriteRawTag(10);
-        output.WriteString(UserId);
-      }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(output);
       }
@@ -1507,10 +1678,6 @@ namespace OmokPacket {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
-      if (HasUserId) {
-        output.WriteRawTag(10);
-        output.WriteString(UserId);
-      }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(ref output);
       }
@@ -1521,9 +1688,6 @@ namespace OmokPacket {
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public int CalculateSize() {
       int size = 0;
-      if (HasUserId) {
-        size += 1 + pb::CodedOutputStream.ComputeStringSize(UserId);
-      }
       if (_unknownFields != null) {
         size += _unknownFields.CalculateSize();
       }
@@ -1535,9 +1699,6 @@ namespace OmokPacket {
     public void MergeFrom(ReqRoomLeave other) {
       if (other == null) {
         return;
-      }
-      if (other.HasUserId) {
-        UserId = other.UserId;
       }
       _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
     }
@@ -1554,10 +1715,6 @@ namespace OmokPacket {
           default:
             _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
             break;
-          case 10: {
-            UserId = input.ReadString();
-            break;
-          }
         }
       }
     #endif
@@ -1573,10 +1730,6 @@ namespace OmokPacket {
           default:
             _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
             break;
-          case 10: {
-            UserId = input.ReadString();
-            break;
-          }
         }
       }
     }
@@ -1599,7 +1752,7 @@ namespace OmokPacket {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::OmokPacket.OmokPacketReflection.Descriptor.MessageTypes[7]; }
+      get { return global::OmokPacket.OmokPacketReflection.Descriptor.MessageTypes[8]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -1805,7 +1958,7 @@ namespace OmokPacket {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::OmokPacket.OmokPacketReflection.Descriptor.MessageTypes[8]; }
+      get { return global::OmokPacket.OmokPacketReflection.Descriptor.MessageTypes[9]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -1825,7 +1978,7 @@ namespace OmokPacket {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public NtfRoomLeaveUser(NtfRoomLeaveUser other) : this() {
-      userId_ = other.userId_;
+      user_ = other.user_ != null ? other.user_.Clone() : null;
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
 
@@ -1835,28 +1988,16 @@ namespace OmokPacket {
       return new NtfRoomLeaveUser(this);
     }
 
-    /// <summary>Field number for the "userId" field.</summary>
-    public const int UserIdFieldNumber = 1;
-    private string userId_;
+    /// <summary>Field number for the "user" field.</summary>
+    public const int UserFieldNumber = 1;
+    private global::OmokPacket.User user_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public string UserId {
-      get { return userId_ ?? ""; }
+    public global::OmokPacket.User User {
+      get { return user_; }
       set {
-        userId_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+        user_ = value;
       }
-    }
-    /// <summary>Gets whether the "userId" field is set</summary>
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public bool HasUserId {
-      get { return userId_ != null; }
-    }
-    /// <summary>Clears the value of the "userId" field</summary>
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public void ClearUserId() {
-      userId_ = null;
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -1874,7 +2015,7 @@ namespace OmokPacket {
       if (ReferenceEquals(other, this)) {
         return true;
       }
-      if (UserId != other.UserId) return false;
+      if (!object.Equals(User, other.User)) return false;
       return Equals(_unknownFields, other._unknownFields);
     }
 
@@ -1882,7 +2023,7 @@ namespace OmokPacket {
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public override int GetHashCode() {
       int hash = 1;
-      if (HasUserId) hash ^= UserId.GetHashCode();
+      if (user_ != null) hash ^= User.GetHashCode();
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
       }
@@ -1901,9 +2042,9 @@ namespace OmokPacket {
     #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       output.WriteRawMessage(this);
     #else
-      if (HasUserId) {
+      if (user_ != null) {
         output.WriteRawTag(10);
-        output.WriteString(UserId);
+        output.WriteMessage(User);
       }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(output);
@@ -1915,9 +2056,9 @@ namespace OmokPacket {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
-      if (HasUserId) {
+      if (user_ != null) {
         output.WriteRawTag(10);
-        output.WriteString(UserId);
+        output.WriteMessage(User);
       }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(ref output);
@@ -1929,8 +2070,8 @@ namespace OmokPacket {
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public int CalculateSize() {
       int size = 0;
-      if (HasUserId) {
-        size += 1 + pb::CodedOutputStream.ComputeStringSize(UserId);
+      if (user_ != null) {
+        size += 1 + pb::CodedOutputStream.ComputeMessageSize(User);
       }
       if (_unknownFields != null) {
         size += _unknownFields.CalculateSize();
@@ -1944,8 +2085,11 @@ namespace OmokPacket {
       if (other == null) {
         return;
       }
-      if (other.HasUserId) {
-        UserId = other.UserId;
+      if (other.user_ != null) {
+        if (user_ == null) {
+          User = new global::OmokPacket.User();
+        }
+        User.MergeFrom(other.User);
       }
       _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
     }
@@ -1963,7 +2107,10 @@ namespace OmokPacket {
             _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
             break;
           case 10: {
-            UserId = input.ReadString();
+            if (user_ == null) {
+              User = new global::OmokPacket.User();
+            }
+            input.ReadMessage(User);
             break;
           }
         }
@@ -1982,7 +2129,10 @@ namespace OmokPacket {
             _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
             break;
           case 10: {
-            UserId = input.ReadString();
+            if (user_ == null) {
+              User = new global::OmokPacket.User();
+            }
+            input.ReadMessage(User);
             break;
           }
         }
@@ -2006,7 +2156,7 @@ namespace OmokPacket {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::OmokPacket.OmokPacketReflection.Descriptor.MessageTypes[9]; }
+      get { return global::OmokPacket.OmokPacketReflection.Descriptor.MessageTypes[10]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -2026,7 +2176,7 @@ namespace OmokPacket {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public ReqRoomChat(ReqRoomChat other) : this() {
-      userId_ = other.userId_;
+      sessionId_ = other.sessionId_;
       chat_ = other.chat_;
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
@@ -2037,28 +2187,28 @@ namespace OmokPacket {
       return new ReqRoomChat(this);
     }
 
-    /// <summary>Field number for the "userId" field.</summary>
-    public const int UserIdFieldNumber = 1;
-    private string userId_;
+    /// <summary>Field number for the "sessionId" field.</summary>
+    public const int SessionIdFieldNumber = 1;
+    private string sessionId_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public string UserId {
-      get { return userId_ ?? ""; }
+    public string SessionId {
+      get { return sessionId_ ?? ""; }
       set {
-        userId_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+        sessionId_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
       }
     }
-    /// <summary>Gets whether the "userId" field is set</summary>
+    /// <summary>Gets whether the "sessionId" field is set</summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public bool HasUserId {
-      get { return userId_ != null; }
+    public bool HasSessionId {
+      get { return sessionId_ != null; }
     }
-    /// <summary>Clears the value of the "userId" field</summary>
+    /// <summary>Clears the value of the "sessionId" field</summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public void ClearUserId() {
-      userId_ = null;
+    public void ClearSessionId() {
+      sessionId_ = null;
     }
 
     /// <summary>Field number for the "chat" field.</summary>
@@ -2100,7 +2250,7 @@ namespace OmokPacket {
       if (ReferenceEquals(other, this)) {
         return true;
       }
-      if (UserId != other.UserId) return false;
+      if (SessionId != other.SessionId) return false;
       if (Chat != other.Chat) return false;
       return Equals(_unknownFields, other._unknownFields);
     }
@@ -2109,7 +2259,7 @@ namespace OmokPacket {
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public override int GetHashCode() {
       int hash = 1;
-      if (HasUserId) hash ^= UserId.GetHashCode();
+      if (HasSessionId) hash ^= SessionId.GetHashCode();
       if (HasChat) hash ^= Chat.GetHashCode();
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
@@ -2129,9 +2279,9 @@ namespace OmokPacket {
     #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       output.WriteRawMessage(this);
     #else
-      if (HasUserId) {
+      if (HasSessionId) {
         output.WriteRawTag(10);
-        output.WriteString(UserId);
+        output.WriteString(SessionId);
       }
       if (HasChat) {
         output.WriteRawTag(18);
@@ -2147,9 +2297,9 @@ namespace OmokPacket {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
-      if (HasUserId) {
+      if (HasSessionId) {
         output.WriteRawTag(10);
-        output.WriteString(UserId);
+        output.WriteString(SessionId);
       }
       if (HasChat) {
         output.WriteRawTag(18);
@@ -2165,8 +2315,8 @@ namespace OmokPacket {
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public int CalculateSize() {
       int size = 0;
-      if (HasUserId) {
-        size += 1 + pb::CodedOutputStream.ComputeStringSize(UserId);
+      if (HasSessionId) {
+        size += 1 + pb::CodedOutputStream.ComputeStringSize(SessionId);
       }
       if (HasChat) {
         size += 1 + pb::CodedOutputStream.ComputeStringSize(Chat);
@@ -2183,8 +2333,8 @@ namespace OmokPacket {
       if (other == null) {
         return;
       }
-      if (other.HasUserId) {
-        UserId = other.UserId;
+      if (other.HasSessionId) {
+        SessionId = other.SessionId;
       }
       if (other.HasChat) {
         Chat = other.Chat;
@@ -2205,7 +2355,7 @@ namespace OmokPacket {
             _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
             break;
           case 10: {
-            UserId = input.ReadString();
+            SessionId = input.ReadString();
             break;
           }
           case 18: {
@@ -2228,7 +2378,7 @@ namespace OmokPacket {
             _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
             break;
           case 10: {
-            UserId = input.ReadString();
+            SessionId = input.ReadString();
             break;
           }
           case 18: {
@@ -2259,7 +2409,7 @@ namespace OmokPacket {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::OmokPacket.OmokPacketReflection.Descriptor.MessageTypes[10]; }
+      get { return global::OmokPacket.OmokPacketReflection.Descriptor.MessageTypes[11]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -2512,7 +2662,7 @@ namespace OmokPacket {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::OmokPacket.OmokPacketReflection.Descriptor.MessageTypes[11]; }
+      get { return global::OmokPacket.OmokPacketReflection.Descriptor.MessageTypes[12]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -2762,7 +2912,7 @@ namespace OmokPacket {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::OmokPacket.OmokPacketReflection.Descriptor.MessageTypes[12]; }
+      get { return global::OmokPacket.OmokPacketReflection.Descriptor.MessageTypes[13]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -2967,7 +3117,7 @@ namespace OmokPacket {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::OmokPacket.OmokPacketReflection.Descriptor.MessageTypes[13]; }
+      get { return global::OmokPacket.OmokPacketReflection.Descriptor.MessageTypes[14]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -3173,7 +3323,7 @@ namespace OmokPacket {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::OmokPacket.OmokPacketReflection.Descriptor.MessageTypes[14]; }
+      get { return global::OmokPacket.OmokPacketReflection.Descriptor.MessageTypes[15]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -3374,7 +3524,7 @@ namespace OmokPacket {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::OmokPacket.OmokPacketReflection.Descriptor.MessageTypes[15]; }
+      get { return global::OmokPacket.OmokPacketReflection.Descriptor.MessageTypes[16]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -3579,7 +3729,7 @@ namespace OmokPacket {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::OmokPacket.OmokPacketReflection.Descriptor.MessageTypes[16]; }
+      get { return global::OmokPacket.OmokPacketReflection.Descriptor.MessageTypes[17]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -3785,7 +3935,7 @@ namespace OmokPacket {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::OmokPacket.OmokPacketReflection.Descriptor.MessageTypes[17]; }
+      get { return global::OmokPacket.OmokPacketReflection.Descriptor.MessageTypes[18]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -4036,7 +4186,7 @@ namespace OmokPacket {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::OmokPacket.OmokPacketReflection.Descriptor.MessageTypes[18]; }
+      get { return global::OmokPacket.OmokPacketReflection.Descriptor.MessageTypes[19]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -4339,7 +4489,7 @@ namespace OmokPacket {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::OmokPacket.OmokPacketReflection.Descriptor.MessageTypes[19]; }
+      get { return global::OmokPacket.OmokPacketReflection.Descriptor.MessageTypes[20]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -4546,7 +4696,7 @@ namespace OmokPacket {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::OmokPacket.OmokPacketReflection.Descriptor.MessageTypes[20]; }
+      get { return global::OmokPacket.OmokPacketReflection.Descriptor.MessageTypes[21]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -4848,7 +4998,7 @@ namespace OmokPacket {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::OmokPacket.OmokPacketReflection.Descriptor.MessageTypes[21]; }
+      get { return global::OmokPacket.OmokPacketReflection.Descriptor.MessageTypes[22]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]

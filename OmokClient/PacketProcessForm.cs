@@ -108,34 +108,35 @@ namespace csharp_test_client
 
         void PacketProcess_Loginin(byte[] bodyData)
         {
-            ResLogin reslogin = new ResLogin();
+            var reslogin = new ResLogin();
             reslogin.MergeFrom(bodyData);
             DevLog.Write($"로그인 결과: {reslogin.Result}");
         }
 
         void PacketProcess_RoomEnterResponse(byte[] bodyData)
         {
-            //var responsePkt = MessagePackSerializer.Deserialize<PKTResRoomEnter>(packetData);
-            //DevLog.Write($"방 입장 결과:  {(ErrorCode)responsePkt.Result}");
+            var resRoomEnter = new ResRoomEnter();
+            resRoomEnter.MergeFrom(bodyData);
+            DevLog.Write($"방 입장 결과:  {resRoomEnter.Result}");
         }
 
         void PacketProcess_RoomUserListNotify(byte[] bodyData)
         {
-            //var notifyPkt = MessagePackSerializer.Deserialize<PKTNtfRoomUserList>(packetData);
-
-            /*for (int i = 0; i < notifyPkt.UserIDList.Count; ++i)
+            var ntfRoomUserList = new NtfRoomUserList();
+            ntfRoomUserList.MergeFrom(bodyData);
+            listBoxRoomUserList.Items.Clear();
+            foreach (var user in ntfRoomUserList.User)
             {
-                AddRoomUserList(notifyPkt.UserIDList[i]);
-            }*/
-
+                listBoxRoomUserList.Items.Add(user.UserId);
+            }
             DevLog.Write($"방의 기존 유저 리스트 받음");
         }
 
         void PacketProcess_RoomNewUserNotify(byte[] bodyData)
         {
-            //var notifyPkt = MessagePackSerializer.Deserialize<PKTNtfRoomNewUser>(packetData);
-
-            //AddRoomUserList(notifyPkt.UserID);
+            NtfRoomNewUser ntfRoomNewUser = new NtfRoomNewUser();
+            ntfRoomNewUser.MergeFrom(bodyData);
+            listBoxRoomUserList.Items.Add(ntfRoomNewUser.User.UserId);
 
             DevLog.Write($"방에 새로 들어온 유저 받음");
         }

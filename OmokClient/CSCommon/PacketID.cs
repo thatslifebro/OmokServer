@@ -15,12 +15,12 @@ namespace CSCommon
 
         public const UInt16 ReqRoomEnter = 1101;
         public const UInt16 ResRoomEnter = 1102;
-        public const UInt16 NtfRoomUserList = 1017;
-        public const UInt16 NtfRoomNewUser = 1018;
+        public const UInt16 NtfRoomUserList = 1103;
+        public const UInt16 NtfRoomNewUser = 1104;
 
-        public const UInt16 ReqRoomLeave = 1021;
-        public const UInt16 ResRoomLeave = 1022;
-        public const UInt16 NtfRoomLeaveUser = 1023;
+        public const UInt16 ReqRoomLeave = 1105;
+        public const UInt16 ResRoomLeave = 1106;
+        public const UInt16 NtfRoomLeaveUser = 1107;
 
         public const UInt16 ReqRoomChat = 1026;
         public const UInt16 ResRoomChat = 1027;
