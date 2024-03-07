@@ -62,3 +62,9 @@ void Session::SendPacket(char* buffer, int length)
 {
 	socket_.sendBytes(buffer, length);
 }
+
+void Session::Login(std::string user_id)
+{
+	is_logged_in_ = true;
+	user_id_ = user_id;
+}

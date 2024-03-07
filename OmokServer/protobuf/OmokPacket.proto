@@ -13,7 +13,11 @@ message ResLogin {
 
 message ReqRoomEnter {
   optional int32 roomId = 1;
-  optional int32 roomNumber = 2;
+}
+
+message User {
+  optional string userId = 1;
+  optional uint32 sessionId = 2;
 }
 
 message ResRoomEnter {
@@ -21,15 +25,14 @@ message ResRoomEnter {
 }
 
 message NtfRoomUserList { // resRoomEnter 이후 바로 보내기 
-  repeated string userIdList = 1;
+  repeated User user = 1;
 }
 
 message NtfRoomNewUser { // 새유저 broadcast
-  optional string userId = 1;
+  optional User user = 1;
 }
 
 message ReqRoomLeave {
-  optional string userId = 1;
 }
 
 message ResRoomLeave { 
@@ -37,11 +40,11 @@ message ResRoomLeave {
 }
 
 message NtfRoomLeaveUser {// 나간 유저 broadcast
-  optional string userId = 1;
+  optional User user = 1;
 }
 
 message ReqRoomChat {
-  optional string userId = 1;
+  optional string sessionId = 1;
   optional string chat = 2;
 }
 

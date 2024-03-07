@@ -29,7 +29,7 @@ public:
 	uint16_t packet_size_ = 0;
 	uint16_t packet_id_ = 0;
 	char packet_body_[MAX_PACKET_SIZE] = { 0, };
-	int session_id_;
+	uint32_t session_id_;
 
 	Packet() = default;
 

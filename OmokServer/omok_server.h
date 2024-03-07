@@ -8,6 +8,7 @@
 #include "packet_info.h"
 #include "packet_processor.h"
 #include "session.h"
+#include "room_manager.h"
 
 constexpr Poco::UInt16 SERVER_PORT = 32451;
 constexpr uint32_t BUFFER_SIZE = 8096 * 10;

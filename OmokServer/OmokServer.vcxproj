@@ -176,6 +176,8 @@
     <ClCompile Include="packet_processor.cpp" />
     <ClCompile Include="packet_id.h" />
     <ClCompile Include="packet_queue.cpp" />
+    <ClCompile Include="packet_sender.cpp" />
+    <ClCompile Include="room_manager.cpp" />
     <ClCompile Include="session.cpp" />
     <ClCompile Include="protobuf\OmokPacket.pb.cc" />
     <ClCompile Include="session_manager.cpp" />
@@ -185,6 +187,9 @@
     <ClInclude Include="packet_queue.h" />
     <ClInclude Include="packet_info.h" />
     <ClInclude Include="packet_processor.h" />
+    <ClInclude Include="packet_sender.h" />
+    <ClInclude Include="room.h" />
+    <ClInclude Include="room_manager.h" />
     <ClInclude Include="session.h" />
     <ClInclude Include="protobuf\OmokPacket.pb.h" />
     <ClInclude Include="session_manager.h" />

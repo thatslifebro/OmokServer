@@ -3,8 +3,10 @@
 void OmokServer::Init()
 {
 	Poco::Net::ServerSocket server_socket(SERVER_PORT);
-	
 	server_socket_ = server_socket;
+
+	RoomManager room_manager;
+	room_manager.Init();
 }
 
 void OmokServer::Start()

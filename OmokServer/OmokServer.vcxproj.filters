@@ -16,6 +16,8 @@
     <ClCompile Include="main.cpp" />
     <ClCompile Include="packet_queue.cpp" />
     <ClCompile Include="session_manager.cpp" />
+    <ClCompile Include="room_manager.cpp" />
+    <ClCompile Include="packet_sender.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="protobuf\OmokPacket.pb.h">
@@ -28,6 +30,9 @@
     <ClInclude Include="session.h" />
     <ClInclude Include="user_info.h" />
     <ClInclude Include="session_manager.h" />
+    <ClInclude Include="room_manager.h" />
+    <ClInclude Include="room.h" />
+    <ClInclude Include="packet_sender.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="protobuf\OmokPacket.proto">

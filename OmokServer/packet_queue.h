@@ -12,7 +12,7 @@
 class PacketQueue
 {
 public:
-	void Save(char* buffer, int session_id);
+	void Save(char* buffer, uint32_t session_id);
 	const Packet& PopAndGetPacket();
 	
 private:

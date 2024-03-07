@@ -3,7 +3,7 @@
 std::mutex PacketQueue::mutex_;
 std::queue<Packet> PacketQueue::packet_queue_;
 
-void PacketQueue::Save(char* buffer, int session_id)
+void PacketQueue::Save(char* buffer, uint32_t session_id)
 {
 	Packet packet;
 	packet.session_id_ = session_id;

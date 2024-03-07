@@ -31,7 +31,7 @@ bool SessionManager::IsSessionExist(uint32_t session_id)
 
 int SessionManager::FindEmptySessionId()
 {
-	int session_id = 1;
+	uint32_t session_id = 1;
 	while (session_map_.find(session_id) != session_map_.end())
 	{
 		session_id++;
