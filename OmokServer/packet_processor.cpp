@@ -36,6 +36,11 @@ void PacketProcessor::ReqLoginHandler(Packet packet)
 		return;
 	}
 
+	if(session->is_logged_in_ == true)
+	{
+		return;
+	}
+
 	std::print("받은 메시지 : reqLogin.userid = {}, pw = {}\n", req_login.userid(), req_login.pw());
 
 	//db 쓰레드에 로그인 요청
