@@ -2,7 +2,7 @@
 #include <unordered_map>
 #include <string>
 
-static std::unordered_map<std::string, std::string> user_auth_map = {
+static std::unordered_map<std::string, std::string> user_auth_map_ = {
 	{"test1", "1"},
 	{"test2", "2"},
 	{"test3", "3"},

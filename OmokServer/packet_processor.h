@@ -11,6 +11,7 @@
 #include "room_manager.h"
 #include "packet_sender.h"
 #include "game_room_manager.h"
+#include "db_processor.h"
 
 class PacketProcessor
 {
@@ -19,6 +20,7 @@ public:
 	RoomManager room_manager_;
 	SessionManager session_manager_;
 	GameRoomManager game_room_manager_;
+	DBProcessor db_processor_;
 
 	void Init();
 	bool ProcessPacket();

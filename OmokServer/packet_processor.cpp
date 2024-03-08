@@ -37,18 +37,7 @@ void PacketProcessor::ReqLoginHandler(Packet packet)
 
 	std::print("받은 메시지 : reqLogin.userid = {}, pw = {}\n", req_login.userid(), req_login.pw());
 
-	//로그인 
-	uint32_t result = -1;
-
-	if (user_auth_map[req_login.userid()] == req_login.pw())
-	{
-		session->Login(req_login.userid());
-		result = 0;
-		std::print("SessionId : {}, UserId : {} 유저가 로그인함.\n", session->session_id_, session->user_id_);
-	}
-
-	//로그인 결과 전송
-	packet_sender_.ResLogin(session, result);
+	db_processor_.AddLoginRequest(session, req_login.userid(), req_login.pw());
 }
 
 void PacketProcessor::ReqRoomEnterHandler(Packet packet)
