@@ -2788,8 +2788,46 @@ class NtfStartOmok final :
   // accessors -------------------------------------------------------
 
   enum : int {
+    kMyIdFieldNumber = 2,
+    kOpponentIdFieldNumber = 3,
     kBlackFieldNumber = 1,
   };
+  // optional string myId = 2;
+  bool has_myid() const;
+  private:
+  bool _internal_has_myid() const;
+  public:
+  void clear_myid();
+  const std::string& myid() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_myid(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_myid();
+  PROTOBUF_NODISCARD std::string* release_myid();
+  void set_allocated_myid(std::string* myid);
+  private:
+  const std::string& _internal_myid() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_myid(const std::string& value);
+  std::string* _internal_mutable_myid();
+  public:
+
+  // optional string opponentId = 3;
+  bool has_opponentid() const;
+  private:
+  bool _internal_has_opponentid() const;
+  public:
+  void clear_opponentid();
+  const std::string& opponentid() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_opponentid(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_opponentid();
+  PROTOBUF_NODISCARD std::string* release_opponentid();
+  void set_allocated_opponentid(std::string* opponentid);
+  private:
+  const std::string& _internal_opponentid() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_opponentid(const std::string& value);
+  std::string* _internal_mutable_opponentid();
+  public:
+
   // optional bool black = 1;
   bool has_black() const;
   private:
@@ -2813,6 +2851,8 @@ class NtfStartOmok final :
   struct Impl_ {
     ::PROTOBUF_NAMESPACE_ID::internal::HasBits<1> _has_bits_;
     mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+    ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr myid_;
+    ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr opponentid_;
     bool black_;
   };
   union { Impl_ _impl_; };
@@ -4368,7 +4408,7 @@ inline void NtfMatched::set_allocated_userid(std::string* userid) {
 
 // optional bool black = 1;
 inline bool NtfStartOmok::_internal_has_black() const {
-  bool value = (_impl_._has_bits_[0] & 0x00000001u) != 0;
+  bool value = (_impl_._has_bits_[0] & 0x00000004u) != 0;
   return value;
 }
 inline bool NtfStartOmok::has_black() const {
@@ -4376,7 +4416,7 @@ inline bool NtfStartOmok::has_black() const {
 }
 inline void NtfStartOmok::clear_black() {
   _impl_.black_ = false;
-  _impl_._has_bits_[0] &= ~0x00000001u;
+  _impl_._has_bits_[0] &= ~0x00000004u;
 }
 inline bool NtfStartOmok::_internal_black() const {
   return _impl_.black_;
@@ -4386,12 +4426,148 @@ inline bool NtfStartOmok::black() const {
   return _internal_black();
 }
 inline void NtfStartOmok::_internal_set_black(bool value) {
-  _impl_._has_bits_[0] |= 0x00000001u;
+  _impl_._has_bits_[0] |= 0x00000004u;
   _impl_.black_ = value;
 }
 inline void NtfStartOmok::set_black(bool value) {
   _internal_set_black(value);
   // @@protoc_insertion_point(field_set:OmokPacket.NtfStartOmok.black)
+}
+
+// optional string myId = 2;
+inline bool NtfStartOmok::_internal_has_myid() const {
+  bool value = (_impl_._has_bits_[0] & 0x00000001u) != 0;
+  return value;
+}
+inline bool NtfStartOmok::has_myid() const {
+  return _internal_has_myid();
+}
+inline void NtfStartOmok::clear_myid() {
+  _impl_.myid_.ClearToEmpty();
+  _impl_._has_bits_[0] &= ~0x00000001u;
+}
+inline const std::string& NtfStartOmok::myid() const {
+  // @@protoc_insertion_point(field_get:OmokPacket.NtfStartOmok.myId)
+  return _internal_myid();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void NtfStartOmok::set_myid(ArgT0&& arg0, ArgT... args) {
+ _impl_._has_bits_[0] |= 0x00000001u;
+ _impl_.myid_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:OmokPacket.NtfStartOmok.myId)
+}
+inline std::string* NtfStartOmok::mutable_myid() {
+  std::string* _s = _internal_mutable_myid();
+  // @@protoc_insertion_point(field_mutable:OmokPacket.NtfStartOmok.myId)
+  return _s;
+}
+inline const std::string& NtfStartOmok::_internal_myid() const {
+  return _impl_.myid_.Get();
+}
+inline void NtfStartOmok::_internal_set_myid(const std::string& value) {
+  _impl_._has_bits_[0] |= 0x00000001u;
+  _impl_.myid_.Set(value, GetArenaForAllocation());
+}
+inline std::string* NtfStartOmok::_internal_mutable_myid() {
+  _impl_._has_bits_[0] |= 0x00000001u;
+  return _impl_.myid_.Mutable(GetArenaForAllocation());
+}
+inline std::string* NtfStartOmok::release_myid() {
+  // @@protoc_insertion_point(field_release:OmokPacket.NtfStartOmok.myId)
+  if (!_internal_has_myid()) {
+    return nullptr;
+  }
+  _impl_._has_bits_[0] &= ~0x00000001u;
+  auto* p = _impl_.myid_.Release();
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (_impl_.myid_.IsDefault()) {
+    _impl_.myid_.Set("", GetArenaForAllocation());
+  }
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  return p;
+}
+inline void NtfStartOmok::set_allocated_myid(std::string* myid) {
+  if (myid != nullptr) {
+    _impl_._has_bits_[0] |= 0x00000001u;
+  } else {
+    _impl_._has_bits_[0] &= ~0x00000001u;
+  }
+  _impl_.myid_.SetAllocated(myid, GetArenaForAllocation());
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (_impl_.myid_.IsDefault()) {
+    _impl_.myid_.Set("", GetArenaForAllocation());
+  }
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:OmokPacket.NtfStartOmok.myId)
+}
+
+// optional string opponentId = 3;
+inline bool NtfStartOmok::_internal_has_opponentid() const {
+  bool value = (_impl_._has_bits_[0] & 0x00000002u) != 0;
+  return value;
+}
+inline bool NtfStartOmok::has_opponentid() const {
+  return _internal_has_opponentid();
+}
+inline void NtfStartOmok::clear_opponentid() {
+  _impl_.opponentid_.ClearToEmpty();
+  _impl_._has_bits_[0] &= ~0x00000002u;
+}
+inline const std::string& NtfStartOmok::opponentid() const {
+  // @@protoc_insertion_point(field_get:OmokPacket.NtfStartOmok.opponentId)
+  return _internal_opponentid();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void NtfStartOmok::set_opponentid(ArgT0&& arg0, ArgT... args) {
+ _impl_._has_bits_[0] |= 0x00000002u;
+ _impl_.opponentid_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:OmokPacket.NtfStartOmok.opponentId)
+}
+inline std::string* NtfStartOmok::mutable_opponentid() {
+  std::string* _s = _internal_mutable_opponentid();
+  // @@protoc_insertion_point(field_mutable:OmokPacket.NtfStartOmok.opponentId)
+  return _s;
+}
+inline const std::string& NtfStartOmok::_internal_opponentid() const {
+  return _impl_.opponentid_.Get();
+}
+inline void NtfStartOmok::_internal_set_opponentid(const std::string& value) {
+  _impl_._has_bits_[0] |= 0x00000002u;
+  _impl_.opponentid_.Set(value, GetArenaForAllocation());
+}
+inline std::string* NtfStartOmok::_internal_mutable_opponentid() {
+  _impl_._has_bits_[0] |= 0x00000002u;
+  return _impl_.opponentid_.Mutable(GetArenaForAllocation());
+}
+inline std::string* NtfStartOmok::release_opponentid() {
+  // @@protoc_insertion_point(field_release:OmokPacket.NtfStartOmok.opponentId)
+  if (!_internal_has_opponentid()) {
+    return nullptr;
+  }
+  _impl_._has_bits_[0] &= ~0x00000002u;
+  auto* p = _impl_.opponentid_.Release();
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (_impl_.opponentid_.IsDefault()) {
+    _impl_.opponentid_.Set("", GetArenaForAllocation());
+  }
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  return p;
+}
+inline void NtfStartOmok::set_allocated_opponentid(std::string* opponentid) {
+  if (opponentid != nullptr) {
+    _impl_._has_bits_[0] |= 0x00000002u;
+  } else {
+    _impl_._has_bits_[0] &= ~0x00000002u;
+  }
+  _impl_.opponentid_.SetAllocated(opponentid, GetArenaForAllocation());
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (_impl_.opponentid_.IsDefault()) {
+    _impl_.opponentid_.Set("", GetArenaForAllocation());
+  }
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:OmokPacket.NtfStartOmok.opponentId)
 }
 
 // -------------------------------------------------------------------

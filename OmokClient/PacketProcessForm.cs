@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Serialization;
 
 namespace csharp_test_client
 {
@@ -29,9 +30,9 @@ namespace csharp_test_client
             PacketFuncDic.Add(PacketID.NtfMatched, PacketProcess_MatchedNotify);
 
             PacketFuncDic.Add(PacketID.ResReadyOmok, PacketProcess_ReadyOmokResponse);
-
             PacketFuncDic.Add(PacketID.NtfStartOmok, PacketProcess_StartOmokNotify);
             PacketFuncDic.Add(PacketID.ResPutMok, PacketProcess_PutMokResponse);
+            PacketFuncDic.Add(PacketID.NtfPutMok, PacketProcess_PutMokNotify);
 
         }
 
@@ -216,48 +217,44 @@ namespace csharp_test_client
 
         void PacketProcess_ReadyOmokResponse(byte[] bodyData)
         {
-            //var responsePkt = MessagePackSerializer.Deserialize<PKTResReadyOmok>(packetData);
-
-            //DevLog.Write($"게임 준비 완료 요청 결과:  {(ErrorCode)responsePkt.Result}");
-        }
-
-        void PacketProcess_ReadyOmokNotify(byte[] bodyData)
-        {
-            //var notifyPkt = MessagePackSerializer.Deserialize<PKTNtfReadyOmok>(packetData);
-
-            /*if (notifyPkt.IsReady)
-            {
-                DevLog.Write($"[{notifyPkt.UserID}]님은 게임 준비 완료");
-            }
-            else
-            {
-                DevLog.Write($"[{notifyPkt.UserID}]님이 게임 준비 완료 취소");
-            }*/
-
+            DevLog.Write("준비 완료 응답");
         }
 
         void PacketProcess_StartOmokNotify(byte[] bodyData)
         {
-            /*var isMyTurn = false;
+            var ntfStartOmok = new NtfStartOmok();
+            ntfStartOmok.MergeFrom(bodyData);
 
-            var notifyPkt = MessagePackSerializer.Deserialize<PKTNtfStartOmok>(packetData);
+            var isMyTurn = ntfStartOmok.Black;
+            var myID = ntfStartOmok.MyId;
+            var opponentID = ntfStartOmok.OpponentId;
             
-            if(notifyPkt.FirstUserID == textBoxUserID.Text)
+            StartGame(isMyTurn, myID, opponentID);
+
+            if(isMyTurn)
             {
-                isMyTurn = true;
+                DevLog.Write($"게임 시작. 흑돌 플레이어: {myID}, 백돌 플레이어: {opponentID}");
             }
-
-            StartGame(isMyTurn, textBoxUserID.Text, GetOtherPlayer(textBoxUserID.Text));
-
-            DevLog.Write($"게임 시작. 흑돌 플레이어: {notifyPkt.FirstUserID}");*/
+            else
+            {
+                DevLog.Write($"게임 시작. 백돌 플레이어: {myID}, 흑돌 플레이어: {opponentID}");
+            }
         }
         
 
         void PacketProcess_PutMokResponse(byte[] bodyData)
         {
-            //var responsePkt = MessagePackSerializer.Deserialize<PKTResPutMok>(packetData);
+            var resPutMok = new ResPutMok();
+            resPutMok.MergeFrom(bodyData);
 
-            //DevLog.Write($"오목 놓기 실패: {(ErrorCode)responsePkt.Result}");
+            if(resPutMok.Result == 0)
+            {
+                DevLog.Write($"오목 놓기 성공");
+            }
+            else
+            {
+                DevLog.Write($"오목 놓기 실패");
+            }
 
             //TODO 방금 놓은 오목 정보를 취소 시켜야 한다
         }
@@ -265,13 +262,17 @@ namespace csharp_test_client
 
         void PacketProcess_PutMokNotify(byte[] bodyData)
         {
-            /*var notifyPkt = MessagePackSerializer.Deserialize<PKTNtfPutMok>(packetData);
+            var ntfPutMok = new NtfPutMok();
+            ntfPutMok.MergeFrom(bodyData);
 
-            플레이어_돌두기(true, notifyPkt.PosX, notifyPkt.PosY);
+            var x = ntfPutMok.X;
+            var y = ntfPutMok.Y;
 
-            DevLog.Write($"오목 정보: X: {notifyPkt.PosX},  Y: {notifyPkt.PosY},   알:{notifyPkt.Mok}");*/
+            플레이어_돌두기(true, x, y);
+
+            DevLog.Write($"상대방이 [{x}, {y}] 에 돌을 놓았습니다.");
         }
-        
+
 
         void PacketProcess_EndOmokNotify(byte[] bodyData)
         {

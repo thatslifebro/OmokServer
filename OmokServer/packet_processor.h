@@ -37,6 +37,10 @@ public:
 
 	void ReqMatchHandler(Packet packet);
 
+	void ReqReadyOmokHandler(Packet packet);
+
+	void ReqOmokPutHandler(Packet packet);
+
 private:
 	std::unordered_map<uint16_t, std::function<void(Packet) >> packet_handler_map_;
 };

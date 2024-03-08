@@ -12,7 +12,7 @@ void GameRoom::Init()
 	}
 }
 
-bool GameRoom::SetStone(uint16_t x, uint16_t y, uint16_t session_id)
+bool GameRoom::SetStone(uint32_t x, uint32_t y, uint32_t session_id)
 {
 	if (!CheckTurn(session_id) || !IsGameStart())
 	{
@@ -32,7 +32,7 @@ bool GameRoom::SetStone(uint16_t x, uint16_t y, uint16_t session_id)
 	}
 }
 
-void GameRoom::SetReady(uint16_t session_id)
+void GameRoom::SetReady(uint32_t session_id)
 {
 	if (session_id == white_session_id_)
 	{
@@ -42,14 +42,15 @@ void GameRoom::SetReady(uint16_t session_id)
 	{
 		black_ready_ = true;
 	}
-}
 
-bool GameRoom::IsGameStart()
-{
 	if (white_ready_ && black_ready_)
 	{
 		is_game_start_ = true;
 	}
+}
+
+bool GameRoom::IsGameStart()
+{
 	return is_game_start_;
 }
 
@@ -59,7 +60,7 @@ bool GameRoom::IsGameEnd()
 	return false;
 }
 
-bool GameRoom::SetStone(uint16_t x, uint16_t y, status color)
+bool GameRoom::SetStone(uint32_t x, uint32_t y, status color)
 {
 	Pos pos(x, y);
 	if (omok_board_[pos] == EMPTY)
@@ -91,7 +92,7 @@ void GameRoom::ChangeTurn()
 	}
 }
 
-bool GameRoom::CheckTurn(uint16_t session_id)
+bool GameRoom::CheckTurn(uint32_t session_id)
 {
 	if (session_id == white_session_id_ && turn_ == WHITE_TURN)
 	{
@@ -111,4 +112,30 @@ bool GameRoom::CheckRule()
 {
 	// todo: check rule
 	return true;
+}
+
+uint32_t GameRoom::GetOpponentId(uint32_t session_id)
+{
+	if (session_id == white_session_id_)
+	{
+		return black_session_id_;
+	}
+	else if (session_id == black_session_id_)
+	{
+		return white_session_id_;
+	}
+	else
+	{
+		return 0;
+	}
+}
+
+uint32_t GameRoom::GetWhiteSessionId()
+{
+	return white_session_id_;
+}
+
+uint32_t GameRoom::GetBlackSessionId()
+{
+	return black_session_id_;
 }

@@ -40,12 +40,14 @@ namespace OmokPacket {
             "ASgJSACIAQESEQoEY2hhdBgCIAEoCUgBiAEBQgkKB191c2VySWRCBwoFX2No",
             "YXQiCgoIUmVxTWF0Y2giCgoIUmVzTWF0Y2giLAoKTnRmTWF0Y2hlZBITCgZ1",
             "c2VySWQYASABKAlIAIgBAUIJCgdfdXNlcklkIg4KDFJlcVJlYWR5T21vayIO",
-            "CgxSZXNSZWFkeU9tb2siLAoMTnRmU3RhcnRPbW9rEhIKBWJsYWNrGAEgASgI",
-            "SACIAQFCCAoGX2JsYWNrIjcKCVJlcVB1dE1vaxIOCgF4GAEgASgFSACIAQES",
-            "DgoBeRgCIAEoBUgBiAEBQgQKAl94QgQKAl95IisKCVJlc1B1dE1vaxITCgZy",
-            "ZXN1bHQYASABKAVIAIgBAUIJCgdfcmVzdWx0IjcKCU50ZlB1dE1vaxIOCgF4",
-            "GAEgASgFSACIAQESDgoBeRgCIAEoBUgBiAEBQgQKAl94QgQKAl95IiYKCk50",
-            "ZkVuZE9tb2sSEAoDd2luGAEgASgISACIAQFCBgoEX3dpbmIGcHJvdG8z"));
+            "CgxSZXNSZWFkeU9tb2sicAoMTnRmU3RhcnRPbW9rEhIKBWJsYWNrGAEgASgI",
+            "SACIAQESEQoEbXlJZBgCIAEoCUgBiAEBEhcKCm9wcG9uZW50SWQYAyABKAlI",
+            "AogBAUIICgZfYmxhY2tCBwoFX215SWRCDQoLX29wcG9uZW50SWQiNwoJUmVx",
+            "UHV0TW9rEg4KAXgYASABKAVIAIgBARIOCgF5GAIgASgFSAGIAQFCBAoCX3hC",
+            "BAoCX3kiKwoJUmVzUHV0TW9rEhMKBnJlc3VsdBgBIAEoBUgAiAEBQgkKB19y",
+            "ZXN1bHQiNwoJTnRmUHV0TW9rEg4KAXgYASABKAVIAIgBARIOCgF5GAIgASgF",
+            "SAGIAQFCBAoCX3hCBAoCX3kiJgoKTnRmRW5kT21vaxIQCgN3aW4YASABKAhI",
+            "AIgBAUIGCgRfd2luYgZwcm90bzM="));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { },
           new pbr::GeneratedClrTypeInfo(null, null, new pbr::GeneratedClrTypeInfo[] {
@@ -66,7 +68,7 @@ namespace OmokPacket {
             new pbr::GeneratedClrTypeInfo(typeof(global::OmokPacket.NtfMatched), global::OmokPacket.NtfMatched.Parser, new[]{ "UserId" }, new[]{ "UserId" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::OmokPacket.ReqReadyOmok), global::OmokPacket.ReqReadyOmok.Parser, null, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::OmokPacket.ResReadyOmok), global::OmokPacket.ResReadyOmok.Parser, null, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::OmokPacket.NtfStartOmok), global::OmokPacket.NtfStartOmok.Parser, new[]{ "Black" }, new[]{ "Black" }, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::OmokPacket.NtfStartOmok), global::OmokPacket.NtfStartOmok.Parser, new[]{ "Black", "MyId", "OpponentId" }, new[]{ "Black", "MyId", "OpponentId" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::OmokPacket.ReqPutMok), global::OmokPacket.ReqPutMok.Parser, new[]{ "X", "Y" }, new[]{ "X", "Y" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::OmokPacket.ResPutMok), global::OmokPacket.ResPutMok.Parser, new[]{ "Result" }, new[]{ "Result" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::OmokPacket.NtfPutMok), global::OmokPacket.NtfPutMok.Parser, new[]{ "X", "Y" }, new[]{ "X", "Y" }, null, null, null),
@@ -3455,6 +3457,8 @@ namespace OmokPacket {
     public NtfStartOmok(NtfStartOmok other) : this() {
       _hasBits0 = other._hasBits0;
       black_ = other.black_;
+      myId_ = other.myId_;
+      opponentId_ = other.opponentId_;
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
 
@@ -3492,6 +3496,57 @@ namespace OmokPacket {
       _hasBits0 &= ~1;
     }
 
+    /// <summary>Field number for the "myId" field.</summary>
+    public const int MyIdFieldNumber = 2;
+    private string myId_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public string MyId {
+      get { return myId_ ?? ""; }
+      set {
+        myId_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+      }
+    }
+    /// <summary>Gets whether the "myId" field is set</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public bool HasMyId {
+      get { return myId_ != null; }
+    }
+    /// <summary>Clears the value of the "myId" field</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void ClearMyId() {
+      myId_ = null;
+    }
+
+    /// <summary>Field number for the "opponentId" field.</summary>
+    public const int OpponentIdFieldNumber = 3;
+    private string opponentId_;
+    /// <summary>
+    /// »ó´ë¹æ
+    /// </summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public string OpponentId {
+      get { return opponentId_ ?? ""; }
+      set {
+        opponentId_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+      }
+    }
+    /// <summary>Gets whether the "opponentId" field is set</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public bool HasOpponentId {
+      get { return opponentId_ != null; }
+    }
+    /// <summary>Clears the value of the "opponentId" field</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void ClearOpponentId() {
+      opponentId_ = null;
+    }
+
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public override bool Equals(object other) {
@@ -3508,6 +3563,8 @@ namespace OmokPacket {
         return true;
       }
       if (Black != other.Black) return false;
+      if (MyId != other.MyId) return false;
+      if (OpponentId != other.OpponentId) return false;
       return Equals(_unknownFields, other._unknownFields);
     }
 
@@ -3516,6 +3573,8 @@ namespace OmokPacket {
     public override int GetHashCode() {
       int hash = 1;
       if (HasBlack) hash ^= Black.GetHashCode();
+      if (HasMyId) hash ^= MyId.GetHashCode();
+      if (HasOpponentId) hash ^= OpponentId.GetHashCode();
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
       }
@@ -3538,6 +3597,14 @@ namespace OmokPacket {
         output.WriteRawTag(8);
         output.WriteBool(Black);
       }
+      if (HasMyId) {
+        output.WriteRawTag(18);
+        output.WriteString(MyId);
+      }
+      if (HasOpponentId) {
+        output.WriteRawTag(26);
+        output.WriteString(OpponentId);
+      }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(output);
       }
@@ -3552,6 +3619,14 @@ namespace OmokPacket {
         output.WriteRawTag(8);
         output.WriteBool(Black);
       }
+      if (HasMyId) {
+        output.WriteRawTag(18);
+        output.WriteString(MyId);
+      }
+      if (HasOpponentId) {
+        output.WriteRawTag(26);
+        output.WriteString(OpponentId);
+      }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(ref output);
       }
@@ -3564,6 +3639,12 @@ namespace OmokPacket {
       int size = 0;
       if (HasBlack) {
         size += 1 + 1;
+      }
+      if (HasMyId) {
+        size += 1 + pb::CodedOutputStream.ComputeStringSize(MyId);
+      }
+      if (HasOpponentId) {
+        size += 1 + pb::CodedOutputStream.ComputeStringSize(OpponentId);
       }
       if (_unknownFields != null) {
         size += _unknownFields.CalculateSize();
@@ -3579,6 +3660,12 @@ namespace OmokPacket {
       }
       if (other.HasBlack) {
         Black = other.Black;
+      }
+      if (other.HasMyId) {
+        MyId = other.MyId;
+      }
+      if (other.HasOpponentId) {
+        OpponentId = other.OpponentId;
       }
       _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
     }
@@ -3599,6 +3686,14 @@ namespace OmokPacket {
             Black = input.ReadBool();
             break;
           }
+          case 18: {
+            MyId = input.ReadString();
+            break;
+          }
+          case 26: {
+            OpponentId = input.ReadString();
+            break;
+          }
         }
       }
     #endif
@@ -3616,6 +3711,14 @@ namespace OmokPacket {
             break;
           case 8: {
             Black = input.ReadBool();
+            break;
+          }
+          case 18: {
+            MyId = input.ReadString();
+            break;
+          }
+          case 26: {
+            OpponentId = input.ReadString();
             break;
           }
         }

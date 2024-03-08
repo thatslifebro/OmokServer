@@ -172,22 +172,80 @@ void PacketSender::ResMatch(Session* session)
 	delete res_data;
 }
 
-void PacketSender::NtfMatched(Session* session, Session* oponent_session)
+void PacketSender::NtfMatched(Session* session, Session* opponent_session)
 {
 	OmokPacket::NtfMatched ntf_matched;
-	OmokPacket::NtfMatched ntf_matched_oponent;
-	ntf_matched.set_userid(oponent_session->user_id_);
-	ntf_matched_oponent.set_userid(session->user_id_);
+	OmokPacket::NtfMatched ntf_matched_opponent;
+	ntf_matched.set_userid(opponent_session->user_id_);
+	ntf_matched_opponent.set_userid(session->user_id_);
 
 	auto [res_data, res_length] = MakeResData(PacketId::NtfMatched, ntf_matched);
-	auto [res_data_oponent, res_length_oponent] = MakeResData(PacketId::NtfMatched, ntf_matched_oponent);
+	auto [res_data_opponent, res_length_opponent] = MakeResData(PacketId::NtfMatched, ntf_matched_opponent);
 
 	session->SendPacket(res_data, res_length);
-	oponent_session->SendPacket(res_data_oponent, res_length_oponent);
+	opponent_session->SendPacket(res_data_opponent, res_length_opponent);
 
 	delete res_data;
-	delete res_data_oponent;
+	delete res_data_opponent;
+}
 
+void PacketSender::ResReadyOmok(Session* session)
+{
+	OmokPacket::ResReadyOmok res_ready_omok;
+
+	auto [res_data, res_length] = MakeResData(PacketId::ResReadyOmok, res_ready_omok);
+
+	session->SendPacket(res_data, res_length);
+
+	delete res_data;
+}
+
+void PacketSender::NtfStartOmok(Session* balck_session, Session* white_session)
+{
+	OmokPacket::NtfStartOmok ntf_start_omok_black;
+	OmokPacket::NtfStartOmok ntf_start_omok_white;
+
+	ntf_start_omok_black.set_black(true);
+	ntf_start_omok_white.set_black(false);
+
+	ntf_start_omok_black.set_myid(balck_session->user_id_);
+	ntf_start_omok_black.set_opponentid(white_session->user_id_);
+	ntf_start_omok_white.set_myid(white_session->user_id_);
+	ntf_start_omok_white.set_opponentid(balck_session->user_id_);
+
+	auto [res_data_black, res_length_black] = MakeResData(PacketId::NtfStartOmok, ntf_start_omok_black);
+	auto [res_data_white, res_length_white] = MakeResData(PacketId::NtfStartOmok, ntf_start_omok_white);
+
+	balck_session->SendPacket(res_data_black, res_length_black);
+	white_session->SendPacket(res_data_white, res_length_white);
+
+	delete res_data_black;
+	delete res_data_white;
+}
+
+void PacketSender::ResPutMok(Session* session, uint32_t result)
+{
+	OmokPacket::ResPutMok res_put_mok;
+	res_put_mok.set_result(result);
+
+	auto [res_data, res_length] = MakeResData(PacketId::ResPutMok, res_put_mok);
+
+	session->SendPacket(res_data, res_length);
+
+	delete res_data;
+}
+
+void PacketSender::NtfPutMok(Session* session, uint32_t x, uint32_t y)
+{
+	OmokPacket::NtfPutMok ntf_put_mok;
+	ntf_put_mok.set_x(x);
+	ntf_put_mok.set_y(y);
+
+	auto [res_data, res_length] = MakeResData(PacketId::NtfPutMok, ntf_put_mok);
+
+	session->SendPacket(res_data, res_length);
+
+	delete res_data;
 }
 
 template <typename T>

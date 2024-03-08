@@ -321,6 +321,7 @@ namespace csharp_test_client
         }
         void 플레이어_돌두기(bool isNotify, int x, int y)
         {
+            // todo : 서버에 먼저 전송하고 응답을 받아서 돌 놓아야함.
             var ret = OmokLogic.돌두기(x, y);
             if (ret != CSCommon.돌두기_결과.Success)
             {

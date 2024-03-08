@@ -17,6 +17,7 @@ public:
 	bool is_logged_in_ = false;
 	uint32_t game_room_id_ = 0;
 	bool is_matching_ = false;
+	bool is_ready_ = false;
 
 	Session(Poco::Net::StreamSocket& socket, Poco::Net::SocketReactor& reactor);
 

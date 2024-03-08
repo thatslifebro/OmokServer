@@ -11,14 +11,14 @@ class GameRoomManager
 public:
 	void Init();
 	
-	uint32_t Match(Session* session);
+	uint32_t Match(Session* session);// todo : gameroom 생성한거 delete 해야함
 
-	GameRoom GetGameRoom(uint16_t game_room_id);
+	GameRoom* GetGameRoom(uint16_t game_room_id);
 
 	int FindEmptyGameRoomId();
 
 private:
-	static std::unordered_map<uint16_t, GameRoom> game_room_map_;
+	static std::unordered_map<uint16_t, GameRoom*> game_room_map_;
 	static std::vector<uint16_t> match_queue_vec_;
 
 	SessionManager session_manager_;

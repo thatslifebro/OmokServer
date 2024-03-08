@@ -14,3 +14,5 @@ static std::unordered_map<std::string, std::string> user_auth_map_ = {
 	{"test9", "9"},
 	{"test10", "10"}
 };
+
+//todo : 이미 로그인된 사용자는 로그인을 할 수 없도록 처리해야함

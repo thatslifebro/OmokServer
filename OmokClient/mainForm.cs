@@ -387,14 +387,11 @@ namespace csharp_test_client
        
         void SendPacketOmokPut(int x, int y)
         {
-            var requestPkt = new PKTReqPutMok
-            {
-                PosX = x,
-                PosY = y
-            };
+            var reqPutMok = new ReqPutMok();
+            reqPutMok.X = x;
+            reqPutMok.Y = y;
 
-            //var packet = MessagePackSerializer.Serialize(requestPkt);
-            //PostSendPacket(PacketID.ReqPutMok, packet);
+            PostSendPacket(PacketID.ReqPutMok, reqPutMok.ToByteArray());
 
             DevLog.Write($"put stone 요청 : x  [ {x} ], y: [ {y} ] ");
         }
@@ -410,7 +407,8 @@ namespace csharp_test_client
         // 게임 시작 요청
         private void button3_Click(object sender, EventArgs e)
         {
-            PostSendPacket(PacketID.ReqReadyOmok, null);
+            var reqReadyOmok = new ReqReadyOmok();
+            PostSendPacket(PacketID.ReqReadyOmok, reqReadyOmok.ToByteArray());
             
             DevLog.Write($"게임 준비 완료 요청");
         }

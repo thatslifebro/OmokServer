@@ -250,6 +250,8 @@ PROTOBUF_CONSTEXPR NtfStartOmok::NtfStartOmok(
     ::_pbi::ConstantInitialized): _impl_{
     /*decltype(_impl_._has_bits_)*/{}
   , /*decltype(_impl_._cached_size_)*/{}
+  , /*decltype(_impl_.myid_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
+  , /*decltype(_impl_.opponentid_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
   , /*decltype(_impl_.black_)*/false} {}
 struct NtfStartOmokDefaultTypeInternal {
   PROTOBUF_CONSTEXPR NtfStartOmokDefaultTypeInternal()
@@ -462,7 +464,11 @@ const uint32_t TableStruct_OmokPacket_2eproto::offsets[] PROTOBUF_SECTION_VARIAB
   ~0u,  // no _weak_field_map_
   ~0u,  // no _inlined_string_donated_
   PROTOBUF_FIELD_OFFSET(::OmokPacket::NtfStartOmok, _impl_.black_),
+  PROTOBUF_FIELD_OFFSET(::OmokPacket::NtfStartOmok, _impl_.myid_),
+  PROTOBUF_FIELD_OFFSET(::OmokPacket::NtfStartOmok, _impl_.opponentid_),
+  2,
   0,
+  1,
   PROTOBUF_FIELD_OFFSET(::OmokPacket::ReqPutMok, _impl_._has_bits_),
   PROTOBUF_FIELD_OFFSET(::OmokPacket::ReqPutMok, _internal_metadata_),
   ~0u,  // no _extensions_
@@ -518,11 +524,11 @@ static const ::_pbi::MigrationSchema schemas[] PROTOBUF_SECTION_VARIABLE(protode
   { 111, 118, -1, sizeof(::OmokPacket::NtfMatched)},
   { 119, -1, -1, sizeof(::OmokPacket::ReqReadyOmok)},
   { 125, -1, -1, sizeof(::OmokPacket::ResReadyOmok)},
-  { 131, 138, -1, sizeof(::OmokPacket::NtfStartOmok)},
-  { 139, 147, -1, sizeof(::OmokPacket::ReqPutMok)},
-  { 149, 156, -1, sizeof(::OmokPacket::ResPutMok)},
-  { 157, 165, -1, sizeof(::OmokPacket::NtfPutMok)},
-  { 167, 174, -1, sizeof(::OmokPacket::NtfEndOmok)},
+  { 131, 140, -1, sizeof(::OmokPacket::NtfStartOmok)},
+  { 143, 151, -1, sizeof(::OmokPacket::ReqPutMok)},
+  { 153, 160, -1, sizeof(::OmokPacket::ResPutMok)},
+  { 161, 169, -1, sizeof(::OmokPacket::NtfPutMok)},
+  { 171, 178, -1, sizeof(::OmokPacket::NtfEndOmok)},
 };
 
 static const ::_pb::Message* const file_default_instances[] = {
@@ -569,17 +575,19 @@ const char descriptor_table_protodef_OmokPacket_2eproto[] PROTOBUF_SECTION_VARIA
   "t\030\002 \001(\tH\001\210\001\001B\t\n\007_userIdB\007\n\005_chat\"\n\n\010ReqM"
   "atch\"\n\n\010ResMatch\",\n\nNtfMatched\022\023\n\006userId"
   "\030\001 \001(\tH\000\210\001\001B\t\n\007_userId\"\016\n\014ReqReadyOmok\"\016"
-  "\n\014ResReadyOmok\",\n\014NtfStartOmok\022\022\n\005black\030"
-  "\001 \001(\010H\000\210\001\001B\010\n\006_black\"7\n\tReqPutMok\022\016\n\001x\030\001"
-  " \001(\005H\000\210\001\001\022\016\n\001y\030\002 \001(\005H\001\210\001\001B\004\n\002_xB\004\n\002_y\"+\n"
-  "\tResPutMok\022\023\n\006result\030\001 \001(\005H\000\210\001\001B\t\n\007_resu"
-  "lt\"7\n\tNtfPutMok\022\016\n\001x\030\001 \001(\005H\000\210\001\001\022\016\n\001y\030\002 \001"
-  "(\005H\001\210\001\001B\004\n\002_xB\004\n\002_y\"&\n\nNtfEndOmok\022\020\n\003win"
-  "\030\001 \001(\010H\000\210\001\001B\006\n\004_winb\006proto3"
+  "\n\014ResReadyOmok\"p\n\014NtfStartOmok\022\022\n\005black\030"
+  "\001 \001(\010H\000\210\001\001\022\021\n\004myId\030\002 \001(\tH\001\210\001\001\022\027\n\nopponen"
+  "tId\030\003 \001(\tH\002\210\001\001B\010\n\006_blackB\007\n\005_myIdB\r\n\013_op"
+  "ponentId\"7\n\tReqPutMok\022\016\n\001x\030\001 \001(\005H\000\210\001\001\022\016\n"
+  "\001y\030\002 \001(\005H\001\210\001\001B\004\n\002_xB\004\n\002_y\"+\n\tResPutMok\022\023"
+  "\n\006result\030\001 \001(\005H\000\210\001\001B\t\n\007_result\"7\n\tNtfPut"
+  "Mok\022\016\n\001x\030\001 \001(\005H\000\210\001\001\022\016\n\001y\030\002 \001(\005H\001\210\001\001B\004\n\002_"
+  "xB\004\n\002_y\"&\n\nNtfEndOmok\022\020\n\003win\030\001 \001(\010H\000\210\001\001B"
+  "\006\n\004_winb\006proto3"
   ;
 static ::_pbi::once_flag descriptor_table_OmokPacket_2eproto_once;
 const ::_pbi::DescriptorTable descriptor_table_OmokPacket_2eproto = {
-    false, false, 987, descriptor_table_protodef_OmokPacket_2eproto,
+    false, false, 1055, descriptor_table_protodef_OmokPacket_2eproto,
     "OmokPacket.proto",
     &descriptor_table_OmokPacket_2eproto_once, nullptr, 0, 22,
     schemas, file_default_instances, TableStruct_OmokPacket_2eproto::offsets,
@@ -3430,7 +3438,13 @@ class NtfStartOmok::_Internal {
  public:
   using HasBits = decltype(std::declval<NtfStartOmok>()._impl_._has_bits_);
   static void set_has_black(HasBits* has_bits) {
+    (*has_bits)[0] |= 4u;
+  }
+  static void set_has_myid(HasBits* has_bits) {
     (*has_bits)[0] |= 1u;
+  }
+  static void set_has_opponentid(HasBits* has_bits) {
+    (*has_bits)[0] |= 2u;
   }
 };
 
@@ -3446,9 +3460,27 @@ NtfStartOmok::NtfStartOmok(const NtfStartOmok& from)
   new (&_impl_) Impl_{
       decltype(_impl_._has_bits_){from._impl_._has_bits_}
     , /*decltype(_impl_._cached_size_)*/{}
+    , decltype(_impl_.myid_){}
+    , decltype(_impl_.opponentid_){}
     , decltype(_impl_.black_){}};
 
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  _impl_.myid_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    _impl_.myid_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (from._internal_has_myid()) {
+    _this->_impl_.myid_.Set(from._internal_myid(), 
+      _this->GetArenaForAllocation());
+  }
+  _impl_.opponentid_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    _impl_.opponentid_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (from._internal_has_opponentid()) {
+    _this->_impl_.opponentid_.Set(from._internal_opponentid(), 
+      _this->GetArenaForAllocation());
+  }
   _this->_impl_.black_ = from._impl_.black_;
   // @@protoc_insertion_point(copy_constructor:OmokPacket.NtfStartOmok)
 }
@@ -3460,8 +3492,18 @@ inline void NtfStartOmok::SharedCtor(
   new (&_impl_) Impl_{
       decltype(_impl_._has_bits_){}
     , /*decltype(_impl_._cached_size_)*/{}
+    , decltype(_impl_.myid_){}
+    , decltype(_impl_.opponentid_){}
     , decltype(_impl_.black_){false}
   };
+  _impl_.myid_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    _impl_.myid_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  _impl_.opponentid_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    _impl_.opponentid_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
 }
 
 NtfStartOmok::~NtfStartOmok() {
@@ -3475,6 +3517,8 @@ NtfStartOmok::~NtfStartOmok() {
 
 inline void NtfStartOmok::SharedDtor() {
   GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
+  _impl_.myid_.Destroy();
+  _impl_.opponentid_.Destroy();
 }
 
 void NtfStartOmok::SetCachedSize(int size) const {
@@ -3487,6 +3531,15 @@ void NtfStartOmok::Clear() {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
+  cached_has_bits = _impl_._has_bits_[0];
+  if (cached_has_bits & 0x00000003u) {
+    if (cached_has_bits & 0x00000001u) {
+      _impl_.myid_.ClearNonDefaultToEmpty();
+    }
+    if (cached_has_bits & 0x00000002u) {
+      _impl_.opponentid_.ClearNonDefaultToEmpty();
+    }
+  }
   _impl_.black_ = false;
   _impl_._has_bits_.Clear();
   _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
@@ -3505,6 +3558,26 @@ const char* NtfStartOmok::_InternalParse(const char* ptr, ::_pbi::ParseContext* 
           _Internal::set_has_black(&has_bits);
           _impl_.black_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
           CHK_(ptr);
+        } else
+          goto handle_unusual;
+        continue;
+      // optional string myId = 2;
+      case 2:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 18)) {
+          auto str = _internal_mutable_myid();
+          ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(ptr);
+          CHK_(::_pbi::VerifyUTF8(str, "OmokPacket.NtfStartOmok.myId"));
+        } else
+          goto handle_unusual;
+        continue;
+      // optional string opponentId = 3;
+      case 3:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 26)) {
+          auto str = _internal_mutable_opponentid();
+          ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(ptr);
+          CHK_(::_pbi::VerifyUTF8(str, "OmokPacket.NtfStartOmok.opponentId"));
         } else
           goto handle_unusual;
         continue;
@@ -3544,6 +3617,26 @@ uint8_t* NtfStartOmok::_InternalSerialize(
     target = ::_pbi::WireFormatLite::WriteBoolToArray(1, this->_internal_black(), target);
   }
 
+  // optional string myId = 2;
+  if (_internal_has_myid()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_myid().data(), static_cast<int>(this->_internal_myid().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "OmokPacket.NtfStartOmok.myId");
+    target = stream->WriteStringMaybeAliased(
+        2, this->_internal_myid(), target);
+  }
+
+  // optional string opponentId = 3;
+  if (_internal_has_opponentid()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_opponentid().data(), static_cast<int>(this->_internal_opponentid().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "OmokPacket.NtfStartOmok.opponentId");
+    target = stream->WriteStringMaybeAliased(
+        3, this->_internal_opponentid(), target);
+  }
+
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
     target = ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
         _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
@@ -3560,12 +3653,28 @@ size_t NtfStartOmok::ByteSizeLong() const {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  // optional bool black = 1;
   cached_has_bits = _impl_._has_bits_[0];
-  if (cached_has_bits & 0x00000001u) {
-    total_size += 1 + 1;
-  }
+  if (cached_has_bits & 0x00000007u) {
+    // optional string myId = 2;
+    if (cached_has_bits & 0x00000001u) {
+      total_size += 1 +
+        ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+          this->_internal_myid());
+    }
 
+    // optional string opponentId = 3;
+    if (cached_has_bits & 0x00000002u) {
+      total_size += 1 +
+        ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+          this->_internal_opponentid());
+    }
+
+    // optional bool black = 1;
+    if (cached_has_bits & 0x00000004u) {
+      total_size += 1 + 1;
+    }
+
+  }
   return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
 }
 
@@ -3584,8 +3693,18 @@ void NtfStartOmok::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::P
   uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
-  if (from._internal_has_black()) {
-    _this->_internal_set_black(from._internal_black());
+  cached_has_bits = from._impl_._has_bits_[0];
+  if (cached_has_bits & 0x00000007u) {
+    if (cached_has_bits & 0x00000001u) {
+      _this->_internal_set_myid(from._internal_myid());
+    }
+    if (cached_has_bits & 0x00000002u) {
+      _this->_internal_set_opponentid(from._internal_opponentid());
+    }
+    if (cached_has_bits & 0x00000004u) {
+      _this->_impl_.black_ = from._impl_.black_;
+    }
+    _this->_impl_._has_bits_[0] |= cached_has_bits;
   }
   _this->_internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
 }
@@ -3603,8 +3722,18 @@ bool NtfStartOmok::IsInitialized() const {
 
 void NtfStartOmok::InternalSwap(NtfStartOmok* other) {
   using std::swap;
+  auto* lhs_arena = GetArenaForAllocation();
+  auto* rhs_arena = other->GetArenaForAllocation();
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
   swap(_impl_._has_bits_[0], other->_impl_._has_bits_[0]);
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &_impl_.myid_, lhs_arena,
+      &other->_impl_.myid_, rhs_arena
+  );
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &_impl_.opponentid_, lhs_arena,
+      &other->_impl_.opponentid_, rhs_arena
+  );
   swap(_impl_.black_, other->_impl_.black_);
 }
 

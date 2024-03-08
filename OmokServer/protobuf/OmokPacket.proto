@@ -70,6 +70,8 @@ message ResReadyOmok { // 레디 되었다고 알림
 
 message NtfStartOmok { // 게임 시작 알림 
   optional bool black  = 1;// 자신이 선공인지 아닌지 알려줌
+  optional string myId = 2;
+  optional string opponentId = 3; // 상대방
 }
 
 message ReqPutMok {

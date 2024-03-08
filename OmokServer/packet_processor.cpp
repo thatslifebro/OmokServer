@@ -7,6 +7,8 @@ void PacketProcessor::Init()
 	packet_handler_map_.insert(std::make_pair(static_cast<uint16_t>(PacketId::ReqRoomLeave), [&](Packet packet) { ReqRoomLeaveHandler(packet); }));
 	packet_handler_map_.insert(std::make_pair(static_cast<uint16_t>(PacketId::ReqRoomChat), [&](Packet packet) { ReqRoomChatHandler(packet); }));
 	packet_handler_map_.insert(std::make_pair(static_cast<uint16_t>(PacketId::ReqMatch), [&](Packet packet) { ReqMatchHandler(packet); }));
+	packet_handler_map_.insert(std::make_pair(static_cast<uint16_t>(PacketId::ReqReadyOmok), [&](Packet packet) { ReqReadyOmokHandler(packet); }));
+	packet_handler_map_.insert(std::make_pair(static_cast<uint16_t>(PacketId::ReqPutMok), [&](Packet packet) { ReqOmokPutHandler(packet); }));
 	//todo: 패킷에 대한 핸들러 등록
 }
 
@@ -168,14 +170,92 @@ void PacketProcessor::ReqMatchHandler(Packet packet)
 		return;
 	}
 
-	auto oponent_id = game_room_manager_.Match(session);
+	auto opponent_id = game_room_manager_.Match(session);
 
 	//매칭 결과 전송
 	packet_sender_.ResMatch(session);
 
-	if (oponent_id != 0)
+	if (opponent_id != 0)
 	{
-		auto oponent_session = session_manager_.GetSession(oponent_id);
-		packet_sender_.NtfMatched(session, oponent_session);
+		auto opponent_session = session_manager_.GetSession(opponent_id);
+		packet_sender_.NtfMatched(session, opponent_session);
+	}
+}
+
+void PacketProcessor::ReqReadyOmokHandler(Packet packet)
+{
+	auto session = session_manager_.GetSession(packet.session_id_);
+	if (session == nullptr)
+	{
+		return;
+	}
+
+	std::print("받은 메시지 : user_id = {}, reqReady\n", session->user_id_);
+
+	//레디 처리
+	if (session->game_room_id_==0 || session->is_ready_)
+	{
+		return;
+	}
+
+	session->is_ready_ = true;
+
+	auto game_room = game_room_manager_.GetGameRoom(session->game_room_id_);
+	game_room->SetReady(session->session_id_);
+
+	//레디결과 전송
+	packet_sender_.ResReadyOmok(session);
+
+	if (game_room->IsGameStart())
+	{
+		auto black_id = game_room->GetBlackSessionId();
+		auto black_session = session_manager_.GetSession(black_id);
+		auto white_id = game_room->GetWhiteSessionId();
+		auto white_session = session_manager_.GetSession(white_id);
+
+		packet_sender_.NtfStartOmok(black_session, white_session);
+	}
+}
+
+void PacketProcessor::ReqOmokPutHandler(Packet packet)
+{
+	OmokPacket::ReqPutMok req_put_mok;
+	req_put_mok.ParseFromArray(packet.packet_body_, packet.packet_size_);
+
+	auto session = session_manager_.GetSession(packet.session_id_);
+	if (session == nullptr)
+	{
+		return;
+	}
+
+	std::print("받은 메시지 : user_id = {}, ReqPutMok\n", session->user_id_);
+
+	//돌 두기 처리
+	uint32_t result = -1;
+
+	if (session->is_ready_ == true)
+	{
+		auto game_room = game_room_manager_.GetGameRoom(session->game_room_id_);
+		if (game_room->IsGameStart())
+		{
+			if (game_room->SetStone(req_put_mok.x(), req_put_mok.y(), session->session_id_))
+			{
+				result = 0;
+			}
+		}
+	}
+
+
+	//자신에게 돌두기 결과 전송
+	packet_sender_.ResPutMok(session, result);
+
+	//다른 유저에게 돌두기 전송
+	if (result == 0)
+	{
+		auto game_room = game_room_manager_.GetGameRoom(session->game_room_id_);
+		auto opponent_id = game_room->GetOpponentId(session->session_id_);
+		auto opponent_session = session_manager_.GetSession(opponent_id);
+
+		packet_sender_.NtfPutMok(opponent_session, req_put_mok.x(), req_put_mok.y());
 	}
 }

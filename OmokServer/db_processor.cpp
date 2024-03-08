@@ -34,9 +34,11 @@ void DBProcessor::ProcessLoginQueue()
 	auto iter = user_auth_map_.find(user_id);
 	if (iter != user_auth_map_.end())
 	{
-		if (iter->second != user_pw)
+		if (iter->second == user_pw)
 		{
 			result = 0;
+			login_req.session_->user_id_ = user_id;
+			login_req.session_->is_logged_in_ = true;
 		}
 	}
 

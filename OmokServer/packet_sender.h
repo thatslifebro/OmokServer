@@ -26,7 +26,15 @@ public:
 
 	void ResMatch(Session* session);
 
-	void NtfMatched(Session* session, Session* oponent_session);
+	void NtfMatched(Session* session, Session* opponent_session);
+
+	void ResReadyOmok(Session* session);
+
+	void NtfStartOmok(Session* session, Session* opponent_session);
+
+	void ResPutMok(Session* session, uint32_t result);
+
+	void NtfPutMok(Session* session, uint32_t x, uint32_t y);
 
 private:
 	template <typename T>
