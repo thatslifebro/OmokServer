@@ -12,8 +12,7 @@ void PacketProcessor::Init()
 
 bool PacketProcessor::ProcessPacket()
 {
-	PacketQueue packet_queue;
-	auto packet = packet_queue.PopAndGetPacket();
+	auto packet = packet_queue_.PopAndGetPacket();
 
 	if (packet.packet_size_ <= 0)
 	{
@@ -37,6 +36,7 @@ void PacketProcessor::ReqLoginHandler(Packet packet)
 
 	std::print("받은 메시지 : reqLogin.userid = {}, pw = {}\n", req_login.userid(), req_login.pw());
 
+	//db 쓰레드에 로그인 요청
 	db_processor_.AddLoginRequest(session, req_login.userid(), req_login.pw());
 }
 

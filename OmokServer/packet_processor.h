@@ -16,6 +16,7 @@
 class PacketProcessor
 {
 public:
+	PacketQueue packet_queue_;
 	PacketSender packet_sender_;
 	RoomManager room_manager_;
 	SessionManager session_manager_;
@@ -23,11 +24,17 @@ public:
 	DBProcessor db_processor_;
 
 	void Init();
+
 	bool ProcessPacket();
+
 	void ReqLoginHandler(Packet packet);
+
 	void ReqRoomEnterHandler(Packet packet);
+
 	void ReqRoomLeaveHandler(Packet packet);
+
 	void ReqRoomChatHandler(Packet packet);
+
 	void ReqMatchHandler(Packet packet);
 
 private:

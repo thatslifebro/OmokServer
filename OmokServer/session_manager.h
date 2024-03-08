@@ -8,8 +8,11 @@ class SessionManager
 {
 public:
 	int AddSession(Session* session);
+
 	void RemoveSession(uint32_t session_id);
+
 	Session* GetSession(uint32_t session_id);
+
 	bool IsSessionExist(uint32_t session_id);
 
 private:

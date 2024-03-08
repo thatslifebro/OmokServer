@@ -47,8 +47,10 @@ void Session::onShutdown(ShutdownNotification* pNotification)
 Session::~Session()
 {
 	reactor_.removeEventHandler(socket_, Poco::Observer<Session, ReadableNotification>(*this, &Session::onReadable));
-	std::print("Connection from {} closed\n", peer_address_);
 	reactor_.removeEventHandler(socket_, Poco::Observer<Session, ShutdownNotification>(*this, &Session::onShutdown));
+	std::print("Connection from {} closed\n", peer_address_);
+	
+	//todo : 게임 중이었다면 game 종료, room에서 나감 처리,
 }
 
 void Session::SavePacket(char* buffer)

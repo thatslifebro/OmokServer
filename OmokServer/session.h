@@ -19,11 +19,17 @@ public:
 	bool is_matching_ = false;
 
 	Session(Poco::Net::StreamSocket& socket, Poco::Net::SocketReactor& reactor);
-	void onReadable(ReadableNotification* pNotification);
-	void onShutdown(ShutdownNotification* pNotification);
+
 	~Session();
+
+	void onReadable(ReadableNotification* pNotification);
+
+	void onShutdown(ShutdownNotification* pNotification);
+
 	void SavePacket(char* buffer);
+
 	void SendPacket(char* buffer, int length);
+
 	void Login(std::string user_id);
 
 private:

@@ -3,7 +3,6 @@
 #include <string>
 #include <queue>
 #include <mutex>
-#include <functional>
 
 #include "user_info.h"
 #include "session.h"
@@ -22,7 +21,9 @@ public:
 	PacketSender packet_sender_;
 
 	void Init();
+
 	void AddLoginRequest(Session* session, const std::string& user_name, const std::string& password);
+
 	bool ProcessDB();
 
 private:

@@ -18,24 +18,30 @@ uint32_t GameRoomManager::Match(Session* session)
 	auto room_id = session->session_room_id_;
 	auto session_id = session->session_id_;
 
+	//같은 room에 매칭대기자가 있다면
 	if (match_queue_vec_[room_id - 1] != 0)
 	{
 		auto opponent_id = match_queue_vec_[room_id - 1];
 		match_queue_vec_[room_id - 1] = 0;
 
+		//game room 생성
 		GameRoom game_room(session_id, opponent_id);
 
+		//game room map에 저장
 		auto game_room_id = FindEmptyGameRoomId();
 		game_room_map_[game_room_id] = game_room;
 
+		//session에 game room id 저장
 		session->game_room_id_ = game_room_id;
 		auto oponnent_session = session_manager_.GetSession(opponent_id);
 		oponnent_session->game_room_id_ = game_room_id;
 
+		//게임룸 초기화
 		game_room.Init();
 
 		return opponent_id;
 	}
+	//같은 room에 매칭대기자가 없다면
 	else
 	{
 		match_queue_vec_[room_id - 1] = session_id;

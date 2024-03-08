@@ -18,9 +18,9 @@ public:
 	int FindEmptyGameRoomId();
 
 private:
-	SessionManager session_manager_;
-
 	static std::unordered_map<uint16_t, GameRoom> game_room_map_;
 	static std::vector<uint16_t> match_queue_vec_;
+
+	SessionManager session_manager_;
 };
 

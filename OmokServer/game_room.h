@@ -10,11 +10,6 @@ struct Pos
 	}
 	uint16_t x_;
 	uint16_t y_;
-
-	bool operator==(const Pos& pos) const
-	{
-		return x_ == pos.x_ && y_ == pos.y_;
-	}
 	
 	bool operator<(const Pos& pos) const
 	{
@@ -52,13 +47,14 @@ public:
 
 	bool IsGameEnd();
 
+
 private:
-	Turn turn_;
+	uint16_t white_session_id_;
+	uint16_t black_session_id_;
 	bool white_ready_;
 	bool black_ready_;
 	bool is_game_start_;
-	uint16_t white_session_id_;
-	uint16_t black_session_id_;
+	Turn turn_;	
 	std::map <Pos, status> omok_board_;
 
 	bool SetStone(uint16_t x, uint16_t y, status color);
