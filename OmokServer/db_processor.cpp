@@ -31,15 +31,15 @@ void DBProcessor::ProcessLoginQueue()
 
 	int result = -1;
 
-	auto iter = user_auth_map_.find(user_id);
-	if (iter != user_auth_map_.end())
+	auto output = user_auth_map_
+		| std::views::filter([&](const auto& pair) { return pair.first == user_id; })
+		| std::views::filter([&](const auto& pair) { return pair.second == user_pw; });
+
+	if (!output.empty())
 	{
-		if (iter->second == user_pw)
-		{
-			result = 0;
-			login_req.session_->user_id_ = user_id;
-			login_req.session_->is_logged_in_ = true;
-		}
+		result = 0;
+		login_req.session_->user_id_ = user_id;
+		login_req.session_->is_logged_in_ = true;
 	}
 
 	packet_sender_.ResLogin(login_req.session_, result);
