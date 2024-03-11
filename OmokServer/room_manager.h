@@ -1,7 +1,6 @@
 #pragma once
-#include "Room.h"
-
-static constexpr uint16_t MAX_ROOM_NUM = 10;
+#include "room.h"
+#include "constants.h"
 
 class RoomManager
 {

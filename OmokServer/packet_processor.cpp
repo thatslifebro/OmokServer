@@ -63,14 +63,14 @@ void PacketProcessor::ReqRoomEnterHandler(Packet packet)
 	//방 입장 처리
 	uint32_t result = -1;
 
-	if (session->is_logged_in_ == true && session->session_room_id_ == 0)
+	if (session->is_logged_in_ == true && session->room_id_ == 0)
 	{
 		auto success = room_manager_.AddSession(session->session_id_, req_room_enter.roomid());
 		if (success == true)
 		{
 			result = 0;
-			session->session_room_id_ = req_room_enter.roomid();
-			std::print("SessionId : {}, UserId : {} 가 방 {}번에 입장함.\n", session->session_id_, session->user_id_, session->session_room_id_);
+			session->room_id_ = req_room_enter.roomid();
+			std::print("SessionId : {}, UserId : {} 가 방 {}번에 입장함.\n", session->session_id_, session->user_id_, session->room_id_);
 		}
 	}
 
@@ -79,7 +79,7 @@ void PacketProcessor::ReqRoomEnterHandler(Packet packet)
 	
 	if (result == 0)
 	{
-		auto room_session_ids = room_manager_.GetSessionList(session->session_room_id_);
+		auto room_session_ids = room_manager_.GetSessionList(session->room_id_);
 		packet_sender_.NtfRoomUserList(session, room_session_ids);
 		packet_sender_.BroadcastRoomUserEnter(room_session_ids, session);
 	}
@@ -98,7 +98,7 @@ void PacketProcessor::ReqRoomLeaveHandler(Packet packet)
 
 	std::print("받은 메시지 : user_id = {}, reqRoomLeave\n", session->user_id_);
 
-	auto room_id = session->session_room_id_;
+	auto room_id = session->room_id_;
 
 	//방 나감 처리
 	uint32_t result = -1;
@@ -109,7 +109,7 @@ void PacketProcessor::ReqRoomLeaveHandler(Packet packet)
 		if (success == true)
 		{
 			result = 0;
-			session->session_room_id_ = 0;
+			session->room_id_ = 0;
 			std::print("SessionId : {}, UserId : {} 가 방에서 나감.\n", session->session_id_, session->user_id_);
 		}
 	}
@@ -140,7 +140,7 @@ void PacketProcessor::ReqRoomChatHandler(Packet packet)
 	//채팅 처리
 	uint32_t result = -1;
 
-	if (session->is_logged_in_ == true && session->session_room_id_ != 0)
+	if (session->is_logged_in_ == true && session->room_id_ != 0)
 	{
 		result = 0;
 		std::print("SessionId : {}, UserId : {} 가 채팅을 보냄.\n", session->session_id_, session->user_id_);
@@ -152,7 +152,7 @@ void PacketProcessor::ReqRoomChatHandler(Packet packet)
 	//다른 유저에게 채팅 전송
 	if (result == 0)
 	{
-		auto room_session_ids = room_manager_.GetSessionList(session->session_room_id_);
+		auto room_session_ids = room_manager_.GetSessionList(session->room_id_);
 		packet_sender_.BroadcastRoomChat(room_session_ids, session, req_room_chat.chat());
 	}
 }
@@ -175,13 +175,20 @@ void PacketProcessor::ReqMatchHandler(Packet packet)
 		return;
 	}
 
-	auto opponent_id = game_room_manager_.Match(session);
+	//room_id & session_id 필요. opponenet_id랑 game_room_id가 나오면 session 정보 수정.(game_room_id)
+	auto [opponent_id, game_room_id] = game_room_manager_.Match(session->session_id_, session->room_id_);
 
 	//매칭 결과 전송
 	packet_sender_.ResMatch(session);
 
+	//매칭이 되었다면
 	if (opponent_id != 0)
 	{
+		//session에 game room id 저장
+		session->game_room_id_ = game_room_id;
+		auto oponnent_session = session_manager_.GetSession(opponent_id);
+		oponnent_session->game_room_id_ = game_room_id;
+
 		auto opponent_session = session_manager_.GetSession(opponent_id);
 		packet_sender_.NtfMatched(session, opponent_session);
 	}

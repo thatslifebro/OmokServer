@@ -1,7 +1,7 @@
 #pragma once
 #include "Poco/Net/StreamSocket.h"
 
-static constexpr uint16_t MAX_PACKET_SIZE = 1024;
+#include "constants.h"
 
 struct PacketHeader
 {

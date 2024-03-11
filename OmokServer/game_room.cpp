@@ -60,6 +60,18 @@ bool GameRoom::IsGameEnd()
 	return false;
 }
 
+void GameRoom::EndGameByDisconnected(uint32_t session_id)
+{
+	if (session_id == white_session_id_)
+	{
+		GameOver(black_session_id_);
+	}
+	else if (session_id == black_session_id_)
+	{
+		GameOver(white_session_id_);
+	}
+}
+
 bool GameRoom::SetStone(uint32_t x, uint32_t y, status color)
 {
 	Pos pos(x, y);
@@ -138,4 +150,10 @@ uint32_t GameRoom::GetWhiteSessionId()
 uint32_t GameRoom::GetBlackSessionId()
 {
 	return black_session_id_;
+}
+
+void GameRoom::GameOver(uint32_t winner_id)
+{
+	//게임에 관한 처리만하기
+
 }

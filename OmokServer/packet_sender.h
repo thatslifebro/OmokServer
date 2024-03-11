@@ -1,5 +1,6 @@
 #pragma once
 #include "protobuf/OmokPacket.pb.h"
+
 #include "session.h"
 #include "packet_id.h"
 
@@ -35,6 +36,8 @@ public:
 	void ResPutMok(Session* session, uint32_t result);
 
 	void NtfPutMok(Session* session, uint32_t x, uint32_t y);
+
+	void NtfGameOver(Session* session, uint32_t result);
 
 private:
 	template <typename T>

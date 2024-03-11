@@ -46,8 +46,8 @@ namespace OmokPacket {
             "UHV0TW9rEg4KAXgYASABKAVIAIgBARIOCgF5GAIgASgFSAGIAQFCBAoCX3hC",
             "BAoCX3kiKwoJUmVzUHV0TW9rEhMKBnJlc3VsdBgBIAEoBUgAiAEBQgkKB19y",
             "ZXN1bHQiNwoJTnRmUHV0TW9rEg4KAXgYASABKAVIAIgBARIOCgF5GAIgASgF",
-            "SAGIAQFCBAoCX3hCBAoCX3kiJgoKTnRmRW5kT21vaxIQCgN3aW4YASABKAhI",
-            "AIgBAUIGCgRfd2luYgZwcm90bzM="));
+            "SAGIAQFCBAoCX3hCBAoCX3kiLAoKTnRmRW5kT21vaxITCgZzdGF0dXMYASAB",
+            "KAVIAIgBAUIJCgdfc3RhdHVzYgZwcm90bzM="));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { },
           new pbr::GeneratedClrTypeInfo(null, null, new pbr::GeneratedClrTypeInfo[] {
@@ -72,7 +72,7 @@ namespace OmokPacket {
             new pbr::GeneratedClrTypeInfo(typeof(global::OmokPacket.ReqPutMok), global::OmokPacket.ReqPutMok.Parser, new[]{ "X", "Y" }, new[]{ "X", "Y" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::OmokPacket.ResPutMok), global::OmokPacket.ResPutMok.Parser, new[]{ "Result" }, new[]{ "Result" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::OmokPacket.NtfPutMok), global::OmokPacket.NtfPutMok.Parser, new[]{ "X", "Y" }, new[]{ "X", "Y" }, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::OmokPacket.NtfEndOmok), global::OmokPacket.NtfEndOmok.Parser, new[]{ "Win" }, new[]{ "Win" }, null, null, null)
+            new pbr::GeneratedClrTypeInfo(typeof(global::OmokPacket.NtfEndOmok), global::OmokPacket.NtfEndOmok.Parser, new[]{ "Status" }, new[]{ "Status" }, null, null, null)
           }));
     }
     #endregion
@@ -4482,7 +4482,7 @@ namespace OmokPacket {
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public NtfEndOmok(NtfEndOmok other) : this() {
       _hasBits0 = other._hasBits0;
-      win_ = other.win_;
+      status_ = other.status_;
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
 
@@ -4492,28 +4492,31 @@ namespace OmokPacket {
       return new NtfEndOmok(this);
     }
 
-    /// <summary>Field number for the "win" field.</summary>
-    public const int WinFieldNumber = 1;
-    private bool win_;
+    /// <summary>Field number for the "status" field.</summary>
+    public const int StatusFieldNumber = 1;
+    private int status_;
+    /// <summary>
+    /// 0 lose, 1 win, 2 draw, -1 opponent disconnected
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public bool Win {
-      get { if ((_hasBits0 & 1) != 0) { return win_; } else { return false; } }
+    public int Status {
+      get { if ((_hasBits0 & 1) != 0) { return status_; } else { return 0; } }
       set {
         _hasBits0 |= 1;
-        win_ = value;
+        status_ = value;
       }
     }
-    /// <summary>Gets whether the "win" field is set</summary>
+    /// <summary>Gets whether the "status" field is set</summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public bool HasWin {
+    public bool HasStatus {
       get { return (_hasBits0 & 1) != 0; }
     }
-    /// <summary>Clears the value of the "win" field</summary>
+    /// <summary>Clears the value of the "status" field</summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public void ClearWin() {
+    public void ClearStatus() {
       _hasBits0 &= ~1;
     }
 
@@ -4532,7 +4535,7 @@ namespace OmokPacket {
       if (ReferenceEquals(other, this)) {
         return true;
       }
-      if (Win != other.Win) return false;
+      if (Status != other.Status) return false;
       return Equals(_unknownFields, other._unknownFields);
     }
 
@@ -4540,7 +4543,7 @@ namespace OmokPacket {
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public override int GetHashCode() {
       int hash = 1;
-      if (HasWin) hash ^= Win.GetHashCode();
+      if (HasStatus) hash ^= Status.GetHashCode();
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
       }
@@ -4559,9 +4562,9 @@ namespace OmokPacket {
     #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       output.WriteRawMessage(this);
     #else
-      if (HasWin) {
+      if (HasStatus) {
         output.WriteRawTag(8);
-        output.WriteBool(Win);
+        output.WriteInt32(Status);
       }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(output);
@@ -4573,9 +4576,9 @@ namespace OmokPacket {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
-      if (HasWin) {
+      if (HasStatus) {
         output.WriteRawTag(8);
-        output.WriteBool(Win);
+        output.WriteInt32(Status);
       }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(ref output);
@@ -4587,8 +4590,8 @@ namespace OmokPacket {
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public int CalculateSize() {
       int size = 0;
-      if (HasWin) {
-        size += 1 + 1;
+      if (HasStatus) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(Status);
       }
       if (_unknownFields != null) {
         size += _unknownFields.CalculateSize();
@@ -4602,8 +4605,8 @@ namespace OmokPacket {
       if (other == null) {
         return;
       }
-      if (other.HasWin) {
-        Win = other.Win;
+      if (other.HasStatus) {
+        Status = other.Status;
       }
       _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
     }
@@ -4621,7 +4624,7 @@ namespace OmokPacket {
             _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
             break;
           case 8: {
-            Win = input.ReadBool();
+            Status = input.ReadInt32();
             break;
           }
         }
@@ -4640,7 +4643,7 @@ namespace OmokPacket {
             _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
             break;
           case 8: {
-            Win = input.ReadBool();
+            Status = input.ReadInt32();
             break;
           }
         }

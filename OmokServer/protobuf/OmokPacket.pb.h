@@ -3470,19 +3470,19 @@ class NtfEndOmok final :
   // accessors -------------------------------------------------------
 
   enum : int {
-    kWinFieldNumber = 1,
+    kStatusFieldNumber = 1,
   };
-  // optional bool win = 1;
-  bool has_win() const;
+  // optional int32 status = 1;
+  bool has_status() const;
   private:
-  bool _internal_has_win() const;
+  bool _internal_has_status() const;
   public:
-  void clear_win();
-  bool win() const;
-  void set_win(bool value);
+  void clear_status();
+  int32_t status() const;
+  void set_status(int32_t value);
   private:
-  bool _internal_win() const;
-  void _internal_set_win(bool value);
+  int32_t _internal_status() const;
+  void _internal_set_status(int32_t value);
   public:
 
   // @@protoc_insertion_point(class_scope:OmokPacket.NtfEndOmok)
@@ -3495,7 +3495,7 @@ class NtfEndOmok final :
   struct Impl_ {
     ::PROTOBUF_NAMESPACE_ID::internal::HasBits<1> _has_bits_;
     mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
-    bool win_;
+    int32_t status_;
   };
   union { Impl_ _impl_; };
   friend struct ::TableStruct_OmokPacket_2eproto;
@@ -4726,32 +4726,32 @@ inline void NtfPutMok::set_y(int32_t value) {
 
 // NtfEndOmok
 
-// optional bool win = 1;
-inline bool NtfEndOmok::_internal_has_win() const {
+// optional int32 status = 1;
+inline bool NtfEndOmok::_internal_has_status() const {
   bool value = (_impl_._has_bits_[0] & 0x00000001u) != 0;
   return value;
 }
-inline bool NtfEndOmok::has_win() const {
-  return _internal_has_win();
+inline bool NtfEndOmok::has_status() const {
+  return _internal_has_status();
 }
-inline void NtfEndOmok::clear_win() {
-  _impl_.win_ = false;
+inline void NtfEndOmok::clear_status() {
+  _impl_.status_ = 0;
   _impl_._has_bits_[0] &= ~0x00000001u;
 }
-inline bool NtfEndOmok::_internal_win() const {
-  return _impl_.win_;
+inline int32_t NtfEndOmok::_internal_status() const {
+  return _impl_.status_;
 }
-inline bool NtfEndOmok::win() const {
-  // @@protoc_insertion_point(field_get:OmokPacket.NtfEndOmok.win)
-  return _internal_win();
+inline int32_t NtfEndOmok::status() const {
+  // @@protoc_insertion_point(field_get:OmokPacket.NtfEndOmok.status)
+  return _internal_status();
 }
-inline void NtfEndOmok::_internal_set_win(bool value) {
+inline void NtfEndOmok::_internal_set_status(int32_t value) {
   _impl_._has_bits_[0] |= 0x00000001u;
-  _impl_.win_ = value;
+  _impl_.status_ = value;
 }
-inline void NtfEndOmok::set_win(bool value) {
-  _internal_set_win(value);
-  // @@protoc_insertion_point(field_set:OmokPacket.NtfEndOmok.win)
+inline void NtfEndOmok::set_status(int32_t value) {
+  _internal_set_status(value);
+  // @@protoc_insertion_point(field_set:OmokPacket.NtfEndOmok.status)
 }
 
 #ifdef __GNUC__

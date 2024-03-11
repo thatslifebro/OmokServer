@@ -13,10 +13,8 @@ void GameRoomManager::Init()
 	}
 }
 
-uint32_t GameRoomManager::Match(Session* session)
+std::tuple<uint32_t, uint16_t> GameRoomManager::Match(uint32_t session_id, uint16_t room_id)
 {
-	auto room_id = session->session_room_id_;
-	auto session_id = session->session_id_;
 
 	//같은 room에 매칭대기자가 있다면
 	if (match_queue_vec_[room_id - 1] != 0)
@@ -31,22 +29,17 @@ uint32_t GameRoomManager::Match(Session* session)
 		auto game_room_id = FindEmptyGameRoomId();
 		game_room_map_[game_room_id] = game_room;
 
-		//session에 game room id 저장
-		session->game_room_id_ = game_room_id;
-		auto oponnent_session = session_manager_.GetSession(opponent_id);
-		oponnent_session->game_room_id_ = game_room_id;
-
 		//게임룸 초기화
 		game_room->Init();
 
-		return opponent_id;
+		return std::tuple(opponent_id,game_room_id);
 	}
 	//같은 room에 매칭대기자가 없다면
 	else
 	{
 		match_queue_vec_[room_id - 1] = session_id;
 
-		return 0;
+		return std::tuple(0,0);
 	}
 }
 
@@ -63,4 +56,11 @@ int GameRoomManager::FindEmptyGameRoomId()
 		game_room_id++;
 	}
 	return game_room_id;
+}
+
+void GameRoomManager::SessionDisconnected(uint16_t game_room_id, uint32_t session_id)
+{
+	game_room_map_[game_room_id]->EndGameByDisconnected(session_id);
+	delete game_room_map_[game_room_id];
+	game_room_map_.erase(game_room_id);
 }

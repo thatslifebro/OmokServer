@@ -9,6 +9,7 @@ void OmokServer::Init()
 	game_room_manager_.Init();
 	packet_processor_.Init();
 	db_processor_.Init();
+	user_info_.Init();
 }
 
 void OmokServer::Start()

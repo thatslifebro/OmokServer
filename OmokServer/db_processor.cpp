@@ -31,13 +31,8 @@ void DBProcessor::ProcessLoginQueue()
 
 	int result = -1;
 
-	auto output = user_auth_map_
-		| std::views::filter([&](const auto& pair) { return pair.first == std::make_pair(user_id, user_pw); })
-		| std::views::filter([&](const auto& pair) { return pair.second == false; });
-
-	if (!output.empty())
+	if (user_info_.Login(user_id, user_pw))
 	{
-		user_auth_map_[std::make_pair(user_id, user_pw)] = true;
 		result = 0;
 		login_req.session_->user_id_ = user_id;
 		login_req.session_->is_logged_in_ = true;

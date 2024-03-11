@@ -248,6 +248,19 @@ void PacketSender::NtfPutMok(Session* session, uint32_t x, uint32_t y)
 	delete res_data;
 }
 
+void PacketSender::NtfGameOver(Session* session, uint32_t result)
+{
+	std::print("NtfGameOver\n");
+	OmokPacket::NtfEndOmok ntf_end_omok;
+	ntf_end_omok.set_status(result);
+
+	auto [res_data, res_length] = MakeResData(PacketId::NtfEndOmok, ntf_end_omok);
+
+	session->SendPacket(res_data, res_length);
+
+	delete res_data;
+}
+
 template <typename T>
 std::tuple<char*, uint16_t> PacketSender::MakeResData(PacketId packet_id, T packet_body)
 {

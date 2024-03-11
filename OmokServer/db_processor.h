@@ -18,6 +18,7 @@ struct DBLoginReq
 class DBProcessor
 {
 public:
+	UserInfo user_info_;
 	PacketSender packet_sender_;
 
 	void Init();

@@ -7,11 +7,15 @@
 
 #include "packet_queue.h"
 #include "session_manager.h"
+#include "game_room_manager.h"
+#include "room_manager.h"
+#include "user_info.h"
+#include "packet_sender.h"
 
 class Session
 {
 public:
-	uint16_t session_room_id_ = 0;
+	uint16_t room_id_ = 0;
 	std::string user_id_;
 	uint32_t session_id_;
 	bool is_logged_in_ = false;

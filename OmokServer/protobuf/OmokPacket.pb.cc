@@ -310,7 +310,7 @@ PROTOBUF_CONSTEXPR NtfEndOmok::NtfEndOmok(
     ::_pbi::ConstantInitialized): _impl_{
     /*decltype(_impl_._has_bits_)*/{}
   , /*decltype(_impl_._cached_size_)*/{}
-  , /*decltype(_impl_.win_)*/false} {}
+  , /*decltype(_impl_.status_)*/0} {}
 struct NtfEndOmokDefaultTypeInternal {
   PROTOBUF_CONSTEXPR NtfEndOmokDefaultTypeInternal()
       : _instance(::_pbi::ConstantInitialized{}) {}
@@ -503,7 +503,7 @@ const uint32_t TableStruct_OmokPacket_2eproto::offsets[] PROTOBUF_SECTION_VARIAB
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
   ~0u,  // no _inlined_string_donated_
-  PROTOBUF_FIELD_OFFSET(::OmokPacket::NtfEndOmok, _impl_.win_),
+  PROTOBUF_FIELD_OFFSET(::OmokPacket::NtfEndOmok, _impl_.status_),
   0,
 };
 static const ::_pbi::MigrationSchema schemas[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) = {
@@ -582,12 +582,12 @@ const char descriptor_table_protodef_OmokPacket_2eproto[] PROTOBUF_SECTION_VARIA
   "\001y\030\002 \001(\005H\001\210\001\001B\004\n\002_xB\004\n\002_y\"+\n\tResPutMok\022\023"
   "\n\006result\030\001 \001(\005H\000\210\001\001B\t\n\007_result\"7\n\tNtfPut"
   "Mok\022\016\n\001x\030\001 \001(\005H\000\210\001\001\022\016\n\001y\030\002 \001(\005H\001\210\001\001B\004\n\002_"
-  "xB\004\n\002_y\"&\n\nNtfEndOmok\022\020\n\003win\030\001 \001(\010H\000\210\001\001B"
-  "\006\n\004_winb\006proto3"
+  "xB\004\n\002_y\",\n\nNtfEndOmok\022\023\n\006status\030\001 \001(\005H\000\210"
+  "\001\001B\t\n\007_statusb\006proto3"
   ;
 static ::_pbi::once_flag descriptor_table_OmokPacket_2eproto_once;
 const ::_pbi::DescriptorTable descriptor_table_OmokPacket_2eproto = {
-    false, false, 1055, descriptor_table_protodef_OmokPacket_2eproto,
+    false, false, 1061, descriptor_table_protodef_OmokPacket_2eproto,
     "OmokPacket.proto",
     &descriptor_table_OmokPacket_2eproto_once, nullptr, 0, 22,
     schemas, file_default_instances, TableStruct_OmokPacket_2eproto::offsets,
@@ -4410,7 +4410,7 @@ void NtfPutMok::InternalSwap(NtfPutMok* other) {
 class NtfEndOmok::_Internal {
  public:
   using HasBits = decltype(std::declval<NtfEndOmok>()._impl_._has_bits_);
-  static void set_has_win(HasBits* has_bits) {
+  static void set_has_status(HasBits* has_bits) {
     (*has_bits)[0] |= 1u;
   }
 };
@@ -4427,10 +4427,10 @@ NtfEndOmok::NtfEndOmok(const NtfEndOmok& from)
   new (&_impl_) Impl_{
       decltype(_impl_._has_bits_){from._impl_._has_bits_}
     , /*decltype(_impl_._cached_size_)*/{}
-    , decltype(_impl_.win_){}};
+    , decltype(_impl_.status_){}};
 
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
-  _this->_impl_.win_ = from._impl_.win_;
+  _this->_impl_.status_ = from._impl_.status_;
   // @@protoc_insertion_point(copy_constructor:OmokPacket.NtfEndOmok)
 }
 
@@ -4441,7 +4441,7 @@ inline void NtfEndOmok::SharedCtor(
   new (&_impl_) Impl_{
       decltype(_impl_._has_bits_){}
     , /*decltype(_impl_._cached_size_)*/{}
-    , decltype(_impl_.win_){false}
+    , decltype(_impl_.status_){0}
   };
 }
 
@@ -4468,7 +4468,7 @@ void NtfEndOmok::Clear() {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  _impl_.win_ = false;
+  _impl_.status_ = 0;
   _impl_._has_bits_.Clear();
   _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
@@ -4480,11 +4480,11 @@ const char* NtfEndOmok::_InternalParse(const char* ptr, ::_pbi::ParseContext* ct
     uint32_t tag;
     ptr = ::_pbi::ReadTag(ptr, &tag);
     switch (tag >> 3) {
-      // optional bool win = 1;
+      // optional int32 status = 1;
       case 1:
         if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 8)) {
-          _Internal::set_has_win(&has_bits);
-          _impl_.win_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
+          _Internal::set_has_status(&has_bits);
+          _impl_.status_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint32(&ptr);
           CHK_(ptr);
         } else
           goto handle_unusual;
@@ -4519,10 +4519,10 @@ uint8_t* NtfEndOmok::_InternalSerialize(
   uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
-  // optional bool win = 1;
-  if (_internal_has_win()) {
+  // optional int32 status = 1;
+  if (_internal_has_status()) {
     target = stream->EnsureSpace(target);
-    target = ::_pbi::WireFormatLite::WriteBoolToArray(1, this->_internal_win(), target);
+    target = ::_pbi::WireFormatLite::WriteInt32ToArray(1, this->_internal_status(), target);
   }
 
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
@@ -4541,10 +4541,10 @@ size_t NtfEndOmok::ByteSizeLong() const {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  // optional bool win = 1;
+  // optional int32 status = 1;
   cached_has_bits = _impl_._has_bits_[0];
   if (cached_has_bits & 0x00000001u) {
-    total_size += 1 + 1;
+    total_size += ::_pbi::WireFormatLite::Int32SizePlusOne(this->_internal_status());
   }
 
   return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
@@ -4565,8 +4565,8 @@ void NtfEndOmok::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PRO
   uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
-  if (from._internal_has_win()) {
-    _this->_internal_set_win(from._internal_win());
+  if (from._internal_has_status()) {
+    _this->_internal_set_status(from._internal_status());
   }
   _this->_internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
 }
@@ -4586,7 +4586,7 @@ void NtfEndOmok::InternalSwap(NtfEndOmok* other) {
   using std::swap;
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
   swap(_impl_._has_bits_[0], other->_impl_._has_bits_[0]);
-  swap(_impl_.win_, other->_impl_.win_);
+  swap(_impl_.status_, other->_impl_.status_);
 }
 
 ::PROTOBUF_NAMESPACE_ID::Metadata NtfEndOmok::GetMetadata() const {

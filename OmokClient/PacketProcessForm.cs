@@ -33,6 +33,7 @@ namespace csharp_test_client
             PacketFuncDic.Add(PacketID.NtfStartOmok, PacketProcess_StartOmokNotify);
             PacketFuncDic.Add(PacketID.ResPutMok, PacketProcess_PutMokResponse);
             PacketFuncDic.Add(PacketID.NtfPutMok, PacketProcess_PutMokNotify);
+            PacketFuncDic.Add(PacketID.NtfEndOmok, PacketProcess_EndOmokNotify);
 
         }
 
@@ -276,11 +277,29 @@ namespace csharp_test_client
 
         void PacketProcess_EndOmokNotify(byte[] bodyData)
         {
-            /*var notifyPkt = MessagePackSerializer.Deserialize<PKTNtfEndOmok>(packetData);
+            var ntfEndOmok = new NtfEndOmok();
+            ntfEndOmok.MergeFrom(bodyData);
 
             EndGame();
 
-            DevLog.Write($"오목 GameOver: Win: {notifyPkt.WinUserID}");*/
+            if(ntfEndOmok.Status==1)
+            {
+                DevLog.Write($"오목 GameOver: Win");
+            }
+            else if(ntfEndOmok.Status==0)
+            {
+                DevLog.Write($"오목 GameOver: Lose");
+            }
+            else if(ntfEndOmok.Status==2)
+            {
+                DevLog.Write($"오목 GameOver: Draw");
+            }
+            else
+            {
+                DevLog.Write($"오목 GameOver: 상대방의 연결이 끊겼습니다. Win");
+            }
+
+            
         }
     }
 }

@@ -5,9 +5,7 @@
 #include <Poco/Net/ServerSocket.h>
 #include <Poco/Net/ParallelSocketAcceptor.h>
 
-#include "packet_info.h"
 #include "packet_processor.h"
-#include "room_manager.h"
 #include "db_processor.h"
 
 constexpr Poco::UInt16 SERVER_PORT = 32451;
@@ -20,6 +18,7 @@ public:
 	GameRoomManager game_room_manager_;
 	PacketProcessor packet_processor_;
 	DBProcessor db_processor_;
+	UserInfo user_info_;
 
 	void Init();
 	void Start();

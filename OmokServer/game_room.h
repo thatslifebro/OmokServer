@@ -1,8 +1,6 @@
 #pragma once
 #include <map>
 
-#include "session.h"
-
 struct Pos
 {
 	Pos(uint32_t x, uint32_t y) : x_(x), y_(y)
@@ -47,6 +45,8 @@ public:
 
 	bool IsGameEnd();
 
+	void EndGameByDisconnected(uint32_t session_id);
+
 	uint32_t GetOpponentId(uint32_t session_id);
 
 	uint32_t GetWhiteSessionId();
@@ -68,4 +68,6 @@ private:
 	bool CheckTurn(uint32_t session_id);
 
 	bool CheckRule();
+
+	void GameOver(uint32_t winner_id);
 };
