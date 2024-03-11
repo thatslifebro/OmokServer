@@ -1,12 +1,6 @@
 # OmokServer
 
 
-### 작업내용
-
-클라이언트는 현재 테스트 클라이언트입니다. -> 실제 오목 클라이언트로 바꿀 예정
-
-빌드 후 실행파일은 thirdparty\libs\debug에 생성 됩니다. (OmokServer.exe, OmokClient.exe)
-
 #### 서버
 
 Poco 라이브러리에 parellel reactor 이용해서 네트워크 처리
@@ -15,24 +9,36 @@ protocol buffer 이용해서 데이터 주고 받아 보았고
 
 패킷 body를 protobuf로 만들고 패킷 헤더(size, packet id) 를 달아 테스트 클라이언트와 통신 구현
 
+기능 구현
+
+- 로그인
+- 방 입장, 나가기, 채팅
+- 매칭
+- 게임 준비
+- 오목 두기
+
 #### 작업 예정
-
-실제 오목 클라이언트 통신부에 protobuf 및 헤더 적용해서 서버와 통신
-
-이후 게임 로직 구현 ( 룸, 채팅, 게임로직 등)
-
---------------------------
+- 연결 끊김 처리 및 게임 종료 처리
+- 게임 룰 서버에 구현
 
 ### 파일
 
-#### PacketBufferManager
-Write 함수  : socket에서 받은 데이터를 버퍼에 저장한다. (_writePos 변수를 통해 쓸 위치 기억)
+db_processor.h : 데이터베이스에 접근하는 클래스 (실제 db사용은 안하고 있고, 로그인 확인만 처리중)
 
-Read 함수 : 버퍼에서 헤더 부분만 읽어서 패킷 사이즈를 알아내고, 패킷 사이즈만큼 읽어서 패킷을 만든다. (_readPos 변수를 통해 읽을 위치 기억)
+game_room_manager.h, game_room.h : 게임 방 및 게임 방 관리
 
-#### PacketProcessor
-<패킷ID, 패킷핸들러> key-value로하는 map을 생성하고, 패킷 핸들러들을 저장하는 클래스이다.
+omok_server.h : 서버 init, start 정의
 
-OmokServer.cpp(main)에 있는 PacketManage함수에서 객체가 단 한번 생성된다.
+packet_id.h, packet_info.h : 패킷 id 정의, 패킷 및 헤더 정의
 
-PacketProcess 함수는 하나의 쓰레드로 동작하며, PacketBufferManager의 Read를 반복적으로 수행하고, 패킷을 읽어 처리까지 한번에 한다.
+packet_processor.h : packet_queue에서 패킷 가져와 처리하는 클래스
+
+packet_queue.h : 각 세션에서 온 패킷을 저장하는 곳.
+
+packet_sender.h : 서버에서 보낼 패킷을 만들고 보내는 곳.
+
+room.h, room_manager.h : 방과 방 관리
+
+session.h, session_manager.h : 세션 정의와 세션 관리 클래스
+
+user_info.h : db 대신 임시 사용중
