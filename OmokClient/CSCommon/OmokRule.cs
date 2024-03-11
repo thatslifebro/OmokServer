@@ -71,25 +71,13 @@ namespace CSCommon
                 바둑판[x, y] = (int)돌종류.백돌;
             }
 
-            if (삼삼확인(x, y) && 흑돌차례)
-            {
-                //오류효과음.Play();
-                //MessageBox.Show("금수자리입니다. \r다른곳에 놓아주세요.", "금수 - 쌍삼");
-                바둑판[x, y] = (int)돌종류.없음;
-                return 돌두기_결과.SamSam;
-            }
-            else
-            {
-                전돌x좌표 = 현재돌x좌표;
-                전돌y좌표 = 현재돌y좌표;
+            전돌x좌표 = 현재돌x좌표;
+            전돌y좌표 = 현재돌y좌표;
 
-                현재돌x좌표 = x;
-                현재돌y좌표 = y;
+            현재돌x좌표 = x;
+            현재돌y좌표 = y;
 
-                흑돌차례 = !흑돌차례;                   // 차례 변경
-
-                //바둑돌소리.Play();
-            }
+            흑돌차례 = !흑돌차례;                   // 차례 변경
 
             ++CurTuenCount;
             st.Push(new Point(x, y));
@@ -98,7 +86,7 @@ namespace CSCommon
         }
 
 
-        void 한수무르기()
+        public void 한수무르기()
         {
             st.Pop();
             바둑판[현재돌x좌표, 현재돌y좌표] = (int)돌종류.없음;
@@ -112,31 +100,23 @@ namespace CSCommon
             {
                 현재돌x좌표 = 현재돌y좌표 = -1;
             }
+
+            흑돌차례 = !흑돌차례;
+            --CurTuenCount;
         }
 
         void 무르기(object sender, EventArgs e)
         {
             if (!게임종료 && st.Count != 0)
             {
-                /*무르기요청.Play();
 
-                if (MessageBox.Show("한 수 무르시겠습니까?", "무르기", MessageBoxButtons.YesNo) == DialogResult.Yes) // MessageBox 띄워서 무르기 여부 확인하고 예를 누르면
-                {
-                    if (AI모드)
-                    {
-                        한수무르기();
-                        한수무르기();
-                    }
+                한수무르기();
+                흑돌차례 = !흑돌차례;
 
-                    else
-                    {
-                        한수무르기();
-                        흑돌차례 = !흑돌차례;
-                    }
+                
 
+                //panel1.Invalidate();
 
-                    panel1.Invalidate();
-                }*/
             }
         }
 

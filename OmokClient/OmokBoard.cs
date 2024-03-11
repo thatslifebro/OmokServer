@@ -102,48 +102,11 @@ namespace csharp_test_client
             흑돌플레이어Name = "";
         }
 
-
-        /*void 한수무르기()
+        void 무르기()
         {
-            st.Pop();
-            바둑판[현재돌x좌표, 현재돌y좌표] = (int)돌종류.없음;
-
-            if (st.Count != 0)
-            {
-                현재돌x좌표 = st.Peek().X;
-                현재돌y좌표 = st.Peek().Y;
-            }
-            else
-            {
-                현재돌x좌표 = 현재돌y좌표 = -1;
-            }
-        }*/
-
-        /*void 무르기(object sender, EventArgs e)
-        {
-            if (!게임종료 && st.Count != 0)
-            {
-                무르기요청.Play();
-
-                if (MessageBox.Show("한 수 무르시겠습니까?", "무르기", MessageBoxButtons.YesNo) == DialogResult.Yes) // MessageBox 띄워서 무르기 여부 확인하고 예를 누르면
-                {
-                    if (AI모드)
-                    {
-                        한수무르기();
-                        한수무르기();
-                    }
-
-                    else
-                    {
-                        한수무르기();
-                        흑돌차례 = !흑돌차례;
-                    }
-
-
-                    panel1.Invalidate();
-                }
-            }
-        }*/
+            OmokLogic.한수무르기();
+            IsMyTurn = true;
+        }
 
 
         /*void AI흑돌(object sender, EventArgs e)
@@ -321,7 +284,6 @@ namespace csharp_test_client
         }
         void 플레이어_돌두기(bool isNotify, int x, int y)
         {
-            // todo : 서버에 먼저 전송하고 응답을 받아서 돌 놓아야함.
             var ret = OmokLogic.돌두기(x, y);
             if (ret != CSCommon.돌두기_결과.Success)
             {
@@ -333,8 +295,7 @@ namespace csharp_test_client
 
             돌그리기(x, y);
             현재돌표시();
-            OmokLogic.오목확인(x, y);
-                        
+            //OmokLogic.오목확인(x, y);
             
             if (isNotify == false)
             {

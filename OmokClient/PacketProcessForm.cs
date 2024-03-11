@@ -255,9 +255,8 @@ namespace csharp_test_client
             else
             {
                 DevLog.Write($"오목 놓기 실패");
+                무르기();
             }
-
-            //TODO 방금 놓은 오목 정보를 취소 시켜야 한다
         }
         
 
@@ -298,8 +297,6 @@ namespace csharp_test_client
             {
                 DevLog.Write($"오목 GameOver: 상대방의 연결이 끊겼습니다. Win");
             }
-
-            
         }
     }
 }
