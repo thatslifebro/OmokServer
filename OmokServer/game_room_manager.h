@@ -15,7 +15,7 @@ public:
 
 	int FindEmptyGameRoomId();
 
-	void SessionDisconnected(uint16_t game_room, uint32_t session_id);
+	void GameEnd(uint16_t game_room_id);
 
 private:
 	static std::unordered_map<uint16_t, GameRoom*> game_room_map_;

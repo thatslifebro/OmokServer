@@ -54,12 +54,6 @@ Session::~Session()
 
 	std::print("Connection from {} closed\n", peer_address_);
 
-	//todo : 게임 중이었다면 game 종료, room에서 나감 처리,
-	// game room -> 게임 종료 처리(game_room에 게임종료(승리 패배 패킷 보내야함) )
-	// 상대 세션 멤버 변수 초기화
-	// room -> 나감 처리(방에서 나감 패킷 보내야함)
-	// 로그아웃 처리(db에)
-	
 	//게임 룸 처리
 	GameRoomManager game__room_manager;
 	PacketSender packet_sender;
@@ -67,7 +61,7 @@ Session::~Session()
 	{
 		auto opponent_session_id = game__room_manager.GetGameRoom(game_room_id_)->GetOpponentId(session_id_);
 		auto opponent_session = session_manager.GetSession(opponent_session_id);
-		game__room_manager.SessionDisconnected(game_room_id_, session_id_);
+		game__room_manager.GameEnd(game_room_id_);
 		
 		packet_sender.NtfGameOver(opponent_session, -1);
 
@@ -77,7 +71,6 @@ Session::~Session()
 	}
 
 	// 로그아웃
-	// todo : db 처리 쪽에서 해야할 듯.
 	if(is_logged_in_)
 	{
 		UserInfo user_info;

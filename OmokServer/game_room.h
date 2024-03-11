@@ -50,7 +50,12 @@ public:
 	uint32_t GetOpponentId(uint32_t session_id);
 
 	uint32_t GetWhiteSessionId();
+
 	uint32_t GetBlackSessionId();
+
+	uint32_t WinnerId();
+
+	uint32_t LoserId();
 
 private:
 	uint32_t white_session_id_;
@@ -61,13 +66,33 @@ private:
 	Turn turn_;	
 	std::map <Pos, status> omok_board_;
 
-	bool SetStone(uint32_t x, uint32_t y, status color);
+	int SetStone(uint32_t x, uint32_t y, status color);
 
 	void ChangeTurn();
 
 	bool CheckTurn(uint32_t session_id);
 
-	bool CheckRule();
+	bool CheckOmok(Pos pos);
+
+	int 가로확인(int x, int y);
+
+	int 세로확인(int x, int y);
+
+	int 사선확인(int x, int y);
+
+	int 역사선확인(int x, int y);
+
+	bool CheckSamSam(Pos pos);
+
+	int 가로삼삼확인(int x, int y);
+
+	int 세로삼삼확인(int x, int y);
+
+	int 사선삼삼확인(int x, int y);
+
+	int 역사선삼삼확인(int x, int y);
+
+
 
 	void GameOver(uint32_t winner_id);
 };

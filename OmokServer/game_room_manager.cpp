@@ -58,9 +58,8 @@ int GameRoomManager::FindEmptyGameRoomId()
 	return game_room_id;
 }
 
-void GameRoomManager::SessionDisconnected(uint16_t game_room_id, uint32_t session_id)
+void GameRoomManager::GameEnd(uint16_t game_room_id)
 {
-	game_room_map_[game_room_id]->EndGameByDisconnected(session_id);
 	delete game_room_map_[game_room_id];
 	game_room_map_.erase(game_room_id);
 }
