@@ -3,6 +3,7 @@
 #include <string>
 #include <queue>
 #include <mutex>
+#include <functional>
 
 #include "session_manager.h"
 #include "packet_sender.h"
@@ -18,7 +19,6 @@ class DBProcessor
 {
 public:
 	UserInfo user_info_;
-	PacketSender packet_sender_;
 
 	void Init(); // DB ¿¬°á
 
@@ -33,4 +33,6 @@ private:
 	SessionManager session_manager_;
 
 	void ProcessLoginQueue();
+
+	std::function<void(Session*, uint32_t)> SendResLogin;
 };

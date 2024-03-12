@@ -5,6 +5,12 @@ std::mutex DBProcessor::login_req_queue_mutex_;
 
 void DBProcessor::Init()
 {
+	// 이렇게 쓰는 것이 좋은지, 그냥 PacketSender 객체를 멤버 변수로 가지고 packet_sende_.ResLogin(session, result); 이런식으로 쓰는 것이 좋은지 모르겠다. 
+	SendResLogin = [](Session* session, uint32_t result)
+		{
+			PacketSender packet_sender;
+			packet_sender.ResLogin(session, result);
+		};
 	//db가 실제 있다면 connect 한다.
 }
 
@@ -45,7 +51,7 @@ void DBProcessor::ProcessLoginQueue()
 		session->is_logged_in_ = true;
 	}
 
-	packet_sender_.ResLogin(session, result);
+	SendResLogin(session, result);
 }
 
 void DBProcessor::AddLoginReq(uint32_t session_id, const std::string& user_id, const std::string& user_pw)
