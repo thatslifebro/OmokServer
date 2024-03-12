@@ -6,6 +6,7 @@
 
 #include "packet_info.h"
 
+
 class PacketQueue
 {
 public:
@@ -18,3 +19,14 @@ private:
 	static std::queue<Packet> packet_queue_;
 };
 
+class DBPacketQueue
+{
+public:
+	void PushPacket(const Packet& packet);
+
+	const Packet& PopAndGetPacket();
+
+private:
+	static std::mutex db_mutex_;
+	static std::queue<Packet> db_packet_queue_;
+};

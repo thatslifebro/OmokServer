@@ -8,9 +8,8 @@
 
 #include "packet_queue.h"
 #include "session_manager.h"
-#include "game_room_manager.h"
+#include "match_manager.h"
 #include "room_manager.h"
-#include "user_info.h"
 #include "packet_sender.h"
 
 class Session
@@ -25,7 +24,7 @@ public:
 	
 	bool is_matching_ = false;
 	bool is_ready_ = false;
-	uint32_t game_room_id_ = 0;
+	uint32_t game_id_ = 0;
 
 	Session(Poco::Net::StreamSocket& socket, Poco::Net::SocketReactor& reactor);
 

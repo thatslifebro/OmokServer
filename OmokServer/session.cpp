@@ -49,29 +49,22 @@ Session::~Session()
 	session_manager.RemoveSession(session_id_);
 
 	// 게임 중일 때
-	if (game_room_id_ != 0)
+	if (game_id_ != 0)
 	{
 		// 게임 종료
-		GameRoomManager game__room_manager;
-		auto opponent_session_id = game__room_manager.GetGameRoom(game_room_id_)->GetOpponentId(session_id_);
+		MatchManager game__room_manager;
+		auto opponent_session_id = game__room_manager.GetGame(game_id_)->GetOpponentId(session_id_);
 		auto opponent_session = session_manager.GetSession(opponent_session_id);
-		game__room_manager.GameEnd(game_room_id_);
+		game__room_manager.GameEnd(game_id_);
 		
 		// 게임 종료 알리기
 		PacketSender packet_sender;
 		packet_sender.NtfGameOver(opponent_session, -1);
 
 		// 상대방 초기화
-		opponent_session->game_room_id_ = 0;
+		opponent_session->game_id_ = 0;
 		opponent_session->is_matching_ = false;
 		opponent_session->is_ready_ = false;
-	}
-
-	// 로그아웃
-	if (is_logged_in_)
-	{
-		UserInfo user_info;
-		user_info.Logout(user_id_);
 	}
 
 	// 방에 입장 중일 때

@@ -28,11 +28,11 @@ enum status
 	BLACK
 };
 
-class GameRoom
+class Game
 {
 public:
-	GameRoom() = default;
-	GameRoom(uint16_t white_session_id, uint32_t black_session_id) : white_session_id_(white_session_id), black_session_id_(black_session_id), turn_(BLACK_TURN), white_ready_(false), black_ready_(false), is_game_start_(false)
+	Game() = default;
+	Game(uint16_t white_session_id, uint32_t black_session_id) : white_session_id_(white_session_id), black_session_id_(black_session_id), turn_(BLACK_TURN), white_ready_(false), black_ready_(false), is_game_start_(false)
 	{}
 
 	void Init();

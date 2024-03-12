@@ -172,8 +172,8 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="db_processor.cpp" />
-    <ClCompile Include="game_room.cpp" />
-    <ClCompile Include="game_room_manager.cpp" />
+    <ClCompile Include="game.cpp" />
+    <ClCompile Include="match_manager.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="omok_server.cpp" />
     <ClCompile Include="packet_info.cpp" />
@@ -186,13 +186,12 @@
     <ClCompile Include="session.cpp" />
     <ClCompile Include="protobuf\OmokPacket.pb.cc" />
     <ClCompile Include="session_manager.cpp" />
-    <ClCompile Include="user_info.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="constants.h" />
     <ClInclude Include="db_processor.h" />
-    <ClInclude Include="game_room.h" />
-    <ClInclude Include="game_room_manager.h" />
+    <ClInclude Include="game.h" />
+    <ClInclude Include="match_manager.h" />
     <ClInclude Include="omok_server.h" />
     <ClInclude Include="packet_queue.h" />
     <ClInclude Include="packet_info.h" />
@@ -203,7 +202,6 @@
     <ClInclude Include="session.h" />
     <ClInclude Include="protobuf\OmokPacket.pb.h" />
     <ClInclude Include="session_manager.h" />
-    <ClInclude Include="user_info.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="protobuf\OmokPacket.proto" />

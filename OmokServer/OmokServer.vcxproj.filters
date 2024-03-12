@@ -4,9 +4,6 @@
     <Filter Include="protobuf">
       <UniqueIdentifier>{3ee701b8-f7e1-4be9-9add-8c724c00ed1a}</UniqueIdentifier>
     </Filter>
-    <Filter Include="game_room">
-      <UniqueIdentifier>{54328da6-b929-4ebf-87bb-5e10391add49}</UniqueIdentifier>
-    </Filter>
     <Filter Include="room">
       <UniqueIdentifier>{749b1f00-365e-43cc-9858-245a943c948f}</UniqueIdentifier>
     </Filter>
@@ -15,6 +12,9 @@
     </Filter>
     <Filter Include="common">
       <UniqueIdentifier>{f602cac3-d23f-491f-bafd-d72fd44c3f76}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="game">
+      <UniqueIdentifier>{54328da6-b929-4ebf-87bb-5e10391add49}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -27,13 +27,12 @@
     <ClCompile Include="packet_queue.cpp" />
     <ClCompile Include="packet_sender.cpp" />
     <ClCompile Include="db_processor.cpp" />
-    <ClCompile Include="user_info.cpp" />
     <ClCompile Include="packet_info.cpp" />
-    <ClCompile Include="game_room.cpp">
-      <Filter>game_room</Filter>
+    <ClCompile Include="game.cpp">
+      <Filter>game</Filter>
     </ClCompile>
-    <ClCompile Include="game_room_manager.cpp">
-      <Filter>game_room</Filter>
+    <ClCompile Include="match_manager.cpp">
+      <Filter>game</Filter>
     </ClCompile>
     <ClCompile Include="room.cpp">
       <Filter>room</Filter>
@@ -59,14 +58,13 @@
     <ClInclude Include="omok_server.h" />
     <ClInclude Include="packet_queue.h" />
     <ClInclude Include="packet_processor.h" />
-    <ClInclude Include="user_info.h" />
     <ClInclude Include="packet_sender.h" />
     <ClInclude Include="db_processor.h" />
-    <ClInclude Include="game_room_manager.h">
-      <Filter>game_room</Filter>
+    <ClInclude Include="match_manager.h">
+      <Filter>game</Filter>
     </ClInclude>
-    <ClInclude Include="game_room.h">
-      <Filter>game_room</Filter>
+    <ClInclude Include="game.h">
+      <Filter>game</Filter>
     </ClInclude>
     <ClInclude Include="room_manager.h">
       <Filter>room</Filter>

@@ -1,6 +1,6 @@
-#include "game_room.h"
+#include "game.h"
 
-void GameRoom::Init()
+void Game::Init()
 {
 	for (int i = 0; i < 19; i++)
 	{
@@ -12,7 +12,7 @@ void GameRoom::Init()
 	}
 }
 
-bool GameRoom::SetStone(uint32_t x, uint32_t y, uint32_t session_id)
+bool Game::SetStone(uint32_t x, uint32_t y, uint32_t session_id)
 {
 	if (!CheckTurn(session_id) || !IsGameStart())
 	{
@@ -29,7 +29,7 @@ bool GameRoom::SetStone(uint32_t x, uint32_t y, uint32_t session_id)
     }
 }
 
-void GameRoom::SetReady(uint32_t session_id)
+void Game::SetReady(uint32_t session_id)
 {
 	if (session_id == white_session_id_)
 	{
@@ -46,17 +46,17 @@ void GameRoom::SetReady(uint32_t session_id)
 	}
 }
 
-bool GameRoom::IsGameStart()
+bool Game::IsGameStart()
 {
 	return is_game_start_;
 }
 
-bool GameRoom::IsGameEnd()
+bool Game::IsGameEnd()
 {
 	return !is_game_start_;
 }
 
-bool GameRoom::SetStone(uint32_t x, uint32_t y, status color)
+bool Game::SetStone(uint32_t x, uint32_t y, status color)
 {
 	Pos pos(x, y);
 	if (omok_board_[pos] == EMPTY)
@@ -77,7 +77,7 @@ bool GameRoom::SetStone(uint32_t x, uint32_t y, status color)
     return false;
 }
 
-void GameRoom::ChangeTurn()
+void Game::ChangeTurn()
 {
 	if (turn_ == WHITE_TURN)
 	{
@@ -89,7 +89,7 @@ void GameRoom::ChangeTurn()
 	}
 }
 
-bool GameRoom::CheckTurn(uint32_t session_id)
+bool Game::CheckTurn(uint32_t session_id)
 {
 	if (session_id == white_session_id_ && turn_ == WHITE_TURN)
 	{
@@ -105,7 +105,7 @@ bool GameRoom::CheckTurn(uint32_t session_id)
 	}
 }
 
-bool GameRoom::CheckOmok(Pos pos)
+bool Game::CheckOmok(Pos pos)
 {
     if (가로확인(pos.x_, pos.y_) == 5)        // 같은 돌 개수가 5개면 (6목이상이면 게임 계속) 
     {
@@ -134,7 +134,7 @@ bool GameRoom::CheckOmok(Pos pos)
     return false;
 }
 
-int GameRoom::가로확인(int x, int y)      // ㅡ 확인
+int Game::가로확인(int x, int y)      // ㅡ 확인
 {
     int 같은돌개수 = 1;
 
@@ -159,7 +159,7 @@ int GameRoom::가로확인(int x, int y)      // ㅡ 확인
     return 같은돌개수;
 }
 
-int GameRoom::세로확인(int x, int y)      // | 확인
+int Game::세로확인(int x, int y)      // | 확인
 {
     int 같은돌개수 = 1;
 
@@ -184,7 +184,7 @@ int GameRoom::세로확인(int x, int y)      // | 확인
     return 같은돌개수;
 }
 
-int GameRoom::사선확인(int x, int y)      // / 확인
+int Game::사선확인(int x, int y)      // / 확인
 {
     int 같은돌개수 = 1;
 
@@ -209,7 +209,7 @@ int GameRoom::사선확인(int x, int y)      // / 확인
     return 같은돌개수;
 }
 
-int GameRoom::역사선확인(int x, int y)     // ＼ 확인
+int Game::역사선확인(int x, int y)     // ＼ 확인
 {
     int 같은돌개수 = 1;
 
@@ -234,7 +234,7 @@ int GameRoom::역사선확인(int x, int y)     // ＼ 확인
     return 같은돌개수;
 }
 
-bool GameRoom::CheckSamSam(Pos pos)
+bool Game::CheckSamSam(Pos pos)
 {
 	int check = 0;
 
@@ -251,7 +251,7 @@ bool GameRoom::CheckSamSam(Pos pos)
     return false;
 }
 
-int GameRoom::가로삼삼확인(int x, int y)    // 가로 (ㅡ) 확인
+int Game::가로삼삼확인(int x, int y)    // 가로 (ㅡ) 확인
 {
     int 돌3개확인 = 1;
     int 돌1 = 0;
@@ -297,7 +297,7 @@ int GameRoom::가로삼삼확인(int x, int y)    // 가로 (ㅡ) 확인
     return 0;
 }
 
-int GameRoom::세로삼삼확인(int x, int y)    // 세로 (|) 확인
+int Game::세로삼삼확인(int x, int y)    // 세로 (|) 확인
 {
     int 돌3개확인 = 1;
     int 돌1 = 0;
@@ -346,7 +346,7 @@ int GameRoom::세로삼삼확인(int x, int y)    // 세로 (|) 확인
     return 0;
 }
 
-int GameRoom::사선삼삼확인(int x, int y)    // 사선 (/) 확인
+int Game::사선삼삼확인(int x, int y)    // 사선 (/) 확인
 {
     int 돌3개확인 = 1;
     int 돌1 = 0;
@@ -395,7 +395,7 @@ int GameRoom::사선삼삼확인(int x, int y)    // 사선 (/) 확인
     return 0;
 }
 
-int GameRoom::역사선삼삼확인(int x, int y)    // 역사선 (＼) 확인
+int Game::역사선삼삼확인(int x, int y)    // 역사선 (＼) 확인
 {
     int 돌3개확인 = 1;
     int 돌1 = 0;
@@ -444,7 +444,7 @@ int GameRoom::역사선삼삼확인(int x, int y)    // 역사선 (＼) 확인
     return 0;
 }
 
-uint32_t GameRoom::GetOpponentId(uint32_t session_id)
+uint32_t Game::GetOpponentId(uint32_t session_id)
 {
 	if (session_id == white_session_id_)
 	{
@@ -460,17 +460,17 @@ uint32_t GameRoom::GetOpponentId(uint32_t session_id)
 	}
 }
 
-uint32_t GameRoom::GetWhiteSessionId()
+uint32_t Game::GetWhiteSessionId()
 {
 	return white_session_id_;
 }
 
-uint32_t GameRoom::GetBlackSessionId()
+uint32_t Game::GetBlackSessionId()
 {
 	return black_session_id_;
 }
 
-uint32_t GameRoom::WinnerId()
+uint32_t Game::WinnerId()
 {
     if (is_game_start_)
     {
@@ -480,16 +480,16 @@ uint32_t GameRoom::WinnerId()
 	{
 		if (turn_ == WHITE_TURN)
 		{
-			return white_session_id_;
+			return black_session_id_;
 		}
 		else
 		{
-			return black_session_id_;
+			return white_session_id_;
 		}
 	}
 }
 
-uint32_t GameRoom::LoserId()
+uint32_t Game::LoserId()
 {
 	if (is_game_start_)
 	{
@@ -499,11 +499,11 @@ uint32_t GameRoom::LoserId()
 	{
 		if (turn_ == WHITE_TURN)
 		{
-			return black_session_id_;
+			return white_session_id_;
 		}
 		else
 		{
-			return white_session_id_;
+			return black_session_id_;
 		}
 	}
 }

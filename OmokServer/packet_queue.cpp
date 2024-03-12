@@ -32,3 +32,27 @@ const Packet& PacketQueue::PopAndGetPacket()
 
 	return packet;
 }
+
+std::mutex DBPacketQueue::db_mutex_;
+std::queue<Packet> DBPacketQueue::db_packet_queue_;
+
+void DBPacketQueue::PushPacket(const Packet& packet)
+{
+	std::lock_guard<std::mutex> lock(db_mutex_);
+	db_packet_queue_.push(packet);
+}
+
+const Packet& DBPacketQueue::PopAndGetPacket()
+{
+	std::lock_guard<std::mutex> lock(db_mutex_);
+
+	if (db_packet_queue_.empty())
+	{
+		return Packet();
+	}
+
+	auto packet = db_packet_queue_.front();
+	db_packet_queue_.pop();
+
+	return packet;
+}
