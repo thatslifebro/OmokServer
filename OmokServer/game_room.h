@@ -9,7 +9,7 @@ struct Pos
 	uint32_t x_;
 	uint32_t y_;
 	
-	bool operator<(const Pos& pos) const
+	bool operator < (const Pos& pos) const
 	{
 		return x_ < pos.x_ || (x_ == pos.x_ && y_ < pos.y_);
 	}
@@ -45,8 +45,6 @@ public:
 
 	bool IsGameEnd();
 
-	void EndGameByDisconnected(uint32_t session_id);
-
 	uint32_t GetOpponentId(uint32_t session_id);
 
 	uint32_t GetWhiteSessionId();
@@ -63,10 +61,11 @@ private:
 	bool white_ready_;
 	bool black_ready_;
 	bool is_game_start_;
-	Turn turn_;	
+	Turn turn_;
+
 	std::map <Pos, status> omok_board_;
 
-	int SetStone(uint32_t x, uint32_t y, status color);
+	bool SetStone(uint32_t x, uint32_t y, status color);
 
 	void ChangeTurn();
 
@@ -91,8 +90,4 @@ private:
 	int »ç¼±»ï»ïÈ®ÀÎ(int x, int y);
 
 	int ¿ª»ç¼±»ï»ïÈ®ÀÎ(int x, int y);
-
-
-
-	void GameOver(uint32_t winner_id);
 };

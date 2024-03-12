@@ -1,8 +1,5 @@
 #pragma once
-#include<iostream>
 #include<mutex>
-#include<string>
-#include<print>
 #include<queue>
 
 #include "Poco/Net/StreamSocket.h"
@@ -12,7 +9,7 @@
 class PacketQueue
 {
 public:
-	void Save(char* buffer, uint32_t session_id);
+	void Save(std::shared_ptr<char[]> buffer, uint32_t length, uint32_t session_id);
 
 	const Packet& PopAndGetPacket();
 	

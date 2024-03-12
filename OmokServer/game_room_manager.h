@@ -9,11 +9,11 @@ class GameRoomManager
 public:
 	void Init();
 	
-	std::tuple<uint32_t, uint16_t> Match(uint32_t session_id, uint16_t room_id);// todo : gameroom 생성한거 delete 해야함
+	std::tuple<uint32_t, uint16_t> Match(uint32_t session_id, uint16_t room_id);
 
 	GameRoom* GetGameRoom(uint16_t game_room_id);
 
-	int FindEmptyGameRoomId();
+	uint16_t FindEmptyGameRoomId();
 
 	void GameEnd(uint16_t game_room_id);
 

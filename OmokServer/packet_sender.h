@@ -13,17 +13,17 @@ public:
 
 	void ResRoomEnter(Session* session, uint32_t result);
 
-	void BroadcastRoomUserEnter(std::vector<uint32_t> room_session_ids, Session* session);
+	void NtfRoomUserEnter(std::vector<uint32_t> room_session_ids, Session* session);
 
 	void NtfRoomUserList(Session* session, std::vector<uint32_t> room_session_ids);
 
 	void ResRoomLeave(Session* session, uint32_t result);
 
-	void BroadcastRoomUserLeave(std::vector<uint32_t> room_session_ids, Session* session);
+	void NtfRoomUserLeave(std::vector<uint32_t> room_session_ids, Session* session);
 
 	void ResRoomChat(Session* session, uint32_t result, std::string chat);
 
-	void BroadcastRoomChat(std::vector<uint32_t> room_session_ids, Session* session, std::string chat);
+	void NtfRoomChat(std::vector<uint32_t> room_session_ids, Session* session, std::string chat);
 
 	void ResMatch(Session* session);
 
@@ -41,5 +41,5 @@ public:
 
 private:
 	template <typename T>
-	std::tuple<char*, uint16_t> MakeResData(PacketId packet_id, T packet_body);
+	std::tuple<std::shared_ptr<char[]>, uint16_t> MakeResData(PacketId packet_id, T packet_body);
 };

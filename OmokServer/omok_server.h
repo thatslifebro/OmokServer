@@ -8,9 +8,6 @@
 #include "packet_processor.h"
 #include "db_processor.h"
 
-constexpr Poco::UInt16 SERVER_PORT = 32451;
-constexpr uint32_t BUFFER_SIZE = 8096 * 10;
-
 class OmokServer
 {
 public:

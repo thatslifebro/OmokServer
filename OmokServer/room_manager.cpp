@@ -4,7 +4,6 @@ std::vector<Room> RoomManager::room_vec_;
 
 void RoomManager::Init()
 {
-	room_vec_.clear();
 	for (int i = 1; i <= MAX_ROOM_NUM; ++i)
 	{
 		room_vec_.push_back(Room(i));
@@ -13,7 +12,7 @@ void RoomManager::Init()
 
 bool RoomManager::AddSession(uint32_t session_id, uint16_t room_id)
 {
-	if(room_id > MAX_ROOM_NUM || room_id < 1)
+	if (room_id > MAX_ROOM_NUM || room_id < 1)
 	{
 		return false;
 	}
@@ -33,7 +32,7 @@ bool RoomManager::RemoveSession(uint32_t session_id, uint16_t room_id)
 
 std::vector<uint32_t> RoomManager::GetSessionList(uint16_t room_id)
 {
-	if(room_id > MAX_ROOM_NUM || room_id < 1)
+	if (room_id > MAX_ROOM_NUM || room_id < 1)
 	{
 		return std::vector<uint32_t>();
 	}

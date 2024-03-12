@@ -25,6 +25,7 @@ Session* SessionManager::GetSession(uint32_t session_id)
 	{
 		return nullptr;
 	};
+
 	return session_map_[session_id];
 }
 

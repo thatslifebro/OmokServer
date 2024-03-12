@@ -15,5 +15,5 @@ public:
 
 private:
 	std::set<uint16_t> session_ids_;
-	uint16_t room_id_;
+	const uint16_t room_id_;
 };

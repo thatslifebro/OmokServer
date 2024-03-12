@@ -4,13 +4,12 @@
 #include <queue>
 #include <mutex>
 
-#include "user_info.h"
-#include "session.h"
+#include "session_manager.h"
 #include "packet_sender.h"
 
 struct DBLoginReq
 {
-	Session* session_;
+	uint32_t session_id_;
 	std::string user_id_;
 	std::string user_pw_;
 };
@@ -21,17 +20,17 @@ public:
 	UserInfo user_info_;
 	PacketSender packet_sender_;
 
-	void Init();
+	void Init(); // DB 연결
 
-	void AddLoginRequest(Session* session, const std::string& user_name, const std::string& password);
+	void AddLoginReq(uint32_t session_id, const std::string& user_name, const std::string& password);
 
-	bool ProcessDB();
+	bool ProcessDB(); // DB쓰레드에서 실행될 함수
 
 private:
 	static std::queue<DBLoginReq> login_queue_;
 	static std::mutex login_req_queue_mutex_;
 
+	SessionManager session_manager_;
 
 	void ProcessLoginQueue();
-
 };

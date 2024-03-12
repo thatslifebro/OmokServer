@@ -3,8 +3,13 @@
 std::mutex PacketQueue::mutex_;
 std::queue<Packet> PacketQueue::packet_queue_;
 
-void PacketQueue::Save(char* buffer, uint32_t session_id)
+void PacketQueue::Save(std::shared_ptr<char[]> buffer, uint32_t length, uint32_t session_id)
 {
+	if (length < PacketHeader::header_size_)
+	{
+		return;
+	}
+
 	Packet packet;
 	packet.session_id_ = session_id;
 	packet.FromByteArray(buffer);

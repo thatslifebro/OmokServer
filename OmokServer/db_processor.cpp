@@ -5,7 +5,7 @@ std::mutex DBProcessor::login_req_queue_mutex_;
 
 void DBProcessor::Init()
 {
-	//db connect
+	//db가 실제 있다면 connect 한다.
 }
 
 bool DBProcessor::ProcessDB()
@@ -28,21 +28,28 @@ void DBProcessor::ProcessLoginQueue()
 
 	auto user_id = login_req.user_id_;
 	auto user_pw = login_req.user_pw_;
+	auto session = session_manager_.GetSession(login_req.session_id_);
 
-	int result = -1;
-
-	if (user_info_.Login(user_id, user_pw))
+	if (session == nullptr)
 	{
-		result = 0;
-		login_req.session_->user_id_ = user_id;
-		login_req.session_->is_logged_in_ = true;
+		return;
 	}
 
-	packet_sender_.ResLogin(login_req.session_, result);
+	uint32_t result = -1;
+
+	//DB에 로그인 처리
+	if (user_info_.Login(user_id, user_pw) == true)
+	{
+		result = 0;
+		session->user_id_ = user_id;
+		session->is_logged_in_ = true;
+	}
+
+	packet_sender_.ResLogin(session, result);
 }
 
-void DBProcessor::AddLoginRequest(Session* session, const std::string& user_id, const std::string& user_pw)
+void DBProcessor::AddLoginReq(uint32_t session_id, const std::string& user_id, const std::string& user_pw)
 {
 	std::lock_guard<std::mutex> lock(login_req_queue_mutex_);
-	login_queue_.push(DBLoginReq(session, user_id, user_pw));
+	login_queue_.push(DBLoginReq(session_id, user_id, user_pw));
 }

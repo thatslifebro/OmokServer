@@ -5,8 +5,6 @@ std::vector<uint16_t> GameRoomManager::match_queue_vec_;
 
 void GameRoomManager::Init()
 {
-	game_room_map_.clear();
-	match_queue_vec_.clear();
 	for (int i = 0; i < MAX_ROOM_NUM; i++)
 	{
 		match_queue_vec_.push_back(0);
@@ -15,7 +13,6 @@ void GameRoomManager::Init()
 
 std::tuple<uint32_t, uint16_t> GameRoomManager::Match(uint32_t session_id, uint16_t room_id)
 {
-
 	//같은 room에 매칭대기자가 있다면
 	if (match_queue_vec_[room_id - 1] != 0)
 	{
@@ -48,7 +45,7 @@ GameRoom* GameRoomManager::GetGameRoom(uint16_t game_room_id)
 	return game_room_map_[game_room_id];
 }
 
-int GameRoomManager::FindEmptyGameRoomId()
+uint16_t GameRoomManager::FindEmptyGameRoomId()
 {
 	uint32_t game_room_id = 1;
 	while (game_room_map_.find(game_room_id) != game_room_map_.end())

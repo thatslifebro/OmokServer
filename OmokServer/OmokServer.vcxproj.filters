@@ -23,6 +23,7 @@
     <ClCompile Include="game_room.cpp" />
     <ClCompile Include="db_processor.cpp" />
     <ClCompile Include="user_info.cpp" />
+    <ClCompile Include="packet_info.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="protobuf\OmokPacket.pb.h">

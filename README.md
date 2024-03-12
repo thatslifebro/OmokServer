@@ -16,29 +16,29 @@ protocol buffer 이용해서 데이터 주고 받아 보았고
 - 매칭
 - 게임 준비
 - 오목 두기
-
-#### 작업 예정
 - 연결 끊김 처리 및 게임 종료 처리
 - 게임 룰 서버에 구현
 
 ### 파일
 
-db_processor.h : 데이터베이스에 접근하는 클래스 (실제 db사용은 안하고 있고, 로그인 확인만 처리중)
+db_processor : 데이터베이스에 접근하는 클래스 (실제 db사용은 안하고 있고, 로그인 확인만 처리중)
 
-game_room_manager.h, game_room.h : 게임 방 및 게임 방 관리
+game_room_manager, game_room : 게임 방 및 게임 방 관리
 
-omok_server.h : 서버 init, start 정의
+omok_server : 서버 init, start 정의
 
-packet_id.h, packet_info.h : 패킷 id 정의, 패킷 및 헤더 정의
+packet_id : 패킷 ID 정의
 
-packet_processor.h : packet_queue에서 패킷 가져와 처리하는 클래스
+packet_info : 패킷 및 헤더 정의
 
-packet_queue.h : 각 세션에서 온 패킷을 저장하는 곳.
+packet_processor : packet_queue에서 패킷 가져와 처리하는 클래스
 
-packet_sender.h : 서버에서 보낼 패킷을 만들고 보내는 곳.
+packet_queue : 각 세션에서 온 패킷을 저장하는 곳.
 
-room.h, room_manager.h : 방과 방 관리
+packet_sender : 서버에서 보낼 패킷을 만들고 보내는 곳.
+
+room, room_manager : 방과 방 관리
 
 session.h, session_manager.h : 세션 정의와 세션 관리 클래스
 
-user_info.h : db 대신 임시 사용중
+user_info : db 대신 임시 사용중

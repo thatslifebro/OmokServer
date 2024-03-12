@@ -2,9 +2,9 @@
 
 void GameRoom::Init()
 {
-	for (int i = 0; i < 19; ++i)
+	for (int i = 0; i < 19; i++)
 	{
-		for (int j = 0; j < 19; ++j)
+		for (int j = 0; j < 19; j++)
 		{
 			Pos pos(i, j);
 			omok_board_[pos] = EMPTY;
@@ -23,13 +23,10 @@ bool GameRoom::SetStone(uint32_t x, uint32_t y, uint32_t session_id)
 	{
 		return SetStone(x, y, WHITE);
 	}
-	else if (session_id == black_session_id_)
-	{
-		return SetStone(x, y, BLACK);
-	}
-	else {
-		return false;
-	}
+    else
+    {
+        return SetStone(x, y, BLACK);
+    }
 }
 
 void GameRoom::SetReady(uint32_t session_id)
@@ -59,7 +56,7 @@ bool GameRoom::IsGameEnd()
 	return !is_game_start_;
 }
 
-int GameRoom::SetStone(uint32_t x, uint32_t y, status color)
+bool GameRoom::SetStone(uint32_t x, uint32_t y, status color)
 {
 	Pos pos(x, y);
 	if (omok_board_[pos] == EMPTY)
@@ -68,19 +65,16 @@ int GameRoom::SetStone(uint32_t x, uint32_t y, status color)
 		if (color == BLACK && CheckSamSam(pos))
 		{
             omok_board_[pos] = EMPTY;
-			return 0;
+			return false;
 		}
         else
         {
-            if (CheckOmok(pos))
-            {
-                return 2;
-            }
+            CheckOmok(pos);
             ChangeTurn();
-            return 1;
+            return true;
         }
 	}
-    return 0;
+    return false;
 }
 
 void GameRoom::ChangeTurn()
@@ -242,7 +236,6 @@ int GameRoom::역사선확인(int x, int y)     // ＼ 확인
 
 bool GameRoom::CheckSamSam(Pos pos)
 {
-	// todo: check rule
 	int check = 0;
 
     check += 가로삼삼확인(pos.x_, pos.y_);
@@ -251,17 +244,18 @@ bool GameRoom::CheckSamSam(Pos pos)
     check += 역사선삼삼확인(pos.x_, pos.y_);
 
     if (check >= 2)
+    {
         return true;
+    }
 
-    else
-        return false;
-
-	return true;
+    return false;
 }
 
 int GameRoom::가로삼삼확인(int x, int y)    // 가로 (ㅡ) 확인
 {
     int 돌3개확인 = 1;
+    int 돌1 = 0;
+    int 돌2 = 0;
     int i, j;
 
     for (i = 1; i <= 3; i++) // 돌을 둔 위치로부터 → 확인
@@ -270,7 +264,7 @@ int GameRoom::가로삼삼확인(int x, int y)    // 가로 (ㅡ) 확인
             break;
 
         else if (omok_board_[Pos(x + i, y)] == omok_board_[Pos(x, y)])
-            돌3개확인++;
+            돌1++;
 
         else if (omok_board_[Pos(x + i, y)] != EMPTY)
             break;
@@ -282,15 +276,16 @@ int GameRoom::가로삼삼확인(int x, int y)    // 가로 (ㅡ) 확인
             break;
 
         else if (omok_board_[Pos(x - j, y)] == omok_board_[Pos(x, y)])
-            돌3개확인++;
+            돌2++;
 
         else if (omok_board_[Pos(x - j, y)] != EMPTY)
             break;
     }
+    돌3개확인 += 돌1 + 돌2;
 
-    if (돌3개확인 == 3 && x + i < 18 && x - j > 0)    //돌 개수가 3개면서 양쪽 벽에 붙어잇으면 안된다
+    if (돌3개확인 == 3 && x + 돌1 < 17 && x - 돌2 > 1)    //돌 개수가 3개면서 양쪽 벽에 붙어잇으면 안된다
     {
-        if ((omok_board_[Pos(x + i, y)] != EMPTY && omok_board_[Pos(x + i - 1, y)] != EMPTY) || (omok_board_[Pos(x - j, y)] != EMPTY && omok_board_[Pos(x - j + 1, y)] != EMPTY))
+        if ((omok_board_[Pos(x + 돌1 + 2, y)] != EMPTY && omok_board_[Pos(x + 돌1 + 1, y)] != EMPTY) || (omok_board_[Pos(x - 돌2 - 2, y)] != EMPTY && omok_board_[Pos(x - 돌2 - 1, y)] != EMPTY))
         {
             return 0;
         }
@@ -305,6 +300,8 @@ int GameRoom::가로삼삼확인(int x, int y)    // 가로 (ㅡ) 확인
 int GameRoom::세로삼삼확인(int x, int y)    // 세로 (|) 확인
 {
     int 돌3개확인 = 1;
+    int 돌1 = 0;
+    int 돌2 = 0;
     int i, j;
 
     돌3개확인 = 1;
@@ -315,7 +312,7 @@ int GameRoom::세로삼삼확인(int x, int y)    // 세로 (|) 확인
             break;
 
         else if (omok_board_[Pos(x, y + i)] == omok_board_[Pos(x, y)])
-            돌3개확인++;
+            돌1++;
 
         else if (omok_board_[Pos(x, y + i)] != EMPTY)
             break;
@@ -327,15 +324,17 @@ int GameRoom::세로삼삼확인(int x, int y)    // 세로 (|) 확인
             break;
 
         else if (omok_board_[Pos(x, y - j)] == omok_board_[Pos(x, y)])
-            돌3개확인++;
+            돌2++;
 
         else if (omok_board_[Pos(x, y - j)] != EMPTY)
             break;
     }
 
-    if (돌3개확인 == 3 && y + i < 18 && y - j > 0)    //돌 개수가 3개면서 양쪽 벽에 붙어잇으면 안된다
+    돌3개확인 += 돌1 + 돌2;
+
+    if (돌3개확인 == 3 && y + 돌1 < 17 && y - 돌2 > 1)    //돌 개수가 3개면서 양쪽 벽에 붙어잇으면 안된다
     {
-        if ((omok_board_[Pos(x, y + i)] != EMPTY && omok_board_[Pos(x, y + i - 1)] != EMPTY) || (omok_board_[Pos(x, y - j)] != EMPTY && omok_board_[Pos(x, y - j + 1)] != EMPTY))
+        if ((omok_board_[Pos(x, y + 돌1 + 2)] != EMPTY && omok_board_[Pos(x, y + 돌1 + 1)] != EMPTY) || (omok_board_[Pos(x, y - 돌2 - 2)] != EMPTY && omok_board_[Pos(x, y - 돌2 - 1)] != EMPTY))
         {
             return 0;
         }
@@ -350,6 +349,8 @@ int GameRoom::세로삼삼확인(int x, int y)    // 세로 (|) 확인
 int GameRoom::사선삼삼확인(int x, int y)    // 사선 (/) 확인
 {
     int 돌3개확인 = 1;
+    int 돌1 = 0;
+    int 돌2 = 0;
     int i, j;
 
     돌3개확인 = 1;
@@ -360,7 +361,7 @@ int GameRoom::사선삼삼확인(int x, int y)    // 사선 (/) 확인
             break;
 
         else if (omok_board_[Pos(x + i, y - i)] == omok_board_[Pos(x, y)])
-            돌3개확인++;
+            돌1++;
 
         else if (omok_board_[Pos(x + i, y - i)] != EMPTY)
             break;
@@ -372,15 +373,17 @@ int GameRoom::사선삼삼확인(int x, int y)    // 사선 (/) 확인
             break;
 
         else if (omok_board_[Pos(x - j, y + j)] == omok_board_[Pos(x, y)])
-            돌3개확인++;
+            돌2++;
 
         else if (omok_board_[Pos(x - j, y + j)] != EMPTY)
             break;
     }
 
-    if (돌3개확인 == 3 && x + i < 18 && y - i > 0 && x - j > 0 && y + j < 18)    //돌 개수가 3개면서 양쪽 벽에 붙어잇으면 안된다
+    돌3개확인 += 돌1 + 돌2;
+
+    if (돌3개확인 == 3 && x + 돌1 < 17 && y - 돌1 > 1 && x - 돌2 > 1 && y + 돌2 < 17)    //돌 개수가 3개면서 양쪽 벽에 붙어잇으면 안된다
     {
-        if ((omok_board_[Pos(x + i, y - i)] != EMPTY && omok_board_[Pos(x + i - 1, y - i + 1)] != EMPTY) || (omok_board_[Pos(x - j, y + j)] != EMPTY && omok_board_[Pos(x - j + 1, y + j - 1)] != EMPTY))
+        if ((omok_board_[Pos(x + 돌1 + 2, y - 돌1 - 2)] != EMPTY && omok_board_[Pos(x + 돌1 + 1, y - 돌1 - 1)] != EMPTY) || (omok_board_[Pos(x - 돌2 -2, y + 돌2 + 2)] != EMPTY && omok_board_[Pos(x - 돌2 - 1, y + 돌2 + 1)] != EMPTY))
         {
             return 0;
         }
@@ -395,6 +398,8 @@ int GameRoom::사선삼삼확인(int x, int y)    // 사선 (/) 확인
 int GameRoom::역사선삼삼확인(int x, int y)    // 역사선 (＼) 확인
 {
     int 돌3개확인 = 1;
+    int 돌1 = 0;
+    int 돌2 = 0;
     int i, j;
 
     돌3개확인 = 1;
@@ -405,7 +410,7 @@ int GameRoom::역사선삼삼확인(int x, int y)    // 역사선 (＼) 확인
             break;
 
         else if (omok_board_[Pos(x + i, y + i)] == omok_board_[Pos(x, y)])
-            돌3개확인++;
+            돌1++;
 
         else if (omok_board_[Pos(x + i, y + i)] != EMPTY)
             break;
@@ -417,15 +422,17 @@ int GameRoom::역사선삼삼확인(int x, int y)    // 역사선 (＼) 확인
             break;
 
         else if (omok_board_[Pos(x - j, y - j)] == omok_board_[Pos(x, y)])
-            돌3개확인++;
+            돌2++;
 
         else if (omok_board_[Pos(x - j, y - j)] != EMPTY)
             break;
     }
 
-    if (돌3개확인 == 3 && x + i < 18 && y + i < 18 && x - j > 0 && y - j > 0)    //돌 개수가 3개면서 양쪽 벽에 붙어잇으면 안된다
+    돌3개확인 += 돌1 + 돌2;
+
+    if (돌3개확인 == 3 && x + 돌1 < 17 && y + 돌1 < 17 && x - 돌2 > 1 && y - 돌2 > 1)    //돌 개수가 3개면서 양쪽 벽에 붙어잇으면 안된다
     {
-        if ((omok_board_[Pos(x + i, y + i)] != EMPTY && omok_board_[Pos(x + i - 1, y + i - 1)] != EMPTY) || (omok_board_[Pos(x - j, y - j)] != EMPTY && omok_board_[Pos(x - j + 1, y - j + 1)] != EMPTY))
+        if ((omok_board_[Pos(x + 돌1 + 2, y + 돌1 + 2)] != EMPTY && omok_board_[Pos(x + 돌1 + 1, y + 돌1 + 1)] != EMPTY) || (omok_board_[Pos(x - 돌2 - 2, y - 돌2 - 2)] != EMPTY && omok_board_[Pos(x - 돌2 - 1, y - 돌2 - 1)] != EMPTY))
         {
             return 0;
         }

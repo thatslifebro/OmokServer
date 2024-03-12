@@ -11,16 +11,7 @@ struct PacketHeader
 
 	PacketHeader(uint16_t packet_id, uint16_t packet_size_): packet_id_(packet_id), packet_size_(packet_size_) {}
 
-	char* HeaderToByteArray()
-	{
-		char* buffer = new char[PacketHeader::header_size_];
-		buffer[0] = packet_size_ & 0xFF;
-		buffer[1] = (packet_size_ >> 8) & 0xFF;
-		buffer[2] = packet_id_ & 0xFF;
-		buffer[3] = (packet_id_ >> 8) & 0xFF;
-
-		return buffer;
-	}
+	std::shared_ptr<char[]> HeaderToByteArray();
 };
 
 class Packet
@@ -33,25 +24,7 @@ public:
 
 	Packet() = default;
 
-	auto ToByteArray()
-	{
-		PacketHeader header(packet_id_, packet_size_);
-		auto header_data = header.HeaderToByteArray();
+	std::tuple<std::shared_ptr<char[]>, uint16_t> ToByteArray();
 
-		char* buffer = new char[packet_size_];
-		memcpy(buffer, header_data, PacketHeader::header_size_);
-		memcpy(buffer + PacketHeader::header_size_, packet_body_, packet_size_ - PacketHeader::header_size_);
-
-		delete header_data;
-		return std::make_tuple(buffer, packet_size_);
-	}
-
-	void FromByteArray(char* buffer)
-	{
-		char size[2]={ buffer[0],buffer[1] };
-		packet_size_ = *reinterpret_cast<uint16_t*>(size);
-		char id[2] = { buffer[2],buffer[3] };
-		packet_id_ = *reinterpret_cast<uint16_t*>(id);
-		memcpy(packet_body_, buffer + PacketHeader::header_size_, packet_size_- PacketHeader::header_size_);
-	}
+	void FromByteArray(std::shared_ptr<char[]> buffer);
 };
