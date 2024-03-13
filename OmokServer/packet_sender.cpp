@@ -268,6 +268,32 @@ void PacketSender::NtfStartOmok(Session* balck_session, Session* white_session)
 	white_session->SendPacket(res_data_white, res_length_white);
 }
 
+void PacketSender::NtfStartOmokView(std::vector<uint32_t> room_session_ids, Session* black_session, Session* white_session)
+{
+	OmokPacket::NtfStartOmokView ntf_start_omok_view;
+	ntf_start_omok_view.set_blackid(black_session->user_id_);
+	ntf_start_omok_view.set_whiteid(white_session->user_id_);
+
+	auto [res_data, res_length] = MakeResData(PacketId::NtfStartOmokView, ntf_start_omok_view);
+
+	for (auto session_id : room_session_ids)
+	{
+		auto session = session_manager_.GetSession(session_id);
+		if (session == nullptr)
+		{
+			continue;
+		}
+
+		if (session_id == black_session->session_id_ || session_id == white_session->session_id_)
+		{
+			continue;
+		}	
+
+		session->SendPacket(res_data, res_length);
+	}
+
+}
+
 void PacketSender::ResPutMok(Session* session, uint32_t result)
 {
 	OmokPacket::ResPutMok res_put_mok;
@@ -278,7 +304,7 @@ void PacketSender::ResPutMok(Session* session, uint32_t result)
 	session->SendPacket(res_data, res_length);
 }
 
-void PacketSender::NtfPutMok(Session* session, uint32_t x, uint32_t y)
+void PacketSender::NtfPutMok(std::vector<uint32_t> room_session_ids, Session* session, uint32_t x, uint32_t y)
 {
 	OmokPacket::NtfPutMok ntf_put_mok;
 	ntf_put_mok.set_x(x);
@@ -286,7 +312,22 @@ void PacketSender::NtfPutMok(Session* session, uint32_t x, uint32_t y)
 
 	auto [res_data, res_length] = MakeResData(PacketId::NtfPutMok, ntf_put_mok);
 
-	session->SendPacket(res_data, res_length);
+	for (auto session_id : room_session_ids)
+	{
+		std::printf("session_id : %d\n", session_id);
+		auto other_session = session_manager_.GetSession(session_id);
+		if (other_session == nullptr)
+		{
+			continue;
+		}
+
+		if (session_id == session->session_id_)
+		{
+			continue;
+		}
+
+		other_session->SendPacket(res_data, res_length);
+	}
 }
 
 void PacketSender::NtfGameOver(Session* session, uint32_t result)
@@ -297,6 +338,30 @@ void PacketSender::NtfGameOver(Session* session, uint32_t result)
 	auto [res_data, res_length] = MakeResData(PacketId::NtfEndOmok, ntf_end_omok);
 
 	session->SendPacket(res_data, res_length);
+}
+
+void PacketSender::NtfGameOverView(std::vector<uint32_t> room_session_ids, uint32_t winner_id, uint32_t loser_id, uint32_t result)
+{
+	OmokPacket::NtfEndOmok ntf_end_omok;
+	ntf_end_omok.set_status(result);
+
+	auto [res_data, res_length] = MakeResData(PacketId::NtfEndOmok, ntf_end_omok);
+
+	for (auto session_id : room_session_ids)
+	{
+		auto session = session_manager_.GetSession(session_id);
+		if (session == nullptr)
+		{
+			continue;
+		}
+		if (session_id == winner_id || session_id == loser_id)
+		{
+			continue;
+		}
+
+		session->SendPacket(res_data, res_length);
+	}
+
 }
 
 void PacketSender::NtfMatchTimeout(Session* session)
@@ -317,13 +382,22 @@ void PacketSender::NtfReadyTimeout(Session* session)
 	session->SendPacket(res_data, res_length);
 }
 
-void PacketSender::NtfPutMokTimeout(Session* session)
+void PacketSender::NtfPutMokTimeout(std::vector<uint32_t> room_session_ids)
 {
 	OmokPacket::NtfPutMokTimeout ntf_put_mok_timeout;
 
 	auto [res_data, res_length] = MakeResData(PacketId::NtfPutMokTimeout, ntf_put_mok_timeout);
 
-	session->SendPacket(res_data, res_length);
+	for (auto session_id : room_session_ids)
+	{
+		auto session = session_manager_.GetSession(session_id);
+		if (session == nullptr)
+		{
+			continue;
+		}
+
+		session->SendPacket(res_data, res_length);
+	}
 }
 
 template <typename T>

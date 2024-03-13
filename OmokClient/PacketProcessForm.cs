@@ -20,6 +20,8 @@ namespace csharp_test_client
 
         OmokClient.PopUp popUp = null;
 
+        bool imViewer = false;
+
         void SetPacketHandler()
         {
             //PacketFuncDic.Add(PACKET_ID.PACKET_ID_ERROR_NTF, PacketProcess_ErrorNotify);
@@ -47,6 +49,8 @@ namespace csharp_test_client
             PacketFuncDic.Add(PacketID.NtfMatchTimeout, PacketProcess_MatchTimeoutNotify);
             PacketFuncDic.Add(PacketID.NtfReadyTimeout, PacketProcess_ReadyTimeoutNotify);
             PacketFuncDic.Add(PacketID.NtfPutMokTimeout, PacketProcess_PutMokTimeoutNotify);
+
+            PacketFuncDic.Add(PacketID.NtfStartOmokView, PacketProcess_StartOmokViewNotify);
         }
 
         void PacketProcess(PacketData packet)
@@ -346,6 +350,11 @@ namespace csharp_test_client
 
             플레이어_돌두기(true, x, y);
 
+            if(imViewer)
+            {
+                IsMyTurn = false;
+            }
+
             DevLog.Write($"상대방이 [{x}, {y}] 에 돌을 놓았습니다.");
         }
 
@@ -367,7 +376,8 @@ namespace csharp_test_client
             }
             else if(ntfEndOmok.Status==2)
             {
-                DevLog.Write($"오목 GameOver: Draw");
+                DevLog.Write($"오목 GameOver: 관전 끝");
+                imViewer = false;
             }
             else
             {
@@ -392,6 +402,20 @@ namespace csharp_test_client
             턴넘기기();
             DevLog.Write("돌을 두지 않아 상대에게 턴이 넘어갔습니다.");
 
+        }
+
+        void PacketProcess_StartOmokViewNotify(byte[] bodyData)
+        {
+            var ntfStartOmokView = new NtfStartOmokView();
+            ntfStartOmokView.MergeFrom(bodyData);
+
+            var blackId = ntfStartOmokView.BlackId;
+            var whiteId = ntfStartOmokView.WhiteId;
+
+            StartGame(false, blackId, whiteId);
+
+            imViewer= true;
+            DevLog.Write("관전이 시작되었습니다.");
         }
     }
 }

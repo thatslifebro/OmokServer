@@ -35,4 +35,6 @@ enum class PacketId
 	NtfMatchTimeout = 1601,
 	NtfReadyTimeout = 1602,
 	NtfPutMokTimeout = 1603,
+
+	NtfStartOmokView = 1701,
 };

@@ -59,7 +59,9 @@ namespace OmokPacket {
             "b2sSDgoBeBgBIAEoBUgAiAEBEg4KAXkYAiABKAVIAYgBAUIECgJfeEIECgJf",
             "eSIsCgpOdGZFbmRPbW9rEhMKBnN0YXR1cxgBIAEoBUgAiAEBQgkKB19zdGF0",
             "dXMiEQoPTnRmTWF0Y2hUaW1lb3V0IhEKD050ZlJlYWR5VGltZW91dCISChBO",
-            "dGZQdXRNb2tUaW1lb3V0YgZwcm90bzM="));
+            "dGZQdXRNb2tUaW1lb3V0IlYKEE50ZlN0YXJ0T21va1ZpZXcSFAoHYmxhY2tJ",
+            "ZBgBIAEoCUgAiAEBEhQKB3doaXRlSWQYAiABKAlIAYgBAUIKCghfYmxhY2tJ",
+            "ZEIKCghfd2hpdGVJZGIGcHJvdG8z"));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { },
           new pbr::GeneratedClrTypeInfo(null, null, new pbr::GeneratedClrTypeInfo[] {
@@ -91,7 +93,8 @@ namespace OmokPacket {
             new pbr::GeneratedClrTypeInfo(typeof(global::OmokPacket.NtfEndOmok), global::OmokPacket.NtfEndOmok.Parser, new[]{ "Status" }, new[]{ "Status" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::OmokPacket.NtfMatchTimeout), global::OmokPacket.NtfMatchTimeout.Parser, null, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::OmokPacket.NtfReadyTimeout), global::OmokPacket.NtfReadyTimeout.Parser, null, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::OmokPacket.NtfPutMokTimeout), global::OmokPacket.NtfPutMokTimeout.Parser, null, null, null, null, null)
+            new pbr::GeneratedClrTypeInfo(typeof(global::OmokPacket.NtfPutMokTimeout), global::OmokPacket.NtfPutMokTimeout.Parser, null, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::OmokPacket.NtfStartOmokView), global::OmokPacket.NtfStartOmokView.Parser, new[]{ "BlackId", "WhiteId" }, new[]{ "BlackId", "WhiteId" }, null, null, null)
           }));
     }
     #endregion
@@ -6072,6 +6075,256 @@ namespace OmokPacket {
           default:
             _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
             break;
+        }
+      }
+    }
+    #endif
+
+  }
+
+  public sealed partial class NtfStartOmokView : pb::IMessage<NtfStartOmokView>
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      , pb::IBufferMessage
+  #endif
+  {
+    private static readonly pb::MessageParser<NtfStartOmokView> _parser = new pb::MessageParser<NtfStartOmokView>(() => new NtfStartOmokView());
+    private pb::UnknownFieldSet _unknownFields;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public static pb::MessageParser<NtfStartOmokView> Parser { get { return _parser; } }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public static pbr::MessageDescriptor Descriptor {
+      get { return global::OmokPacket.OmokPacketReflection.Descriptor.MessageTypes[29]; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    pbr::MessageDescriptor pb::IMessage.Descriptor {
+      get { return Descriptor; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public NtfStartOmokView() {
+      OnConstruction();
+    }
+
+    partial void OnConstruction();
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public NtfStartOmokView(NtfStartOmokView other) : this() {
+      blackId_ = other.blackId_;
+      whiteId_ = other.whiteId_;
+      _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public NtfStartOmokView Clone() {
+      return new NtfStartOmokView(this);
+    }
+
+    /// <summary>Field number for the "blackId" field.</summary>
+    public const int BlackIdFieldNumber = 1;
+    private string blackId_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public string BlackId {
+      get { return blackId_ ?? ""; }
+      set {
+        blackId_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+      }
+    }
+    /// <summary>Gets whether the "blackId" field is set</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public bool HasBlackId {
+      get { return blackId_ != null; }
+    }
+    /// <summary>Clears the value of the "blackId" field</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void ClearBlackId() {
+      blackId_ = null;
+    }
+
+    /// <summary>Field number for the "whiteId" field.</summary>
+    public const int WhiteIdFieldNumber = 2;
+    private string whiteId_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public string WhiteId {
+      get { return whiteId_ ?? ""; }
+      set {
+        whiteId_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+      }
+    }
+    /// <summary>Gets whether the "whiteId" field is set</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public bool HasWhiteId {
+      get { return whiteId_ != null; }
+    }
+    /// <summary>Clears the value of the "whiteId" field</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void ClearWhiteId() {
+      whiteId_ = null;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public override bool Equals(object other) {
+      return Equals(other as NtfStartOmokView);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public bool Equals(NtfStartOmokView other) {
+      if (ReferenceEquals(other, null)) {
+        return false;
+      }
+      if (ReferenceEquals(other, this)) {
+        return true;
+      }
+      if (BlackId != other.BlackId) return false;
+      if (WhiteId != other.WhiteId) return false;
+      return Equals(_unknownFields, other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public override int GetHashCode() {
+      int hash = 1;
+      if (HasBlackId) hash ^= BlackId.GetHashCode();
+      if (HasWhiteId) hash ^= WhiteId.GetHashCode();
+      if (_unknownFields != null) {
+        hash ^= _unknownFields.GetHashCode();
+      }
+      return hash;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public override string ToString() {
+      return pb::JsonFormatter.ToDiagnosticString(this);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void WriteTo(pb::CodedOutputStream output) {
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      output.WriteRawMessage(this);
+    #else
+      if (HasBlackId) {
+        output.WriteRawTag(10);
+        output.WriteString(BlackId);
+      }
+      if (HasWhiteId) {
+        output.WriteRawTag(18);
+        output.WriteString(WhiteId);
+      }
+      if (_unknownFields != null) {
+        _unknownFields.WriteTo(output);
+      }
+    #endif
+    }
+
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
+      if (HasBlackId) {
+        output.WriteRawTag(10);
+        output.WriteString(BlackId);
+      }
+      if (HasWhiteId) {
+        output.WriteRawTag(18);
+        output.WriteString(WhiteId);
+      }
+      if (_unknownFields != null) {
+        _unknownFields.WriteTo(ref output);
+      }
+    }
+    #endif
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public int CalculateSize() {
+      int size = 0;
+      if (HasBlackId) {
+        size += 1 + pb::CodedOutputStream.ComputeStringSize(BlackId);
+      }
+      if (HasWhiteId) {
+        size += 1 + pb::CodedOutputStream.ComputeStringSize(WhiteId);
+      }
+      if (_unknownFields != null) {
+        size += _unknownFields.CalculateSize();
+      }
+      return size;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void MergeFrom(NtfStartOmokView other) {
+      if (other == null) {
+        return;
+      }
+      if (other.HasBlackId) {
+        BlackId = other.BlackId;
+      }
+      if (other.HasWhiteId) {
+        WhiteId = other.WhiteId;
+      }
+      _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void MergeFrom(pb::CodedInputStream input) {
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      input.ReadRawMessage(this);
+    #else
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+        switch(tag) {
+          default:
+            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
+            break;
+          case 10: {
+            BlackId = input.ReadString();
+            break;
+          }
+          case 18: {
+            WhiteId = input.ReadString();
+            break;
+          }
+        }
+      }
+    #endif
+    }
+
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+        switch(tag) {
+          default:
+            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
+            break;
+          case 10: {
+            BlackId = input.ReadString();
+            break;
+          }
+          case 18: {
+            WhiteId = input.ReadString();
+            break;
+          }
         }
       }
     }

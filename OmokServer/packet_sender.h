@@ -39,17 +39,23 @@ public:
 
 	void NtfStartOmok(Session* session, Session* opponent_session);
 
+	void NtfStartOmokView(std::vector<uint32_t> room_session_ids, Session* black_session, Session* white_session);
+
 	void ResPutMok(Session* session, uint32_t result);
 
-	void NtfPutMok(Session* session, uint32_t x, uint32_t y);
+	void NtfPutMok(std::vector<uint32_t> room_session_ids, Session* session, uint32_t x, uint32_t y);
 
 	void NtfGameOver(Session* session, uint32_t result);
+
+	void NtfGameOverView(std::vector<uint32_t> room_session_ids, uint32_t winner_id, uint32_t loser_id, uint32_t result);
 
 	void NtfMatchTimeout(Session* session);
 
 	void NtfReadyTimeout(Session* session);
 
-	void NtfPutMokTimeout(Session* session);
+	void NtfPutMokTimeout(std::vector<uint32_t> room_session_ids);
+
+	
 
 private:
 	template <typename T>

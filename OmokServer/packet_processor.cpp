@@ -356,7 +356,12 @@ void PacketProcessor::ReqReadyOmokHandler(Packet packet)
 
 		packet_sender_.NtfStartOmok(black_session, white_session);
 
-		room->timer_->SetRecursiveTimer(PUT_MOK_TIMEOUT, [&, room, black_session, white_session]()
+		//관전자
+		auto room_session_ids = room_manager_.GetSessionList(session->room_id_);
+		packet_sender_.NtfStartOmokView(room_session_ids, black_session, white_session);
+
+		//타이머
+		room->timer_->SetRecursiveTimer(PUT_MOK_TIMEOUT, [&, room, room_session_ids]()
 			{
 				PacketSender packet_sender;
 				if (room->IsGameStarted())
@@ -365,8 +370,7 @@ void PacketProcessor::ReqReadyOmokHandler(Packet packet)
 					game->ChangeTurn();
 
 					//타임아웃 전파
-					packet_sender.NtfPutMokTimeout(black_session);
-					packet_sender.NtfPutMokTimeout(white_session);
+					packet_sender.NtfPutMokTimeout(room_session_ids);
 				}
 			});
 	}
@@ -410,10 +414,10 @@ void PacketProcessor::ReqOmokPutHandler(Packet packet)
 	//다른 유저에게 결과 전송
 	if (result == 0)
 	{
-		auto opponent_id = game->GetOpponentId(session->session_id_);
-		auto opponent_session = session_manager_.GetSession(opponent_id);
+		//다른 모두에게 전달
+		auto room_session_ids = room_manager_.GetSessionList(session->room_id_);
+		packet_sender_.NtfPutMok(room_session_ids, session, req_put_mok.x(), req_put_mok.y());
 
-		packet_sender_.NtfPutMok(opponent_session, req_put_mok.x(), req_put_mok.y());
 
 		//이번 돌두기로 게임이 끝났다면
 		if (game->IsGameEnd())
@@ -427,13 +431,15 @@ void PacketProcessor::ReqOmokPutHandler(Packet packet)
 			packet_sender_.NtfGameOver(winner_session, 1);
 			packet_sender_.NtfGameOver(loser_session, 0);
 
+			packet_sender_.NtfGameOverView(room_session_ids, winner_id, loser_id, 2);
+
 			//게임 종료 처리
 			room->EndGame();
 		}
 		else
 		{
 			//타이머
-			room->timer_->SetRecursiveTimer(PUT_MOK_TIMEOUT, [&, room, session, opponent_session]()
+			room->timer_->SetRecursiveTimer(PUT_MOK_TIMEOUT, [&, room, room_session_ids]()
 				{
 					PacketSender packet_sender;
 					if (room->IsGameStarted())
@@ -442,8 +448,7 @@ void PacketProcessor::ReqOmokPutHandler(Packet packet)
 						game->ChangeTurn();
 
 						//타임아웃 전파
-						packet_sender.NtfPutMokTimeout(session);
-						packet_sender.NtfPutMokTimeout(opponent_session);
+						packet_sender.NtfPutMokTimeout(room_session_ids);
 					}
 				});
 		}

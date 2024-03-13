@@ -119,3 +119,8 @@ message NtfReadyTimeout {
 
 message NtfPutMokTimeout {
 }
+
+message NtfStartOmokView {
+	optional string blackId = 1;
+	optional string whiteId = 2;
+}

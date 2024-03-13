@@ -85,6 +85,9 @@ extern NtfRoomUserListDefaultTypeInternal _NtfRoomUserList_default_instance_;
 class NtfStartOmok;
 struct NtfStartOmokDefaultTypeInternal;
 extern NtfStartOmokDefaultTypeInternal _NtfStartOmok_default_instance_;
+class NtfStartOmokView;
+struct NtfStartOmokViewDefaultTypeInternal;
+extern NtfStartOmokViewDefaultTypeInternal _NtfStartOmokView_default_instance_;
 class ReqLogin;
 struct ReqLoginDefaultTypeInternal;
 extern ReqLoginDefaultTypeInternal _ReqLogin_default_instance_;
@@ -148,6 +151,7 @@ template<> ::OmokPacket::NtfRoomLeaveUser* Arena::CreateMaybeMessage<::OmokPacke
 template<> ::OmokPacket::NtfRoomNewUser* Arena::CreateMaybeMessage<::OmokPacket::NtfRoomNewUser>(Arena*);
 template<> ::OmokPacket::NtfRoomUserList* Arena::CreateMaybeMessage<::OmokPacket::NtfRoomUserList>(Arena*);
 template<> ::OmokPacket::NtfStartOmok* Arena::CreateMaybeMessage<::OmokPacket::NtfStartOmok>(Arena*);
+template<> ::OmokPacket::NtfStartOmokView* Arena::CreateMaybeMessage<::OmokPacket::NtfStartOmokView>(Arena*);
 template<> ::OmokPacket::ReqLogin* Arena::CreateMaybeMessage<::OmokPacket::ReqLogin>(Arena*);
 template<> ::OmokPacket::ReqMatch* Arena::CreateMaybeMessage<::OmokPacket::ReqMatch>(Arena*);
 template<> ::OmokPacket::ReqMatchRes* Arena::CreateMaybeMessage<::OmokPacket::ReqMatchRes>(Arena*);
@@ -4568,6 +4572,184 @@ class NtfPutMokTimeout final :
   };
   friend struct ::TableStruct_OmokPacket_2eproto;
 };
+// -------------------------------------------------------------------
+
+class NtfStartOmokView final :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:OmokPacket.NtfStartOmokView) */ {
+ public:
+  inline NtfStartOmokView() : NtfStartOmokView(nullptr) {}
+  ~NtfStartOmokView() override;
+  explicit PROTOBUF_CONSTEXPR NtfStartOmokView(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  NtfStartOmokView(const NtfStartOmokView& from);
+  NtfStartOmokView(NtfStartOmokView&& from) noexcept
+    : NtfStartOmokView() {
+    *this = ::std::move(from);
+  }
+
+  inline NtfStartOmokView& operator=(const NtfStartOmokView& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline NtfStartOmokView& operator=(NtfStartOmokView&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const NtfStartOmokView& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const NtfStartOmokView* internal_default_instance() {
+    return reinterpret_cast<const NtfStartOmokView*>(
+               &_NtfStartOmokView_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    29;
+
+  friend void swap(NtfStartOmokView& a, NtfStartOmokView& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(NtfStartOmokView* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() != nullptr &&
+        GetOwningArena() == other->GetOwningArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() == other->GetOwningArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(NtfStartOmokView* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  NtfStartOmokView* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<NtfStartOmokView>(arena);
+  }
+  using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
+  void CopyFrom(const NtfStartOmokView& from);
+  using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
+  void MergeFrom( const NtfStartOmokView& from) {
+    NtfStartOmokView::MergeImpl(*this, from);
+  }
+  private:
+  static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  uint8_t* _InternalSerialize(
+      uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _impl_._cached_size_.Get(); }
+
+  private:
+  void SharedCtor(::PROTOBUF_NAMESPACE_ID::Arena* arena, bool is_message_owned);
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(NtfStartOmokView* other);
+
+  private:
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "OmokPacket.NtfStartOmokView";
+  }
+  protected:
+  explicit NtfStartOmokView(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                       bool is_message_owned = false);
+  public:
+
+  static const ClassData _class_data_;
+  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kBlackIdFieldNumber = 1,
+    kWhiteIdFieldNumber = 2,
+  };
+  // optional string blackId = 1;
+  bool has_blackid() const;
+  private:
+  bool _internal_has_blackid() const;
+  public:
+  void clear_blackid();
+  const std::string& blackid() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_blackid(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_blackid();
+  PROTOBUF_NODISCARD std::string* release_blackid();
+  void set_allocated_blackid(std::string* blackid);
+  private:
+  const std::string& _internal_blackid() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_blackid(const std::string& value);
+  std::string* _internal_mutable_blackid();
+  public:
+
+  // optional string whiteId = 2;
+  bool has_whiteid() const;
+  private:
+  bool _internal_has_whiteid() const;
+  public:
+  void clear_whiteid();
+  const std::string& whiteid() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_whiteid(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_whiteid();
+  PROTOBUF_NODISCARD std::string* release_whiteid();
+  void set_allocated_whiteid(std::string* whiteid);
+  private:
+  const std::string& _internal_whiteid() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_whiteid(const std::string& value);
+  std::string* _internal_mutable_whiteid();
+  public:
+
+  // @@protoc_insertion_point(class_scope:OmokPacket.NtfStartOmokView)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  struct Impl_ {
+    ::PROTOBUF_NAMESPACE_ID::internal::HasBits<1> _has_bits_;
+    mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+    ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr blackid_;
+    ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr whiteid_;
+  };
+  union { Impl_ _impl_; };
+  friend struct ::TableStruct_OmokPacket_2eproto;
+};
 // ===================================================================
 
 
@@ -6263,9 +6445,151 @@ inline void NtfEndOmok::set_status(int32_t value) {
 
 // NtfPutMokTimeout
 
+// -------------------------------------------------------------------
+
+// NtfStartOmokView
+
+// optional string blackId = 1;
+inline bool NtfStartOmokView::_internal_has_blackid() const {
+  bool value = (_impl_._has_bits_[0] & 0x00000001u) != 0;
+  return value;
+}
+inline bool NtfStartOmokView::has_blackid() const {
+  return _internal_has_blackid();
+}
+inline void NtfStartOmokView::clear_blackid() {
+  _impl_.blackid_.ClearToEmpty();
+  _impl_._has_bits_[0] &= ~0x00000001u;
+}
+inline const std::string& NtfStartOmokView::blackid() const {
+  // @@protoc_insertion_point(field_get:OmokPacket.NtfStartOmokView.blackId)
+  return _internal_blackid();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void NtfStartOmokView::set_blackid(ArgT0&& arg0, ArgT... args) {
+ _impl_._has_bits_[0] |= 0x00000001u;
+ _impl_.blackid_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:OmokPacket.NtfStartOmokView.blackId)
+}
+inline std::string* NtfStartOmokView::mutable_blackid() {
+  std::string* _s = _internal_mutable_blackid();
+  // @@protoc_insertion_point(field_mutable:OmokPacket.NtfStartOmokView.blackId)
+  return _s;
+}
+inline const std::string& NtfStartOmokView::_internal_blackid() const {
+  return _impl_.blackid_.Get();
+}
+inline void NtfStartOmokView::_internal_set_blackid(const std::string& value) {
+  _impl_._has_bits_[0] |= 0x00000001u;
+  _impl_.blackid_.Set(value, GetArenaForAllocation());
+}
+inline std::string* NtfStartOmokView::_internal_mutable_blackid() {
+  _impl_._has_bits_[0] |= 0x00000001u;
+  return _impl_.blackid_.Mutable(GetArenaForAllocation());
+}
+inline std::string* NtfStartOmokView::release_blackid() {
+  // @@protoc_insertion_point(field_release:OmokPacket.NtfStartOmokView.blackId)
+  if (!_internal_has_blackid()) {
+    return nullptr;
+  }
+  _impl_._has_bits_[0] &= ~0x00000001u;
+  auto* p = _impl_.blackid_.Release();
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (_impl_.blackid_.IsDefault()) {
+    _impl_.blackid_.Set("", GetArenaForAllocation());
+  }
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  return p;
+}
+inline void NtfStartOmokView::set_allocated_blackid(std::string* blackid) {
+  if (blackid != nullptr) {
+    _impl_._has_bits_[0] |= 0x00000001u;
+  } else {
+    _impl_._has_bits_[0] &= ~0x00000001u;
+  }
+  _impl_.blackid_.SetAllocated(blackid, GetArenaForAllocation());
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (_impl_.blackid_.IsDefault()) {
+    _impl_.blackid_.Set("", GetArenaForAllocation());
+  }
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:OmokPacket.NtfStartOmokView.blackId)
+}
+
+// optional string whiteId = 2;
+inline bool NtfStartOmokView::_internal_has_whiteid() const {
+  bool value = (_impl_._has_bits_[0] & 0x00000002u) != 0;
+  return value;
+}
+inline bool NtfStartOmokView::has_whiteid() const {
+  return _internal_has_whiteid();
+}
+inline void NtfStartOmokView::clear_whiteid() {
+  _impl_.whiteid_.ClearToEmpty();
+  _impl_._has_bits_[0] &= ~0x00000002u;
+}
+inline const std::string& NtfStartOmokView::whiteid() const {
+  // @@protoc_insertion_point(field_get:OmokPacket.NtfStartOmokView.whiteId)
+  return _internal_whiteid();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void NtfStartOmokView::set_whiteid(ArgT0&& arg0, ArgT... args) {
+ _impl_._has_bits_[0] |= 0x00000002u;
+ _impl_.whiteid_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:OmokPacket.NtfStartOmokView.whiteId)
+}
+inline std::string* NtfStartOmokView::mutable_whiteid() {
+  std::string* _s = _internal_mutable_whiteid();
+  // @@protoc_insertion_point(field_mutable:OmokPacket.NtfStartOmokView.whiteId)
+  return _s;
+}
+inline const std::string& NtfStartOmokView::_internal_whiteid() const {
+  return _impl_.whiteid_.Get();
+}
+inline void NtfStartOmokView::_internal_set_whiteid(const std::string& value) {
+  _impl_._has_bits_[0] |= 0x00000002u;
+  _impl_.whiteid_.Set(value, GetArenaForAllocation());
+}
+inline std::string* NtfStartOmokView::_internal_mutable_whiteid() {
+  _impl_._has_bits_[0] |= 0x00000002u;
+  return _impl_.whiteid_.Mutable(GetArenaForAllocation());
+}
+inline std::string* NtfStartOmokView::release_whiteid() {
+  // @@protoc_insertion_point(field_release:OmokPacket.NtfStartOmokView.whiteId)
+  if (!_internal_has_whiteid()) {
+    return nullptr;
+  }
+  _impl_._has_bits_[0] &= ~0x00000002u;
+  auto* p = _impl_.whiteid_.Release();
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (_impl_.whiteid_.IsDefault()) {
+    _impl_.whiteid_.Set("", GetArenaForAllocation());
+  }
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  return p;
+}
+inline void NtfStartOmokView::set_allocated_whiteid(std::string* whiteid) {
+  if (whiteid != nullptr) {
+    _impl_._has_bits_[0] |= 0x00000002u;
+  } else {
+    _impl_._has_bits_[0] &= ~0x00000002u;
+  }
+  _impl_.whiteid_.SetAllocated(whiteid, GetArenaForAllocation());
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (_impl_.whiteid_.IsDefault()) {
+    _impl_.whiteid_.Set("", GetArenaForAllocation());
+  }
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:OmokPacket.NtfStartOmokView.whiteId)
+}
+
 #ifdef __GNUC__
   #pragma GCC diagnostic pop
 #endif  // __GNUC__
+// -------------------------------------------------------------------
+
 // -------------------------------------------------------------------
 
 // -------------------------------------------------------------------
