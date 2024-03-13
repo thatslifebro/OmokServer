@@ -12,7 +12,6 @@ class OmokServer
 {
 public:
 	RoomManager room_manager_;
-	MatchManager match_manager_;
 	PacketProcessor packet_processor_;
 	DBProcessor db_processor_;
 

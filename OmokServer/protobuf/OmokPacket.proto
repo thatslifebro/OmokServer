@@ -17,14 +17,27 @@ message ReqRoomEnter {
 
 message ResRoomEnter {
   optional int32 result = 1;
+  optional UserInfo userInfo = 2;
+}
+
+message NtfRoomAdmin {
+}
+
+message NtfNewRoomAdmin {
+  optional UserInfo userInfo = 1;
+}
+
+message UserInfo {
+  optional string userId = 1;
+  optional int32 sessionId = 2;
 }
 
 message NtfRoomUserList { // resRoomEnter 이후 바로 보내기 
-  repeated string userId = 1;
+  repeated UserInfo userInfo = 1;
 }
 
 message NtfRoomNewUser { // 새유저 broadcast
-  optional string userId = 1;
+  optional UserInfo userInfo = 1;
 }
 
 message ReqRoomLeave {
@@ -35,7 +48,7 @@ message ResRoomLeave {
 }
 
 message NtfRoomLeaveUser {// 나간 유저 broadcast
-  optional string userId = 1;
+  optional UserInfo userInfo = 1;
 }
 
 message ReqRoomChat {
@@ -48,18 +61,24 @@ message ResRoomChat { // 내 채팅 다시 보내기
 }
 
 message NtfRoomChat { // broadcast
-  optional string userId = 1;
+  optional UserInfo userInfo = 1;
   optional string chat = 2;
 }
 
-message ReqMatch {
+message ReqMatch {  // 방장이 게임하고싶은사람 고름.
+  optional int32 sessionId = 1;
 }
 
-message ResMatch { // 받으면 매칭 중이라는 말
+message ResMatch {  // 대상이 답변을 해주면 성공 (시간제한도 걸어서 실패 보내야함)
+  optional int32 result = 1; // 0: 성공, -1: 실패
 }
 
-message NtfMatched { // 매칭 되었다고 알림
-  optional string userId = 1;// 상대방
+message NtfMatchReq {
+  optional UserInfo userInfo = 1; // 방장
+}
+
+message ReqMatchRes {
+  optional bool accept = 1; // true: 수락, false: 거절
 }
 
 message ReqReadyOmok {

@@ -46,6 +46,22 @@ void Game::SetReady(uint32_t session_id)
 	}
 }
 
+bool Game::IsReady(uint32_t session_id)
+{
+    if (session_id == white_session_id_)
+    {
+		return white_ready_;
+	}
+    else if (session_id == black_session_id_)
+    {
+		return black_ready_;
+	}
+    else
+    {
+		return false;
+	}
+}
+
 bool Game::IsGameStart()
 {
 	return is_game_start_;

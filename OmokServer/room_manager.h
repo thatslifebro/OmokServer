@@ -13,6 +13,8 @@ public:
 
 	std::vector<uint32_t> GetSessionList(uint16_t room_id);
 
+	Room* GetRoom(uint16_t room_id);
+
 private:
 	static std::vector<Room> room_vec_; // room_id - 1 = index
 };

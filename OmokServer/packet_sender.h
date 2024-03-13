@@ -15,6 +15,10 @@ public:
 
 	void NtfRoomUserEnter(std::vector<uint32_t> room_session_ids, Session* session);
 
+	void NtfRoomAdmin(Session* session);
+
+	void NtfNewRoomAdmin(std::vector<uint32_t> room_session_ids, Session* admin_session);
+
 	void NtfRoomUserList(Session* session, std::vector<uint32_t> room_session_ids);
 
 	void ResRoomLeave(Session* session, uint32_t result);
@@ -25,7 +29,9 @@ public:
 
 	void NtfRoomChat(std::vector<uint32_t> room_session_ids, Session* session, std::string chat);
 
-	void ResMatch(Session* session);
+	void ResMatch(Session* session, uint32_t result);
+
+	void NtfMatchReq(Session* opponent_session, Session* admin_session);
 
 	void NtfMatched(Session* session, Session* opponent_session);
 

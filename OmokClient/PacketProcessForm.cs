@@ -14,18 +14,24 @@ namespace csharp_test_client
     {
         Dictionary<UInt16, Action<byte[]>> PacketFuncDic = new Dictionary<UInt16, Action<byte[]>>();
 
+        Dictionary<string, int> RoomUserInfo = new Dictionary<string, int>();
+        int mySessionID = 0;
+        string myUserID = "";
         void SetPacketHandler()
         {
             //PacketFuncDic.Add(PACKET_ID.PACKET_ID_ERROR_NTF, PacketProcess_ErrorNotify);
             PacketFuncDic.Add(PacketID.ResLogin, PacketProcess_Loginin);
 
             PacketFuncDic.Add(PacketID.ResRoomEnter, PacketProcess_RoomEnterResponse);
+            PacketFuncDic.Add(PacketID.NtfRoomAdmin, PacketProcess_RoomAdminNotify);
+            PacketFuncDic.Add(PacketID.NtfNewRoomAdmin, PacketProcess_NewRoomAdminNotify);
             PacketFuncDic.Add(PacketID.NtfRoomUserList, PacketProcess_RoomUserListNotify);
             PacketFuncDic.Add(PacketID.NtfRoomNewUser, PacketProcess_RoomNewUserNotify);
             PacketFuncDic.Add(PacketID.ResRoomLeave, PacketProcess_RoomLeaveResponse);
             PacketFuncDic.Add(PacketID.NtfRoomLeaveUser, PacketProcess_RoomLeaveUserNotify);
             PacketFuncDic.Add(PacketID.ResRoomChat, PacketProcess_RoomChatResponse);
             PacketFuncDic.Add(PacketID.NtfRoomChat, PacketProcess_RoomChatNotify);
+            PacketFuncDic.Add(PacketID.NtfMatchReq, PacketProcess_MatchReqNotify);
             PacketFuncDic.Add(PacketID.ResMatch, PacketProcess_MatchResponse);
             PacketFuncDic.Add(PacketID.NtfMatched, PacketProcess_MatchedNotify);
 
@@ -122,16 +128,55 @@ namespace csharp_test_client
             var resRoomEnter = new ResRoomEnter();
             resRoomEnter.MergeFrom(bodyData);
             DevLog.Write($"방 입장 결과:  {resRoomEnter.Result}");
+
+            myUserID = resRoomEnter.UserInfo.UserId;
+            mySessionID = resRoomEnter.UserInfo.SessionId;
+
+            if(resRoomEnter.Result == 0)
+            {
+                listBoxRoomUserList.Items.Add(resRoomEnter.UserInfo.UserId);
+                RoomUserInfo[resRoomEnter.UserInfo.UserId] = resRoomEnter.UserInfo.SessionId;
+            }
+
+        }
+
+        void PacketProcess_RoomAdminNotify(byte[] bodyData)
+        {
+            AdminToTop(myUserID);
+            DevLog.Write("당신이 방장입니다.");
+        }
+
+        void AdminToTop(string userId)
+        {
+            listBoxRoomUserList.Items.Remove(userId);
+            object[] items = new object[listBoxRoomUserList.Items.Count];
+            listBoxRoomUserList.Items.CopyTo(items, 0);
+            listBoxRoomUserList.Items.Clear();
+            listBoxRoomUserList.Items.Add(userId);
+            foreach (var item in items)
+            {
+                listBoxRoomUserList.Items.Add(item);
+            }
+        }
+
+        void PacketProcess_NewRoomAdminNotify(byte[] bodyData)
+        {
+            var ntfNewRoomAdmin = new NtfNewRoomAdmin();
+            ntfNewRoomAdmin.MergeFrom(bodyData);
+            var user = ntfNewRoomAdmin.UserInfo;
+            DevLog.Write($"새로운 방장: {user.UserId}");
+
+            AdminToTop(user.UserId);
         }
 
         void PacketProcess_RoomUserListNotify(byte[] bodyData)
         {
             var ntfRoomUserList = new NtfRoomUserList();
             ntfRoomUserList.MergeFrom(bodyData);
-            listBoxRoomUserList.Items.Clear();
-            foreach (var userid in ntfRoomUserList.UserId)
+            foreach (var userinfo in ntfRoomUserList.UserInfo)
             {
-                listBoxRoomUserList.Items.Add(userid);
+                RoomUserInfo.Add(userinfo.UserId, userinfo.SessionId);
+                listBoxRoomUserList.Items.Add(userinfo.UserId);
             }
             DevLog.Write($"방의 기존 유저 리스트 받음");
         }
@@ -140,7 +185,9 @@ namespace csharp_test_client
         {
             NtfRoomNewUser ntfRoomNewUser = new NtfRoomNewUser();
             ntfRoomNewUser.MergeFrom(bodyData);
-            listBoxRoomUserList.Items.Add(ntfRoomNewUser.UserId);
+
+            RoomUserInfo.Add(ntfRoomNewUser.UserInfo.UserId, ntfRoomNewUser.UserInfo.SessionId);
+            listBoxRoomUserList.Items.Add(ntfRoomNewUser.UserInfo.UserId);
 
             DevLog.Write($"방에 새로 들어온 유저 받음");
         }
@@ -155,6 +202,7 @@ namespace csharp_test_client
             {
                 listBoxRoomUserList.Items.Clear();
                 listBoxRoomChatMsg.Items.Clear();
+                RoomUserInfo.Clear();
             }
         }
 
@@ -162,8 +210,9 @@ namespace csharp_test_client
         {
             var ntfRoomLeaveUser = new NtfRoomLeaveUser();
             ntfRoomLeaveUser.MergeFrom(bodyData);
-            listBoxRoomUserList.Items.Remove(ntfRoomLeaveUser.UserId);
+            listBoxRoomUserList.Items.Remove(ntfRoomLeaveUser.UserInfo.UserId);
 
+            RoomUserInfo.Remove(ntfRoomLeaveUser.UserInfo.UserId);
             DevLog.Write($"방에서 유저 나감");
         }
 
@@ -187,20 +236,44 @@ namespace csharp_test_client
         {
             var ntfRoomChat = new NtfRoomChat();
             ntfRoomChat.MergeFrom(bodyData);
-            AddRoomChatMessageList(ntfRoomChat.UserId, ntfRoomChat.Chat);
+            AddRoomChatMessageList(ntfRoomChat.UserInfo.UserId, ntfRoomChat.Chat);
         }
 
         void PacketProcess_MatchResponse(byte[] bodyData)
         {
-            DevLog.Write("매칭 중");
+            var resMatch = new ResMatch();
+            resMatch.MergeFrom(bodyData);
+            if(resMatch.Result == 0)
+            {
+                DevLog.Write("상대가 요청에 수락");
+                DevLog.Write("Game Ready 버튼을 눌러 게임을 시작하세요.");
+            }
+            else
+            {
+                DevLog.Write("상대가 요청에 거절");
+            }
         }
 
+        void PacketProcess_MatchReqNotify(byte[] bodyData)
+        {
+            var ntfMatchReq = new NtfMatchReq();
+            ntfMatchReq.MergeFrom(bodyData);
+
+            DevLog.Write($"매칭 요청 받음: {ntfMatchReq.UserInfo.UserId}");
+
+            OmokClient.PopUp popUp = new();
+            popUp.DataPassEvent += new OmokClient.PopUp.DataPassEventHandler(DataReceiveEvent);
+            popUp.ChangeLabel(ntfMatchReq.UserInfo.UserId);
+            popUp.ShowDialog();
+        }
+
+        
         void PacketProcess_MatchedNotify(byte[] bodyData)
         {
-            var ntfMatched = new NtfMatched();
-            ntfMatched.MergeFrom(bodyData);
+            //var ntfMatched = new NtfMatched();
+            //ntfMatched.MergeFrom(bodyData);
             
-            DevLog.Write($"매칭 완료 \n\n 상대 : {ntfMatched.UserId}\n 준비를 눌러 게임을 시작하십시오.\n");
+            //DevLog.Write($"매칭 완료 \n\n 상대 : {ntfMatched.UserId}\n 준비를 눌러 게임을 시작하십시오.\n");
         }
 
         void AddRoomChatMessageList(string userID, string message)
@@ -213,8 +286,6 @@ namespace csharp_test_client
             listBoxRoomChatMsg.Items.Add($"[{userID}]: {message}");
             listBoxRoomChatMsg.SelectedIndex = listBoxRoomChatMsg.Items.Count - 1;
         }
-
-        
 
         void PacketProcess_ReadyOmokResponse(byte[] bodyData)
         {

@@ -6,7 +6,6 @@ void OmokServer::Init()
 	server_socket_ = server_socket;
 
 	room_manager_.Init();
-	match_manager_.Init();
 	packet_processor_.Init();
 	db_processor_.Init();
 }

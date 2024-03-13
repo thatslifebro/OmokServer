@@ -22,6 +22,9 @@ namespace CSCommon
         public const UInt16 ResRoomLeave = 1106;
         public const UInt16 NtfRoomLeaveUser = 1107;
 
+        public const UInt16 NtfRoomAdmin = 1108;
+        public const UInt16 NtfNewRoomAdmin = 1109;
+
         public const UInt16 ReqRoomChat = 1201;
         public const UInt16 ResRoomChat = 1202;
         public const UInt16 NtfRoomChat = 1203;
@@ -29,6 +32,8 @@ namespace CSCommon
         public const UInt16 ReqMatch = 1301;
         public const UInt16 ResMatch = 1302;
         public const UInt16 NtfMatched = 1303;
+        public const UInt16 NtfMatchReq = 1304;
+        public const UInt16 ReqMatchRes = 1305;
 
         public const UInt16 ReqReadyOmok = 1401;
         public const UInt16 ResReadyOmok = 1402;

@@ -31,9 +31,6 @@
     <ClCompile Include="game.cpp">
       <Filter>game</Filter>
     </ClCompile>
-    <ClCompile Include="match_manager.cpp">
-      <Filter>game</Filter>
-    </ClCompile>
     <ClCompile Include="room.cpp">
       <Filter>room</Filter>
     </ClCompile>
@@ -60,9 +57,6 @@
     <ClInclude Include="packet_processor.h" />
     <ClInclude Include="packet_sender.h" />
     <ClInclude Include="db_processor.h" />
-    <ClInclude Include="match_manager.h">
-      <Filter>game</Filter>
-    </ClInclude>
     <ClInclude Include="game.h">
       <Filter>game</Filter>
     </ClInclude>

@@ -38,3 +38,12 @@ std::vector<uint32_t> RoomManager::GetSessionList(uint16_t room_id)
 	}
 	return room_vec_[room_id-1].GetSessionList();
 }
+
+Room* RoomManager::GetRoom(uint16_t room_id)
+{
+	if (room_id > MAX_ROOM_NUM || room_id < 1)
+	{
+		return nullptr;
+	}
+	return &room_vec_[room_id-1];
+}

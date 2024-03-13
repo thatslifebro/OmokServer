@@ -245,6 +245,7 @@ namespace csharp_test_client
 
             listBoxRoomChatMsg.Items.Clear();
             listBoxRoomUserList.Items.Clear();
+            RoomUserInfo.Clear();
 
             EndGame();
 
@@ -367,10 +368,19 @@ namespace csharp_test_client
 
         private void btnMatching_Click(object sender, EventArgs e)
         {
+            var selectedIndex = listBoxRoomUserList.SelectedIndex;
+            if(selectedIndex < 0)
+            {
+                MessageBox.Show("매칭할 상대를 선택하세요");
+                return;
+            }   
+            var selectedUser = listBoxRoomUserList.Items[listBoxRoomUserList.SelectedIndex];
             var reqMatch = new ReqMatch();
+            var sessionId = RoomUserInfo[selectedUser.ToString()];
+            reqMatch.SessionId = sessionId;
 
             PostSendPacket(PacketID.ReqMatch, reqMatch.ToByteArray());
-            DevLog.Write($"매칭 요청");
+            DevLog.Write($"{selectedUser}");
         }
 
         
@@ -396,10 +406,27 @@ namespace csharp_test_client
             DevLog.Write($"put stone 요청 : x  [ {x} ], y: [ {y} ] ");
         }
 
+        private void DataReceiveEvent(bool accept)
+        {
+            var reqMatchRes = new ReqMatchRes();
+            reqMatchRes.Accept = accept;
+            if (accept)
+            {
+                DevLog.Write("수락하셨습니다.");
+                DevLog.Write("Game Ready 버튼을 눌러 게임을 시작하세요.");
+            }
+            else
+            {
+                DevLog.Write("거절하셨습니다.");
+            }
+
+            PostSendPacket(PacketID.ReqMatchRes, reqMatchRes.ToByteArray());
+        }
+
+
         private void btn_GameStartClick(object sender, EventArgs e)
         {
-            //PostSendPacket(PACKET_ID.GAME_START_REQ, null);
-            StartGame(true, "My", "Other");
+            DevLog.Write("안쓰는 버튼");
         }
 
       
@@ -409,7 +436,7 @@ namespace csharp_test_client
         {
             var reqReadyOmok = new ReqReadyOmok();
             PostSendPacket(PacketID.ReqReadyOmok, reqReadyOmok.ToByteArray());
-            
+
             DevLog.Write($"게임 준비 완료 요청");
         }
     }

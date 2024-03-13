@@ -10,6 +10,8 @@ enum class PacketId
 	ReqRoomLeave = 1105,
 	ResRoomLeave = 1106,
 	NtfRoomLeaveUser = 1107,
+	NtfRoomAdmin = 1108,
+	NtfNewRoomAdmin = 1109,
 
 	ReqRoomChat = 1201,
 	ResRoomChat = 1202,
@@ -18,6 +20,8 @@ enum class PacketId
 	ReqMatch = 1301,
 	ResMatch = 1302,
 	NtfMatched = 1303,
+	NtfMatchReq = 1304,
+	ReqMatchRes = 1305,
 
 	ReqReadyOmok = 1401,
 	ResReadyOmok = 1402,

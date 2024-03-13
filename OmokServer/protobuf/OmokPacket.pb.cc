@@ -68,6 +68,7 @@ PROTOBUF_CONSTEXPR ResRoomEnter::ResRoomEnter(
     ::_pbi::ConstantInitialized): _impl_{
     /*decltype(_impl_._has_bits_)*/{}
   , /*decltype(_impl_._cached_size_)*/{}
+  , /*decltype(_impl_.userinfo_)*/nullptr
   , /*decltype(_impl_.result_)*/0} {}
 struct ResRoomEnterDefaultTypeInternal {
   PROTOBUF_CONSTEXPR ResRoomEnterDefaultTypeInternal()
@@ -78,9 +79,49 @@ struct ResRoomEnterDefaultTypeInternal {
   };
 };
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 ResRoomEnterDefaultTypeInternal _ResRoomEnter_default_instance_;
+PROTOBUF_CONSTEXPR NtfRoomAdmin::NtfRoomAdmin(
+    ::_pbi::ConstantInitialized) {}
+struct NtfRoomAdminDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR NtfRoomAdminDefaultTypeInternal()
+      : _instance(::_pbi::ConstantInitialized{}) {}
+  ~NtfRoomAdminDefaultTypeInternal() {}
+  union {
+    NtfRoomAdmin _instance;
+  };
+};
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 NtfRoomAdminDefaultTypeInternal _NtfRoomAdmin_default_instance_;
+PROTOBUF_CONSTEXPR NtfNewRoomAdmin::NtfNewRoomAdmin(
+    ::_pbi::ConstantInitialized): _impl_{
+    /*decltype(_impl_._has_bits_)*/{}
+  , /*decltype(_impl_._cached_size_)*/{}
+  , /*decltype(_impl_.userinfo_)*/nullptr} {}
+struct NtfNewRoomAdminDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR NtfNewRoomAdminDefaultTypeInternal()
+      : _instance(::_pbi::ConstantInitialized{}) {}
+  ~NtfNewRoomAdminDefaultTypeInternal() {}
+  union {
+    NtfNewRoomAdmin _instance;
+  };
+};
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 NtfNewRoomAdminDefaultTypeInternal _NtfNewRoomAdmin_default_instance_;
+PROTOBUF_CONSTEXPR UserInfo::UserInfo(
+    ::_pbi::ConstantInitialized): _impl_{
+    /*decltype(_impl_._has_bits_)*/{}
+  , /*decltype(_impl_._cached_size_)*/{}
+  , /*decltype(_impl_.userid_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
+  , /*decltype(_impl_.sessionid_)*/0} {}
+struct UserInfoDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR UserInfoDefaultTypeInternal()
+      : _instance(::_pbi::ConstantInitialized{}) {}
+  ~UserInfoDefaultTypeInternal() {}
+  union {
+    UserInfo _instance;
+  };
+};
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 UserInfoDefaultTypeInternal _UserInfo_default_instance_;
 PROTOBUF_CONSTEXPR NtfRoomUserList::NtfRoomUserList(
     ::_pbi::ConstantInitialized): _impl_{
-    /*decltype(_impl_.userid_)*/{}
+    /*decltype(_impl_.userinfo_)*/{}
   , /*decltype(_impl_._cached_size_)*/{}} {}
 struct NtfRoomUserListDefaultTypeInternal {
   PROTOBUF_CONSTEXPR NtfRoomUserListDefaultTypeInternal()
@@ -95,7 +136,7 @@ PROTOBUF_CONSTEXPR NtfRoomNewUser::NtfRoomNewUser(
     ::_pbi::ConstantInitialized): _impl_{
     /*decltype(_impl_._has_bits_)*/{}
   , /*decltype(_impl_._cached_size_)*/{}
-  , /*decltype(_impl_.userid_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}} {}
+  , /*decltype(_impl_.userinfo_)*/nullptr} {}
 struct NtfRoomNewUserDefaultTypeInternal {
   PROTOBUF_CONSTEXPR NtfRoomNewUserDefaultTypeInternal()
       : _instance(::_pbi::ConstantInitialized{}) {}
@@ -134,7 +175,7 @@ PROTOBUF_CONSTEXPR NtfRoomLeaveUser::NtfRoomLeaveUser(
     ::_pbi::ConstantInitialized): _impl_{
     /*decltype(_impl_._has_bits_)*/{}
   , /*decltype(_impl_._cached_size_)*/{}
-  , /*decltype(_impl_.userid_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}} {}
+  , /*decltype(_impl_.userinfo_)*/nullptr} {}
 struct NtfRoomLeaveUserDefaultTypeInternal {
   PROTOBUF_CONSTEXPR NtfRoomLeaveUserDefaultTypeInternal()
       : _instance(::_pbi::ConstantInitialized{}) {}
@@ -177,8 +218,8 @@ PROTOBUF_CONSTEXPR NtfRoomChat::NtfRoomChat(
     ::_pbi::ConstantInitialized): _impl_{
     /*decltype(_impl_._has_bits_)*/{}
   , /*decltype(_impl_._cached_size_)*/{}
-  , /*decltype(_impl_.userid_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
-  , /*decltype(_impl_.chat_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}} {}
+  , /*decltype(_impl_.chat_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
+  , /*decltype(_impl_.userinfo_)*/nullptr} {}
 struct NtfRoomChatDefaultTypeInternal {
   PROTOBUF_CONSTEXPR NtfRoomChatDefaultTypeInternal()
       : _instance(::_pbi::ConstantInitialized{}) {}
@@ -189,7 +230,10 @@ struct NtfRoomChatDefaultTypeInternal {
 };
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 NtfRoomChatDefaultTypeInternal _NtfRoomChat_default_instance_;
 PROTOBUF_CONSTEXPR ReqMatch::ReqMatch(
-    ::_pbi::ConstantInitialized) {}
+    ::_pbi::ConstantInitialized): _impl_{
+    /*decltype(_impl_._has_bits_)*/{}
+  , /*decltype(_impl_._cached_size_)*/{}
+  , /*decltype(_impl_.sessionid_)*/0} {}
 struct ReqMatchDefaultTypeInternal {
   PROTOBUF_CONSTEXPR ReqMatchDefaultTypeInternal()
       : _instance(::_pbi::ConstantInitialized{}) {}
@@ -200,7 +244,10 @@ struct ReqMatchDefaultTypeInternal {
 };
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 ReqMatchDefaultTypeInternal _ReqMatch_default_instance_;
 PROTOBUF_CONSTEXPR ResMatch::ResMatch(
-    ::_pbi::ConstantInitialized) {}
+    ::_pbi::ConstantInitialized): _impl_{
+    /*decltype(_impl_._has_bits_)*/{}
+  , /*decltype(_impl_._cached_size_)*/{}
+  , /*decltype(_impl_.result_)*/0} {}
 struct ResMatchDefaultTypeInternal {
   PROTOBUF_CONSTEXPR ResMatchDefaultTypeInternal()
       : _instance(::_pbi::ConstantInitialized{}) {}
@@ -210,20 +257,34 @@ struct ResMatchDefaultTypeInternal {
   };
 };
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 ResMatchDefaultTypeInternal _ResMatch_default_instance_;
-PROTOBUF_CONSTEXPR NtfMatched::NtfMatched(
+PROTOBUF_CONSTEXPR NtfMatchReq::NtfMatchReq(
     ::_pbi::ConstantInitialized): _impl_{
     /*decltype(_impl_._has_bits_)*/{}
   , /*decltype(_impl_._cached_size_)*/{}
-  , /*decltype(_impl_.userid_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}} {}
-struct NtfMatchedDefaultTypeInternal {
-  PROTOBUF_CONSTEXPR NtfMatchedDefaultTypeInternal()
+  , /*decltype(_impl_.userinfo_)*/nullptr} {}
+struct NtfMatchReqDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR NtfMatchReqDefaultTypeInternal()
       : _instance(::_pbi::ConstantInitialized{}) {}
-  ~NtfMatchedDefaultTypeInternal() {}
+  ~NtfMatchReqDefaultTypeInternal() {}
   union {
-    NtfMatched _instance;
+    NtfMatchReq _instance;
   };
 };
-PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 NtfMatchedDefaultTypeInternal _NtfMatched_default_instance_;
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 NtfMatchReqDefaultTypeInternal _NtfMatchReq_default_instance_;
+PROTOBUF_CONSTEXPR ReqMatchRes::ReqMatchRes(
+    ::_pbi::ConstantInitialized): _impl_{
+    /*decltype(_impl_._has_bits_)*/{}
+  , /*decltype(_impl_._cached_size_)*/{}
+  , /*decltype(_impl_.accept_)*/false} {}
+struct ReqMatchResDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR ReqMatchResDefaultTypeInternal()
+      : _instance(::_pbi::ConstantInitialized{}) {}
+  ~ReqMatchResDefaultTypeInternal() {}
+  union {
+    ReqMatchRes _instance;
+  };
+};
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 ReqMatchResDefaultTypeInternal _ReqMatchRes_default_instance_;
 PROTOBUF_CONSTEXPR ReqReadyOmok::ReqReadyOmok(
     ::_pbi::ConstantInitialized) {}
 struct ReqReadyOmokDefaultTypeInternal {
@@ -321,7 +382,7 @@ struct NtfEndOmokDefaultTypeInternal {
 };
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 NtfEndOmokDefaultTypeInternal _NtfEndOmok_default_instance_;
 }  // namespace OmokPacket
-static ::_pb::Metadata file_level_metadata_OmokPacket_2eproto[22];
+static ::_pb::Metadata file_level_metadata_OmokPacket_2eproto[26];
 static constexpr ::_pb::EnumDescriptor const** file_level_enum_descriptors_OmokPacket_2eproto = nullptr;
 static constexpr ::_pb::ServiceDescriptor const** file_level_service_descriptors_OmokPacket_2eproto = nullptr;
 
@@ -359,21 +420,47 @@ const uint32_t TableStruct_OmokPacket_2eproto::offsets[] PROTOBUF_SECTION_VARIAB
   ~0u,  // no _weak_field_map_
   ~0u,  // no _inlined_string_donated_
   PROTOBUF_FIELD_OFFSET(::OmokPacket::ResRoomEnter, _impl_.result_),
+  PROTOBUF_FIELD_OFFSET(::OmokPacket::ResRoomEnter, _impl_.userinfo_),
+  1,
   0,
+  ~0u,  // no _has_bits_
+  PROTOBUF_FIELD_OFFSET(::OmokPacket::NtfRoomAdmin, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  ~0u,  // no _inlined_string_donated_
+  PROTOBUF_FIELD_OFFSET(::OmokPacket::NtfNewRoomAdmin, _impl_._has_bits_),
+  PROTOBUF_FIELD_OFFSET(::OmokPacket::NtfNewRoomAdmin, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  ~0u,  // no _inlined_string_donated_
+  PROTOBUF_FIELD_OFFSET(::OmokPacket::NtfNewRoomAdmin, _impl_.userinfo_),
+  0,
+  PROTOBUF_FIELD_OFFSET(::OmokPacket::UserInfo, _impl_._has_bits_),
+  PROTOBUF_FIELD_OFFSET(::OmokPacket::UserInfo, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  ~0u,  // no _inlined_string_donated_
+  PROTOBUF_FIELD_OFFSET(::OmokPacket::UserInfo, _impl_.userid_),
+  PROTOBUF_FIELD_OFFSET(::OmokPacket::UserInfo, _impl_.sessionid_),
+  0,
+  1,
   ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::OmokPacket::NtfRoomUserList, _internal_metadata_),
   ~0u,  // no _extensions_
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
   ~0u,  // no _inlined_string_donated_
-  PROTOBUF_FIELD_OFFSET(::OmokPacket::NtfRoomUserList, _impl_.userid_),
+  PROTOBUF_FIELD_OFFSET(::OmokPacket::NtfRoomUserList, _impl_.userinfo_),
   PROTOBUF_FIELD_OFFSET(::OmokPacket::NtfRoomNewUser, _impl_._has_bits_),
   PROTOBUF_FIELD_OFFSET(::OmokPacket::NtfRoomNewUser, _internal_metadata_),
   ~0u,  // no _extensions_
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
   ~0u,  // no _inlined_string_donated_
-  PROTOBUF_FIELD_OFFSET(::OmokPacket::NtfRoomNewUser, _impl_.userid_),
+  PROTOBUF_FIELD_OFFSET(::OmokPacket::NtfRoomNewUser, _impl_.userinfo_),
   0,
   ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::OmokPacket::ReqRoomLeave, _internal_metadata_),
@@ -395,7 +482,7 @@ const uint32_t TableStruct_OmokPacket_2eproto::offsets[] PROTOBUF_SECTION_VARIAB
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
   ~0u,  // no _inlined_string_donated_
-  PROTOBUF_FIELD_OFFSET(::OmokPacket::NtfRoomLeaveUser, _impl_.userid_),
+  PROTOBUF_FIELD_OFFSET(::OmokPacket::NtfRoomLeaveUser, _impl_.userinfo_),
   0,
   PROTOBUF_FIELD_OFFSET(::OmokPacket::ReqRoomChat, _impl_._has_bits_),
   PROTOBUF_FIELD_OFFSET(::OmokPacket::ReqRoomChat, _internal_metadata_),
@@ -421,29 +508,41 @@ const uint32_t TableStruct_OmokPacket_2eproto::offsets[] PROTOBUF_SECTION_VARIAB
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
   ~0u,  // no _inlined_string_donated_
-  PROTOBUF_FIELD_OFFSET(::OmokPacket::NtfRoomChat, _impl_.userid_),
+  PROTOBUF_FIELD_OFFSET(::OmokPacket::NtfRoomChat, _impl_.userinfo_),
   PROTOBUF_FIELD_OFFSET(::OmokPacket::NtfRoomChat, _impl_.chat_),
-  0,
   1,
-  ~0u,  // no _has_bits_
+  0,
+  PROTOBUF_FIELD_OFFSET(::OmokPacket::ReqMatch, _impl_._has_bits_),
   PROTOBUF_FIELD_OFFSET(::OmokPacket::ReqMatch, _internal_metadata_),
   ~0u,  // no _extensions_
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
   ~0u,  // no _inlined_string_donated_
-  ~0u,  // no _has_bits_
+  PROTOBUF_FIELD_OFFSET(::OmokPacket::ReqMatch, _impl_.sessionid_),
+  0,
+  PROTOBUF_FIELD_OFFSET(::OmokPacket::ResMatch, _impl_._has_bits_),
   PROTOBUF_FIELD_OFFSET(::OmokPacket::ResMatch, _internal_metadata_),
   ~0u,  // no _extensions_
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
   ~0u,  // no _inlined_string_donated_
-  PROTOBUF_FIELD_OFFSET(::OmokPacket::NtfMatched, _impl_._has_bits_),
-  PROTOBUF_FIELD_OFFSET(::OmokPacket::NtfMatched, _internal_metadata_),
+  PROTOBUF_FIELD_OFFSET(::OmokPacket::ResMatch, _impl_.result_),
+  0,
+  PROTOBUF_FIELD_OFFSET(::OmokPacket::NtfMatchReq, _impl_._has_bits_),
+  PROTOBUF_FIELD_OFFSET(::OmokPacket::NtfMatchReq, _internal_metadata_),
   ~0u,  // no _extensions_
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
   ~0u,  // no _inlined_string_donated_
-  PROTOBUF_FIELD_OFFSET(::OmokPacket::NtfMatched, _impl_.userid_),
+  PROTOBUF_FIELD_OFFSET(::OmokPacket::NtfMatchReq, _impl_.userinfo_),
+  0,
+  PROTOBUF_FIELD_OFFSET(::OmokPacket::ReqMatchRes, _impl_._has_bits_),
+  PROTOBUF_FIELD_OFFSET(::OmokPacket::ReqMatchRes, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  ~0u,  // no _inlined_string_donated_
+  PROTOBUF_FIELD_OFFSET(::OmokPacket::ReqMatchRes, _impl_.accept_),
   0,
   ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::OmokPacket::ReqReadyOmok, _internal_metadata_),
@@ -510,25 +609,29 @@ static const ::_pbi::MigrationSchema schemas[] PROTOBUF_SECTION_VARIABLE(protode
   { 0, 8, -1, sizeof(::OmokPacket::ReqLogin)},
   { 10, 17, -1, sizeof(::OmokPacket::ResLogin)},
   { 18, 25, -1, sizeof(::OmokPacket::ReqRoomEnter)},
-  { 26, 33, -1, sizeof(::OmokPacket::ResRoomEnter)},
-  { 34, -1, -1, sizeof(::OmokPacket::NtfRoomUserList)},
-  { 41, 48, -1, sizeof(::OmokPacket::NtfRoomNewUser)},
-  { 49, -1, -1, sizeof(::OmokPacket::ReqRoomLeave)},
-  { 55, 62, -1, sizeof(::OmokPacket::ResRoomLeave)},
-  { 63, 70, -1, sizeof(::OmokPacket::NtfRoomLeaveUser)},
-  { 71, 78, -1, sizeof(::OmokPacket::ReqRoomChat)},
-  { 79, 87, -1, sizeof(::OmokPacket::ResRoomChat)},
-  { 89, 97, -1, sizeof(::OmokPacket::NtfRoomChat)},
-  { 99, -1, -1, sizeof(::OmokPacket::ReqMatch)},
-  { 105, -1, -1, sizeof(::OmokPacket::ResMatch)},
-  { 111, 118, -1, sizeof(::OmokPacket::NtfMatched)},
-  { 119, -1, -1, sizeof(::OmokPacket::ReqReadyOmok)},
-  { 125, -1, -1, sizeof(::OmokPacket::ResReadyOmok)},
-  { 131, 140, -1, sizeof(::OmokPacket::NtfStartOmok)},
-  { 143, 151, -1, sizeof(::OmokPacket::ReqPutMok)},
-  { 153, 160, -1, sizeof(::OmokPacket::ResPutMok)},
-  { 161, 169, -1, sizeof(::OmokPacket::NtfPutMok)},
-  { 171, 178, -1, sizeof(::OmokPacket::NtfEndOmok)},
+  { 26, 34, -1, sizeof(::OmokPacket::ResRoomEnter)},
+  { 36, -1, -1, sizeof(::OmokPacket::NtfRoomAdmin)},
+  { 42, 49, -1, sizeof(::OmokPacket::NtfNewRoomAdmin)},
+  { 50, 58, -1, sizeof(::OmokPacket::UserInfo)},
+  { 60, -1, -1, sizeof(::OmokPacket::NtfRoomUserList)},
+  { 67, 74, -1, sizeof(::OmokPacket::NtfRoomNewUser)},
+  { 75, -1, -1, sizeof(::OmokPacket::ReqRoomLeave)},
+  { 81, 88, -1, sizeof(::OmokPacket::ResRoomLeave)},
+  { 89, 96, -1, sizeof(::OmokPacket::NtfRoomLeaveUser)},
+  { 97, 104, -1, sizeof(::OmokPacket::ReqRoomChat)},
+  { 105, 113, -1, sizeof(::OmokPacket::ResRoomChat)},
+  { 115, 123, -1, sizeof(::OmokPacket::NtfRoomChat)},
+  { 125, 132, -1, sizeof(::OmokPacket::ReqMatch)},
+  { 133, 140, -1, sizeof(::OmokPacket::ResMatch)},
+  { 141, 148, -1, sizeof(::OmokPacket::NtfMatchReq)},
+  { 149, 156, -1, sizeof(::OmokPacket::ReqMatchRes)},
+  { 157, -1, -1, sizeof(::OmokPacket::ReqReadyOmok)},
+  { 163, -1, -1, sizeof(::OmokPacket::ResReadyOmok)},
+  { 169, 178, -1, sizeof(::OmokPacket::NtfStartOmok)},
+  { 181, 189, -1, sizeof(::OmokPacket::ReqPutMok)},
+  { 191, 198, -1, sizeof(::OmokPacket::ResPutMok)},
+  { 199, 207, -1, sizeof(::OmokPacket::NtfPutMok)},
+  { 209, 216, -1, sizeof(::OmokPacket::NtfEndOmok)},
 };
 
 static const ::_pb::Message* const file_default_instances[] = {
@@ -536,6 +639,9 @@ static const ::_pb::Message* const file_default_instances[] = {
   &::OmokPacket::_ResLogin_default_instance_._instance,
   &::OmokPacket::_ReqRoomEnter_default_instance_._instance,
   &::OmokPacket::_ResRoomEnter_default_instance_._instance,
+  &::OmokPacket::_NtfRoomAdmin_default_instance_._instance,
+  &::OmokPacket::_NtfNewRoomAdmin_default_instance_._instance,
+  &::OmokPacket::_UserInfo_default_instance_._instance,
   &::OmokPacket::_NtfRoomUserList_default_instance_._instance,
   &::OmokPacket::_NtfRoomNewUser_default_instance_._instance,
   &::OmokPacket::_ReqRoomLeave_default_instance_._instance,
@@ -546,7 +652,8 @@ static const ::_pb::Message* const file_default_instances[] = {
   &::OmokPacket::_NtfRoomChat_default_instance_._instance,
   &::OmokPacket::_ReqMatch_default_instance_._instance,
   &::OmokPacket::_ResMatch_default_instance_._instance,
-  &::OmokPacket::_NtfMatched_default_instance_._instance,
+  &::OmokPacket::_NtfMatchReq_default_instance_._instance,
+  &::OmokPacket::_ReqMatchRes_default_instance_._instance,
   &::OmokPacket::_ReqReadyOmok_default_instance_._instance,
   &::OmokPacket::_ResReadyOmok_default_instance_._instance,
   &::OmokPacket::_NtfStartOmok_default_instance_._instance,
@@ -561,35 +668,47 @@ const char descriptor_table_protodef_OmokPacket_2eproto[] PROTOBUF_SECTION_VARIA
   "in\022\023\n\006userId\030\001 \001(\tH\000\210\001\001\022\017\n\002pw\030\002 \001(\tH\001\210\001\001"
   "B\t\n\007_userIdB\005\n\003_pw\"*\n\010ResLogin\022\023\n\006result"
   "\030\001 \001(\005H\000\210\001\001B\t\n\007_result\".\n\014ReqRoomEnter\022\023"
-  "\n\006roomId\030\001 \001(\005H\000\210\001\001B\t\n\007_roomId\".\n\014ResRoo"
-  "mEnter\022\023\n\006result\030\001 \001(\005H\000\210\001\001B\t\n\007_result\"!"
-  "\n\017NtfRoomUserList\022\016\n\006userId\030\001 \003(\t\"0\n\016Ntf"
-  "RoomNewUser\022\023\n\006userId\030\001 \001(\tH\000\210\001\001B\t\n\007_use"
-  "rId\"\016\n\014ReqRoomLeave\".\n\014ResRoomLeave\022\023\n\006r"
-  "esult\030\001 \001(\005H\000\210\001\001B\t\n\007_result\"2\n\020NtfRoomLe"
-  "aveUser\022\023\n\006userId\030\001 \001(\tH\000\210\001\001B\t\n\007_userId\""
-  ")\n\013ReqRoomChat\022\021\n\004chat\030\001 \001(\tH\000\210\001\001B\007\n\005_ch"
-  "at\"I\n\013ResRoomChat\022\023\n\006result\030\001 \001(\005H\000\210\001\001\022\021"
-  "\n\004chat\030\002 \001(\tH\001\210\001\001B\t\n\007_resultB\007\n\005_chat\"I\n"
-  "\013NtfRoomChat\022\023\n\006userId\030\001 \001(\tH\000\210\001\001\022\021\n\004cha"
-  "t\030\002 \001(\tH\001\210\001\001B\t\n\007_userIdB\007\n\005_chat\"\n\n\010ReqM"
-  "atch\"\n\n\010ResMatch\",\n\nNtfMatched\022\023\n\006userId"
-  "\030\001 \001(\tH\000\210\001\001B\t\n\007_userId\"\016\n\014ReqReadyOmok\"\016"
-  "\n\014ResReadyOmok\"p\n\014NtfStartOmok\022\022\n\005black\030"
-  "\001 \001(\010H\000\210\001\001\022\021\n\004myId\030\002 \001(\tH\001\210\001\001\022\027\n\nopponen"
-  "tId\030\003 \001(\tH\002\210\001\001B\010\n\006_blackB\007\n\005_myIdB\r\n\013_op"
-  "ponentId\"7\n\tReqPutMok\022\016\n\001x\030\001 \001(\005H\000\210\001\001\022\016\n"
-  "\001y\030\002 \001(\005H\001\210\001\001B\004\n\002_xB\004\n\002_y\"+\n\tResPutMok\022\023"
-  "\n\006result\030\001 \001(\005H\000\210\001\001B\t\n\007_result\"7\n\tNtfPut"
-  "Mok\022\016\n\001x\030\001 \001(\005H\000\210\001\001\022\016\n\001y\030\002 \001(\005H\001\210\001\001B\004\n\002_"
-  "xB\004\n\002_y\",\n\nNtfEndOmok\022\023\n\006status\030\001 \001(\005H\000\210"
-  "\001\001B\t\n\007_statusb\006proto3"
+  "\n\006roomId\030\001 \001(\005H\000\210\001\001B\t\n\007_roomId\"h\n\014ResRoo"
+  "mEnter\022\023\n\006result\030\001 \001(\005H\000\210\001\001\022+\n\010userInfo\030"
+  "\002 \001(\0132\024.OmokPacket.UserInfoH\001\210\001\001B\t\n\007_res"
+  "ultB\013\n\t_userInfo\"\016\n\014NtfRoomAdmin\"K\n\017NtfN"
+  "ewRoomAdmin\022+\n\010userInfo\030\001 \001(\0132\024.OmokPack"
+  "et.UserInfoH\000\210\001\001B\013\n\t_userInfo\"P\n\010UserInf"
+  "o\022\023\n\006userId\030\001 \001(\tH\000\210\001\001\022\026\n\tsessionId\030\002 \001("
+  "\005H\001\210\001\001B\t\n\007_userIdB\014\n\n_sessionId\"9\n\017NtfRo"
+  "omUserList\022&\n\010userInfo\030\001 \003(\0132\024.OmokPacke"
+  "t.UserInfo\"J\n\016NtfRoomNewUser\022+\n\010userInfo"
+  "\030\001 \001(\0132\024.OmokPacket.UserInfoH\000\210\001\001B\013\n\t_us"
+  "erInfo\"\016\n\014ReqRoomLeave\".\n\014ResRoomLeave\022\023"
+  "\n\006result\030\001 \001(\005H\000\210\001\001B\t\n\007_result\"L\n\020NtfRoo"
+  "mLeaveUser\022+\n\010userInfo\030\001 \001(\0132\024.OmokPacke"
+  "t.UserInfoH\000\210\001\001B\013\n\t_userInfo\")\n\013ReqRoomC"
+  "hat\022\021\n\004chat\030\001 \001(\tH\000\210\001\001B\007\n\005_chat\"I\n\013ResRo"
+  "omChat\022\023\n\006result\030\001 \001(\005H\000\210\001\001\022\021\n\004chat\030\002 \001("
+  "\tH\001\210\001\001B\t\n\007_resultB\007\n\005_chat\"c\n\013NtfRoomCha"
+  "t\022+\n\010userInfo\030\001 \001(\0132\024.OmokPacket.UserInf"
+  "oH\000\210\001\001\022\021\n\004chat\030\002 \001(\tH\001\210\001\001B\013\n\t_userInfoB\007"
+  "\n\005_chat\"0\n\010ReqMatch\022\026\n\tsessionId\030\001 \001(\005H\000"
+  "\210\001\001B\014\n\n_sessionId\"*\n\010ResMatch\022\023\n\006result\030"
+  "\001 \001(\005H\000\210\001\001B\t\n\007_result\"G\n\013NtfMatchReq\022+\n\010"
+  "userInfo\030\001 \001(\0132\024.OmokPacket.UserInfoH\000\210\001"
+  "\001B\013\n\t_userInfo\"-\n\013ReqMatchRes\022\023\n\006accept\030"
+  "\001 \001(\010H\000\210\001\001B\t\n\007_accept\"\016\n\014ReqReadyOmok\"\016\n"
+  "\014ResReadyOmok\"p\n\014NtfStartOmok\022\022\n\005black\030\001"
+  " \001(\010H\000\210\001\001\022\021\n\004myId\030\002 \001(\tH\001\210\001\001\022\027\n\nopponent"
+  "Id\030\003 \001(\tH\002\210\001\001B\010\n\006_blackB\007\n\005_myIdB\r\n\013_opp"
+  "onentId\"7\n\tReqPutMok\022\016\n\001x\030\001 \001(\005H\000\210\001\001\022\016\n\001"
+  "y\030\002 \001(\005H\001\210\001\001B\004\n\002_xB\004\n\002_y\"+\n\tResPutMok\022\023\n"
+  "\006result\030\001 \001(\005H\000\210\001\001B\t\n\007_result\"7\n\tNtfPutM"
+  "ok\022\016\n\001x\030\001 \001(\005H\000\210\001\001\022\016\n\001y\030\002 \001(\005H\001\210\001\001B\004\n\002_x"
+  "B\004\n\002_y\",\n\nNtfEndOmok\022\023\n\006status\030\001 \001(\005H\000\210\001"
+  "\001B\t\n\007_statusb\006proto3"
   ;
 static ::_pbi::once_flag descriptor_table_OmokPacket_2eproto_once;
 const ::_pbi::DescriptorTable descriptor_table_OmokPacket_2eproto = {
-    false, false, 1061, descriptor_table_protodef_OmokPacket_2eproto,
+    false, false, 1540, descriptor_table_protodef_OmokPacket_2eproto,
     "OmokPacket.proto",
-    &descriptor_table_OmokPacket_2eproto_once, nullptr, 0, 22,
+    &descriptor_table_OmokPacket_2eproto_once, nullptr, 0, 26,
     schemas, file_default_instances, TableStruct_OmokPacket_2eproto::offsets,
     file_level_metadata_OmokPacket_2eproto, file_level_enum_descriptors_OmokPacket_2eproto,
     file_level_service_descriptors_OmokPacket_2eproto,
@@ -1267,10 +1386,18 @@ class ResRoomEnter::_Internal {
  public:
   using HasBits = decltype(std::declval<ResRoomEnter>()._impl_._has_bits_);
   static void set_has_result(HasBits* has_bits) {
+    (*has_bits)[0] |= 2u;
+  }
+  static const ::OmokPacket::UserInfo& userinfo(const ResRoomEnter* msg);
+  static void set_has_userinfo(HasBits* has_bits) {
     (*has_bits)[0] |= 1u;
   }
 };
 
+const ::OmokPacket::UserInfo&
+ResRoomEnter::_Internal::userinfo(const ResRoomEnter* msg) {
+  return *msg->_impl_.userinfo_;
+}
 ResRoomEnter::ResRoomEnter(::PROTOBUF_NAMESPACE_ID::Arena* arena,
                          bool is_message_owned)
   : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
@@ -1283,9 +1410,13 @@ ResRoomEnter::ResRoomEnter(const ResRoomEnter& from)
   new (&_impl_) Impl_{
       decltype(_impl_._has_bits_){from._impl_._has_bits_}
     , /*decltype(_impl_._cached_size_)*/{}
+    , decltype(_impl_.userinfo_){nullptr}
     , decltype(_impl_.result_){}};
 
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  if (from._internal_has_userinfo()) {
+    _this->_impl_.userinfo_ = new ::OmokPacket::UserInfo(*from._impl_.userinfo_);
+  }
   _this->_impl_.result_ = from._impl_.result_;
   // @@protoc_insertion_point(copy_constructor:OmokPacket.ResRoomEnter)
 }
@@ -1297,6 +1428,7 @@ inline void ResRoomEnter::SharedCtor(
   new (&_impl_) Impl_{
       decltype(_impl_._has_bits_){}
     , /*decltype(_impl_._cached_size_)*/{}
+    , decltype(_impl_.userinfo_){nullptr}
     , decltype(_impl_.result_){0}
   };
 }
@@ -1312,6 +1444,7 @@ ResRoomEnter::~ResRoomEnter() {
 
 inline void ResRoomEnter::SharedDtor() {
   GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
+  if (this != internal_default_instance()) delete _impl_.userinfo_;
 }
 
 void ResRoomEnter::SetCachedSize(int size) const {
@@ -1324,6 +1457,11 @@ void ResRoomEnter::Clear() {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
+  cached_has_bits = _impl_._has_bits_[0];
+  if (cached_has_bits & 0x00000001u) {
+    GOOGLE_DCHECK(_impl_.userinfo_ != nullptr);
+    _impl_.userinfo_->Clear();
+  }
   _impl_.result_ = 0;
   _impl_._has_bits_.Clear();
   _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
@@ -1341,6 +1479,14 @@ const char* ResRoomEnter::_InternalParse(const char* ptr, ::_pbi::ParseContext* 
         if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 8)) {
           _Internal::set_has_result(&has_bits);
           _impl_.result_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint32(&ptr);
+          CHK_(ptr);
+        } else
+          goto handle_unusual;
+        continue;
+      // optional .OmokPacket.UserInfo userInfo = 2;
+      case 2:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 18)) {
+          ptr = ctx->ParseMessage(_internal_mutable_userinfo(), ptr);
           CHK_(ptr);
         } else
           goto handle_unusual;
@@ -1381,6 +1527,13 @@ uint8_t* ResRoomEnter::_InternalSerialize(
     target = ::_pbi::WireFormatLite::WriteInt32ToArray(1, this->_internal_result(), target);
   }
 
+  // optional .OmokPacket.UserInfo userInfo = 2;
+  if (_internal_has_userinfo()) {
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
+      InternalWriteMessage(2, _Internal::userinfo(this),
+        _Internal::userinfo(this).GetCachedSize(), target, stream);
+  }
+
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
     target = ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
         _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
@@ -1397,12 +1550,21 @@ size_t ResRoomEnter::ByteSizeLong() const {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  // optional int32 result = 1;
   cached_has_bits = _impl_._has_bits_[0];
-  if (cached_has_bits & 0x00000001u) {
-    total_size += ::_pbi::WireFormatLite::Int32SizePlusOne(this->_internal_result());
-  }
+  if (cached_has_bits & 0x00000003u) {
+    // optional .OmokPacket.UserInfo userInfo = 2;
+    if (cached_has_bits & 0x00000001u) {
+      total_size += 1 +
+        ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
+          *_impl_.userinfo_);
+    }
 
+    // optional int32 result = 1;
+    if (cached_has_bits & 0x00000002u) {
+      total_size += ::_pbi::WireFormatLite::Int32SizePlusOne(this->_internal_result());
+    }
+
+  }
   return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
 }
 
@@ -1421,8 +1583,16 @@ void ResRoomEnter::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::P
   uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
-  if (from._internal_has_result()) {
-    _this->_internal_set_result(from._internal_result());
+  cached_has_bits = from._impl_._has_bits_[0];
+  if (cached_has_bits & 0x00000003u) {
+    if (cached_has_bits & 0x00000001u) {
+      _this->_internal_mutable_userinfo()->::OmokPacket::UserInfo::MergeFrom(
+          from._internal_userinfo());
+    }
+    if (cached_has_bits & 0x00000002u) {
+      _this->_impl_.result_ = from._impl_.result_;
+    }
+    _this->_impl_._has_bits_[0] |= cached_has_bits;
   }
   _this->_internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
 }
@@ -1442,13 +1612,517 @@ void ResRoomEnter::InternalSwap(ResRoomEnter* other) {
   using std::swap;
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
   swap(_impl_._has_bits_[0], other->_impl_._has_bits_[0]);
-  swap(_impl_.result_, other->_impl_.result_);
+  ::PROTOBUF_NAMESPACE_ID::internal::memswap<
+      PROTOBUF_FIELD_OFFSET(ResRoomEnter, _impl_.result_)
+      + sizeof(ResRoomEnter::_impl_.result_)
+      - PROTOBUF_FIELD_OFFSET(ResRoomEnter, _impl_.userinfo_)>(
+          reinterpret_cast<char*>(&_impl_.userinfo_),
+          reinterpret_cast<char*>(&other->_impl_.userinfo_));
 }
 
 ::PROTOBUF_NAMESPACE_ID::Metadata ResRoomEnter::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_OmokPacket_2eproto_getter, &descriptor_table_OmokPacket_2eproto_once,
       file_level_metadata_OmokPacket_2eproto[3]);
+}
+
+// ===================================================================
+
+class NtfRoomAdmin::_Internal {
+ public:
+};
+
+NtfRoomAdmin::NtfRoomAdmin(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                         bool is_message_owned)
+  : ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase(arena, is_message_owned) {
+  // @@protoc_insertion_point(arena_constructor:OmokPacket.NtfRoomAdmin)
+}
+NtfRoomAdmin::NtfRoomAdmin(const NtfRoomAdmin& from)
+  : ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase() {
+  NtfRoomAdmin* const _this = this; (void)_this;
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  // @@protoc_insertion_point(copy_constructor:OmokPacket.NtfRoomAdmin)
+}
+
+
+
+
+
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData NtfRoomAdmin::_class_data_ = {
+    ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase::CopyImpl,
+    ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase::MergeImpl,
+};
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*NtfRoomAdmin::GetClassData() const { return &_class_data_; }
+
+
+
+
+
+
+
+::PROTOBUF_NAMESPACE_ID::Metadata NtfRoomAdmin::GetMetadata() const {
+  return ::_pbi::AssignDescriptors(
+      &descriptor_table_OmokPacket_2eproto_getter, &descriptor_table_OmokPacket_2eproto_once,
+      file_level_metadata_OmokPacket_2eproto[4]);
+}
+
+// ===================================================================
+
+class NtfNewRoomAdmin::_Internal {
+ public:
+  using HasBits = decltype(std::declval<NtfNewRoomAdmin>()._impl_._has_bits_);
+  static const ::OmokPacket::UserInfo& userinfo(const NtfNewRoomAdmin* msg);
+  static void set_has_userinfo(HasBits* has_bits) {
+    (*has_bits)[0] |= 1u;
+  }
+};
+
+const ::OmokPacket::UserInfo&
+NtfNewRoomAdmin::_Internal::userinfo(const NtfNewRoomAdmin* msg) {
+  return *msg->_impl_.userinfo_;
+}
+NtfNewRoomAdmin::NtfNewRoomAdmin(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                         bool is_message_owned)
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
+  SharedCtor(arena, is_message_owned);
+  // @@protoc_insertion_point(arena_constructor:OmokPacket.NtfNewRoomAdmin)
+}
+NtfNewRoomAdmin::NtfNewRoomAdmin(const NtfNewRoomAdmin& from)
+  : ::PROTOBUF_NAMESPACE_ID::Message() {
+  NtfNewRoomAdmin* const _this = this; (void)_this;
+  new (&_impl_) Impl_{
+      decltype(_impl_._has_bits_){from._impl_._has_bits_}
+    , /*decltype(_impl_._cached_size_)*/{}
+    , decltype(_impl_.userinfo_){nullptr}};
+
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  if (from._internal_has_userinfo()) {
+    _this->_impl_.userinfo_ = new ::OmokPacket::UserInfo(*from._impl_.userinfo_);
+  }
+  // @@protoc_insertion_point(copy_constructor:OmokPacket.NtfNewRoomAdmin)
+}
+
+inline void NtfNewRoomAdmin::SharedCtor(
+    ::_pb::Arena* arena, bool is_message_owned) {
+  (void)arena;
+  (void)is_message_owned;
+  new (&_impl_) Impl_{
+      decltype(_impl_._has_bits_){}
+    , /*decltype(_impl_._cached_size_)*/{}
+    , decltype(_impl_.userinfo_){nullptr}
+  };
+}
+
+NtfNewRoomAdmin::~NtfNewRoomAdmin() {
+  // @@protoc_insertion_point(destructor:OmokPacket.NtfNewRoomAdmin)
+  if (auto *arena = _internal_metadata_.DeleteReturnArena<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>()) {
+  (void)arena;
+    return;
+  }
+  SharedDtor();
+}
+
+inline void NtfNewRoomAdmin::SharedDtor() {
+  GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
+  if (this != internal_default_instance()) delete _impl_.userinfo_;
+}
+
+void NtfNewRoomAdmin::SetCachedSize(int size) const {
+  _impl_._cached_size_.Set(size);
+}
+
+void NtfNewRoomAdmin::Clear() {
+// @@protoc_insertion_point(message_clear_start:OmokPacket.NtfNewRoomAdmin)
+  uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  cached_has_bits = _impl_._has_bits_[0];
+  if (cached_has_bits & 0x00000001u) {
+    GOOGLE_DCHECK(_impl_.userinfo_ != nullptr);
+    _impl_.userinfo_->Clear();
+  }
+  _impl_._has_bits_.Clear();
+  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+}
+
+const char* NtfNewRoomAdmin::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) {
+#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
+  _Internal::HasBits has_bits{};
+  while (!ctx->Done(&ptr)) {
+    uint32_t tag;
+    ptr = ::_pbi::ReadTag(ptr, &tag);
+    switch (tag >> 3) {
+      // optional .OmokPacket.UserInfo userInfo = 1;
+      case 1:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 10)) {
+          ptr = ctx->ParseMessage(_internal_mutable_userinfo(), ptr);
+          CHK_(ptr);
+        } else
+          goto handle_unusual;
+        continue;
+      default:
+        goto handle_unusual;
+    }  // switch
+  handle_unusual:
+    if ((tag == 0) || ((tag & 7) == 4)) {
+      CHK_(ptr);
+      ctx->SetLastTag(tag);
+      goto message_done;
+    }
+    ptr = UnknownFieldParse(
+        tag,
+        _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
+        ptr, ctx);
+    CHK_(ptr != nullptr);
+  }  // while
+message_done:
+  _impl_._has_bits_.Or(has_bits);
+  return ptr;
+failure:
+  ptr = nullptr;
+  goto message_done;
+#undef CHK_
+}
+
+uint8_t* NtfNewRoomAdmin::_InternalSerialize(
+    uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:OmokPacket.NtfNewRoomAdmin)
+  uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  // optional .OmokPacket.UserInfo userInfo = 1;
+  if (_internal_has_userinfo()) {
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
+      InternalWriteMessage(1, _Internal::userinfo(this),
+        _Internal::userinfo(this).GetCachedSize(), target, stream);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target = ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:OmokPacket.NtfNewRoomAdmin)
+  return target;
+}
+
+size_t NtfNewRoomAdmin::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:OmokPacket.NtfNewRoomAdmin)
+  size_t total_size = 0;
+
+  uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // optional .OmokPacket.UserInfo userInfo = 1;
+  cached_has_bits = _impl_._has_bits_[0];
+  if (cached_has_bits & 0x00000001u) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
+        *_impl_.userinfo_);
+  }
+
+  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
+}
+
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData NtfNewRoomAdmin::_class_data_ = {
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSourceCheck,
+    NtfNewRoomAdmin::MergeImpl
+};
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*NtfNewRoomAdmin::GetClassData() const { return &_class_data_; }
+
+
+void NtfNewRoomAdmin::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg) {
+  auto* const _this = static_cast<NtfNewRoomAdmin*>(&to_msg);
+  auto& from = static_cast<const NtfNewRoomAdmin&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:OmokPacket.NtfNewRoomAdmin)
+  GOOGLE_DCHECK_NE(&from, _this);
+  uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  if (from._internal_has_userinfo()) {
+    _this->_internal_mutable_userinfo()->::OmokPacket::UserInfo::MergeFrom(
+        from._internal_userinfo());
+  }
+  _this->_internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void NtfNewRoomAdmin::CopyFrom(const NtfNewRoomAdmin& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:OmokPacket.NtfNewRoomAdmin)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+bool NtfNewRoomAdmin::IsInitialized() const {
+  return true;
+}
+
+void NtfNewRoomAdmin::InternalSwap(NtfNewRoomAdmin* other) {
+  using std::swap;
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  swap(_impl_._has_bits_[0], other->_impl_._has_bits_[0]);
+  swap(_impl_.userinfo_, other->_impl_.userinfo_);
+}
+
+::PROTOBUF_NAMESPACE_ID::Metadata NtfNewRoomAdmin::GetMetadata() const {
+  return ::_pbi::AssignDescriptors(
+      &descriptor_table_OmokPacket_2eproto_getter, &descriptor_table_OmokPacket_2eproto_once,
+      file_level_metadata_OmokPacket_2eproto[5]);
+}
+
+// ===================================================================
+
+class UserInfo::_Internal {
+ public:
+  using HasBits = decltype(std::declval<UserInfo>()._impl_._has_bits_);
+  static void set_has_userid(HasBits* has_bits) {
+    (*has_bits)[0] |= 1u;
+  }
+  static void set_has_sessionid(HasBits* has_bits) {
+    (*has_bits)[0] |= 2u;
+  }
+};
+
+UserInfo::UserInfo(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                         bool is_message_owned)
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
+  SharedCtor(arena, is_message_owned);
+  // @@protoc_insertion_point(arena_constructor:OmokPacket.UserInfo)
+}
+UserInfo::UserInfo(const UserInfo& from)
+  : ::PROTOBUF_NAMESPACE_ID::Message() {
+  UserInfo* const _this = this; (void)_this;
+  new (&_impl_) Impl_{
+      decltype(_impl_._has_bits_){from._impl_._has_bits_}
+    , /*decltype(_impl_._cached_size_)*/{}
+    , decltype(_impl_.userid_){}
+    , decltype(_impl_.sessionid_){}};
+
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  _impl_.userid_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    _impl_.userid_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (from._internal_has_userid()) {
+    _this->_impl_.userid_.Set(from._internal_userid(), 
+      _this->GetArenaForAllocation());
+  }
+  _this->_impl_.sessionid_ = from._impl_.sessionid_;
+  // @@protoc_insertion_point(copy_constructor:OmokPacket.UserInfo)
+}
+
+inline void UserInfo::SharedCtor(
+    ::_pb::Arena* arena, bool is_message_owned) {
+  (void)arena;
+  (void)is_message_owned;
+  new (&_impl_) Impl_{
+      decltype(_impl_._has_bits_){}
+    , /*decltype(_impl_._cached_size_)*/{}
+    , decltype(_impl_.userid_){}
+    , decltype(_impl_.sessionid_){0}
+  };
+  _impl_.userid_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    _impl_.userid_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+}
+
+UserInfo::~UserInfo() {
+  // @@protoc_insertion_point(destructor:OmokPacket.UserInfo)
+  if (auto *arena = _internal_metadata_.DeleteReturnArena<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>()) {
+  (void)arena;
+    return;
+  }
+  SharedDtor();
+}
+
+inline void UserInfo::SharedDtor() {
+  GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
+  _impl_.userid_.Destroy();
+}
+
+void UserInfo::SetCachedSize(int size) const {
+  _impl_._cached_size_.Set(size);
+}
+
+void UserInfo::Clear() {
+// @@protoc_insertion_point(message_clear_start:OmokPacket.UserInfo)
+  uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  cached_has_bits = _impl_._has_bits_[0];
+  if (cached_has_bits & 0x00000001u) {
+    _impl_.userid_.ClearNonDefaultToEmpty();
+  }
+  _impl_.sessionid_ = 0;
+  _impl_._has_bits_.Clear();
+  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+}
+
+const char* UserInfo::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) {
+#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
+  _Internal::HasBits has_bits{};
+  while (!ctx->Done(&ptr)) {
+    uint32_t tag;
+    ptr = ::_pbi::ReadTag(ptr, &tag);
+    switch (tag >> 3) {
+      // optional string userId = 1;
+      case 1:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 10)) {
+          auto str = _internal_mutable_userid();
+          ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(ptr);
+          CHK_(::_pbi::VerifyUTF8(str, "OmokPacket.UserInfo.userId"));
+        } else
+          goto handle_unusual;
+        continue;
+      // optional int32 sessionId = 2;
+      case 2:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 16)) {
+          _Internal::set_has_sessionid(&has_bits);
+          _impl_.sessionid_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint32(&ptr);
+          CHK_(ptr);
+        } else
+          goto handle_unusual;
+        continue;
+      default:
+        goto handle_unusual;
+    }  // switch
+  handle_unusual:
+    if ((tag == 0) || ((tag & 7) == 4)) {
+      CHK_(ptr);
+      ctx->SetLastTag(tag);
+      goto message_done;
+    }
+    ptr = UnknownFieldParse(
+        tag,
+        _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
+        ptr, ctx);
+    CHK_(ptr != nullptr);
+  }  // while
+message_done:
+  _impl_._has_bits_.Or(has_bits);
+  return ptr;
+failure:
+  ptr = nullptr;
+  goto message_done;
+#undef CHK_
+}
+
+uint8_t* UserInfo::_InternalSerialize(
+    uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:OmokPacket.UserInfo)
+  uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  // optional string userId = 1;
+  if (_internal_has_userid()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_userid().data(), static_cast<int>(this->_internal_userid().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "OmokPacket.UserInfo.userId");
+    target = stream->WriteStringMaybeAliased(
+        1, this->_internal_userid(), target);
+  }
+
+  // optional int32 sessionId = 2;
+  if (_internal_has_sessionid()) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteInt32ToArray(2, this->_internal_sessionid(), target);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target = ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:OmokPacket.UserInfo)
+  return target;
+}
+
+size_t UserInfo::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:OmokPacket.UserInfo)
+  size_t total_size = 0;
+
+  uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  cached_has_bits = _impl_._has_bits_[0];
+  if (cached_has_bits & 0x00000003u) {
+    // optional string userId = 1;
+    if (cached_has_bits & 0x00000001u) {
+      total_size += 1 +
+        ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+          this->_internal_userid());
+    }
+
+    // optional int32 sessionId = 2;
+    if (cached_has_bits & 0x00000002u) {
+      total_size += ::_pbi::WireFormatLite::Int32SizePlusOne(this->_internal_sessionid());
+    }
+
+  }
+  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
+}
+
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData UserInfo::_class_data_ = {
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSourceCheck,
+    UserInfo::MergeImpl
+};
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*UserInfo::GetClassData() const { return &_class_data_; }
+
+
+void UserInfo::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg) {
+  auto* const _this = static_cast<UserInfo*>(&to_msg);
+  auto& from = static_cast<const UserInfo&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:OmokPacket.UserInfo)
+  GOOGLE_DCHECK_NE(&from, _this);
+  uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  cached_has_bits = from._impl_._has_bits_[0];
+  if (cached_has_bits & 0x00000003u) {
+    if (cached_has_bits & 0x00000001u) {
+      _this->_internal_set_userid(from._internal_userid());
+    }
+    if (cached_has_bits & 0x00000002u) {
+      _this->_impl_.sessionid_ = from._impl_.sessionid_;
+    }
+    _this->_impl_._has_bits_[0] |= cached_has_bits;
+  }
+  _this->_internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void UserInfo::CopyFrom(const UserInfo& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:OmokPacket.UserInfo)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+bool UserInfo::IsInitialized() const {
+  return true;
+}
+
+void UserInfo::InternalSwap(UserInfo* other) {
+  using std::swap;
+  auto* lhs_arena = GetArenaForAllocation();
+  auto* rhs_arena = other->GetArenaForAllocation();
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  swap(_impl_._has_bits_[0], other->_impl_._has_bits_[0]);
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &_impl_.userid_, lhs_arena,
+      &other->_impl_.userid_, rhs_arena
+  );
+  swap(_impl_.sessionid_, other->_impl_.sessionid_);
+}
+
+::PROTOBUF_NAMESPACE_ID::Metadata UserInfo::GetMetadata() const {
+  return ::_pbi::AssignDescriptors(
+      &descriptor_table_OmokPacket_2eproto_getter, &descriptor_table_OmokPacket_2eproto_once,
+      file_level_metadata_OmokPacket_2eproto[6]);
 }
 
 // ===================================================================
@@ -1467,7 +2141,7 @@ NtfRoomUserList::NtfRoomUserList(const NtfRoomUserList& from)
   : ::PROTOBUF_NAMESPACE_ID::Message() {
   NtfRoomUserList* const _this = this; (void)_this;
   new (&_impl_) Impl_{
-      decltype(_impl_.userid_){from._impl_.userid_}
+      decltype(_impl_.userinfo_){from._impl_.userinfo_}
     , /*decltype(_impl_._cached_size_)*/{}};
 
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
@@ -1479,7 +2153,7 @@ inline void NtfRoomUserList::SharedCtor(
   (void)arena;
   (void)is_message_owned;
   new (&_impl_) Impl_{
-      decltype(_impl_.userid_){arena}
+      decltype(_impl_.userinfo_){arena}
     , /*decltype(_impl_._cached_size_)*/{}
   };
 }
@@ -1495,7 +2169,7 @@ NtfRoomUserList::~NtfRoomUserList() {
 
 inline void NtfRoomUserList::SharedDtor() {
   GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
-  _impl_.userid_.~RepeatedPtrField();
+  _impl_.userinfo_.~RepeatedPtrField();
 }
 
 void NtfRoomUserList::SetCachedSize(int size) const {
@@ -1508,7 +2182,7 @@ void NtfRoomUserList::Clear() {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  _impl_.userid_.Clear();
+  _impl_.userinfo_.Clear();
   _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
@@ -1518,16 +2192,14 @@ const char* NtfRoomUserList::_InternalParse(const char* ptr, ::_pbi::ParseContex
     uint32_t tag;
     ptr = ::_pbi::ReadTag(ptr, &tag);
     switch (tag >> 3) {
-      // repeated string userId = 1;
+      // repeated .OmokPacket.UserInfo userInfo = 1;
       case 1:
         if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 10)) {
           ptr -= 1;
           do {
             ptr += 1;
-            auto str = _internal_add_userid();
-            ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
+            ptr = ctx->ParseMessage(_internal_add_userinfo(), ptr);
             CHK_(ptr);
-            CHK_(::_pbi::VerifyUTF8(str, "OmokPacket.NtfRoomUserList.userId"));
             if (!ctx->DataAvailable(ptr)) break;
           } while (::PROTOBUF_NAMESPACE_ID::internal::ExpectTag<10>(ptr));
         } else
@@ -1562,14 +2234,12 @@ uint8_t* NtfRoomUserList::_InternalSerialize(
   uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
-  // repeated string userId = 1;
-  for (int i = 0, n = this->_internal_userid_size(); i < n; i++) {
-    const auto& s = this->_internal_userid(i);
-    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
-      s.data(), static_cast<int>(s.length()),
-      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
-      "OmokPacket.NtfRoomUserList.userId");
-    target = stream->WriteString(1, s, target);
+  // repeated .OmokPacket.UserInfo userInfo = 1;
+  for (unsigned i = 0,
+      n = static_cast<unsigned>(this->_internal_userinfo_size()); i < n; i++) {
+    const auto& repfield = this->_internal_userinfo(i);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
+        InternalWriteMessage(1, repfield, repfield.GetCachedSize(), target, stream);
   }
 
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
@@ -1588,12 +2258,11 @@ size_t NtfRoomUserList::ByteSizeLong() const {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  // repeated string userId = 1;
-  total_size += 1 *
-      ::PROTOBUF_NAMESPACE_ID::internal::FromIntSize(_impl_.userid_.size());
-  for (int i = 0, n = _impl_.userid_.size(); i < n; i++) {
-    total_size += ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
-      _impl_.userid_.Get(i));
+  // repeated .OmokPacket.UserInfo userInfo = 1;
+  total_size += 1UL * this->_internal_userinfo_size();
+  for (const auto& msg : this->_impl_.userinfo_) {
+    total_size +=
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(msg);
   }
 
   return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
@@ -1614,7 +2283,7 @@ void NtfRoomUserList::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const 
   uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
-  _this->_impl_.userid_.MergeFrom(from._impl_.userid_);
+  _this->_impl_.userinfo_.MergeFrom(from._impl_.userinfo_);
   _this->_internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
 }
 
@@ -1632,13 +2301,13 @@ bool NtfRoomUserList::IsInitialized() const {
 void NtfRoomUserList::InternalSwap(NtfRoomUserList* other) {
   using std::swap;
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
-  _impl_.userid_.InternalSwap(&other->_impl_.userid_);
+  _impl_.userinfo_.InternalSwap(&other->_impl_.userinfo_);
 }
 
 ::PROTOBUF_NAMESPACE_ID::Metadata NtfRoomUserList::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_OmokPacket_2eproto_getter, &descriptor_table_OmokPacket_2eproto_once,
-      file_level_metadata_OmokPacket_2eproto[4]);
+      file_level_metadata_OmokPacket_2eproto[7]);
 }
 
 // ===================================================================
@@ -1646,11 +2315,16 @@ void NtfRoomUserList::InternalSwap(NtfRoomUserList* other) {
 class NtfRoomNewUser::_Internal {
  public:
   using HasBits = decltype(std::declval<NtfRoomNewUser>()._impl_._has_bits_);
-  static void set_has_userid(HasBits* has_bits) {
+  static const ::OmokPacket::UserInfo& userinfo(const NtfRoomNewUser* msg);
+  static void set_has_userinfo(HasBits* has_bits) {
     (*has_bits)[0] |= 1u;
   }
 };
 
+const ::OmokPacket::UserInfo&
+NtfRoomNewUser::_Internal::userinfo(const NtfRoomNewUser* msg) {
+  return *msg->_impl_.userinfo_;
+}
 NtfRoomNewUser::NtfRoomNewUser(::PROTOBUF_NAMESPACE_ID::Arena* arena,
                          bool is_message_owned)
   : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
@@ -1663,16 +2337,11 @@ NtfRoomNewUser::NtfRoomNewUser(const NtfRoomNewUser& from)
   new (&_impl_) Impl_{
       decltype(_impl_._has_bits_){from._impl_._has_bits_}
     , /*decltype(_impl_._cached_size_)*/{}
-    , decltype(_impl_.userid_){}};
+    , decltype(_impl_.userinfo_){nullptr}};
 
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
-  _impl_.userid_.InitDefault();
-  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-    _impl_.userid_.Set("", GetArenaForAllocation());
-  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  if (from._internal_has_userid()) {
-    _this->_impl_.userid_.Set(from._internal_userid(), 
-      _this->GetArenaForAllocation());
+  if (from._internal_has_userinfo()) {
+    _this->_impl_.userinfo_ = new ::OmokPacket::UserInfo(*from._impl_.userinfo_);
   }
   // @@protoc_insertion_point(copy_constructor:OmokPacket.NtfRoomNewUser)
 }
@@ -1684,12 +2353,8 @@ inline void NtfRoomNewUser::SharedCtor(
   new (&_impl_) Impl_{
       decltype(_impl_._has_bits_){}
     , /*decltype(_impl_._cached_size_)*/{}
-    , decltype(_impl_.userid_){}
+    , decltype(_impl_.userinfo_){nullptr}
   };
-  _impl_.userid_.InitDefault();
-  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-    _impl_.userid_.Set("", GetArenaForAllocation());
-  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
 }
 
 NtfRoomNewUser::~NtfRoomNewUser() {
@@ -1703,7 +2368,7 @@ NtfRoomNewUser::~NtfRoomNewUser() {
 
 inline void NtfRoomNewUser::SharedDtor() {
   GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
-  _impl_.userid_.Destroy();
+  if (this != internal_default_instance()) delete _impl_.userinfo_;
 }
 
 void NtfRoomNewUser::SetCachedSize(int size) const {
@@ -1718,7 +2383,8 @@ void NtfRoomNewUser::Clear() {
 
   cached_has_bits = _impl_._has_bits_[0];
   if (cached_has_bits & 0x00000001u) {
-    _impl_.userid_.ClearNonDefaultToEmpty();
+    GOOGLE_DCHECK(_impl_.userinfo_ != nullptr);
+    _impl_.userinfo_->Clear();
   }
   _impl_._has_bits_.Clear();
   _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
@@ -1731,13 +2397,11 @@ const char* NtfRoomNewUser::_InternalParse(const char* ptr, ::_pbi::ParseContext
     uint32_t tag;
     ptr = ::_pbi::ReadTag(ptr, &tag);
     switch (tag >> 3) {
-      // optional string userId = 1;
+      // optional .OmokPacket.UserInfo userInfo = 1;
       case 1:
         if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 10)) {
-          auto str = _internal_mutable_userid();
-          ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
+          ptr = ctx->ParseMessage(_internal_mutable_userinfo(), ptr);
           CHK_(ptr);
-          CHK_(::_pbi::VerifyUTF8(str, "OmokPacket.NtfRoomNewUser.userId"));
         } else
           goto handle_unusual;
         continue;
@@ -1771,14 +2435,11 @@ uint8_t* NtfRoomNewUser::_InternalSerialize(
   uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
-  // optional string userId = 1;
-  if (_internal_has_userid()) {
-    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
-      this->_internal_userid().data(), static_cast<int>(this->_internal_userid().length()),
-      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
-      "OmokPacket.NtfRoomNewUser.userId");
-    target = stream->WriteStringMaybeAliased(
-        1, this->_internal_userid(), target);
+  // optional .OmokPacket.UserInfo userInfo = 1;
+  if (_internal_has_userinfo()) {
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
+      InternalWriteMessage(1, _Internal::userinfo(this),
+        _Internal::userinfo(this).GetCachedSize(), target, stream);
   }
 
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
@@ -1797,12 +2458,12 @@ size_t NtfRoomNewUser::ByteSizeLong() const {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  // optional string userId = 1;
+  // optional .OmokPacket.UserInfo userInfo = 1;
   cached_has_bits = _impl_._has_bits_[0];
   if (cached_has_bits & 0x00000001u) {
     total_size += 1 +
-      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
-        this->_internal_userid());
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
+        *_impl_.userinfo_);
   }
 
   return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
@@ -1823,8 +2484,9 @@ void NtfRoomNewUser::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const :
   uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
-  if (from._internal_has_userid()) {
-    _this->_internal_set_userid(from._internal_userid());
+  if (from._internal_has_userinfo()) {
+    _this->_internal_mutable_userinfo()->::OmokPacket::UserInfo::MergeFrom(
+        from._internal_userinfo());
   }
   _this->_internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
 }
@@ -1842,20 +2504,15 @@ bool NtfRoomNewUser::IsInitialized() const {
 
 void NtfRoomNewUser::InternalSwap(NtfRoomNewUser* other) {
   using std::swap;
-  auto* lhs_arena = GetArenaForAllocation();
-  auto* rhs_arena = other->GetArenaForAllocation();
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
   swap(_impl_._has_bits_[0], other->_impl_._has_bits_[0]);
-  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
-      &_impl_.userid_, lhs_arena,
-      &other->_impl_.userid_, rhs_arena
-  );
+  swap(_impl_.userinfo_, other->_impl_.userinfo_);
 }
 
 ::PROTOBUF_NAMESPACE_ID::Metadata NtfRoomNewUser::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_OmokPacket_2eproto_getter, &descriptor_table_OmokPacket_2eproto_once,
-      file_level_metadata_OmokPacket_2eproto[5]);
+      file_level_metadata_OmokPacket_2eproto[8]);
 }
 
 // ===================================================================
@@ -1895,7 +2552,7 @@ const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*ReqRoomLeave::GetClassData() c
 ::PROTOBUF_NAMESPACE_ID::Metadata ReqRoomLeave::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_OmokPacket_2eproto_getter, &descriptor_table_OmokPacket_2eproto_once,
-      file_level_metadata_OmokPacket_2eproto[6]);
+      file_level_metadata_OmokPacket_2eproto[9]);
 }
 
 // ===================================================================
@@ -2085,7 +2742,7 @@ void ResRoomLeave::InternalSwap(ResRoomLeave* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata ResRoomLeave::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_OmokPacket_2eproto_getter, &descriptor_table_OmokPacket_2eproto_once,
-      file_level_metadata_OmokPacket_2eproto[7]);
+      file_level_metadata_OmokPacket_2eproto[10]);
 }
 
 // ===================================================================
@@ -2093,11 +2750,16 @@ void ResRoomLeave::InternalSwap(ResRoomLeave* other) {
 class NtfRoomLeaveUser::_Internal {
  public:
   using HasBits = decltype(std::declval<NtfRoomLeaveUser>()._impl_._has_bits_);
-  static void set_has_userid(HasBits* has_bits) {
+  static const ::OmokPacket::UserInfo& userinfo(const NtfRoomLeaveUser* msg);
+  static void set_has_userinfo(HasBits* has_bits) {
     (*has_bits)[0] |= 1u;
   }
 };
 
+const ::OmokPacket::UserInfo&
+NtfRoomLeaveUser::_Internal::userinfo(const NtfRoomLeaveUser* msg) {
+  return *msg->_impl_.userinfo_;
+}
 NtfRoomLeaveUser::NtfRoomLeaveUser(::PROTOBUF_NAMESPACE_ID::Arena* arena,
                          bool is_message_owned)
   : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
@@ -2110,16 +2772,11 @@ NtfRoomLeaveUser::NtfRoomLeaveUser(const NtfRoomLeaveUser& from)
   new (&_impl_) Impl_{
       decltype(_impl_._has_bits_){from._impl_._has_bits_}
     , /*decltype(_impl_._cached_size_)*/{}
-    , decltype(_impl_.userid_){}};
+    , decltype(_impl_.userinfo_){nullptr}};
 
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
-  _impl_.userid_.InitDefault();
-  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-    _impl_.userid_.Set("", GetArenaForAllocation());
-  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  if (from._internal_has_userid()) {
-    _this->_impl_.userid_.Set(from._internal_userid(), 
-      _this->GetArenaForAllocation());
+  if (from._internal_has_userinfo()) {
+    _this->_impl_.userinfo_ = new ::OmokPacket::UserInfo(*from._impl_.userinfo_);
   }
   // @@protoc_insertion_point(copy_constructor:OmokPacket.NtfRoomLeaveUser)
 }
@@ -2131,12 +2788,8 @@ inline void NtfRoomLeaveUser::SharedCtor(
   new (&_impl_) Impl_{
       decltype(_impl_._has_bits_){}
     , /*decltype(_impl_._cached_size_)*/{}
-    , decltype(_impl_.userid_){}
+    , decltype(_impl_.userinfo_){nullptr}
   };
-  _impl_.userid_.InitDefault();
-  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-    _impl_.userid_.Set("", GetArenaForAllocation());
-  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
 }
 
 NtfRoomLeaveUser::~NtfRoomLeaveUser() {
@@ -2150,7 +2803,7 @@ NtfRoomLeaveUser::~NtfRoomLeaveUser() {
 
 inline void NtfRoomLeaveUser::SharedDtor() {
   GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
-  _impl_.userid_.Destroy();
+  if (this != internal_default_instance()) delete _impl_.userinfo_;
 }
 
 void NtfRoomLeaveUser::SetCachedSize(int size) const {
@@ -2165,7 +2818,8 @@ void NtfRoomLeaveUser::Clear() {
 
   cached_has_bits = _impl_._has_bits_[0];
   if (cached_has_bits & 0x00000001u) {
-    _impl_.userid_.ClearNonDefaultToEmpty();
+    GOOGLE_DCHECK(_impl_.userinfo_ != nullptr);
+    _impl_.userinfo_->Clear();
   }
   _impl_._has_bits_.Clear();
   _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
@@ -2178,13 +2832,11 @@ const char* NtfRoomLeaveUser::_InternalParse(const char* ptr, ::_pbi::ParseConte
     uint32_t tag;
     ptr = ::_pbi::ReadTag(ptr, &tag);
     switch (tag >> 3) {
-      // optional string userId = 1;
+      // optional .OmokPacket.UserInfo userInfo = 1;
       case 1:
         if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 10)) {
-          auto str = _internal_mutable_userid();
-          ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
+          ptr = ctx->ParseMessage(_internal_mutable_userinfo(), ptr);
           CHK_(ptr);
-          CHK_(::_pbi::VerifyUTF8(str, "OmokPacket.NtfRoomLeaveUser.userId"));
         } else
           goto handle_unusual;
         continue;
@@ -2218,14 +2870,11 @@ uint8_t* NtfRoomLeaveUser::_InternalSerialize(
   uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
-  // optional string userId = 1;
-  if (_internal_has_userid()) {
-    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
-      this->_internal_userid().data(), static_cast<int>(this->_internal_userid().length()),
-      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
-      "OmokPacket.NtfRoomLeaveUser.userId");
-    target = stream->WriteStringMaybeAliased(
-        1, this->_internal_userid(), target);
+  // optional .OmokPacket.UserInfo userInfo = 1;
+  if (_internal_has_userinfo()) {
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
+      InternalWriteMessage(1, _Internal::userinfo(this),
+        _Internal::userinfo(this).GetCachedSize(), target, stream);
   }
 
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
@@ -2244,12 +2893,12 @@ size_t NtfRoomLeaveUser::ByteSizeLong() const {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  // optional string userId = 1;
+  // optional .OmokPacket.UserInfo userInfo = 1;
   cached_has_bits = _impl_._has_bits_[0];
   if (cached_has_bits & 0x00000001u) {
     total_size += 1 +
-      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
-        this->_internal_userid());
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
+        *_impl_.userinfo_);
   }
 
   return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
@@ -2270,8 +2919,9 @@ void NtfRoomLeaveUser::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const
   uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
-  if (from._internal_has_userid()) {
-    _this->_internal_set_userid(from._internal_userid());
+  if (from._internal_has_userinfo()) {
+    _this->_internal_mutable_userinfo()->::OmokPacket::UserInfo::MergeFrom(
+        from._internal_userinfo());
   }
   _this->_internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
 }
@@ -2289,20 +2939,15 @@ bool NtfRoomLeaveUser::IsInitialized() const {
 
 void NtfRoomLeaveUser::InternalSwap(NtfRoomLeaveUser* other) {
   using std::swap;
-  auto* lhs_arena = GetArenaForAllocation();
-  auto* rhs_arena = other->GetArenaForAllocation();
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
   swap(_impl_._has_bits_[0], other->_impl_._has_bits_[0]);
-  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
-      &_impl_.userid_, lhs_arena,
-      &other->_impl_.userid_, rhs_arena
-  );
+  swap(_impl_.userinfo_, other->_impl_.userinfo_);
 }
 
 ::PROTOBUF_NAMESPACE_ID::Metadata NtfRoomLeaveUser::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_OmokPacket_2eproto_getter, &descriptor_table_OmokPacket_2eproto_once,
-      file_level_metadata_OmokPacket_2eproto[8]);
+      file_level_metadata_OmokPacket_2eproto[11]);
 }
 
 // ===================================================================
@@ -2519,7 +3164,7 @@ void ReqRoomChat::InternalSwap(ReqRoomChat* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata ReqRoomChat::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_OmokPacket_2eproto_getter, &descriptor_table_OmokPacket_2eproto_once,
-      file_level_metadata_OmokPacket_2eproto[9]);
+      file_level_metadata_OmokPacket_2eproto[12]);
 }
 
 // ===================================================================
@@ -2773,7 +3418,7 @@ void ResRoomChat::InternalSwap(ResRoomChat* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata ResRoomChat::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_OmokPacket_2eproto_getter, &descriptor_table_OmokPacket_2eproto_once,
-      file_level_metadata_OmokPacket_2eproto[10]);
+      file_level_metadata_OmokPacket_2eproto[13]);
 }
 
 // ===================================================================
@@ -2781,14 +3426,19 @@ void ResRoomChat::InternalSwap(ResRoomChat* other) {
 class NtfRoomChat::_Internal {
  public:
   using HasBits = decltype(std::declval<NtfRoomChat>()._impl_._has_bits_);
-  static void set_has_userid(HasBits* has_bits) {
-    (*has_bits)[0] |= 1u;
+  static const ::OmokPacket::UserInfo& userinfo(const NtfRoomChat* msg);
+  static void set_has_userinfo(HasBits* has_bits) {
+    (*has_bits)[0] |= 2u;
   }
   static void set_has_chat(HasBits* has_bits) {
-    (*has_bits)[0] |= 2u;
+    (*has_bits)[0] |= 1u;
   }
 };
 
+const ::OmokPacket::UserInfo&
+NtfRoomChat::_Internal::userinfo(const NtfRoomChat* msg) {
+  return *msg->_impl_.userinfo_;
+}
 NtfRoomChat::NtfRoomChat(::PROTOBUF_NAMESPACE_ID::Arena* arena,
                          bool is_message_owned)
   : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
@@ -2801,18 +3451,10 @@ NtfRoomChat::NtfRoomChat(const NtfRoomChat& from)
   new (&_impl_) Impl_{
       decltype(_impl_._has_bits_){from._impl_._has_bits_}
     , /*decltype(_impl_._cached_size_)*/{}
-    , decltype(_impl_.userid_){}
-    , decltype(_impl_.chat_){}};
+    , decltype(_impl_.chat_){}
+    , decltype(_impl_.userinfo_){nullptr}};
 
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
-  _impl_.userid_.InitDefault();
-  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-    _impl_.userid_.Set("", GetArenaForAllocation());
-  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  if (from._internal_has_userid()) {
-    _this->_impl_.userid_.Set(from._internal_userid(), 
-      _this->GetArenaForAllocation());
-  }
   _impl_.chat_.InitDefault();
   #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
     _impl_.chat_.Set("", GetArenaForAllocation());
@@ -2820,6 +3462,9 @@ NtfRoomChat::NtfRoomChat(const NtfRoomChat& from)
   if (from._internal_has_chat()) {
     _this->_impl_.chat_.Set(from._internal_chat(), 
       _this->GetArenaForAllocation());
+  }
+  if (from._internal_has_userinfo()) {
+    _this->_impl_.userinfo_ = new ::OmokPacket::UserInfo(*from._impl_.userinfo_);
   }
   // @@protoc_insertion_point(copy_constructor:OmokPacket.NtfRoomChat)
 }
@@ -2831,13 +3476,9 @@ inline void NtfRoomChat::SharedCtor(
   new (&_impl_) Impl_{
       decltype(_impl_._has_bits_){}
     , /*decltype(_impl_._cached_size_)*/{}
-    , decltype(_impl_.userid_){}
     , decltype(_impl_.chat_){}
+    , decltype(_impl_.userinfo_){nullptr}
   };
-  _impl_.userid_.InitDefault();
-  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-    _impl_.userid_.Set("", GetArenaForAllocation());
-  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
   _impl_.chat_.InitDefault();
   #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
     _impl_.chat_.Set("", GetArenaForAllocation());
@@ -2855,8 +3496,8 @@ NtfRoomChat::~NtfRoomChat() {
 
 inline void NtfRoomChat::SharedDtor() {
   GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
-  _impl_.userid_.Destroy();
   _impl_.chat_.Destroy();
+  if (this != internal_default_instance()) delete _impl_.userinfo_;
 }
 
 void NtfRoomChat::SetCachedSize(int size) const {
@@ -2872,10 +3513,11 @@ void NtfRoomChat::Clear() {
   cached_has_bits = _impl_._has_bits_[0];
   if (cached_has_bits & 0x00000003u) {
     if (cached_has_bits & 0x00000001u) {
-      _impl_.userid_.ClearNonDefaultToEmpty();
+      _impl_.chat_.ClearNonDefaultToEmpty();
     }
     if (cached_has_bits & 0x00000002u) {
-      _impl_.chat_.ClearNonDefaultToEmpty();
+      GOOGLE_DCHECK(_impl_.userinfo_ != nullptr);
+      _impl_.userinfo_->Clear();
     }
   }
   _impl_._has_bits_.Clear();
@@ -2889,13 +3531,11 @@ const char* NtfRoomChat::_InternalParse(const char* ptr, ::_pbi::ParseContext* c
     uint32_t tag;
     ptr = ::_pbi::ReadTag(ptr, &tag);
     switch (tag >> 3) {
-      // optional string userId = 1;
+      // optional .OmokPacket.UserInfo userInfo = 1;
       case 1:
         if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 10)) {
-          auto str = _internal_mutable_userid();
-          ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
+          ptr = ctx->ParseMessage(_internal_mutable_userinfo(), ptr);
           CHK_(ptr);
-          CHK_(::_pbi::VerifyUTF8(str, "OmokPacket.NtfRoomChat.userId"));
         } else
           goto handle_unusual;
         continue;
@@ -2939,14 +3579,11 @@ uint8_t* NtfRoomChat::_InternalSerialize(
   uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
-  // optional string userId = 1;
-  if (_internal_has_userid()) {
-    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
-      this->_internal_userid().data(), static_cast<int>(this->_internal_userid().length()),
-      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
-      "OmokPacket.NtfRoomChat.userId");
-    target = stream->WriteStringMaybeAliased(
-        1, this->_internal_userid(), target);
+  // optional .OmokPacket.UserInfo userInfo = 1;
+  if (_internal_has_userinfo()) {
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
+      InternalWriteMessage(1, _Internal::userinfo(this),
+        _Internal::userinfo(this).GetCachedSize(), target, stream);
   }
 
   // optional string chat = 2;
@@ -2977,18 +3614,18 @@ size_t NtfRoomChat::ByteSizeLong() const {
 
   cached_has_bits = _impl_._has_bits_[0];
   if (cached_has_bits & 0x00000003u) {
-    // optional string userId = 1;
+    // optional string chat = 2;
     if (cached_has_bits & 0x00000001u) {
       total_size += 1 +
         ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
-          this->_internal_userid());
+          this->_internal_chat());
     }
 
-    // optional string chat = 2;
+    // optional .OmokPacket.UserInfo userInfo = 1;
     if (cached_has_bits & 0x00000002u) {
       total_size += 1 +
-        ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
-          this->_internal_chat());
+        ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
+          *_impl_.userinfo_);
     }
 
   }
@@ -3013,10 +3650,11 @@ void NtfRoomChat::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PR
   cached_has_bits = from._impl_._has_bits_[0];
   if (cached_has_bits & 0x00000003u) {
     if (cached_has_bits & 0x00000001u) {
-      _this->_internal_set_userid(from._internal_userid());
+      _this->_internal_set_chat(from._internal_chat());
     }
     if (cached_has_bits & 0x00000002u) {
-      _this->_internal_set_chat(from._internal_chat());
+      _this->_internal_mutable_userinfo()->::OmokPacket::UserInfo::MergeFrom(
+          from._internal_userinfo());
     }
   }
   _this->_internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
@@ -3040,154 +3678,60 @@ void NtfRoomChat::InternalSwap(NtfRoomChat* other) {
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
   swap(_impl_._has_bits_[0], other->_impl_._has_bits_[0]);
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
-      &_impl_.userid_, lhs_arena,
-      &other->_impl_.userid_, rhs_arena
-  );
-  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
       &_impl_.chat_, lhs_arena,
       &other->_impl_.chat_, rhs_arena
   );
+  swap(_impl_.userinfo_, other->_impl_.userinfo_);
 }
 
 ::PROTOBUF_NAMESPACE_ID::Metadata NtfRoomChat::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_OmokPacket_2eproto_getter, &descriptor_table_OmokPacket_2eproto_once,
-      file_level_metadata_OmokPacket_2eproto[11]);
+      file_level_metadata_OmokPacket_2eproto[14]);
 }
 
 // ===================================================================
 
 class ReqMatch::_Internal {
  public:
-};
-
-ReqMatch::ReqMatch(::PROTOBUF_NAMESPACE_ID::Arena* arena,
-                         bool is_message_owned)
-  : ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase(arena, is_message_owned) {
-  // @@protoc_insertion_point(arena_constructor:OmokPacket.ReqMatch)
-}
-ReqMatch::ReqMatch(const ReqMatch& from)
-  : ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase() {
-  ReqMatch* const _this = this; (void)_this;
-  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
-  // @@protoc_insertion_point(copy_constructor:OmokPacket.ReqMatch)
-}
-
-
-
-
-
-const ::PROTOBUF_NAMESPACE_ID::Message::ClassData ReqMatch::_class_data_ = {
-    ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase::CopyImpl,
-    ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase::MergeImpl,
-};
-const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*ReqMatch::GetClassData() const { return &_class_data_; }
-
-
-
-
-
-
-
-::PROTOBUF_NAMESPACE_ID::Metadata ReqMatch::GetMetadata() const {
-  return ::_pbi::AssignDescriptors(
-      &descriptor_table_OmokPacket_2eproto_getter, &descriptor_table_OmokPacket_2eproto_once,
-      file_level_metadata_OmokPacket_2eproto[12]);
-}
-
-// ===================================================================
-
-class ResMatch::_Internal {
- public:
-};
-
-ResMatch::ResMatch(::PROTOBUF_NAMESPACE_ID::Arena* arena,
-                         bool is_message_owned)
-  : ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase(arena, is_message_owned) {
-  // @@protoc_insertion_point(arena_constructor:OmokPacket.ResMatch)
-}
-ResMatch::ResMatch(const ResMatch& from)
-  : ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase() {
-  ResMatch* const _this = this; (void)_this;
-  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
-  // @@protoc_insertion_point(copy_constructor:OmokPacket.ResMatch)
-}
-
-
-
-
-
-const ::PROTOBUF_NAMESPACE_ID::Message::ClassData ResMatch::_class_data_ = {
-    ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase::CopyImpl,
-    ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase::MergeImpl,
-};
-const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*ResMatch::GetClassData() const { return &_class_data_; }
-
-
-
-
-
-
-
-::PROTOBUF_NAMESPACE_ID::Metadata ResMatch::GetMetadata() const {
-  return ::_pbi::AssignDescriptors(
-      &descriptor_table_OmokPacket_2eproto_getter, &descriptor_table_OmokPacket_2eproto_once,
-      file_level_metadata_OmokPacket_2eproto[13]);
-}
-
-// ===================================================================
-
-class NtfMatched::_Internal {
- public:
-  using HasBits = decltype(std::declval<NtfMatched>()._impl_._has_bits_);
-  static void set_has_userid(HasBits* has_bits) {
+  using HasBits = decltype(std::declval<ReqMatch>()._impl_._has_bits_);
+  static void set_has_sessionid(HasBits* has_bits) {
     (*has_bits)[0] |= 1u;
   }
 };
 
-NtfMatched::NtfMatched(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+ReqMatch::ReqMatch(::PROTOBUF_NAMESPACE_ID::Arena* arena,
                          bool is_message_owned)
   : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
   SharedCtor(arena, is_message_owned);
-  // @@protoc_insertion_point(arena_constructor:OmokPacket.NtfMatched)
+  // @@protoc_insertion_point(arena_constructor:OmokPacket.ReqMatch)
 }
-NtfMatched::NtfMatched(const NtfMatched& from)
+ReqMatch::ReqMatch(const ReqMatch& from)
   : ::PROTOBUF_NAMESPACE_ID::Message() {
-  NtfMatched* const _this = this; (void)_this;
+  ReqMatch* const _this = this; (void)_this;
   new (&_impl_) Impl_{
       decltype(_impl_._has_bits_){from._impl_._has_bits_}
     , /*decltype(_impl_._cached_size_)*/{}
-    , decltype(_impl_.userid_){}};
+    , decltype(_impl_.sessionid_){}};
 
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
-  _impl_.userid_.InitDefault();
-  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-    _impl_.userid_.Set("", GetArenaForAllocation());
-  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  if (from._internal_has_userid()) {
-    _this->_impl_.userid_.Set(from._internal_userid(), 
-      _this->GetArenaForAllocation());
-  }
-  // @@protoc_insertion_point(copy_constructor:OmokPacket.NtfMatched)
+  _this->_impl_.sessionid_ = from._impl_.sessionid_;
+  // @@protoc_insertion_point(copy_constructor:OmokPacket.ReqMatch)
 }
 
-inline void NtfMatched::SharedCtor(
+inline void ReqMatch::SharedCtor(
     ::_pb::Arena* arena, bool is_message_owned) {
   (void)arena;
   (void)is_message_owned;
   new (&_impl_) Impl_{
       decltype(_impl_._has_bits_){}
     , /*decltype(_impl_._cached_size_)*/{}
-    , decltype(_impl_.userid_){}
+    , decltype(_impl_.sessionid_){0}
   };
-  _impl_.userid_.InitDefault();
-  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-    _impl_.userid_.Set("", GetArenaForAllocation());
-  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
 }
 
-NtfMatched::~NtfMatched() {
-  // @@protoc_insertion_point(destructor:OmokPacket.NtfMatched)
+ReqMatch::~ReqMatch() {
+  // @@protoc_insertion_point(destructor:OmokPacket.ReqMatch)
   if (auto *arena = _internal_metadata_.DeleteReturnArena<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>()) {
   (void)arena;
     return;
@@ -3195,43 +3739,38 @@ NtfMatched::~NtfMatched() {
   SharedDtor();
 }
 
-inline void NtfMatched::SharedDtor() {
+inline void ReqMatch::SharedDtor() {
   GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
-  _impl_.userid_.Destroy();
 }
 
-void NtfMatched::SetCachedSize(int size) const {
+void ReqMatch::SetCachedSize(int size) const {
   _impl_._cached_size_.Set(size);
 }
 
-void NtfMatched::Clear() {
-// @@protoc_insertion_point(message_clear_start:OmokPacket.NtfMatched)
+void ReqMatch::Clear() {
+// @@protoc_insertion_point(message_clear_start:OmokPacket.ReqMatch)
   uint32_t cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  cached_has_bits = _impl_._has_bits_[0];
-  if (cached_has_bits & 0x00000001u) {
-    _impl_.userid_.ClearNonDefaultToEmpty();
-  }
+  _impl_.sessionid_ = 0;
   _impl_._has_bits_.Clear();
   _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
-const char* NtfMatched::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) {
+const char* ReqMatch::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) {
 #define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
   _Internal::HasBits has_bits{};
   while (!ctx->Done(&ptr)) {
     uint32_t tag;
     ptr = ::_pbi::ReadTag(ptr, &tag);
     switch (tag >> 3) {
-      // optional string userId = 1;
+      // optional int32 sessionId = 1;
       case 1:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 10)) {
-          auto str = _internal_mutable_userid();
-          ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 8)) {
+          _Internal::set_has_sessionid(&has_bits);
+          _impl_.sessionid_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint32(&ptr);
           CHK_(ptr);
-          CHK_(::_pbi::VerifyUTF8(str, "OmokPacket.NtfMatched.userId"));
         } else
           goto handle_unusual;
         continue;
@@ -3259,97 +3798,671 @@ failure:
 #undef CHK_
 }
 
-uint8_t* NtfMatched::_InternalSerialize(
+uint8_t* ReqMatch::_InternalSerialize(
     uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
-  // @@protoc_insertion_point(serialize_to_array_start:OmokPacket.NtfMatched)
+  // @@protoc_insertion_point(serialize_to_array_start:OmokPacket.ReqMatch)
   uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
-  // optional string userId = 1;
-  if (_internal_has_userid()) {
-    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
-      this->_internal_userid().data(), static_cast<int>(this->_internal_userid().length()),
-      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
-      "OmokPacket.NtfMatched.userId");
-    target = stream->WriteStringMaybeAliased(
-        1, this->_internal_userid(), target);
+  // optional int32 sessionId = 1;
+  if (_internal_has_sessionid()) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteInt32ToArray(1, this->_internal_sessionid(), target);
   }
 
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
     target = ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
         _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
   }
-  // @@protoc_insertion_point(serialize_to_array_end:OmokPacket.NtfMatched)
+  // @@protoc_insertion_point(serialize_to_array_end:OmokPacket.ReqMatch)
   return target;
 }
 
-size_t NtfMatched::ByteSizeLong() const {
-// @@protoc_insertion_point(message_byte_size_start:OmokPacket.NtfMatched)
+size_t ReqMatch::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:OmokPacket.ReqMatch)
   size_t total_size = 0;
 
   uint32_t cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  // optional string userId = 1;
+  // optional int32 sessionId = 1;
   cached_has_bits = _impl_._has_bits_[0];
   if (cached_has_bits & 0x00000001u) {
-    total_size += 1 +
-      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
-        this->_internal_userid());
+    total_size += ::_pbi::WireFormatLite::Int32SizePlusOne(this->_internal_sessionid());
   }
 
   return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
 }
 
-const ::PROTOBUF_NAMESPACE_ID::Message::ClassData NtfMatched::_class_data_ = {
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData ReqMatch::_class_data_ = {
     ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSourceCheck,
-    NtfMatched::MergeImpl
+    ReqMatch::MergeImpl
 };
-const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*NtfMatched::GetClassData() const { return &_class_data_; }
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*ReqMatch::GetClassData() const { return &_class_data_; }
 
 
-void NtfMatched::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg) {
-  auto* const _this = static_cast<NtfMatched*>(&to_msg);
-  auto& from = static_cast<const NtfMatched&>(from_msg);
-  // @@protoc_insertion_point(class_specific_merge_from_start:OmokPacket.NtfMatched)
+void ReqMatch::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg) {
+  auto* const _this = static_cast<ReqMatch*>(&to_msg);
+  auto& from = static_cast<const ReqMatch&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:OmokPacket.ReqMatch)
   GOOGLE_DCHECK_NE(&from, _this);
   uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
-  if (from._internal_has_userid()) {
-    _this->_internal_set_userid(from._internal_userid());
+  if (from._internal_has_sessionid()) {
+    _this->_internal_set_sessionid(from._internal_sessionid());
   }
   _this->_internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
 }
 
-void NtfMatched::CopyFrom(const NtfMatched& from) {
-// @@protoc_insertion_point(class_specific_copy_from_start:OmokPacket.NtfMatched)
+void ReqMatch::CopyFrom(const ReqMatch& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:OmokPacket.ReqMatch)
   if (&from == this) return;
   Clear();
   MergeFrom(from);
 }
 
-bool NtfMatched::IsInitialized() const {
+bool ReqMatch::IsInitialized() const {
   return true;
 }
 
-void NtfMatched::InternalSwap(NtfMatched* other) {
+void ReqMatch::InternalSwap(ReqMatch* other) {
   using std::swap;
-  auto* lhs_arena = GetArenaForAllocation();
-  auto* rhs_arena = other->GetArenaForAllocation();
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
   swap(_impl_._has_bits_[0], other->_impl_._has_bits_[0]);
-  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
-      &_impl_.userid_, lhs_arena,
-      &other->_impl_.userid_, rhs_arena
-  );
+  swap(_impl_.sessionid_, other->_impl_.sessionid_);
 }
 
-::PROTOBUF_NAMESPACE_ID::Metadata NtfMatched::GetMetadata() const {
+::PROTOBUF_NAMESPACE_ID::Metadata ReqMatch::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_OmokPacket_2eproto_getter, &descriptor_table_OmokPacket_2eproto_once,
-      file_level_metadata_OmokPacket_2eproto[14]);
+      file_level_metadata_OmokPacket_2eproto[15]);
+}
+
+// ===================================================================
+
+class ResMatch::_Internal {
+ public:
+  using HasBits = decltype(std::declval<ResMatch>()._impl_._has_bits_);
+  static void set_has_result(HasBits* has_bits) {
+    (*has_bits)[0] |= 1u;
+  }
+};
+
+ResMatch::ResMatch(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                         bool is_message_owned)
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
+  SharedCtor(arena, is_message_owned);
+  // @@protoc_insertion_point(arena_constructor:OmokPacket.ResMatch)
+}
+ResMatch::ResMatch(const ResMatch& from)
+  : ::PROTOBUF_NAMESPACE_ID::Message() {
+  ResMatch* const _this = this; (void)_this;
+  new (&_impl_) Impl_{
+      decltype(_impl_._has_bits_){from._impl_._has_bits_}
+    , /*decltype(_impl_._cached_size_)*/{}
+    , decltype(_impl_.result_){}};
+
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  _this->_impl_.result_ = from._impl_.result_;
+  // @@protoc_insertion_point(copy_constructor:OmokPacket.ResMatch)
+}
+
+inline void ResMatch::SharedCtor(
+    ::_pb::Arena* arena, bool is_message_owned) {
+  (void)arena;
+  (void)is_message_owned;
+  new (&_impl_) Impl_{
+      decltype(_impl_._has_bits_){}
+    , /*decltype(_impl_._cached_size_)*/{}
+    , decltype(_impl_.result_){0}
+  };
+}
+
+ResMatch::~ResMatch() {
+  // @@protoc_insertion_point(destructor:OmokPacket.ResMatch)
+  if (auto *arena = _internal_metadata_.DeleteReturnArena<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>()) {
+  (void)arena;
+    return;
+  }
+  SharedDtor();
+}
+
+inline void ResMatch::SharedDtor() {
+  GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
+}
+
+void ResMatch::SetCachedSize(int size) const {
+  _impl_._cached_size_.Set(size);
+}
+
+void ResMatch::Clear() {
+// @@protoc_insertion_point(message_clear_start:OmokPacket.ResMatch)
+  uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  _impl_.result_ = 0;
+  _impl_._has_bits_.Clear();
+  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+}
+
+const char* ResMatch::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) {
+#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
+  _Internal::HasBits has_bits{};
+  while (!ctx->Done(&ptr)) {
+    uint32_t tag;
+    ptr = ::_pbi::ReadTag(ptr, &tag);
+    switch (tag >> 3) {
+      // optional int32 result = 1;
+      case 1:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 8)) {
+          _Internal::set_has_result(&has_bits);
+          _impl_.result_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint32(&ptr);
+          CHK_(ptr);
+        } else
+          goto handle_unusual;
+        continue;
+      default:
+        goto handle_unusual;
+    }  // switch
+  handle_unusual:
+    if ((tag == 0) || ((tag & 7) == 4)) {
+      CHK_(ptr);
+      ctx->SetLastTag(tag);
+      goto message_done;
+    }
+    ptr = UnknownFieldParse(
+        tag,
+        _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
+        ptr, ctx);
+    CHK_(ptr != nullptr);
+  }  // while
+message_done:
+  _impl_._has_bits_.Or(has_bits);
+  return ptr;
+failure:
+  ptr = nullptr;
+  goto message_done;
+#undef CHK_
+}
+
+uint8_t* ResMatch::_InternalSerialize(
+    uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:OmokPacket.ResMatch)
+  uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  // optional int32 result = 1;
+  if (_internal_has_result()) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteInt32ToArray(1, this->_internal_result(), target);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target = ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:OmokPacket.ResMatch)
+  return target;
+}
+
+size_t ResMatch::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:OmokPacket.ResMatch)
+  size_t total_size = 0;
+
+  uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // optional int32 result = 1;
+  cached_has_bits = _impl_._has_bits_[0];
+  if (cached_has_bits & 0x00000001u) {
+    total_size += ::_pbi::WireFormatLite::Int32SizePlusOne(this->_internal_result());
+  }
+
+  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
+}
+
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData ResMatch::_class_data_ = {
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSourceCheck,
+    ResMatch::MergeImpl
+};
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*ResMatch::GetClassData() const { return &_class_data_; }
+
+
+void ResMatch::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg) {
+  auto* const _this = static_cast<ResMatch*>(&to_msg);
+  auto& from = static_cast<const ResMatch&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:OmokPacket.ResMatch)
+  GOOGLE_DCHECK_NE(&from, _this);
+  uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  if (from._internal_has_result()) {
+    _this->_internal_set_result(from._internal_result());
+  }
+  _this->_internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void ResMatch::CopyFrom(const ResMatch& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:OmokPacket.ResMatch)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+bool ResMatch::IsInitialized() const {
+  return true;
+}
+
+void ResMatch::InternalSwap(ResMatch* other) {
+  using std::swap;
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  swap(_impl_._has_bits_[0], other->_impl_._has_bits_[0]);
+  swap(_impl_.result_, other->_impl_.result_);
+}
+
+::PROTOBUF_NAMESPACE_ID::Metadata ResMatch::GetMetadata() const {
+  return ::_pbi::AssignDescriptors(
+      &descriptor_table_OmokPacket_2eproto_getter, &descriptor_table_OmokPacket_2eproto_once,
+      file_level_metadata_OmokPacket_2eproto[16]);
+}
+
+// ===================================================================
+
+class NtfMatchReq::_Internal {
+ public:
+  using HasBits = decltype(std::declval<NtfMatchReq>()._impl_._has_bits_);
+  static const ::OmokPacket::UserInfo& userinfo(const NtfMatchReq* msg);
+  static void set_has_userinfo(HasBits* has_bits) {
+    (*has_bits)[0] |= 1u;
+  }
+};
+
+const ::OmokPacket::UserInfo&
+NtfMatchReq::_Internal::userinfo(const NtfMatchReq* msg) {
+  return *msg->_impl_.userinfo_;
+}
+NtfMatchReq::NtfMatchReq(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                         bool is_message_owned)
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
+  SharedCtor(arena, is_message_owned);
+  // @@protoc_insertion_point(arena_constructor:OmokPacket.NtfMatchReq)
+}
+NtfMatchReq::NtfMatchReq(const NtfMatchReq& from)
+  : ::PROTOBUF_NAMESPACE_ID::Message() {
+  NtfMatchReq* const _this = this; (void)_this;
+  new (&_impl_) Impl_{
+      decltype(_impl_._has_bits_){from._impl_._has_bits_}
+    , /*decltype(_impl_._cached_size_)*/{}
+    , decltype(_impl_.userinfo_){nullptr}};
+
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  if (from._internal_has_userinfo()) {
+    _this->_impl_.userinfo_ = new ::OmokPacket::UserInfo(*from._impl_.userinfo_);
+  }
+  // @@protoc_insertion_point(copy_constructor:OmokPacket.NtfMatchReq)
+}
+
+inline void NtfMatchReq::SharedCtor(
+    ::_pb::Arena* arena, bool is_message_owned) {
+  (void)arena;
+  (void)is_message_owned;
+  new (&_impl_) Impl_{
+      decltype(_impl_._has_bits_){}
+    , /*decltype(_impl_._cached_size_)*/{}
+    , decltype(_impl_.userinfo_){nullptr}
+  };
+}
+
+NtfMatchReq::~NtfMatchReq() {
+  // @@protoc_insertion_point(destructor:OmokPacket.NtfMatchReq)
+  if (auto *arena = _internal_metadata_.DeleteReturnArena<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>()) {
+  (void)arena;
+    return;
+  }
+  SharedDtor();
+}
+
+inline void NtfMatchReq::SharedDtor() {
+  GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
+  if (this != internal_default_instance()) delete _impl_.userinfo_;
+}
+
+void NtfMatchReq::SetCachedSize(int size) const {
+  _impl_._cached_size_.Set(size);
+}
+
+void NtfMatchReq::Clear() {
+// @@protoc_insertion_point(message_clear_start:OmokPacket.NtfMatchReq)
+  uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  cached_has_bits = _impl_._has_bits_[0];
+  if (cached_has_bits & 0x00000001u) {
+    GOOGLE_DCHECK(_impl_.userinfo_ != nullptr);
+    _impl_.userinfo_->Clear();
+  }
+  _impl_._has_bits_.Clear();
+  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+}
+
+const char* NtfMatchReq::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) {
+#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
+  _Internal::HasBits has_bits{};
+  while (!ctx->Done(&ptr)) {
+    uint32_t tag;
+    ptr = ::_pbi::ReadTag(ptr, &tag);
+    switch (tag >> 3) {
+      // optional .OmokPacket.UserInfo userInfo = 1;
+      case 1:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 10)) {
+          ptr = ctx->ParseMessage(_internal_mutable_userinfo(), ptr);
+          CHK_(ptr);
+        } else
+          goto handle_unusual;
+        continue;
+      default:
+        goto handle_unusual;
+    }  // switch
+  handle_unusual:
+    if ((tag == 0) || ((tag & 7) == 4)) {
+      CHK_(ptr);
+      ctx->SetLastTag(tag);
+      goto message_done;
+    }
+    ptr = UnknownFieldParse(
+        tag,
+        _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
+        ptr, ctx);
+    CHK_(ptr != nullptr);
+  }  // while
+message_done:
+  _impl_._has_bits_.Or(has_bits);
+  return ptr;
+failure:
+  ptr = nullptr;
+  goto message_done;
+#undef CHK_
+}
+
+uint8_t* NtfMatchReq::_InternalSerialize(
+    uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:OmokPacket.NtfMatchReq)
+  uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  // optional .OmokPacket.UserInfo userInfo = 1;
+  if (_internal_has_userinfo()) {
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
+      InternalWriteMessage(1, _Internal::userinfo(this),
+        _Internal::userinfo(this).GetCachedSize(), target, stream);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target = ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:OmokPacket.NtfMatchReq)
+  return target;
+}
+
+size_t NtfMatchReq::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:OmokPacket.NtfMatchReq)
+  size_t total_size = 0;
+
+  uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // optional .OmokPacket.UserInfo userInfo = 1;
+  cached_has_bits = _impl_._has_bits_[0];
+  if (cached_has_bits & 0x00000001u) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
+        *_impl_.userinfo_);
+  }
+
+  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
+}
+
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData NtfMatchReq::_class_data_ = {
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSourceCheck,
+    NtfMatchReq::MergeImpl
+};
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*NtfMatchReq::GetClassData() const { return &_class_data_; }
+
+
+void NtfMatchReq::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg) {
+  auto* const _this = static_cast<NtfMatchReq*>(&to_msg);
+  auto& from = static_cast<const NtfMatchReq&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:OmokPacket.NtfMatchReq)
+  GOOGLE_DCHECK_NE(&from, _this);
+  uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  if (from._internal_has_userinfo()) {
+    _this->_internal_mutable_userinfo()->::OmokPacket::UserInfo::MergeFrom(
+        from._internal_userinfo());
+  }
+  _this->_internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void NtfMatchReq::CopyFrom(const NtfMatchReq& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:OmokPacket.NtfMatchReq)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+bool NtfMatchReq::IsInitialized() const {
+  return true;
+}
+
+void NtfMatchReq::InternalSwap(NtfMatchReq* other) {
+  using std::swap;
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  swap(_impl_._has_bits_[0], other->_impl_._has_bits_[0]);
+  swap(_impl_.userinfo_, other->_impl_.userinfo_);
+}
+
+::PROTOBUF_NAMESPACE_ID::Metadata NtfMatchReq::GetMetadata() const {
+  return ::_pbi::AssignDescriptors(
+      &descriptor_table_OmokPacket_2eproto_getter, &descriptor_table_OmokPacket_2eproto_once,
+      file_level_metadata_OmokPacket_2eproto[17]);
+}
+
+// ===================================================================
+
+class ReqMatchRes::_Internal {
+ public:
+  using HasBits = decltype(std::declval<ReqMatchRes>()._impl_._has_bits_);
+  static void set_has_accept(HasBits* has_bits) {
+    (*has_bits)[0] |= 1u;
+  }
+};
+
+ReqMatchRes::ReqMatchRes(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                         bool is_message_owned)
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
+  SharedCtor(arena, is_message_owned);
+  // @@protoc_insertion_point(arena_constructor:OmokPacket.ReqMatchRes)
+}
+ReqMatchRes::ReqMatchRes(const ReqMatchRes& from)
+  : ::PROTOBUF_NAMESPACE_ID::Message() {
+  ReqMatchRes* const _this = this; (void)_this;
+  new (&_impl_) Impl_{
+      decltype(_impl_._has_bits_){from._impl_._has_bits_}
+    , /*decltype(_impl_._cached_size_)*/{}
+    , decltype(_impl_.accept_){}};
+
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  _this->_impl_.accept_ = from._impl_.accept_;
+  // @@protoc_insertion_point(copy_constructor:OmokPacket.ReqMatchRes)
+}
+
+inline void ReqMatchRes::SharedCtor(
+    ::_pb::Arena* arena, bool is_message_owned) {
+  (void)arena;
+  (void)is_message_owned;
+  new (&_impl_) Impl_{
+      decltype(_impl_._has_bits_){}
+    , /*decltype(_impl_._cached_size_)*/{}
+    , decltype(_impl_.accept_){false}
+  };
+}
+
+ReqMatchRes::~ReqMatchRes() {
+  // @@protoc_insertion_point(destructor:OmokPacket.ReqMatchRes)
+  if (auto *arena = _internal_metadata_.DeleteReturnArena<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>()) {
+  (void)arena;
+    return;
+  }
+  SharedDtor();
+}
+
+inline void ReqMatchRes::SharedDtor() {
+  GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
+}
+
+void ReqMatchRes::SetCachedSize(int size) const {
+  _impl_._cached_size_.Set(size);
+}
+
+void ReqMatchRes::Clear() {
+// @@protoc_insertion_point(message_clear_start:OmokPacket.ReqMatchRes)
+  uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  _impl_.accept_ = false;
+  _impl_._has_bits_.Clear();
+  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+}
+
+const char* ReqMatchRes::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) {
+#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
+  _Internal::HasBits has_bits{};
+  while (!ctx->Done(&ptr)) {
+    uint32_t tag;
+    ptr = ::_pbi::ReadTag(ptr, &tag);
+    switch (tag >> 3) {
+      // optional bool accept = 1;
+      case 1:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 8)) {
+          _Internal::set_has_accept(&has_bits);
+          _impl_.accept_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
+          CHK_(ptr);
+        } else
+          goto handle_unusual;
+        continue;
+      default:
+        goto handle_unusual;
+    }  // switch
+  handle_unusual:
+    if ((tag == 0) || ((tag & 7) == 4)) {
+      CHK_(ptr);
+      ctx->SetLastTag(tag);
+      goto message_done;
+    }
+    ptr = UnknownFieldParse(
+        tag,
+        _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
+        ptr, ctx);
+    CHK_(ptr != nullptr);
+  }  // while
+message_done:
+  _impl_._has_bits_.Or(has_bits);
+  return ptr;
+failure:
+  ptr = nullptr;
+  goto message_done;
+#undef CHK_
+}
+
+uint8_t* ReqMatchRes::_InternalSerialize(
+    uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:OmokPacket.ReqMatchRes)
+  uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  // optional bool accept = 1;
+  if (_internal_has_accept()) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteBoolToArray(1, this->_internal_accept(), target);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target = ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:OmokPacket.ReqMatchRes)
+  return target;
+}
+
+size_t ReqMatchRes::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:OmokPacket.ReqMatchRes)
+  size_t total_size = 0;
+
+  uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // optional bool accept = 1;
+  cached_has_bits = _impl_._has_bits_[0];
+  if (cached_has_bits & 0x00000001u) {
+    total_size += 1 + 1;
+  }
+
+  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
+}
+
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData ReqMatchRes::_class_data_ = {
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSourceCheck,
+    ReqMatchRes::MergeImpl
+};
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*ReqMatchRes::GetClassData() const { return &_class_data_; }
+
+
+void ReqMatchRes::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg) {
+  auto* const _this = static_cast<ReqMatchRes*>(&to_msg);
+  auto& from = static_cast<const ReqMatchRes&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:OmokPacket.ReqMatchRes)
+  GOOGLE_DCHECK_NE(&from, _this);
+  uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  if (from._internal_has_accept()) {
+    _this->_internal_set_accept(from._internal_accept());
+  }
+  _this->_internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void ReqMatchRes::CopyFrom(const ReqMatchRes& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:OmokPacket.ReqMatchRes)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+bool ReqMatchRes::IsInitialized() const {
+  return true;
+}
+
+void ReqMatchRes::InternalSwap(ReqMatchRes* other) {
+  using std::swap;
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  swap(_impl_._has_bits_[0], other->_impl_._has_bits_[0]);
+  swap(_impl_.accept_, other->_impl_.accept_);
+}
+
+::PROTOBUF_NAMESPACE_ID::Metadata ReqMatchRes::GetMetadata() const {
+  return ::_pbi::AssignDescriptors(
+      &descriptor_table_OmokPacket_2eproto_getter, &descriptor_table_OmokPacket_2eproto_once,
+      file_level_metadata_OmokPacket_2eproto[18]);
 }
 
 // ===================================================================
@@ -3389,7 +4502,7 @@ const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*ReqReadyOmok::GetClassData() c
 ::PROTOBUF_NAMESPACE_ID::Metadata ReqReadyOmok::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_OmokPacket_2eproto_getter, &descriptor_table_OmokPacket_2eproto_once,
-      file_level_metadata_OmokPacket_2eproto[15]);
+      file_level_metadata_OmokPacket_2eproto[19]);
 }
 
 // ===================================================================
@@ -3429,7 +4542,7 @@ const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*ResReadyOmok::GetClassData() c
 ::PROTOBUF_NAMESPACE_ID::Metadata ResReadyOmok::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_OmokPacket_2eproto_getter, &descriptor_table_OmokPacket_2eproto_once,
-      file_level_metadata_OmokPacket_2eproto[16]);
+      file_level_metadata_OmokPacket_2eproto[20]);
 }
 
 // ===================================================================
@@ -3740,7 +4853,7 @@ void NtfStartOmok::InternalSwap(NtfStartOmok* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata NtfStartOmok::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_OmokPacket_2eproto_getter, &descriptor_table_OmokPacket_2eproto_once,
-      file_level_metadata_OmokPacket_2eproto[17]);
+      file_level_metadata_OmokPacket_2eproto[21]);
 }
 
 // ===================================================================
@@ -3976,7 +5089,7 @@ void ReqPutMok::InternalSwap(ReqPutMok* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata ReqPutMok::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_OmokPacket_2eproto_getter, &descriptor_table_OmokPacket_2eproto_once,
-      file_level_metadata_OmokPacket_2eproto[18]);
+      file_level_metadata_OmokPacket_2eproto[22]);
 }
 
 // ===================================================================
@@ -4166,7 +5279,7 @@ void ResPutMok::InternalSwap(ResPutMok* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata ResPutMok::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_OmokPacket_2eproto_getter, &descriptor_table_OmokPacket_2eproto_once,
-      file_level_metadata_OmokPacket_2eproto[19]);
+      file_level_metadata_OmokPacket_2eproto[23]);
 }
 
 // ===================================================================
@@ -4402,7 +5515,7 @@ void NtfPutMok::InternalSwap(NtfPutMok* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata NtfPutMok::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_OmokPacket_2eproto_getter, &descriptor_table_OmokPacket_2eproto_once,
-      file_level_metadata_OmokPacket_2eproto[20]);
+      file_level_metadata_OmokPacket_2eproto[24]);
 }
 
 // ===================================================================
@@ -4592,7 +5705,7 @@ void NtfEndOmok::InternalSwap(NtfEndOmok* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata NtfEndOmok::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_OmokPacket_2eproto_getter, &descriptor_table_OmokPacket_2eproto_once,
-      file_level_metadata_OmokPacket_2eproto[21]);
+      file_level_metadata_OmokPacket_2eproto[25]);
 }
 
 // @@protoc_insertion_point(namespace_scope)
@@ -4613,6 +5726,18 @@ Arena::CreateMaybeMessage< ::OmokPacket::ReqRoomEnter >(Arena* arena) {
 template<> PROTOBUF_NOINLINE ::OmokPacket::ResRoomEnter*
 Arena::CreateMaybeMessage< ::OmokPacket::ResRoomEnter >(Arena* arena) {
   return Arena::CreateMessageInternal< ::OmokPacket::ResRoomEnter >(arena);
+}
+template<> PROTOBUF_NOINLINE ::OmokPacket::NtfRoomAdmin*
+Arena::CreateMaybeMessage< ::OmokPacket::NtfRoomAdmin >(Arena* arena) {
+  return Arena::CreateMessageInternal< ::OmokPacket::NtfRoomAdmin >(arena);
+}
+template<> PROTOBUF_NOINLINE ::OmokPacket::NtfNewRoomAdmin*
+Arena::CreateMaybeMessage< ::OmokPacket::NtfNewRoomAdmin >(Arena* arena) {
+  return Arena::CreateMessageInternal< ::OmokPacket::NtfNewRoomAdmin >(arena);
+}
+template<> PROTOBUF_NOINLINE ::OmokPacket::UserInfo*
+Arena::CreateMaybeMessage< ::OmokPacket::UserInfo >(Arena* arena) {
+  return Arena::CreateMessageInternal< ::OmokPacket::UserInfo >(arena);
 }
 template<> PROTOBUF_NOINLINE ::OmokPacket::NtfRoomUserList*
 Arena::CreateMaybeMessage< ::OmokPacket::NtfRoomUserList >(Arena* arena) {
@@ -4654,9 +5779,13 @@ template<> PROTOBUF_NOINLINE ::OmokPacket::ResMatch*
 Arena::CreateMaybeMessage< ::OmokPacket::ResMatch >(Arena* arena) {
   return Arena::CreateMessageInternal< ::OmokPacket::ResMatch >(arena);
 }
-template<> PROTOBUF_NOINLINE ::OmokPacket::NtfMatched*
-Arena::CreateMaybeMessage< ::OmokPacket::NtfMatched >(Arena* arena) {
-  return Arena::CreateMessageInternal< ::OmokPacket::NtfMatched >(arena);
+template<> PROTOBUF_NOINLINE ::OmokPacket::NtfMatchReq*
+Arena::CreateMaybeMessage< ::OmokPacket::NtfMatchReq >(Arena* arena) {
+  return Arena::CreateMessageInternal< ::OmokPacket::NtfMatchReq >(arena);
+}
+template<> PROTOBUF_NOINLINE ::OmokPacket::ReqMatchRes*
+Arena::CreateMaybeMessage< ::OmokPacket::ReqMatchRes >(Arena* arena) {
+  return Arena::CreateMessageInternal< ::OmokPacket::ReqMatchRes >(arena);
 }
 template<> PROTOBUF_NOINLINE ::OmokPacket::ReqReadyOmok*
 Arena::CreateMaybeMessage< ::OmokPacket::ReqReadyOmok >(Arena* arena) {

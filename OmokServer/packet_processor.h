@@ -5,7 +5,6 @@
 #include "packet_queue.h"
 #include "session_manager.h"
 #include "room_manager.h"
-#include "match_manager.h"
 #include "db_processor.h"
 
 class PacketProcessor
@@ -16,7 +15,6 @@ public:
 	PacketSender packet_sender_;
 	RoomManager room_manager_;
 	SessionManager session_manager_;
-	MatchManager match_manager_;
 	DBProcessor db_processor_;
 
 	void Init();
@@ -35,6 +33,8 @@ private:
 	void ReqRoomChatHandler(Packet packet);
 
 	void ReqMatchHandler(Packet packet);
+
+	void ReqMatchRes(Packet packet);
 
 	void ReqReadyOmokHandler(Packet packet);
 

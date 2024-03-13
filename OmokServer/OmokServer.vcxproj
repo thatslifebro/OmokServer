@@ -173,7 +173,6 @@
   <ItemGroup>
     <ClCompile Include="db_processor.cpp" />
     <ClCompile Include="game.cpp" />
-    <ClCompile Include="match_manager.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="omok_server.cpp" />
     <ClCompile Include="packet_info.cpp" />
@@ -191,7 +190,6 @@
     <ClInclude Include="constants.h" />
     <ClInclude Include="db_processor.h" />
     <ClInclude Include="game.h" />
-    <ClInclude Include="match_manager.h" />
     <ClInclude Include="omok_server.h" />
     <ClInclude Include="packet_queue.h" />
     <ClInclude Include="packet_info.h" />

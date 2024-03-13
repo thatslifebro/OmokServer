@@ -41,6 +41,8 @@ public:
 	
 	void SetReady(uint32_t session_id);
 
+	bool IsReady(uint32_t session_id);
+
 	bool IsGameStart();
 
 	bool IsGameEnd();

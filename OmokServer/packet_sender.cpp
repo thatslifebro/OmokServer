@@ -12,27 +12,65 @@ void PacketSender::ResLogin(Session* session, uint32_t result)
 
 void PacketSender::ResRoomEnter(Session* session, uint32_t result)
 {
+	OmokPacket::UserInfo* userinfo = new OmokPacket::UserInfo();
+	userinfo->set_sessionid(session->session_id_);
+	userinfo->set_userid(session->user_id_);
+
 	OmokPacket::ResRoomEnter res_room_enter;
 	res_room_enter.set_result(result);
+	res_room_enter.set_allocated_userinfo(userinfo);
 
 	auto [res_data, res_length] = MakeResData(PacketId::ResRoomEnter, res_room_enter);
 
 	session->SendPacket(res_data, res_length);
 }
 
-
-void PacketSender::NtfRoomUserList(Session* session, std::vector<uint32_t> room_session_ids)
+void PacketSender::NtfNewRoomAdmin(std::vector<uint32_t> room_session_ids, Session* admin_session)
 {
-	// 전송 패킷 바디 생성
-	OmokPacket::NtfRoomUserList ntf_room_user_list;
+	OmokPacket::UserInfo* userinfo = new OmokPacket::UserInfo();
+	userinfo->set_sessionid(admin_session->session_id_);
+	userinfo->set_userid(admin_session->user_id_);
+
+	OmokPacket::NtfNewRoomAdmin ntf_new_room_admin;
+	ntf_new_room_admin.set_allocated_userinfo(userinfo);
+
+	auto [res_data, res_length] = MakeResData(PacketId::NtfNewRoomAdmin, ntf_new_room_admin);
+
 	for (auto session_id : room_session_ids)
 	{
+		if(session_id == admin_session->session_id_)
+		{
+			continue;
+		}
+
 		auto session = session_manager_.GetSession(session_id);
 		if (session == nullptr)
 		{
 			continue;
 		}
-		ntf_room_user_list.add_userid(session->user_id_);
+		session->SendPacket(res_data, res_length);
+	}
+
+}
+
+void PacketSender::NtfRoomUserList(Session* session, std::vector<uint32_t> room_session_ids)
+{
+	OmokPacket::NtfRoomUserList ntf_room_user_list;
+	for (auto session_id : room_session_ids)
+	{
+		if(session->session_id_ == session_id)
+		{
+			continue;
+		}
+
+		auto session = session_manager_.GetSession(session_id);
+		if (session == nullptr)
+		{
+			continue;
+		}
+		auto userinfo = ntf_room_user_list.add_userinfo();
+		userinfo->set_sessionid(session->session_id_);
+		userinfo->set_userid(session->user_id_);
 	}
 
 	// 전송 데이터 생성
@@ -44,8 +82,12 @@ void PacketSender::NtfRoomUserList(Session* session, std::vector<uint32_t> room_
 
 void PacketSender::NtfRoomUserEnter(std::vector<uint32_t> room_session_ids, Session* session)
 {
+	OmokPacket::UserInfo* userinfo = new OmokPacket::UserInfo();
+	userinfo->set_sessionid(session->session_id_);
+	userinfo->set_userid(session->user_id_);
+
 	OmokPacket::NtfRoomNewUser ntf_room_new_user;
-	ntf_room_new_user.set_userid(session->user_id_);
+	ntf_room_new_user.set_allocated_userinfo(userinfo);
 
 	auto [res_data, res_length] = MakeResData(PacketId::NtfRoomNewUser, ntf_room_new_user);
 
@@ -65,6 +107,16 @@ void PacketSender::NtfRoomUserEnter(std::vector<uint32_t> room_session_ids, Sess
 
 		other_session->SendPacket(res_data, res_length);
 	}
+
+}
+
+void PacketSender::NtfRoomAdmin(Session* session)
+{
+	OmokPacket::NtfRoomAdmin ntf_room_admin;
+
+	auto [res_data, res_length] = MakeResData(PacketId::NtfRoomAdmin, ntf_room_admin);
+
+	session->SendPacket(res_data, res_length);
 }
 
 void PacketSender::ResRoomLeave(Session* session, uint32_t result)
@@ -79,8 +131,12 @@ void PacketSender::ResRoomLeave(Session* session, uint32_t result)
 
 void PacketSender::NtfRoomUserLeave(std::vector<uint32_t> room_session_ids, Session* session)
 {
+	OmokPacket::UserInfo* userinfo = new OmokPacket::UserInfo();
+	userinfo->set_sessionid(session->session_id_);
+	userinfo->set_userid(session->user_id_);
+
 	OmokPacket::NtfRoomLeaveUser ntf_room_leave_user;
-	ntf_room_leave_user.set_userid(session->user_id_);
+	ntf_room_leave_user.set_allocated_userinfo(userinfo);
 
 	auto [res_data, res_length] = MakeResData(PacketId::NtfRoomLeaveUser, ntf_room_leave_user);
 
@@ -99,6 +155,7 @@ void PacketSender::NtfRoomUserLeave(std::vector<uint32_t> room_session_ids, Sess
 
 		other_session->SendPacket(res_data, res_length);
 	}
+
 }
 
 void PacketSender::ResRoomChat(Session* session, uint32_t result, std::string chat)
@@ -114,8 +171,12 @@ void PacketSender::ResRoomChat(Session* session, uint32_t result, std::string ch
 
 void PacketSender::NtfRoomChat(std::vector<uint32_t> room_session_ids, Session* session, std::string chat)
 {
+	OmokPacket::UserInfo* userinfo = new OmokPacket::UserInfo();
+	userinfo->set_sessionid(session->session_id_);
+	userinfo->set_userid(session->user_id_);
+
 	OmokPacket::NtfRoomChat ntf_room_chat;
-	ntf_room_chat.set_userid(session->user_id_);
+	ntf_room_chat.set_allocated_userinfo(userinfo);
 	ntf_room_chat.set_chat(chat);
 
 	auto [res_data, res_length] = MakeResData(PacketId::NtfRoomChat, ntf_room_chat);
@@ -135,39 +196,55 @@ void PacketSender::NtfRoomChat(std::vector<uint32_t> room_session_ids, Session* 
 
 		other_session->SendPacket(res_data, res_length);
 	}
+
 }
 
-void PacketSender::ResMatch(Session* session)
+void PacketSender::ResMatch(Session* admin_session, uint32_t result)
 {
 	OmokPacket::ResMatch res_match;
+	res_match.set_result(result);
 
 	auto [res_data, res_length] = MakeResData(PacketId::ResMatch, res_match);
 
-	session->SendPacket(res_data, res_length);
+	admin_session->SendPacket(res_data, res_length);
+}
+
+void PacketSender::NtfMatchReq(Session* opponent_session, Session* admin_session)
+{
+	OmokPacket::UserInfo* userinfo = new OmokPacket::UserInfo();
+	userinfo->set_sessionid(admin_session->session_id_);
+	userinfo->set_userid(admin_session->user_id_);
+
+	OmokPacket::NtfMatchReq ntf_match_req;
+	ntf_match_req.set_allocated_userinfo(userinfo);
+
+	auto [res_data, res_length] = MakeResData(PacketId::NtfMatchReq, ntf_match_req);
+
+	opponent_session->SendPacket(res_data, res_length);
 }
 
 void PacketSender::NtfMatched(Session* session, Session* opponent_session)
 {
 	// 양쪽 모두 보내기
-	OmokPacket::NtfMatched ntf_matched;
-	OmokPacket::NtfMatched ntf_matched_opponent;
-	ntf_matched.set_userid(opponent_session->user_id_);
-	ntf_matched_opponent.set_userid(session->user_id_);
+	//OmokPacket::NtfMatched ntf_matched;
+	//OmokPacket::NtfMatched ntf_matched_opponent;
+	//ntf_matched.set_userid(opponent_session->user_id_);
+	//ntf_matched_opponent.set_userid(session->user_id_);
 
-	auto [res_data, res_length] = MakeResData(PacketId::NtfMatched, ntf_matched);
-	auto [res_data_opponent, res_length_opponent] = MakeResData(PacketId::NtfMatched, ntf_matched_opponent);
+	//auto [res_data, res_length] = MakeResData(PacketId::NtfMatched, ntf_matched);
+	//auto [res_data_opponent, res_length_opponent] = MakeResData(PacketId::NtfMatched, ntf_matched_opponent);
 
-	session->SendPacket(res_data, res_length);
-	opponent_session->SendPacket(res_data_opponent, res_length_opponent);
+	//session->SendPacket(res_data, res_length);
+	//opponent_session->SendPacket(res_data_opponent, res_length_opponent);
 }
 
 void PacketSender::ResReadyOmok(Session* session)
 {
-	OmokPacket::ResReadyOmok res_ready_omok;
+	//OmokPacket::ResReadyOmok res_ready_omok;
 
-	auto [res_data, res_length] = MakeResData(PacketId::ResReadyOmok, res_ready_omok);
+	//auto [res_data, res_length] = MakeResData(PacketId::ResReadyOmok, res_ready_omok);
 
-	session->SendPacket(res_data, res_length);
+	//session->SendPacket(res_data, res_length);
 }
 
 void PacketSender::NtfStartOmok(Session* balck_session, Session* white_session)
