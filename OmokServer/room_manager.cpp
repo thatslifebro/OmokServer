@@ -47,3 +47,13 @@ Room* RoomManager::GetRoom(uint16_t room_id)
 	}
 	return &room_vec_[room_id-1];
 }
+
+std::vector<Room*> RoomManager::GetAllRooms()
+{
+	std::vector<Room*> rooms;
+	for (auto& room : room_vec_)
+	{
+		rooms.push_back(&room);
+	}
+	return rooms;
+}

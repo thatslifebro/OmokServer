@@ -64,6 +64,8 @@ Session::~Session()
 	{
 		if (room->IsGameStarted())
 		{
+			room->timer_->CancelTimer();
+
 			auto game = room->GetGame();
 			auto winner_id = game->GetOpponentId(session_id_);
 			auto winner_session = session_manager.GetSession(winner_id);

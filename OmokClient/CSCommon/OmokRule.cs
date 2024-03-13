@@ -85,6 +85,11 @@ namespace CSCommon
             return 돌두기_결과.Success;
         }
 
+        public void 턴넘기기()
+        {
+            흑돌차례 = !흑돌차례;
+        }
+
 
         public void 한수무르기()
         {

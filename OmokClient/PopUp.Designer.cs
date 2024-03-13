@@ -42,7 +42,7 @@ namespace OmokClient
             this.label.AutoSize = true;
             this.label.Location = new System.Drawing.Point(70, 50);
             this.label.Name = "label2";
-            this.label.Size = new System.Drawing.Size(56, 12);
+            this.label.Size = new System.Drawing.Size(56, 18);
             this.label.TabIndex = 44;
             this.label.Text = "방장이 오목을 신청했습니다.\n수락하시겠습니까?";
 

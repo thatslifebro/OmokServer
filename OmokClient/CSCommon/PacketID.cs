@@ -44,6 +44,8 @@ namespace CSCommon
         public const UInt16 NtfPutMok = 1503;
         public const UInt16 NtfEndOmok = 1504;
 
-
+        public const UInt16 NtfMatchTimeout = 1601;
+        public const UInt16 NtfReadyTimeout = 1602;
+        public const UInt16 NtfPutMokTimeout = 1603;
     }
 }

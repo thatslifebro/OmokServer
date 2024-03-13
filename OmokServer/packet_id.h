@@ -31,4 +31,8 @@ enum class PacketId
 	ResPutMok = 1502,
 	NtfPutMok = 1503,
 	NtfEndOmok = 1504,
+
+	NtfMatchTimeout = 1601,
+	NtfReadyTimeout = 1602,
+	NtfPutMokTimeout = 1603,
 };

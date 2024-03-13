@@ -129,6 +129,8 @@ void PacketProcessor::ReqRoomLeaveHandler(Packet packet)
 		{
 			if (room->IsGameStarted())
 			{
+				room->timer_->CancelTimer();
+
 				auto game = room->GetGame();
 				auto winner_id = game->GetOpponentId(session->session_id_);
 				auto winner_session = session_manager_.GetSession(winner_id);
@@ -221,17 +223,26 @@ void PacketProcessor::ReqMatchHandler(Packet packet)
 	}
 
 	auto opponent_id = req_match.sessionid();
+	auto opponent_session = session_manager_.GetSession(opponent_id);
+	if (opponent_session == nullptr)
+	{
+		return;
+	}
 	room->TryMatching(opponent_id);
 
-	//상대와 매칭 성공시 매칭 상대 정보 전송
-	if (opponent_id != 0)
-	{
-		auto opponent_session = session_manager_.GetSession(opponent_id);
+	packet_sender_.NtfMatchReq(opponent_session, session);
 
-		packet_sender_.NtfMatchReq(opponent_session, session);
-
-		room->Matched();
-	}
+	//타이머 시작
+	room->timer_->SetTimer(MATCH_RES_TIMEOUT, [room, session, opponent_id, opponent_session]()
+		{
+			PacketSender packet_sender;
+			if (room->IsTryMatchingWith(opponent_id))
+			{
+				room->CancelMatch();
+				packet_sender.ResMatch(session, -1);
+				packet_sender.NtfMatchTimeout(opponent_session);
+			}
+		});
 }
 
 void PacketProcessor::ReqMatchRes(Packet packet)
@@ -262,12 +273,33 @@ void PacketProcessor::ReqMatchRes(Packet packet)
 		result = 0;
 	}
 
+	auto already_done = room->timer_->IsCallbackDone();
+
+	if (already_done)
+	{
+		return;
+	}
+
 	auto admin_session = session_manager_.GetSession(room->GetAdminId());
 	packet_sender_.ResMatch(admin_session, result);
 
 	if (result == 0)
 	{
+		packet_sender_.ResMatch(session, result);
+
+		room->Matched();
 		room->StartGame();
+
+		room->timer_->SetTimer(READY_TIMEOUT, [room, session, admin_session]()
+			{
+				PacketSender packet_sender;
+				if (room->IsGameStarted() == false)
+				{
+					room->EndGame();
+					packet_sender.NtfReadyTimeout(session);
+					packet_sender.NtfReadyTimeout(admin_session);
+				}
+			});
 	}
 }
 
@@ -302,7 +334,7 @@ void PacketProcessor::ReqReadyOmokHandler(Packet packet)
 		return;
 	}
 
-	if (game->IsReady(session->session_id_))
+	if (game->IsReady(session->session_id_) || game->IsGameStart())
 	{
 		return;
 	}
@@ -315,12 +347,28 @@ void PacketProcessor::ReqReadyOmokHandler(Packet packet)
 	//모두 준비시 게임 시작 알림
 	if (game->IsGameStart())
 	{
+		room->timer_->CancelTimer();
+
 		auto black_id = game->GetBlackSessionId();
 		auto black_session = session_manager_.GetSession(black_id);
 		auto white_id = game->GetWhiteSessionId();
 		auto white_session = session_manager_.GetSession(white_id);
 
 		packet_sender_.NtfStartOmok(black_session, white_session);
+
+		room->timer_->SetRecursiveTimer(PUT_MOK_TIMEOUT, [&, room, black_session, white_session]()
+			{
+				PacketSender packet_sender;
+				if (room->IsGameStarted())
+				{
+					auto game = room->GetGame();
+					game->ChangeTurn();
+
+					//타임아웃 전파
+					packet_sender.NtfPutMokTimeout(black_session);
+					packet_sender.NtfPutMokTimeout(white_session);
+				}
+			});
 	}
 }
 
@@ -345,6 +393,8 @@ void PacketProcessor::ReqOmokPutHandler(Packet packet)
 	{
 		return;
 	}
+
+	room->timer_->CancelTimer();
 
 	auto game = room->GetGame();
 
@@ -379,6 +429,23 @@ void PacketProcessor::ReqOmokPutHandler(Packet packet)
 
 			//게임 종료 처리
 			room->EndGame();
+		}
+		else
+		{
+			//타이머
+			room->timer_->SetRecursiveTimer(PUT_MOK_TIMEOUT, [&, room, session, opponent_session]()
+				{
+					PacketSender packet_sender;
+					if (room->IsGameStarted())
+					{
+						auto game = room->GetGame();
+						game->ChangeTurn();
+
+						//타임아웃 전파
+						packet_sender.NtfPutMokTimeout(session);
+						packet_sender.NtfPutMokTimeout(opponent_session);
+					}
+				});
 		}
 	}
 }

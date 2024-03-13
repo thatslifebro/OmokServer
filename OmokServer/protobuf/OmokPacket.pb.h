@@ -52,12 +52,21 @@ extern NtfEndOmokDefaultTypeInternal _NtfEndOmok_default_instance_;
 class NtfMatchReq;
 struct NtfMatchReqDefaultTypeInternal;
 extern NtfMatchReqDefaultTypeInternal _NtfMatchReq_default_instance_;
+class NtfMatchTimeout;
+struct NtfMatchTimeoutDefaultTypeInternal;
+extern NtfMatchTimeoutDefaultTypeInternal _NtfMatchTimeout_default_instance_;
 class NtfNewRoomAdmin;
 struct NtfNewRoomAdminDefaultTypeInternal;
 extern NtfNewRoomAdminDefaultTypeInternal _NtfNewRoomAdmin_default_instance_;
 class NtfPutMok;
 struct NtfPutMokDefaultTypeInternal;
 extern NtfPutMokDefaultTypeInternal _NtfPutMok_default_instance_;
+class NtfPutMokTimeout;
+struct NtfPutMokTimeoutDefaultTypeInternal;
+extern NtfPutMokTimeoutDefaultTypeInternal _NtfPutMokTimeout_default_instance_;
+class NtfReadyTimeout;
+struct NtfReadyTimeoutDefaultTypeInternal;
+extern NtfReadyTimeoutDefaultTypeInternal _NtfReadyTimeout_default_instance_;
 class NtfRoomAdmin;
 struct NtfRoomAdminDefaultTypeInternal;
 extern NtfRoomAdminDefaultTypeInternal _NtfRoomAdmin_default_instance_;
@@ -128,8 +137,11 @@ extern UserInfoDefaultTypeInternal _UserInfo_default_instance_;
 PROTOBUF_NAMESPACE_OPEN
 template<> ::OmokPacket::NtfEndOmok* Arena::CreateMaybeMessage<::OmokPacket::NtfEndOmok>(Arena*);
 template<> ::OmokPacket::NtfMatchReq* Arena::CreateMaybeMessage<::OmokPacket::NtfMatchReq>(Arena*);
+template<> ::OmokPacket::NtfMatchTimeout* Arena::CreateMaybeMessage<::OmokPacket::NtfMatchTimeout>(Arena*);
 template<> ::OmokPacket::NtfNewRoomAdmin* Arena::CreateMaybeMessage<::OmokPacket::NtfNewRoomAdmin>(Arena*);
 template<> ::OmokPacket::NtfPutMok* Arena::CreateMaybeMessage<::OmokPacket::NtfPutMok>(Arena*);
+template<> ::OmokPacket::NtfPutMokTimeout* Arena::CreateMaybeMessage<::OmokPacket::NtfPutMokTimeout>(Arena*);
+template<> ::OmokPacket::NtfReadyTimeout* Arena::CreateMaybeMessage<::OmokPacket::NtfReadyTimeout>(Arena*);
 template<> ::OmokPacket::NtfRoomAdmin* Arena::CreateMaybeMessage<::OmokPacket::NtfRoomAdmin>(Arena*);
 template<> ::OmokPacket::NtfRoomChat* Arena::CreateMaybeMessage<::OmokPacket::NtfRoomChat>(Arena*);
 template<> ::OmokPacket::NtfRoomLeaveUser* Arena::CreateMaybeMessage<::OmokPacket::NtfRoomLeaveUser>(Arena*);
@@ -4202,6 +4214,360 @@ class NtfEndOmok final :
   union { Impl_ _impl_; };
   friend struct ::TableStruct_OmokPacket_2eproto;
 };
+// -------------------------------------------------------------------
+
+class NtfMatchTimeout final :
+    public ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase /* @@protoc_insertion_point(class_definition:OmokPacket.NtfMatchTimeout) */ {
+ public:
+  inline NtfMatchTimeout() : NtfMatchTimeout(nullptr) {}
+  explicit PROTOBUF_CONSTEXPR NtfMatchTimeout(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  NtfMatchTimeout(const NtfMatchTimeout& from);
+  NtfMatchTimeout(NtfMatchTimeout&& from) noexcept
+    : NtfMatchTimeout() {
+    *this = ::std::move(from);
+  }
+
+  inline NtfMatchTimeout& operator=(const NtfMatchTimeout& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline NtfMatchTimeout& operator=(NtfMatchTimeout&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const NtfMatchTimeout& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const NtfMatchTimeout* internal_default_instance() {
+    return reinterpret_cast<const NtfMatchTimeout*>(
+               &_NtfMatchTimeout_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    26;
+
+  friend void swap(NtfMatchTimeout& a, NtfMatchTimeout& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(NtfMatchTimeout* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() != nullptr &&
+        GetOwningArena() == other->GetOwningArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() == other->GetOwningArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(NtfMatchTimeout* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  NtfMatchTimeout* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<NtfMatchTimeout>(arena);
+  }
+  using ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase::CopyFrom;
+  inline void CopyFrom(const NtfMatchTimeout& from) {
+    ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase::CopyImpl(*this, from);
+  }
+  using ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase::MergeFrom;
+  void MergeFrom(const NtfMatchTimeout& from) {
+    ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase::MergeImpl(*this, from);
+  }
+  public:
+
+  private:
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "OmokPacket.NtfMatchTimeout";
+  }
+  protected:
+  explicit NtfMatchTimeout(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                       bool is_message_owned = false);
+  public:
+
+  static const ClassData _class_data_;
+  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  // @@protoc_insertion_point(class_scope:OmokPacket.NtfMatchTimeout)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  struct Impl_ {
+  };
+  friend struct ::TableStruct_OmokPacket_2eproto;
+};
+// -------------------------------------------------------------------
+
+class NtfReadyTimeout final :
+    public ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase /* @@protoc_insertion_point(class_definition:OmokPacket.NtfReadyTimeout) */ {
+ public:
+  inline NtfReadyTimeout() : NtfReadyTimeout(nullptr) {}
+  explicit PROTOBUF_CONSTEXPR NtfReadyTimeout(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  NtfReadyTimeout(const NtfReadyTimeout& from);
+  NtfReadyTimeout(NtfReadyTimeout&& from) noexcept
+    : NtfReadyTimeout() {
+    *this = ::std::move(from);
+  }
+
+  inline NtfReadyTimeout& operator=(const NtfReadyTimeout& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline NtfReadyTimeout& operator=(NtfReadyTimeout&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const NtfReadyTimeout& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const NtfReadyTimeout* internal_default_instance() {
+    return reinterpret_cast<const NtfReadyTimeout*>(
+               &_NtfReadyTimeout_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    27;
+
+  friend void swap(NtfReadyTimeout& a, NtfReadyTimeout& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(NtfReadyTimeout* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() != nullptr &&
+        GetOwningArena() == other->GetOwningArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() == other->GetOwningArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(NtfReadyTimeout* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  NtfReadyTimeout* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<NtfReadyTimeout>(arena);
+  }
+  using ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase::CopyFrom;
+  inline void CopyFrom(const NtfReadyTimeout& from) {
+    ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase::CopyImpl(*this, from);
+  }
+  using ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase::MergeFrom;
+  void MergeFrom(const NtfReadyTimeout& from) {
+    ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase::MergeImpl(*this, from);
+  }
+  public:
+
+  private:
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "OmokPacket.NtfReadyTimeout";
+  }
+  protected:
+  explicit NtfReadyTimeout(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                       bool is_message_owned = false);
+  public:
+
+  static const ClassData _class_data_;
+  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  // @@protoc_insertion_point(class_scope:OmokPacket.NtfReadyTimeout)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  struct Impl_ {
+  };
+  friend struct ::TableStruct_OmokPacket_2eproto;
+};
+// -------------------------------------------------------------------
+
+class NtfPutMokTimeout final :
+    public ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase /* @@protoc_insertion_point(class_definition:OmokPacket.NtfPutMokTimeout) */ {
+ public:
+  inline NtfPutMokTimeout() : NtfPutMokTimeout(nullptr) {}
+  explicit PROTOBUF_CONSTEXPR NtfPutMokTimeout(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  NtfPutMokTimeout(const NtfPutMokTimeout& from);
+  NtfPutMokTimeout(NtfPutMokTimeout&& from) noexcept
+    : NtfPutMokTimeout() {
+    *this = ::std::move(from);
+  }
+
+  inline NtfPutMokTimeout& operator=(const NtfPutMokTimeout& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline NtfPutMokTimeout& operator=(NtfPutMokTimeout&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const NtfPutMokTimeout& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const NtfPutMokTimeout* internal_default_instance() {
+    return reinterpret_cast<const NtfPutMokTimeout*>(
+               &_NtfPutMokTimeout_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    28;
+
+  friend void swap(NtfPutMokTimeout& a, NtfPutMokTimeout& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(NtfPutMokTimeout* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() != nullptr &&
+        GetOwningArena() == other->GetOwningArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() == other->GetOwningArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(NtfPutMokTimeout* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  NtfPutMokTimeout* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<NtfPutMokTimeout>(arena);
+  }
+  using ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase::CopyFrom;
+  inline void CopyFrom(const NtfPutMokTimeout& from) {
+    ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase::CopyImpl(*this, from);
+  }
+  using ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase::MergeFrom;
+  void MergeFrom(const NtfPutMokTimeout& from) {
+    ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase::MergeImpl(*this, from);
+  }
+  public:
+
+  private:
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "OmokPacket.NtfPutMokTimeout";
+  }
+  protected:
+  explicit NtfPutMokTimeout(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                       bool is_message_owned = false);
+  public:
+
+  static const ClassData _class_data_;
+  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  // @@protoc_insertion_point(class_scope:OmokPacket.NtfPutMokTimeout)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  struct Impl_ {
+  };
+  friend struct ::TableStruct_OmokPacket_2eproto;
+};
 // ===================================================================
 
 
@@ -5885,9 +6251,27 @@ inline void NtfEndOmok::set_status(int32_t value) {
   // @@protoc_insertion_point(field_set:OmokPacket.NtfEndOmok.status)
 }
 
+// -------------------------------------------------------------------
+
+// NtfMatchTimeout
+
+// -------------------------------------------------------------------
+
+// NtfReadyTimeout
+
+// -------------------------------------------------------------------
+
+// NtfPutMokTimeout
+
 #ifdef __GNUC__
   #pragma GCC diagnostic pop
 #endif  // __GNUC__
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
 // -------------------------------------------------------------------
 
 // -------------------------------------------------------------------

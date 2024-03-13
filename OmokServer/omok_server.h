@@ -7,6 +7,7 @@
 
 #include "packet_processor.h"
 #include "db_processor.h"
+#include "timeout_processor.h"
 
 class OmokServer
 {
@@ -14,6 +15,7 @@ public:
 	RoomManager room_manager_;
 	PacketProcessor packet_processor_;
 	DBProcessor db_processor_;
+	TimeoutProcessor timeout_processor_;
 
 	void Init();
 	void Start();
@@ -23,4 +25,5 @@ private:
 
 	void PacketProcessorStart();
 	void DBProcessorStart();
+	void TimeoutProcessorStart();
 };

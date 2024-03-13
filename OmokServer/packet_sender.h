@@ -45,6 +45,12 @@ public:
 
 	void NtfGameOver(Session* session, uint32_t result);
 
+	void NtfMatchTimeout(Session* session);
+
+	void NtfReadyTimeout(Session* session);
+
+	void NtfPutMokTimeout(Session* session);
+
 private:
 	template <typename T>
 	std::tuple<std::shared_ptr<char[]>, uint16_t> MakeResData(PacketId packet_id, T packet_body);

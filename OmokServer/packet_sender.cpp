@@ -299,6 +299,33 @@ void PacketSender::NtfGameOver(Session* session, uint32_t result)
 	session->SendPacket(res_data, res_length);
 }
 
+void PacketSender::NtfMatchTimeout(Session* session)
+{
+	OmokPacket::NtfMatchTimeout ntf_match_timeout;
+
+	auto [res_data, res_length] = MakeResData(PacketId::NtfMatchTimeout, ntf_match_timeout);
+
+	session->SendPacket(res_data, res_length);
+}
+
+void PacketSender::NtfReadyTimeout(Session* session)
+{
+	OmokPacket::NtfReadyTimeout ntf_ready_timeout;
+
+	auto [res_data, res_length] = MakeResData(PacketId::NtfReadyTimeout, ntf_ready_timeout);
+
+	session->SendPacket(res_data, res_length);
+}
+
+void PacketSender::NtfPutMokTimeout(Session* session)
+{
+	OmokPacket::NtfPutMokTimeout ntf_put_mok_timeout;
+
+	auto [res_data, res_length] = MakeResData(PacketId::NtfPutMokTimeout, ntf_put_mok_timeout);
+
+	session->SendPacket(res_data, res_length);
+}
+
 template <typename T>
 std::tuple<std::shared_ptr<char[]>, uint16_t> PacketSender::MakeResData(PacketId packet_id, T packet_body)
 {

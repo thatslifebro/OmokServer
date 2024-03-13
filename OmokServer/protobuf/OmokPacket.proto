@@ -110,3 +110,12 @@ message NtfPutMok { // »ó´ë µÐ °÷
 message NtfEndOmok {
   optional int32 status = 1; // 0 lose, 1 win, 2 draw, -1 opponent disconnected
 }
+
+message NtfMatchTimeout {
+}
+
+message NtfReadyTimeout {
+}
+
+message NtfPutMokTimeout {
+}

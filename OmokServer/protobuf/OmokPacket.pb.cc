@@ -381,8 +381,41 @@ struct NtfEndOmokDefaultTypeInternal {
   };
 };
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 NtfEndOmokDefaultTypeInternal _NtfEndOmok_default_instance_;
+PROTOBUF_CONSTEXPR NtfMatchTimeout::NtfMatchTimeout(
+    ::_pbi::ConstantInitialized) {}
+struct NtfMatchTimeoutDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR NtfMatchTimeoutDefaultTypeInternal()
+      : _instance(::_pbi::ConstantInitialized{}) {}
+  ~NtfMatchTimeoutDefaultTypeInternal() {}
+  union {
+    NtfMatchTimeout _instance;
+  };
+};
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 NtfMatchTimeoutDefaultTypeInternal _NtfMatchTimeout_default_instance_;
+PROTOBUF_CONSTEXPR NtfReadyTimeout::NtfReadyTimeout(
+    ::_pbi::ConstantInitialized) {}
+struct NtfReadyTimeoutDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR NtfReadyTimeoutDefaultTypeInternal()
+      : _instance(::_pbi::ConstantInitialized{}) {}
+  ~NtfReadyTimeoutDefaultTypeInternal() {}
+  union {
+    NtfReadyTimeout _instance;
+  };
+};
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 NtfReadyTimeoutDefaultTypeInternal _NtfReadyTimeout_default_instance_;
+PROTOBUF_CONSTEXPR NtfPutMokTimeout::NtfPutMokTimeout(
+    ::_pbi::ConstantInitialized) {}
+struct NtfPutMokTimeoutDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR NtfPutMokTimeoutDefaultTypeInternal()
+      : _instance(::_pbi::ConstantInitialized{}) {}
+  ~NtfPutMokTimeoutDefaultTypeInternal() {}
+  union {
+    NtfPutMokTimeout _instance;
+  };
+};
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 NtfPutMokTimeoutDefaultTypeInternal _NtfPutMokTimeout_default_instance_;
 }  // namespace OmokPacket
-static ::_pb::Metadata file_level_metadata_OmokPacket_2eproto[26];
+static ::_pb::Metadata file_level_metadata_OmokPacket_2eproto[29];
 static constexpr ::_pb::EnumDescriptor const** file_level_enum_descriptors_OmokPacket_2eproto = nullptr;
 static constexpr ::_pb::ServiceDescriptor const** file_level_service_descriptors_OmokPacket_2eproto = nullptr;
 
@@ -604,6 +637,24 @@ const uint32_t TableStruct_OmokPacket_2eproto::offsets[] PROTOBUF_SECTION_VARIAB
   ~0u,  // no _inlined_string_donated_
   PROTOBUF_FIELD_OFFSET(::OmokPacket::NtfEndOmok, _impl_.status_),
   0,
+  ~0u,  // no _has_bits_
+  PROTOBUF_FIELD_OFFSET(::OmokPacket::NtfMatchTimeout, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  ~0u,  // no _inlined_string_donated_
+  ~0u,  // no _has_bits_
+  PROTOBUF_FIELD_OFFSET(::OmokPacket::NtfReadyTimeout, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  ~0u,  // no _inlined_string_donated_
+  ~0u,  // no _has_bits_
+  PROTOBUF_FIELD_OFFSET(::OmokPacket::NtfPutMokTimeout, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  ~0u,  // no _inlined_string_donated_
 };
 static const ::_pbi::MigrationSchema schemas[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) = {
   { 0, 8, -1, sizeof(::OmokPacket::ReqLogin)},
@@ -632,6 +683,9 @@ static const ::_pbi::MigrationSchema schemas[] PROTOBUF_SECTION_VARIABLE(protode
   { 191, 198, -1, sizeof(::OmokPacket::ResPutMok)},
   { 199, 207, -1, sizeof(::OmokPacket::NtfPutMok)},
   { 209, 216, -1, sizeof(::OmokPacket::NtfEndOmok)},
+  { 217, -1, -1, sizeof(::OmokPacket::NtfMatchTimeout)},
+  { 223, -1, -1, sizeof(::OmokPacket::NtfReadyTimeout)},
+  { 229, -1, -1, sizeof(::OmokPacket::NtfPutMokTimeout)},
 };
 
 static const ::_pb::Message* const file_default_instances[] = {
@@ -661,6 +715,9 @@ static const ::_pb::Message* const file_default_instances[] = {
   &::OmokPacket::_ResPutMok_default_instance_._instance,
   &::OmokPacket::_NtfPutMok_default_instance_._instance,
   &::OmokPacket::_NtfEndOmok_default_instance_._instance,
+  &::OmokPacket::_NtfMatchTimeout_default_instance_._instance,
+  &::OmokPacket::_NtfReadyTimeout_default_instance_._instance,
+  &::OmokPacket::_NtfPutMokTimeout_default_instance_._instance,
 };
 
 const char descriptor_table_protodef_OmokPacket_2eproto[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) =
@@ -702,13 +759,14 @@ const char descriptor_table_protodef_OmokPacket_2eproto[] PROTOBUF_SECTION_VARIA
   "\006result\030\001 \001(\005H\000\210\001\001B\t\n\007_result\"7\n\tNtfPutM"
   "ok\022\016\n\001x\030\001 \001(\005H\000\210\001\001\022\016\n\001y\030\002 \001(\005H\001\210\001\001B\004\n\002_x"
   "B\004\n\002_y\",\n\nNtfEndOmok\022\023\n\006status\030\001 \001(\005H\000\210\001"
-  "\001B\t\n\007_statusb\006proto3"
+  "\001B\t\n\007_status\"\021\n\017NtfMatchTimeout\"\021\n\017NtfRe"
+  "adyTimeout\"\022\n\020NtfPutMokTimeoutb\006proto3"
   ;
 static ::_pbi::once_flag descriptor_table_OmokPacket_2eproto_once;
 const ::_pbi::DescriptorTable descriptor_table_OmokPacket_2eproto = {
-    false, false, 1540, descriptor_table_protodef_OmokPacket_2eproto,
+    false, false, 1598, descriptor_table_protodef_OmokPacket_2eproto,
     "OmokPacket.proto",
-    &descriptor_table_OmokPacket_2eproto_once, nullptr, 0, 26,
+    &descriptor_table_OmokPacket_2eproto_once, nullptr, 0, 29,
     schemas, file_default_instances, TableStruct_OmokPacket_2eproto::offsets,
     file_level_metadata_OmokPacket_2eproto, file_level_enum_descriptors_OmokPacket_2eproto,
     file_level_service_descriptors_OmokPacket_2eproto,
@@ -5708,6 +5766,126 @@ void NtfEndOmok::InternalSwap(NtfEndOmok* other) {
       file_level_metadata_OmokPacket_2eproto[25]);
 }
 
+// ===================================================================
+
+class NtfMatchTimeout::_Internal {
+ public:
+};
+
+NtfMatchTimeout::NtfMatchTimeout(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                         bool is_message_owned)
+  : ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase(arena, is_message_owned) {
+  // @@protoc_insertion_point(arena_constructor:OmokPacket.NtfMatchTimeout)
+}
+NtfMatchTimeout::NtfMatchTimeout(const NtfMatchTimeout& from)
+  : ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase() {
+  NtfMatchTimeout* const _this = this; (void)_this;
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  // @@protoc_insertion_point(copy_constructor:OmokPacket.NtfMatchTimeout)
+}
+
+
+
+
+
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData NtfMatchTimeout::_class_data_ = {
+    ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase::CopyImpl,
+    ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase::MergeImpl,
+};
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*NtfMatchTimeout::GetClassData() const { return &_class_data_; }
+
+
+
+
+
+
+
+::PROTOBUF_NAMESPACE_ID::Metadata NtfMatchTimeout::GetMetadata() const {
+  return ::_pbi::AssignDescriptors(
+      &descriptor_table_OmokPacket_2eproto_getter, &descriptor_table_OmokPacket_2eproto_once,
+      file_level_metadata_OmokPacket_2eproto[26]);
+}
+
+// ===================================================================
+
+class NtfReadyTimeout::_Internal {
+ public:
+};
+
+NtfReadyTimeout::NtfReadyTimeout(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                         bool is_message_owned)
+  : ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase(arena, is_message_owned) {
+  // @@protoc_insertion_point(arena_constructor:OmokPacket.NtfReadyTimeout)
+}
+NtfReadyTimeout::NtfReadyTimeout(const NtfReadyTimeout& from)
+  : ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase() {
+  NtfReadyTimeout* const _this = this; (void)_this;
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  // @@protoc_insertion_point(copy_constructor:OmokPacket.NtfReadyTimeout)
+}
+
+
+
+
+
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData NtfReadyTimeout::_class_data_ = {
+    ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase::CopyImpl,
+    ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase::MergeImpl,
+};
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*NtfReadyTimeout::GetClassData() const { return &_class_data_; }
+
+
+
+
+
+
+
+::PROTOBUF_NAMESPACE_ID::Metadata NtfReadyTimeout::GetMetadata() const {
+  return ::_pbi::AssignDescriptors(
+      &descriptor_table_OmokPacket_2eproto_getter, &descriptor_table_OmokPacket_2eproto_once,
+      file_level_metadata_OmokPacket_2eproto[27]);
+}
+
+// ===================================================================
+
+class NtfPutMokTimeout::_Internal {
+ public:
+};
+
+NtfPutMokTimeout::NtfPutMokTimeout(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                         bool is_message_owned)
+  : ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase(arena, is_message_owned) {
+  // @@protoc_insertion_point(arena_constructor:OmokPacket.NtfPutMokTimeout)
+}
+NtfPutMokTimeout::NtfPutMokTimeout(const NtfPutMokTimeout& from)
+  : ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase() {
+  NtfPutMokTimeout* const _this = this; (void)_this;
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  // @@protoc_insertion_point(copy_constructor:OmokPacket.NtfPutMokTimeout)
+}
+
+
+
+
+
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData NtfPutMokTimeout::_class_data_ = {
+    ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase::CopyImpl,
+    ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase::MergeImpl,
+};
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*NtfPutMokTimeout::GetClassData() const { return &_class_data_; }
+
+
+
+
+
+
+
+::PROTOBUF_NAMESPACE_ID::Metadata NtfPutMokTimeout::GetMetadata() const {
+  return ::_pbi::AssignDescriptors(
+      &descriptor_table_OmokPacket_2eproto_getter, &descriptor_table_OmokPacket_2eproto_once,
+      file_level_metadata_OmokPacket_2eproto[28]);
+}
+
 // @@protoc_insertion_point(namespace_scope)
 }  // namespace OmokPacket
 PROTOBUF_NAMESPACE_OPEN
@@ -5814,6 +5992,18 @@ Arena::CreateMaybeMessage< ::OmokPacket::NtfPutMok >(Arena* arena) {
 template<> PROTOBUF_NOINLINE ::OmokPacket::NtfEndOmok*
 Arena::CreateMaybeMessage< ::OmokPacket::NtfEndOmok >(Arena* arena) {
   return Arena::CreateMessageInternal< ::OmokPacket::NtfEndOmok >(arena);
+}
+template<> PROTOBUF_NOINLINE ::OmokPacket::NtfMatchTimeout*
+Arena::CreateMaybeMessage< ::OmokPacket::NtfMatchTimeout >(Arena* arena) {
+  return Arena::CreateMessageInternal< ::OmokPacket::NtfMatchTimeout >(arena);
+}
+template<> PROTOBUF_NOINLINE ::OmokPacket::NtfReadyTimeout*
+Arena::CreateMaybeMessage< ::OmokPacket::NtfReadyTimeout >(Arena* arena) {
+  return Arena::CreateMessageInternal< ::OmokPacket::NtfReadyTimeout >(arena);
+}
+template<> PROTOBUF_NOINLINE ::OmokPacket::NtfPutMokTimeout*
+Arena::CreateMaybeMessage< ::OmokPacket::NtfPutMokTimeout >(Arena* arena) {
+  return Arena::CreateMessageInternal< ::OmokPacket::NtfPutMokTimeout >(arena);
 }
 PROTOBUF_NAMESPACE_CLOSE
 

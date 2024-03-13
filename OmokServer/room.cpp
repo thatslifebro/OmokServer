@@ -65,5 +65,6 @@ void Room::EndGame() {
 	game_ = nullptr;
 	is_game_started_ = false;
 	try_matching_ = false;
+	matched_ = false;
 	opponent_id_ = 0;
 }

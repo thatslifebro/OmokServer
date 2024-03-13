@@ -24,7 +24,7 @@ namespace OmokClient
 
         public void ChangeLabel(string adminId)
         {
-            label.Text = adminId + "님이 오목을 신청했습니다.\n수락하시겠습니까?";
+            label.Text = adminId + "님이 오목을 신청했습니다.\n수락하시겠습니까?\n15초 안에 결정하지 않으면 취소됩니다.";
         }
 
         private void button1_Click(object sender, EventArgs e)

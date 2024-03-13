@@ -75,6 +75,8 @@
     <ClInclude Include="constants.h">
       <Filter>common</Filter>
     </ClInclude>
+    <ClInclude Include="timeout_processor.h" />
+    <ClInclude Include="timer.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="protobuf\OmokPacket.proto">

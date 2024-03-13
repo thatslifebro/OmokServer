@@ -57,6 +57,8 @@ public:
 
 	uint32_t LoserId();
 
+	void ChangeTurn();
+
 private:
 	uint32_t white_session_id_;
 	uint32_t black_session_id_;
@@ -68,8 +70,6 @@ private:
 	std::map <Pos, status> omok_board_;
 
 	bool SetStone(uint32_t x, uint32_t y, status color);
-
-	void ChangeTurn();
 
 	bool CheckTurn(uint32_t session_id);
 

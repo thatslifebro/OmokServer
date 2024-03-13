@@ -15,6 +15,8 @@ public:
 
 	Room* GetRoom(uint16_t room_id);
 
+	std::vector<Room*> GetAllRooms();
+
 private:
 	static std::vector<Room> room_vec_; // room_id - 1 = index
 };

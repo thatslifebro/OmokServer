@@ -17,6 +17,9 @@ namespace csharp_test_client
         Dictionary<string, int> RoomUserInfo = new Dictionary<string, int>();
         int mySessionID = 0;
         string myUserID = "";
+
+        OmokClient.PopUp popUp = null;
+
         void SetPacketHandler()
         {
             //PacketFuncDic.Add(PACKET_ID.PACKET_ID_ERROR_NTF, PacketProcess_ErrorNotify);
@@ -41,6 +44,9 @@ namespace csharp_test_client
             PacketFuncDic.Add(PacketID.NtfPutMok, PacketProcess_PutMokNotify);
             PacketFuncDic.Add(PacketID.NtfEndOmok, PacketProcess_EndOmokNotify);
 
+            PacketFuncDic.Add(PacketID.NtfMatchTimeout, PacketProcess_MatchTimeoutNotify);
+            PacketFuncDic.Add(PacketID.NtfReadyTimeout, PacketProcess_ReadyTimeoutNotify);
+            PacketFuncDic.Add(PacketID.NtfPutMokTimeout, PacketProcess_PutMokTimeoutNotify);
         }
 
         void PacketProcess(PacketData packet)
@@ -245,12 +251,11 @@ namespace csharp_test_client
             resMatch.MergeFrom(bodyData);
             if(resMatch.Result == 0)
             {
-                DevLog.Write("상대가 요청에 수락");
-                DevLog.Write("Game Ready 버튼을 눌러 게임을 시작하세요.");
+                DevLog.Write("30초 안에 Game Ready 버튼을 눌러 게임을 시작하세요.");
             }
             else
             {
-                DevLog.Write("상대가 요청에 거절");
+                DevLog.Write("매칭 실패");
             }
         }
 
@@ -261,7 +266,7 @@ namespace csharp_test_client
 
             DevLog.Write($"매칭 요청 받음: {ntfMatchReq.UserInfo.UserId}");
 
-            OmokClient.PopUp popUp = new();
+            popUp = new();
             popUp.DataPassEvent += new OmokClient.PopUp.DataPassEventHandler(DataReceiveEvent);
             popUp.ChangeLabel(ntfMatchReq.UserInfo.UserId);
             popUp.ShowDialog();
@@ -368,6 +373,25 @@ namespace csharp_test_client
             {
                 DevLog.Write($"오목 GameOver: 상대방의 연결이 끊겼습니다. Win");
             }
+        }
+
+        void PacketProcess_MatchTimeoutNotify(byte[] bodyData)
+        {
+            matchTimeout = true;
+            DevLog.Write("매칭 타임아웃");
+            popUp.Close();
+        }
+
+        void PacketProcess_ReadyTimeoutNotify(byte[] bodyData)
+        {
+            DevLog.Write("준비 버튼을 누르지 않아 매칭이 취소되었습니다.");
+        }
+
+        void PacketProcess_PutMokTimeoutNotify(byte[] bodyData)
+        {
+            턴넘기기();
+            DevLog.Write("돌을 두지 않아 상대에게 턴이 넘어갔습니다.");
+
         }
     }
 }

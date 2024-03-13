@@ -32,7 +32,7 @@ namespace csharp_test_client
 
         System.Windows.Forms.Timer dispatcherUITimer = new();
 
-
+        bool matchTimeout = false;
 
         public mainForm()
         {
@@ -408,12 +408,17 @@ namespace csharp_test_client
 
         private void DataReceiveEvent(bool accept)
         {
+            if(matchTimeout == true)
+            {
+                matchTimeout = false;
+                return;
+            }
+
             var reqMatchRes = new ReqMatchRes();
             reqMatchRes.Accept = accept;
             if (accept)
             {
                 DevLog.Write("수락하셨습니다.");
-                DevLog.Write("Game Ready 버튼을 눌러 게임을 시작하세요.");
             }
             else
             {

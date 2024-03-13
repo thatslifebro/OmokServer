@@ -3,11 +3,14 @@
 #include <set>
 
 #include "game.h"
+#include "timer.h"
 
 class Room
 {
 public:
-	Room(uint16_t room_id) : room_id_(room_id) {}
+	Timer* timer_;
+
+	Room(uint16_t room_id) : room_id_(room_id) { timer_ = new Timer(); }
 
 	void AddSession(uint16_t session_id);
 
