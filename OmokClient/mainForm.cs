@@ -32,8 +32,6 @@ namespace csharp_test_client
 
         System.Windows.Forms.Timer dispatcherUITimer = new();
 
-        bool matchTimeout = false;
-
         public mainForm()
         {
             InitializeComponent();
@@ -408,12 +406,6 @@ namespace csharp_test_client
 
         private void DataReceiveEvent(bool accept)
         {
-            if(matchTimeout == true)
-            {
-                matchTimeout = false;
-                return;
-            }
-
             var reqMatchRes = new ReqMatchRes();
             reqMatchRes.Accept = accept;
             if (accept)

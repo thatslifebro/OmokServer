@@ -387,7 +387,6 @@ namespace csharp_test_client
 
         void PacketProcess_MatchTimeoutNotify(byte[] bodyData)
         {
-            matchTimeout = true;
             DevLog.Write("매칭 타임아웃");
             popUp.Close();
         }
