@@ -53,13 +53,20 @@ void PacketProcessor::ReqRoomEnterHandler(Packet packet)
 
 	if (session->is_logged_in_ == true && session->room_id_ == 0)
 	{
-		auto success = room_manager_.AddSession(session->session_id_, req_room_enter.roomid());
-		if (success == true)
+		auto room = room_manager_.GetRoom(req_room_enter.roomid());
+		if (room->IsGameStarted())
 		{
-			result = 0;
-			session->room_id_ = req_room_enter.roomid();
+			return;
+		}
+		else {
+			auto success = room_manager_.AddSession(session->session_id_, req_room_enter.roomid());
+			if (success == true)
+			{
+				result = 0;
+				session->room_id_ = req_room_enter.roomid();
 
-			std::print("UserId : {} 가 방 {}번에 입장함.\n", session->user_id_, session->room_id_);
+				std::print("UserId : {} 가 방 {}번에 입장함.\n", session->user_id_, session->room_id_);
+			}
 		}
 	}
 
