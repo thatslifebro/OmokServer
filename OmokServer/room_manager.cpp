@@ -30,6 +30,7 @@ bool RoomManager::RemoveSession(uint32_t session_id, uint16_t room_id)
 	return true;
 }
 
+//TODO: 네트워크 패킷을 보내기 위해 방의 유저들 리스트를 반환하는 것 같은데 네트워크 패킷을 보내는 함수를 std::function 등을 사용해서 Room에서 보내게 하는게 좋겠습니다
 std::vector<uint32_t> RoomManager::GetSessionList(uint16_t room_id)
 {
 	if (room_id > MAX_ROOM_NUM || room_id < 1)

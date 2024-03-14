@@ -1,6 +1,7 @@
 #pragma once
 #include <map>
 
+//TODO 하나의 파일에 너무 많은 정의를 넣지 마세요. Game 클래스 이외는 다른 파일에서 정의하세요
 struct Pos
 {
 	Pos(uint32_t x, uint32_t y) : x_(x), y_(y)
@@ -15,12 +16,14 @@ struct Pos
 	}
 };
 
+//TODO enum class를 사용하세요
 enum Turn
 {
 	BLACK_TURN,
 	WHITE_TURN	
 };
 
+//TODO enum class를 사용하세요
 enum status
 {
 	EMPTY,
@@ -61,6 +64,7 @@ private:
 	bool is_game_start_;
 	Turn turn_;
 
+	//TODO std::map을 사용하지 마세요. std::array나 std::vector를 사용하세요
 	std::map <Pos, status> omok_board_;
 
 	bool SetStone(uint32_t x, uint32_t y, status color);

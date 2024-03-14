@@ -8,6 +8,7 @@
 class Room
 {
 public:
+	//TODO: 멤버 변수를 공개로 하는 것은 좋지 않습니다. 어쩔 수 없는 이유가 있는게 아니라면 private로 하세요
 	Timer* timer_;
 
 	Room(uint16_t room_id) : room_id_(room_id) { timer_ = new Timer(); }
