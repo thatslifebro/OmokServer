@@ -21,19 +21,22 @@ public:
 		duration_ = seconds;
 		this->callback_ = callback;
 		is_on_ = true;
+
 		is_repeated_ = false;
 	}
 
 	void SetRepeatedTimer(int seconds, std::function<void()> callback)
 	{
 		std::lock_guard<std::mutex> lock(mutex);
-		is_repeated_ = true;
-		duration_ = seconds;
 		due_time_ = std::chrono::system_clock::now() + std::chrono::seconds(seconds);
+		duration_ = seconds;
 		this->callback_ = callback;
 		is_on_ = true;
+
+		is_repeated_ = true;
 	}
 
+	// 타이머를 같은 방식으로 한번 더 설정
 	void SetSameWithPreviousTimer()
 	{
 		if (callback_ == nullptr || duration_ <= 0)
