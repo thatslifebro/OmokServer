@@ -355,7 +355,6 @@ namespace csharp_test_client
                 관전설정();
             }
             DevLog.Write($"상대방이 [{x}, {y}] 에 돌을 놓았습니다.");
-            DevLog.Write($"내턴이 : {IsMyTurn} 입니다.");
         }
 
 
