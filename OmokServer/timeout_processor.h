@@ -30,6 +30,7 @@ public:
 			{
 				timer->is_on_ = false;
 				timer->callback_();
+				//반복 타이머인 경우 다시 설정(돌 두기 이후 상대에게도 타이머가 걸려야하기 때문)
 				if (timer->is_repeated_)
 				{
 					timer->due_time_ = std::chrono::system_clock::now() + std::chrono::seconds(timer->duration_);
