@@ -4,18 +4,6 @@
     <Filter Include="protobuf">
       <UniqueIdentifier>{3ee701b8-f7e1-4be9-9add-8c724c00ed1a}</UniqueIdentifier>
     </Filter>
-    <Filter Include="room">
-      <UniqueIdentifier>{749b1f00-365e-43cc-9858-245a943c948f}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="session">
-      <UniqueIdentifier>{130d5dfb-572a-4c42-a698-e7bfc77fe1ce}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="common">
-      <UniqueIdentifier>{f602cac3-d23f-491f-bafd-d72fd44c3f76}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="game">
-      <UniqueIdentifier>{54328da6-b929-4ebf-87bb-5e10391add49}</UniqueIdentifier>
-    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="protobuf\OmokPacket.pb.cc">
@@ -28,24 +16,12 @@
     <ClCompile Include="packet_sender.cpp" />
     <ClCompile Include="db_processor.cpp" />
     <ClCompile Include="packet_info.cpp" />
-    <ClCompile Include="game.cpp">
-      <Filter>game</Filter>
-    </ClCompile>
-    <ClCompile Include="room.cpp">
-      <Filter>room</Filter>
-    </ClCompile>
-    <ClCompile Include="room_manager.cpp">
-      <Filter>room</Filter>
-    </ClCompile>
-    <ClCompile Include="session.cpp">
-      <Filter>session</Filter>
-    </ClCompile>
-    <ClCompile Include="session_manager.cpp">
-      <Filter>session</Filter>
-    </ClCompile>
-    <ClCompile Include="packet_id.h">
-      <Filter>common</Filter>
-    </ClCompile>
+    <ClCompile Include="packet_id.h" />
+    <ClCompile Include="game.cpp" />
+    <ClCompile Include="room.cpp" />
+    <ClCompile Include="room_manager.cpp" />
+    <ClCompile Include="session.cpp" />
+    <ClCompile Include="session_manager.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="protobuf\OmokPacket.pb.h">
@@ -57,25 +33,13 @@
     <ClInclude Include="packet_processor.h" />
     <ClInclude Include="packet_sender.h" />
     <ClInclude Include="db_processor.h" />
-    <ClInclude Include="game.h">
-      <Filter>game</Filter>
-    </ClInclude>
-    <ClInclude Include="room_manager.h">
-      <Filter>room</Filter>
-    </ClInclude>
-    <ClInclude Include="room.h">
-      <Filter>room</Filter>
-    </ClInclude>
-    <ClInclude Include="session_manager.h">
-      <Filter>session</Filter>
-    </ClInclude>
-    <ClInclude Include="session.h">
-      <Filter>session</Filter>
-    </ClInclude>
-    <ClInclude Include="constants.h">
-      <Filter>common</Filter>
-    </ClInclude>
     <ClInclude Include="timer.h" />
+    <ClInclude Include="constants.h" />
+    <ClInclude Include="game.h" />
+    <ClInclude Include="room.h" />
+    <ClInclude Include="room_manager.h" />
+    <ClInclude Include="session.h" />
+    <ClInclude Include="session_manager.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="protobuf\OmokPacket.proto">
