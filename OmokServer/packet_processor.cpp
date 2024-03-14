@@ -54,6 +54,10 @@ void PacketProcessor::ReqRoomEnterHandler(Packet packet)
 	if (session->is_logged_in_ == true && session->room_id_ == 0)
 	{
 		auto room = room_manager_.GetRoom(req_room_enter.roomid());
+		if (room == nullptr)
+		{
+			return;
+		}
 		if (room->IsGameStarted())
 		{
 			return;
