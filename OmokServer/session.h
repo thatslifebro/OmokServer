@@ -29,10 +29,10 @@ public:
 
 	void SendPacket(std::shared_ptr<char[]> buffer, int length);
 
-	void Login(const std::string& user_id);
-
 private:
 	Poco::Net::StreamSocket socket_;
 	Poco::Net::SocketReactor& reactor_;
 	std::string peer_address_;
+
+	void LeaveRoom();
 };

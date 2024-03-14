@@ -9,23 +9,6 @@ void Room::AddSession(uint16_t session_id)
 	session_ids_.insert(session_id);
 }
 
-bool Room::ChangeAdmin(uint16_t session_id)
-{
-	if (admin_id_ == session_id)
-	{
-		if (!session_ids_.empty())
-		{
-			admin_id_ = *session_ids_.begin();
-			return true;
-		}
-		else
-		{
-			admin_id_ = 0;
-		}
-	}
-	return false;
-}
-
 std::vector<uint32_t> Room::GetSessionList() const
 {
 	std::vector<uint32_t> session_list;
@@ -38,16 +21,19 @@ std::vector<uint32_t> Room::GetSessionList() const
 	return session_list;
 }
 
-bool Room::IsGameStarted() const
+void Room::ChangeAdmin()
 {
-	if (game_ == nullptr)
+	if (!session_ids_.empty())
 	{
-		return false;
+		admin_id_ = *session_ids_.begin();
 	}
-	return game_->IsGameStart();
+	else
+	{
+		admin_id_ = 0;
+	}
 }
 
-void Room::TryMatching(uint32_t opponent_id)
+void Room::TryMatchingWith(uint32_t opponent_id)
 {
 	opponent_id_ = opponent_id;
 	try_matching_ = true;
@@ -60,10 +46,34 @@ void Room::CancelMatch()
 	opponent_id_ = 0;
 }
 
+uint32_t Room::PlayerLeave(uint32_t session_id)
+{
+	if (IsGameStarted())
+	{
+		if (opponent_id_ == session_id || admin_id_ == session_id)
+		{
+			timer_->CancelTimer();
+			auto opponent_id = game_->GetOpponentId(session_id);
+			EndGame();
+			return opponent_id;
+		}
+	}
+	return 0;
+}
+
+bool Room::IsGameStarted() const
+{
+	if (game_ == nullptr)
+	{
+		return false;
+	}
+	return game_->IsGameStarted();
+}
+
+
 void Room::EndGame() {
 	delete game_;
 	game_ = nullptr;
-	is_game_started_ = false;
 	try_matching_ = false;
 	matched_ = false;
 	opponent_id_ = 0;

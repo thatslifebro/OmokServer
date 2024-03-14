@@ -9,8 +9,10 @@ public:
 	std::mutex mutex;
 	bool is_on_ = false;
 	std::chrono::system_clock::time_point due_time_;
-	uint16_t recursive_seconds_ = 0;
-	bool is_recursive_ = false;
+	uint16_t repeated_seconds_ = 0;
+	bool is_repeated_ = false;
+
+	uint32_t num_ = 0;
 
 	std::function<void()> callback_;
 
@@ -22,11 +24,11 @@ public:
 		is_on_ = true;
 	}
 
-	void SetRecursiveTimer(int seconds, std::function<void()> callback)
+	void SetRepeatedTimer(int seconds, std::function<void()> callback)
 	{
 		std::lock_guard<std::mutex> lock(mutex);
-		is_recursive_ = true;
-		recursive_seconds_ = seconds;
+		is_repeated_ = true;
+		repeated_seconds_ = seconds;
 		due_time_ = std::chrono::system_clock::now() + std::chrono::seconds(seconds);
 		this->callback_ = callback;
 		is_on_ = true;
@@ -36,6 +38,12 @@ public:
 	{
 		std::lock_guard<std::mutex> lock(mutex);
 		is_on_ = false;
+	}
+
+	void ContinueTimer()
+	{
+		std::lock_guard<std::mutex> lock(mutex);
+		is_on_ = true;
 	}
 
 	bool IsCallbackDone()

@@ -14,6 +14,23 @@ Session::Session(Poco::Net::StreamSocket& socket, Poco::Net::SocketReactor& reac
 	std::print("Connection from {}\n", peer_address_);
 }
 
+
+Session::~Session()
+{
+	SessionManager session_manager;
+
+	// 이벤트 핸들러 제거
+	reactor_.removeEventHandler(socket_, Poco::Observer<Session, ReadableNotification>(*this, &Session::onReadable));
+
+	// 세션 매니저에서 제거
+	session_manager.RemoveSession(session_id_);
+
+	// room 에서 제거
+	LeaveRoom();
+
+	std::print("Connection from {} closed\n", peer_address_);
+}
+
 void Session::onReadable(ReadableNotification* pNotification)
 {
 	pNotification->release();
@@ -39,63 +56,6 @@ void Session::onReadable(ReadableNotification* pNotification)
 	}
 }
 
-Session::~Session()
-{
-	// 이벤트 핸들러 제거
-	reactor_.removeEventHandler(socket_, Poco::Observer<Session, ReadableNotification>(*this, &Session::onReadable));
-
-	// 세션 매니저에서 제거
-	SessionManager session_manager;
-	session_manager.RemoveSession(session_id_);
-
-	// 게임 중일 때
-	RoomManager room_manager;
-	PacketSender packet_sender;
-
-	if (room_id_ == 0)
-	{
-		return;
-	}
-	room_manager.RemoveSession(session_id_, room_id_);
-
-	auto room = room_manager.GetRoom(room_id_);
-	
-	if (room->IsAdmin(session_id_) || room->IsOpponent(session_id_))
-	{
-		if (room->IsGameStarted())
-		{
-			room->timer_->CancelTimer();
-
-			auto game = room->GetGame();
-			auto winner_id = game->GetOpponentId(session_id_);
-			auto winner_session = session_manager.GetSession(winner_id);
-
-			//게임 결과 전송
-			packet_sender.NtfGameOver(winner_session, 1);
-
-			room->EndGame();
-		}
-	}
-
-	if (room->IsMatched())
-	{
-		room->CancelMatch();
-	}
-
-	// 나감 전파
-	auto room_session_ids = room_manager.GetSessionList(room_id_);
-	packet_sender.NtfRoomUserLeave(room_session_ids, this);
-	// 방장이 나갔다면
-	if (room->ChangeAdmin(session_id_))
-	{
-		auto admin_session = session_manager.GetSession(room->GetAdminId());
-		packet_sender.NtfRoomAdmin(admin_session);
-		packet_sender.NtfNewRoomAdmin(room_session_ids, admin_session);
-	}
-	
-	std::print("Connection from {} closed\n", peer_address_);
-}
-
 void Session::SavePacket(std::shared_ptr<char[]> buffer, uint32_t length)
 {
 	PacketQueue pq;
@@ -107,8 +67,50 @@ void Session::SendPacket(std::shared_ptr<char[]> buffer, int length)
 	socket_.sendBytes(buffer.get(), length);
 }
 
-void Session::Login(const std::string& user_id)
+void Session::LeaveRoom()
 {
-	is_logged_in_ = true;
-	user_id_ = user_id;
+	SessionManager session_manager;
+	RoomManager room_manager;
+	PacketSender packet_sender;
+
+	if (room_id_ == 0)
+	{
+		return;
+	}
+	room_manager.RemoveSession(session_id_, room_id_);
+
+	// 게임중일 때
+	auto room = room_manager.GetRoom(room_id_);
+
+	auto opponent_id = room->PlayerLeave(session_id_);
+	if (opponent_id != 0)
+	{
+		auto opponent_session = session_manager.GetSession(opponent_id);
+		packet_sender.NtfGameOver(opponent_session, 1);
+	}
+
+	// 매칭 상태 일 때
+	if (room->IsMatched())
+	{
+		room->CancelMatch();
+	}
+
+	// 나감 전파
+	auto room_session_ids = room_manager.GetSessionList(room_id_);
+	packet_sender.NtfRoomUserLeave(room_session_ids, this);
+
+	// 방장일 때
+	if (room->IsAdmin(session_id_))
+	{
+		room->ChangeAdmin();
+
+		auto admin_session = session_manager.GetSession(room->GetAdminId());
+		if (admin_session == nullptr)
+		{
+			return;
+		}
+
+		packet_sender.NtfRoomAdmin(admin_session);
+		packet_sender.NtfNewRoomAdmin(room_session_ids, admin_session);
+	}
 }

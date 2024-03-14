@@ -352,10 +352,10 @@ namespace csharp_test_client
 
             if(imViewer)
             {
-                IsMyTurn = false;
+                관전설정();
             }
-
             DevLog.Write($"상대방이 [{x}, {y}] 에 돌을 놓았습니다.");
+            DevLog.Write($"내턴이 : {IsMyTurn} 입니다.");
         }
 
 
@@ -399,8 +399,16 @@ namespace csharp_test_client
 
         void PacketProcess_PutMokTimeoutNotify(byte[] bodyData)
         {
-            턴넘기기();
-            DevLog.Write("돌을 두지 않아 상대에게 턴이 넘어갔습니다.");
+            if(imViewer)
+            {
+                OmokLogic.턴넘기기();
+            }
+            else
+            {
+                턴넘기기();
+            }
+            DevLog.Write("돌을 두지 않아 턴이 바뀌었습니다.");
+            패널초기화();
 
         }
 
@@ -410,9 +418,9 @@ namespace csharp_test_client
             ntfStartOmokView.MergeFrom(bodyData);
 
             var blackId = ntfStartOmokView.BlackId;
-            var whiteId = ntfStartOmokView.WhiteId;
+            var WhiteId = ntfStartOmokView.WhiteId;
 
-            StartGame(false, blackId, whiteId);
+            StartGame(false, WhiteId, blackId);
 
             imViewer= true;
             DevLog.Write("관전이 시작되었습니다.");

@@ -106,8 +106,19 @@ namespace csharp_test_client
         {
             OmokLogic.한수무르기();
             IsMyTurn = true;
+            패널초기화();
         }
 
+        void 패널초기화()
+        {
+            Rectangle r = new Rectangle(시작위치, 590, 시작위치 + 돌크기 + 350, 돌크기 + 10);
+            panel1.Invalidate(r);
+        }
+
+        void 관전설정()
+        {
+            IsMyTurn = false;
+        }
 
         /*void AI흑돌(object sender, EventArgs e)
         {
@@ -287,8 +298,6 @@ namespace csharp_test_client
             var ret = OmokLogic.돌두기(x, y);
             if (ret != CSCommon.돌두기_결과.Success)
             {
-                //Rectangle r = new Rectangle(시작위치, 590, 시작위치 + 돌크기 + 160, 돌크기 + 10);
-                //panel1.Invalidate(r);
                 DevLog.Write($"돌 두기 실패: {(CSCommon.돌두기_결과)ret}");
                 return;
             }
@@ -366,9 +375,6 @@ namespace csharp_test_client
             }
         }
         #endregion
-
-
-     
 
         void 컴퓨터두기()
         {

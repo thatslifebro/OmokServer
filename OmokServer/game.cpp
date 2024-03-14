@@ -1,21 +1,14 @@
 #include "game.h"
 
-void Game::Init()
-{
-	for (int i = 0; i < 19; i++)
-	{
-		for (int j = 0; j < 19; j++)
-		{
-			Pos pos(i, j);
-			omok_board_[pos] = EMPTY;
-		}
-	}
-}
-
 bool Game::SetStone(uint32_t x, uint32_t y, uint32_t session_id)
 {
-	if (!CheckTurn(session_id) || !IsGameStart())
+	if (!CheckTurn(session_id) || !IsGameStarted())
 	{
+		return false;
+	}
+
+    if (x > 18 || y > 18)
+    {
 		return false;
 	}
 
@@ -62,7 +55,7 @@ bool Game::IsReady(uint32_t session_id)
 	}
 }
 
-bool Game::IsGameStart()
+bool Game::IsGameStarted()
 {
 	return is_game_start_;
 }

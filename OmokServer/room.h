@@ -16,23 +16,25 @@ public:
 
 	void RemoveSession (uint16_t session_id) { session_ids_.erase(session_id); }
 
-	bool ChangeAdmin(uint16_t session_id);
+	std::vector<uint32_t> GetSessionList() const;
+
+	void ChangeAdmin();
 
 	bool IsAdmin(uint16_t session_id) const	{ return admin_id_ == session_id; }
 
+	uint32_t GetAdminId() const { return admin_id_; }
+
 	bool IsOpponent(uint16_t session_id) const { return opponent_id_ == session_id; }
 
-	uint32_t GetAdminId() const	{ return admin_id_; }
-
-	std::vector<uint32_t> GetSessionList() const;
-
-	bool IsGameStarted() const;
-
-	void TryMatching(uint32_t opponent_id);
+	void TryMatchingWith(uint32_t opponent_id);
 
 	bool IsTryMatching() const { return try_matching_; }
 
 	bool IsTryMatchingWith(uint32_t opponent_id) const { return try_matching_ && opponent_id_ == opponent_id; }
+
+	void Matched() { matched_ = true; }
+
+	bool IsMatched() const { return matched_; }
 
 	void CancelMatch();
 
@@ -40,19 +42,21 @@ public:
 
 	Game* GetGame() { return game_; }
 
+	uint32_t PlayerLeave(uint32_t session_id);
+
+	bool IsGameStarted() const;
+
 	void EndGame();
 
-	bool IsMatched() const { return matched_; }
-
-	void Matched() { matched_ = true; }
-
 private:
-	std::set<uint16_t> session_ids_;
 	const uint16_t room_id_;
+	std::set<uint16_t> session_ids_;
+
 	uint32_t admin_id_ = 0;
-	bool is_game_started_ = false;
+	uint32_t opponent_id_ = 0;
+
 	bool try_matching_ = false;
 	bool matched_ = false;
-	uint32_t opponent_id_ = 0;
+	
 	Game* game_ = nullptr;
 };

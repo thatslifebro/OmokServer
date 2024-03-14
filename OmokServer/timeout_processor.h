@@ -28,9 +28,10 @@ public:
 			{
 				timer->is_on_ = false;
 				timer->callback_();
-				if (timer->is_recursive_)
+				timer->num_++;
+				if (timer->is_repeated_)
 				{
-					timer->due_time_ = std::chrono::system_clock::now() + std::chrono::seconds(timer->recursive_seconds_);
+					timer->due_time_ = std::chrono::system_clock::now() + std::chrono::seconds(timer->repeated_seconds_);
 					timer->is_on_ = true;
 				}
 			}

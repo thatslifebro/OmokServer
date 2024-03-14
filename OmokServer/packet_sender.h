@@ -19,6 +19,8 @@ public:
 
 	void NtfNewRoomAdmin(std::vector<uint32_t> room_session_ids, Session* admin_session);
 
+	void NtfNewRoomAdmin(Session* session, Session* admin_session);
+
 	void NtfRoomUserList(Session* session, std::vector<uint32_t> room_session_ids);
 
 	void ResRoomLeave(Session* session, uint32_t result);

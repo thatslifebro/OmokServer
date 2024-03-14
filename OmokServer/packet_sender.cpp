@@ -50,6 +50,20 @@ void PacketSender::NtfNewRoomAdmin(std::vector<uint32_t> room_session_ids, Sessi
 		}
 		session->SendPacket(res_data, res_length);
 	}
+}
+
+void PacketSender::NtfNewRoomAdmin(Session* session, Session* admin_session)
+{
+	OmokPacket::UserInfo* userinfo = new OmokPacket::UserInfo();
+	userinfo->set_sessionid(admin_session->session_id_);
+	userinfo->set_userid(admin_session->user_id_);
+
+	OmokPacket::NtfNewRoomAdmin ntf_new_room_admin;
+	ntf_new_room_admin.set_allocated_userinfo(userinfo);
+
+	auto [res_data, res_length] = MakeResData(PacketId::NtfNewRoomAdmin, ntf_new_room_admin);
+
+	session->SendPacket(res_data, res_length);
 
 }
 
@@ -314,7 +328,6 @@ void PacketSender::NtfPutMok(std::vector<uint32_t> room_session_ids, Session* se
 
 	for (auto session_id : room_session_ids)
 	{
-		std::printf("session_id : %d\n", session_id);
 		auto other_session = session_manager_.GetSession(session_id);
 		if (other_session == nullptr)
 		{

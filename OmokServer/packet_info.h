@@ -6,6 +6,7 @@
 struct PacketHeader
 {
 	static const uint16_t header_size_ = 4;
+
 	uint16_t packet_id_;
 	uint16_t packet_size_;
 

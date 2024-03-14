@@ -1,5 +1,6 @@
 #include "packet_queue.h"
 
+// PacketQueue
 std::mutex PacketQueue::mutex_;
 std::queue<Packet> PacketQueue::packet_queue_;
 
@@ -33,6 +34,7 @@ const Packet& PacketQueue::PopAndGetPacket()
 	return packet;
 }
 
+// DBPacketQueue
 std::mutex DBPacketQueue::db_mutex_;
 std::queue<Packet> DBPacketQueue::db_packet_queue_;
 
