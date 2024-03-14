@@ -21,8 +21,12 @@ public:
 
 	bool ProcessPacket();
 
+	void TimerCheck();
+
 private:
 	std::unordered_map<uint16_t, std::function<void(Packet) >> packet_handler_map_;
+
+	int time_count_ = 0;
 
 	void ReqLoginHandler(Packet packet);
 

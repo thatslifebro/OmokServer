@@ -6,65 +6,57 @@
 class Timer
 {
 public:
-	std::mutex mutex;
 	bool is_on_ = false;
-	std::chrono::system_clock::time_point due_time_;
+	uint32_t time_count_ = 0;
 	uint16_t duration_ = 0;
 	bool is_repeated_ = false;
 
 	std::function<void()> callback_;
 
-	void SetTimer(int seconds, std::function<void()> callback)
+	void SetTimer(uint32_t time_count, uint32_t duration, std::function<void()> callback)
 	{
-		std::lock_guard<std::mutex> lock(mutex);
-		due_time_ = std::chrono::system_clock::now() + std::chrono::seconds(seconds);
-		duration_ = seconds;
+		time_count_ = time_count + duration;
 		this->callback_ = callback;
 		is_on_ = true;
-
 		is_repeated_ = false;
 	}
 
-	void SetRepeatedTimer(int seconds, std::function<void()> callback)
+	void SetRepeatedTimer(uint32_t time_count, uint32_t duration, std::function<void()> callback)
 	{
-		std::lock_guard<std::mutex> lock(mutex);
-		due_time_ = std::chrono::system_clock::now() + std::chrono::seconds(seconds);
-		duration_ = seconds;
+		time_count_ = time_count + duration;
+		duration_ = duration;
 		this->callback_ = callback;
 		is_on_ = true;
-
 		is_repeated_ = true;
 	}
 
 	// 타이머를 같은 방식으로 한번 더 설정
-	void SetSameWithPreviousTimer()
+	void SetSameWithPreviousTimer(uint32_t time_count)
 	{
 		if (callback_ == nullptr || duration_ <= 0)
 		{
 			return;
 		}
-		std::lock_guard<std::mutex> lock(mutex);
-		due_time_ = std::chrono::system_clock::now() + std::chrono::seconds(duration_);
+		time_count_ = time_count + duration_;
 		is_on_ = true;
 	}
 
 	void CancelTimer()
 	{
-		std::lock_guard<std::mutex> lock(mutex);
 		is_on_ = false;
 	}
 
-	void ContinueTimer()
+	void Check(uint32_t time_count)
 	{
-		std::lock_guard<std::mutex> lock(mutex);
-		is_on_ = true;
-	}
-
-	bool IsCallbackDone()
-	{
-		std::lock_guard<std::mutex> lock(mutex);
-		auto temp = !is_on_;
-		is_on_ = false;
-		return temp;
+		if (is_on_ && time_count_ <= time_count)
+		{
+			callback_();
+			is_on_ = false;
+			if (is_repeated_)
+			{
+				is_on_ = true;
+				time_count_ = time_count + duration_;
+			}
+		}
 	}
 };

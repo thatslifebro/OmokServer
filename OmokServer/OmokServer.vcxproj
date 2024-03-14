@@ -200,7 +200,6 @@
     <ClInclude Include="session.h" />
     <ClInclude Include="protobuf\OmokPacket.pb.h" />
     <ClInclude Include="session_manager.h" />
-    <ClInclude Include="timeout_processor.h" />
     <ClInclude Include="timer.h" />
   </ItemGroup>
   <ItemGroup>

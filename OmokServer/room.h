@@ -8,9 +8,6 @@
 class Room
 {
 public:
-	//TODO: 멤버 변수를 공개로 하는 것은 좋지 않습니다. 어쩔 수 없는 이유가 있는게 아니라면 private로 하세요
-	Timer* timer_;
-
 	Room(uint16_t room_id) : room_id_(room_id) { timer_ = new Timer(); }
 
 	void AddSession(uint16_t session_id);
@@ -49,7 +46,21 @@ public:
 
 	void EndGame();
 
+	void TimerCheck(uint32_t time_count);
+
+	void SetTimer(uint32_t time_count, uint32_t duration, std::function<void()> callback);
+
+	void SetRepeatedTimer(uint32_t time_count, uint32_t duration, std::function<void()> callback);
+
+	void SetSameWithPreviousTimer(uint32_t time_count);
+
+	void CancelTimer();
+
+	void ContinueTimer();
+
 private:
+	Timer* timer_;
+
 	const uint16_t room_id_;
 	std::set<uint16_t> session_ids_;
 

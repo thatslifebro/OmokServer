@@ -70,11 +70,35 @@ bool Room::IsGameStarted() const
 	return game_->IsGameStarted();
 }
 
-
 void Room::EndGame() {
 	delete game_;
 	game_ = nullptr;
 	try_matching_ = false;
 	matched_ = false;
 	opponent_id_ = 0;
+}
+
+void Room::TimerCheck(uint32_t time_count)
+{
+	timer_->Check(time_count);
+}
+
+void Room::SetTimer(uint32_t time_count, uint32_t duration, std::function<void()> callback)
+{
+	timer_->SetTimer(time_count, duration, callback);
+}
+
+void Room::SetRepeatedTimer(uint32_t time_count, uint32_t duration, std::function<void()> callback)
+{
+	timer_->SetRepeatedTimer(time_count, duration, callback);
+}
+
+void Room::SetSameWithPreviousTimer(uint32_t time_count)
+{
+	timer_->SetSameWithPreviousTimer(time_count);
+}
+
+void Room::CancelTimer()
+{
+	timer_->CancelTimer();
 }

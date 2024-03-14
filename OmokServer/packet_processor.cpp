@@ -247,7 +247,7 @@ void PacketProcessor::ReqMatchHandler(Packet packet)
 	packet_sender_.NtfMatchReq(opponent_session, session);
 
 	// 타이머 시작
-	room->timer_->SetTimer(MATCH_RES_TIMEOUT, [room, session, opponent_id, opponent_session]()
+	room->SetTimer(time_count_, MATCH_RES_TIMEOUT, [room, session, opponent_id, opponent_session]()
 		{
 			PacketSender packet_sender;
 			if (room->IsTryMatchingWith(opponent_id))
@@ -290,15 +290,10 @@ void PacketProcessor::ReqMatchRes(Packet packet)
 		result = 0;
 	}
 
-	// 타이머에 의해 이미 처리된 경우
-	auto already_done = room->timer_->IsCallbackDone();
-	if (already_done)
-	{
-		return;
-	}
-
 	auto admin_session = session_manager_.GetSession(room->GetAdminId());
 	packet_sender_.ResMatch(admin_session, result);
+
+	room->CancelTimer();
 
 	if (result == 0)
 	{
@@ -307,7 +302,7 @@ void PacketProcessor::ReqMatchRes(Packet packet)
 		room->Matched();
 		room->StartGame();
 
-		room->timer_->SetTimer(READY_TIMEOUT, [room, session, admin_session]()
+		room->SetTimer(time_count_, READY_TIMEOUT, [room, session, admin_session]()
 			{
 				PacketSender packet_sender;
 				if (room->IsGameStarted() == false)
@@ -364,8 +359,6 @@ void PacketProcessor::ReqReadyOmokHandler(Packet packet)
 	//모두 준비시 게임 시작 알림
 	if (game->IsGameStarted())
 	{
-		room->timer_->CancelTimer();
-
 		auto black_id = game->GetBlackSessionId();
 		auto black_session = session_manager_.GetSession(black_id);
 		auto white_id = game->GetWhiteSessionId();
@@ -379,7 +372,7 @@ void PacketProcessor::ReqReadyOmokHandler(Packet packet)
 
 		//타이머
 		// 돌을 두지 않을 시 턴을 바꾸는 콜백 등록
-		room->timer_->SetRepeatedTimer(PUT_MOK_TIMEOUT, [&, room, room_session_ids]()
+		room->SetRepeatedTimer(time_count_, PUT_MOK_TIMEOUT, [&, room, room_session_ids]()
 			{
 				PacketSender packet_sender;
 				if (room->IsGameStarted())
@@ -416,31 +409,20 @@ void PacketProcessor::ReqOmokPutHandler(Packet packet)
 		return;
 	}
 
-	//타이머를 끄고 돌둔 후 다시 켜기 
-	// 일단 아래 코드와 동시에 타이머가 콜백을 진행할 수 있기 때문에 타이머를 끈다.
-	// 타이머에 의해 턴이 바뀌었을 수도 안바뀌었을 수도 있다.
-	// 어떤 경우에도 자신의 차례라면 돌을 두고 아니라면 아무것도 하지 않는다.
-	// 이후 타이머를 다시 켠다.
-	room->timer_->CancelTimer();
-
 	auto game = room->GetGame();
 
 	// 돌두기 성공시
 	if (game->SetStone(req_put_mok.x(), req_put_mok.y(), session->session_id_))
 	{
 		result = 0;
+		room->CancelTimer();
 	}
 
 	//자신에게 결과 전송
 	packet_sender_.ResPutMok(session, result);
 
-	//돌두기 실패시 타이머 재개
-	if (result == -1)
-	{
-		room->timer_->ContinueTimer();
-	}
 	//다른 유저에게 결과 전송
-	else
+	if(result == 0)
 	{
 		//다른 모두에게 전달
 		auto room_session_ids = room_manager_.GetSessionList(session->room_id_);
@@ -466,7 +448,19 @@ void PacketProcessor::ReqOmokPutHandler(Packet packet)
 		else
 		{
 			//타이머 다시 설정
-			room->timer_->SetSameWithPreviousTimer();
+			room->SetSameWithPreviousTimer(time_count_);
 		}
+	}
+}
+
+void PacketProcessor::TimerCheck()
+{
+	time_count_++;
+	
+	//1초마다 타이머 10개 체크 (방당 하나이기 때문)
+	auto room_list = room_manager_.GetAllRooms();
+	for (auto room : room_list)
+	{
+		room->TimerCheck(time_count_);
 	}
 }
