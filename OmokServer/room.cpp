@@ -102,3 +102,9 @@ void Room::CancelTimer()
 {
 	timer_->CancelTimer();
 }
+
+void Room::CreateGame()
+{
+	game_ = new Game(admin_id_, opponent_id_);
+	game_->Init();
+}

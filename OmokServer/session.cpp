@@ -14,7 +14,6 @@ Session::Session(Poco::Net::StreamSocket& socket, Poco::Net::SocketReactor& reac
 	std::print("Connection from {}\n", peer_address_);
 }
 
-
 Session::~Session()
 {
 	SessionManager session_manager;

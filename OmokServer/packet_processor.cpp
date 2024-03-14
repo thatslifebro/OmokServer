@@ -300,7 +300,7 @@ void PacketProcessor::ReqMatchRes(Packet packet)
 		packet_sender_.ResMatch(session, result);
 
 		room->Matched();
-		room->StartGame();
+		room->CreateGame();
 
 		room->SetTimer(time_count_, READY_TIMEOUT, [room, session, admin_session]()
 			{

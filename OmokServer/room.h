@@ -36,7 +36,7 @@ public:
 
 	void CancelMatch();
 
-	void StartGame() { game_ = new Game(admin_id_, opponent_id_); }
+	void CreateGame();
 
 	Game* GetGame() { return game_; }
 

@@ -1,4 +1,3 @@
-//TODO 이 파일에 왜 common 필터에 있는지 모르겠습니다.
 #pragma once
 
 static constexpr uint16_t MAX_ROOM_NUM = 10;
