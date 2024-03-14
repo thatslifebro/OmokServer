@@ -11,6 +11,7 @@ public:
 
 	void Init()
 	{
+		// room에 있는 타이머들을 저장
 		RoomManager room_manager;
 		auto rooms = room_manager.GetAllRooms();
 		for (auto room : rooms)
@@ -21,10 +22,11 @@ public:
 
 	void ProcessTimeout()
 	{
+		//타이머를 하나씩 확인하며 on 인지, 시간이 지났는지 확인 후 콜백 호출
 		for (auto& timer : timer_vec_)
 		{
 			std::lock_guard<std::mutex> lock(timer->mutex);
-			if(timer->due_time_ <= std::chrono::system_clock::now() && timer->is_on_)
+			if(timer->is_on_ && timer->due_time_ <= std::chrono::system_clock::now())
 			{
 				timer->is_on_ = false;
 				timer->callback_();
