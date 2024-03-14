@@ -255,7 +255,7 @@ namespace csharp_test_client
             resMatch.MergeFrom(bodyData);
             if(resMatch.Result == 0)
             {
-                DevLog.Write("30초 안에 Game Ready 버튼을 눌러 게임을 시작하세요.");
+                DevLog.Write("20초 안에 Game Ready 버튼을 눌러 게임을 시작하세요.");
             }
             else
             {

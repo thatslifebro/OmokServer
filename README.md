@@ -7,7 +7,7 @@ Poco 라이브러리에 parellel reactor 이용해서 네트워크 처리
 
 protocol buffer 이용해서 데이터 주고 받아 보았고
 
-패킷 body를 protobuf로 만들고 패킷 헤더(size, packet id) 를 달아 테스트 클라이언트와 통신 구현
+패킷 body를 protobuf로 만들고 패킷 헤더(size, packet id) 를 달아 테스트 클라이언트와 통신
 
 기능 구현
 
@@ -18,6 +18,8 @@ protocol buffer 이용해서 데이터 주고 받아 보았고
 - 오목 두기
 - 연결 끊김 처리 및 게임 종료 처리
 - 게임 룰 서버에 구현
+- 타이머
+- 관전 기능
 
 방에서 게임은 하나만 이루어짐.
 
@@ -53,4 +55,4 @@ session.h, session_manager.h : 세션 정의와 세션 관리 클래스
 
 timer : 방마다 있는 타이머
 
-timeout_processor : 모든 타이머를 보고 시간이 되면 callback을 처리해줌.
+timeout_processor : 모든 방의 타이머를 보고 시간이 되면 callback을 처리해줌.

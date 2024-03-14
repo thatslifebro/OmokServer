@@ -10,4 +10,4 @@ static constexpr uint16_t MATCH_RES_TIMEOUT = 15;
 
 static constexpr uint16_t READY_TIMEOUT = 20;
 
-static constexpr uint16_t PUT_MOK_TIMEOUT = 3;
+static constexpr uint16_t PUT_MOK_TIMEOUT = 30;
