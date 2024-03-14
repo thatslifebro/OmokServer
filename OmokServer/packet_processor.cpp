@@ -423,6 +423,7 @@ void PacketProcessor::ReqOmokPutHandler(Packet packet)
 	//자신에게 결과 전송
 	packet_sender_.ResPutMok(session, result);
 
+	//돌두기 실패시 타이머 재개
 	if (result == -1)
 	{
 		room->timer_->ContinueTimer();
@@ -453,21 +454,8 @@ void PacketProcessor::ReqOmokPutHandler(Packet packet)
 		}
 		else
 		{
-			room->timer_->num_ = 0;
 			//타이머 다시 설정
-			// 돌을 두지 않을 시 턴을 바꾸는 콜백 등록
-			room->timer_->SetRepeatedTimer(PUT_MOK_TIMEOUT, [&, room, room_session_ids]()
-				{
-					PacketSender packet_sender;
-					if (room->IsGameStarted())
-					{
-						auto game = room->GetGame();
-						game->ChangeTurn();
-
-						//타임아웃 전파
-						packet_sender.NtfPutMokTimeout(room_session_ids);
-					}
-				});
+			room->timer_->SetSameWithPreviousTimer();
 		}
 	}
 }
