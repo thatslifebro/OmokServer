@@ -54,5 +54,3 @@ room, room_manager : 방과 방 관리
 session.h, session_manager.h : 세션 정의와 세션 관리 클래스
 
 timer : 방마다 있는 타이머
-
-timeout_processor : 모든 방의 타이머를 보고 시간이 되면 callback을 처리해줌.

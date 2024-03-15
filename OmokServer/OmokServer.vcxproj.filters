@@ -22,6 +22,7 @@
     <ClCompile Include="room_manager.cpp" />
     <ClCompile Include="session.cpp" />
     <ClCompile Include="session_manager.cpp" />
+    <ClCompile Include="timer.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="protobuf\OmokPacket.pb.h">

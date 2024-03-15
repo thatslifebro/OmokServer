@@ -1,63 +1,59 @@
 #pragma once
 #include "protobuf/OmokPacket.pb.h"
 
-#include "session.h"
 #include "packet_id.h"
+#include "packet_info.h"
 
 class PacketSender
 {
 public:
-	SessionManager session_manager_;
+	void ResLogin(uint32_t session_id, uint32_t result);
 
-	void ResLogin(Session* session, uint32_t result);
+	void ResRoomEnter(uint32_t session_id, std::string user_id, uint32_t result);
 
-	void ResRoomEnter(Session* session, uint32_t result);
+	void NtfRoomUserEnter(std::unordered_set<uint32_t> room_session_ids, uint32_t session_id, std::string user_id);
 
-	void NtfRoomUserEnter(std::vector<uint32_t> room_session_ids, Session* session);
+	void NtfRoomAdmin(uint32_t session_id);
 
-	void NtfRoomAdmin(Session* session);
+	void NtfNewRoomAdmin(std::unordered_set<uint32_t> room_session_ids, uint32_t session_id, std::string user_id);
 
-	void NtfNewRoomAdmin(std::vector<uint32_t> room_session_ids, Session* admin_session);
+	void NtfNewRoomAdmin(uint32_t session_id, uint32_t admin_session_is, std::string admin_user_id);
 
-	void NtfNewRoomAdmin(Session* session, Session* admin_session);
+	void NtfRoomUserList(uint32_t session_id, std::vector<std::pair<uint32_t, std::string>> user_info_vec);
 
-	void NtfRoomUserList(Session* session, std::vector<uint32_t> room_session_ids);
+	void ResRoomLeave(uint32_t session_id, uint32_t result);
 
-	void ResRoomLeave(Session* session, uint32_t result);
+	void NtfRoomUserLeave(std::unordered_set<uint32_t> room_session_ids, uint32_t session_id, std::string user_id);
 
-	void NtfRoomUserLeave(std::vector<uint32_t> room_session_ids, Session* session);
+	void ResRoomChat(uint32_t session_id, uint32_t result, std::string chat);
 
-	void ResRoomChat(Session* session, uint32_t result, std::string chat);
+	void NtfRoomChat(std::unordered_set<uint32_t> room_session_ids, uint32_t session_id, std::string user_id, std::string chat);
 
-	void NtfRoomChat(std::vector<uint32_t> room_session_ids, Session* session, std::string chat);
+	void ResMatch(uint32_t session_id, uint32_t result);
 
-	void ResMatch(Session* session, uint32_t result);
+	void NtfMatchReq(uint32_t opponent_session_id, uint32_t admin_session, std::string admin_user_id);
 
-	void NtfMatchReq(Session* opponent_session, Session* admin_session);
+	void ResReadyOmok(uint32_t session_id);
 
-	void NtfMatched(Session* session, Session* opponent_session);
+	void NtfStartOmok(uint32_t balck_session_id, std::string black_user_id, uint32_t white_session_id, std::string white_user_id);
 
-	void ResReadyOmok(Session* session);
+	void NtfStartOmokView(std::unordered_set<uint32_t> room_session_ids, uint32_t black_session_id, std::string balck_user_id, uint32_t white_session_id, std::string white_user_id);
 
-	void NtfStartOmok(Session* session, Session* opponent_session);
+	void ResPutMok(uint32_t session_id, uint32_t result);
 
-	void NtfStartOmokView(std::vector<uint32_t> room_session_ids, Session* black_session, Session* white_session);
+	void NtfPutMok(std::unordered_set<uint32_t> room_session_ids, uint32_t session_id, uint32_t x, uint32_t y);
 
-	void ResPutMok(Session* session, uint32_t result);
+	void NtfGameOver(uint32_t session_id, uint32_t result);
 
-	void NtfPutMok(std::vector<uint32_t> room_session_ids, Session* session, uint32_t x, uint32_t y);
+	void NtfGameOverView(std::unordered_set<uint32_t> room_session_ids, uint32_t winner_id, uint32_t loser_id, uint32_t result);
 
-	void NtfGameOver(Session* session, uint32_t result);
+	void NtfMatchTimeout(uint32_t session_id);
 
-	void NtfGameOverView(std::vector<uint32_t> room_session_ids, uint32_t winner_id, uint32_t loser_id, uint32_t result);
+	void NtfReadyTimeout(uint32_t session_id);
 
-	void NtfMatchTimeout(Session* session);
+	void NtfPutMokTimeout(std::unordered_set<uint32_t> room_session_ids);
 
-	void NtfReadyTimeout(Session* session);
-
-	void NtfPutMokTimeout(std::vector<uint32_t> room_session_ids);
-
-	
+	std::function<void(uint32_t, std::shared_ptr<char[]>, uint16_t)> SendPacket;
 
 private:
 	template <typename T>

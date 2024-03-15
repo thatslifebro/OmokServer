@@ -71,6 +71,14 @@ void Session::LeaveRoom()
 	SessionManager session_manager;
 	RoomManager room_manager;
 	PacketSender packet_sender;
+	packet_sender.SendPacket = [&](uint32_t session_id, std::shared_ptr<char[]> buffer, int length) {
+		auto session = session_manager.GetSession(session_id);
+		if (session == nullptr)
+		{
+			return;
+		}
+		session->SendPacket(buffer, length);
+		};
 
 	if (room_id_ == 0)
 	{
@@ -84,8 +92,7 @@ void Session::LeaveRoom()
 	auto opponent_id = room->PlayerLeave(session_id_);
 	if (opponent_id != 0)
 	{
-		auto opponent_session = session_manager.GetSession(opponent_id);
-		packet_sender.NtfGameOver(opponent_session, 1);
+		packet_sender.NtfGameOver(opponent_id, 1);
 	}
 
 	// 매칭 상태 일 때
@@ -95,21 +102,16 @@ void Session::LeaveRoom()
 	}
 
 	// 나감 전파
-	auto room_session_ids = room_manager.GetSessionList(room_id_);
-	packet_sender.NtfRoomUserLeave(room_session_ids, this);
+	room->NtfRoomUserLeave(session_id_);
 
 	// 방장일 때
 	if (room->IsAdmin(session_id_))
 	{
 		room->ChangeAdmin();
 
-		auto admin_session = session_manager.GetSession(room->GetAdminId());
-		if (admin_session == nullptr)
-		{
-			return;
-		}
+		auto admin_session_id = room->GetAdminId();
 
-		packet_sender.NtfRoomAdmin(admin_session);
-		packet_sender.NtfNewRoomAdmin(room_session_ids, admin_session);
+		packet_sender.NtfRoomAdmin(admin_session_id);
+		room->NtfNewRoomAdmin(admin_session_id);
 	}
 }

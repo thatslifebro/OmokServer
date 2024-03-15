@@ -185,6 +185,7 @@
     <ClCompile Include="session.cpp" />
     <ClCompile Include="protobuf\OmokPacket.pb.cc" />
     <ClCompile Include="session_manager.cpp" />
+    <ClCompile Include="timer.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="constants.h" />

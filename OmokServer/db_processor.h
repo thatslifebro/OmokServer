@@ -5,16 +5,15 @@
 #include <mutex>
 #include <functional>
 
-#include "session_manager.h"
-#include "packet_sender.h"
+#include "session.h"
 #include "packet_queue.h"
 
 class DBProcessor
 {
 public:
-	void Init(); // DB 연결
+	void Init();
 
-	bool ProcessDB(); // DB쓰레드에서 실행될 함수
+	bool ProcessDB();
 
 private:
 	std::unordered_map<uint16_t, std::function<void(Packet) >> packet_handler_map_;
