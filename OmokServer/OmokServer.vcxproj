@@ -190,6 +190,7 @@
   <ItemGroup>
     <ClInclude Include="constants.h" />
     <ClInclude Include="db_processor.h" />
+    <ClInclude Include="flags.h" />
     <ClInclude Include="game.h" />
     <ClInclude Include="omok_server.h" />
     <ClInclude Include="packet_queue.h" />

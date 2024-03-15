@@ -21,11 +21,11 @@ Session::~Session()
 	// 이벤트 핸들러 제거
 	reactor_.removeEventHandler(socket_, Poco::Observer<Session, ReadableNotification>(*this, &Session::onReadable));
 
-	// 세션 매니저에서 제거
-	session_manager.RemoveSession(session_id_);
-
 	// room 에서 제거
 	LeaveRoom();
+
+	// 세션 매니저에서 제거
+	session_manager.RemoveSession(session_id_);
 
 	std::print("Connection from {} closed\n", peer_address_);
 }

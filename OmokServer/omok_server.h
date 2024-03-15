@@ -8,6 +8,7 @@
 
 #include "packet_processor.h"
 #include "db_processor.h"
+#include "flags.h"
 
 class OmokServer
 {
@@ -17,14 +18,18 @@ public:
 	PacketProcessor packet_processor_;
 	DBProcessor db_processor_;
 
-	void Init();
+	void Init(flags::args args);
 	void Start();
 
 private:
+	uint16_t server_port_;
+	uint16_t max_room_num_;
 	Poco::Net::ServerSocket server_socket_;
 
 	clock_t start_time_ = clock();
 
 	void PacketProcessorStart();
 	void DBProcessorStart();
+
+	void ParseConfig(flags::args args);
 };

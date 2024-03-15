@@ -13,8 +13,8 @@ public:
 
 	void Init();
 
-	void AddSession(uint16_t session_id);
-	void RemoveSession(uint16_t session_id);
+	void AddUser(uint16_t session_id);
+	void RemoveUser(uint16_t session_id);
 	std::unordered_set<uint32_t> GetSessionIds() const;
 
 	void ChangeAdmin();
@@ -27,21 +27,25 @@ public:
 	bool IsTryMatching() const { return try_matching_; }
 	bool IsTryMatchingWith(uint32_t opponent_id) const { return try_matching_ && opponent_id_ == opponent_id; }
 
-	void Matched() { matched_ = true; }
+	void Matched(uint32_t white_session_id, uint32_t black_session_id);
 	bool IsMatched() const { return matched_; }
 	void CancelMatch();
 
-	void CreateGame();
 	Game* GetGame() { return game_; }
-	bool IsGameStarted() const;
+
+	bool IsGameStarted() const { return game_->IsGameStarted(); }
 	uint32_t PlayerLeave(uint32_t session_id);
 	void EndGame();
 
-	void TimerCheck(uint32_t time_count);
-	void SetTimer(uint32_t time_count, uint32_t duration, std::function<void()> callback);
-	void SetRepeatedTimer(uint32_t time_count, uint32_t duration, std::function<void()> callback);
-	void SetSameWithPreviousTimer(uint32_t time_count);
-	void CancelTimer();
+	void TimerCheck(uint32_t time_count) { timer_->Check(time_count); }
+
+	void SetTimer(uint32_t time_count, uint32_t duration, std::function<void()> callback) { timer_->SetTimer(time_count, duration, callback); }
+
+	void SetRepeatedTimer(uint32_t time_count, uint32_t duration, std::function<void()> callback) { timer_->SetRepeatedTimer(time_count, duration, callback); }
+
+	void SetSameWithPreviousTimer(uint32_t time_count) { timer_->SetSameWithPreviousTimer(time_count); }
+
+	void CancelTimer() { timer_->CancelTimer(); }
 
 	//네트워크 패킷 보내는 함수
 	std::function<void(uint32_t session_id)> NtfRoomUserList;
@@ -74,4 +78,6 @@ private:
 	bool matched_ = false;
 	
 	Game* game_ = nullptr;
+
+	void NetworkFunctionInit();
 };

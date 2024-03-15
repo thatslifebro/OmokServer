@@ -1,8 +1,10 @@
 #include "omok_server.h"
 
-void OmokServer::Init()
+void OmokServer::Init(flags::args args)
 {
-	Poco::Net::ServerSocket server_socket(SERVER_PORT);
+	ParseConfig(args);
+
+	Poco::Net::ServerSocket server_socket(server_port_);
 	server_socket_ = server_socket;
 
 	room_manager_.SendPacket = [&](uint32_t session_id, std::shared_ptr<char[]> buffer, int length)
@@ -16,7 +18,7 @@ void OmokServer::Init()
 			auto session = session_manager_.GetSession(session_id);
 			return session->user_id_;
 		};
-	room_manager_.Init();
+	room_manager_.Init(max_room_num_);
 
 	packet_processor_.Init();
 	db_processor_.Init();
@@ -61,5 +63,29 @@ void OmokServer::DBProcessorStart()
 		{
 			std::this_thread::sleep_for(std::chrono::milliseconds(1));
 		}
+	}
+}
+
+void OmokServer::ParseConfig(flags::args args)
+{
+	const auto server_port = args.get<uint16_t>("port");
+
+	if (!server_port)
+	{
+		server_port_ = SERVER_PORT;
+	}
+	else
+	{
+		server_port_ = *server_port;
+	}
+
+	const auto max_room_num = args.get<uint16_t>("room_num");
+	if (!max_room_num)
+	{
+		max_room_num_ = MAX_ROOM_NUM;
+	}
+	else
+	{
+		max_room_num_ = *max_room_num;
 	}
 }

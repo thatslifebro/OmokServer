@@ -298,8 +298,7 @@ void PacketProcessor::ReqMatchRes(Packet packet)
 	{
 		packet_sender_.ResMatch(session->session_id_, result);
 
-		room->Matched();
-		room->CreateGame();
+		room->Matched(room->GetAdminId(), session->session_id_);
 
 		room->SetTimer(time_count_, READY_TIMEOUT, [&, room, session]()
 			{

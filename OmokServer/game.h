@@ -10,7 +10,7 @@ public:
 	Game(uint16_t white_session_id, uint32_t black_session_id) : white_session_id_(white_session_id), black_session_id_(black_session_id), turn_(Turn::BLACK_TURN), white_ready_(false), black_ready_(false), is_game_start_(false)
 	{}
 
-	void Init();
+	void Init(uint32_t white_session_id, uint32_t black_session_id);
 
 	bool SetStone(uint32_t x, uint32_t y, uint32_t session_id);
 	
@@ -29,6 +29,8 @@ public:
 	uint32_t LoserId();
 
 	void ChangeTurn();
+
+	void EndGame();
 
 private:
 	uint32_t white_session_id_;

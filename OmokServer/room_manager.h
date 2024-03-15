@@ -5,7 +5,7 @@
 class RoomManager
 {
 public:
-	void Init();
+	void Init(uint16_t max_room_num);
 
 	bool AddSession(uint32_t session_id, uint16_t room_id);
 
@@ -20,6 +20,7 @@ public:
 	std::function<void(uint32_t, std::shared_ptr<char[]>, uint16_t)> SendPacket;
 
 private:
+	static uint16_t max_room_num_;
 	//TODO static 사용하지 않거나 혹은 사용해야할 이유를 알려주세요 (답변작성)
 	// 
 	// ROOM 객체를 정해진 수만큼 생성하고 관리하기 위해 static을 사용했습니다.

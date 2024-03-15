@@ -22,8 +22,11 @@ bool Game::SetStone(uint32_t x, uint32_t y, uint32_t session_id)
     }
 }
 
-void Game::Init()
+void Game::Init(uint32_t white_session_id, uint32_t black_session_id)
 {
+    white_session_id_ = white_session_id;
+    black_session_id_ = black_session_id;
+
     for (int i = 0; i < 19; i++)
     {
         for (int j = 0; j < 19; j++)
@@ -530,4 +533,15 @@ uint32_t Game::LoserId()
 int Game::Pos(int x, int y)
 {
     return y * 19 + x;
+}
+
+void Game::EndGame()
+{
+    is_game_start_ = false;
+    white_ready_ = false;
+    black_ready_ = false;
+    turn_ = Turn::BLACK_TURN;
+    white_session_id_ = 0;
+    black_session_id_ = 0;
+    omok_board_.clear();
 }
