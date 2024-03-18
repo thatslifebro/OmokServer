@@ -1,6 +1,6 @@
 #include "session.h"
 
-Session::Session(Poco::Net::StreamSocket& socket, Poco::Net::SocketReactor& reactor) : socket_(socket), reactor_(reactor)
+Session::Session(Poco::Net::StreamSocket& socket, Poco::Net::SocketReactor& reactor, std::function<void(std::shared_ptr<char[]>, uint32_t, uint32_t)> SavePacket) : socket_(socket), reactor_(reactor), SavePacket(SavePacket)
 {
 	// session_id_로 Session 관리
 	session_id_= session_manager_.AddSession(this);
@@ -45,11 +45,11 @@ void Session::onReadable(ReadableNotification* pNotification)
 	{
 		std::shared_ptr<char[]> buffer(new char[MAX_PACKET_SIZE]);
 		auto n = socket_.receiveBytes(buffer.get(), MAX_PACKET_SIZE);
-		std::print("Received {} bytes from {}\n", n, peer_address_);
 
 		if (n > 0)
 		{
-			SavePacket(buffer, n);
+			std::print("Received {} bytes from {}\n", n, peer_address_);
+			SavePacket(buffer, n, session_id_); // 변경
 		}
 		else {
 			socket_.shutdown();
@@ -63,11 +63,11 @@ void Session::onReadable(ReadableNotification* pNotification)
 	}
 }
 
-void Session::SavePacket(std::shared_ptr<char[]> buffer, uint32_t length)
-{
-	PacketQueue pq;
-	pq.Save(buffer, length, session_id_);
-}
+//void Session::SavePacket(std::shared_ptr<char[]> buffer, uint32_t length)
+//{
+//	PacketQueue pq;
+//	pq.Save(buffer, length, session_id_);
+//}
 
 void Session::SendPacket(std::shared_ptr<char[]> buffer, int length)
 {
@@ -76,38 +76,41 @@ void Session::SendPacket(std::shared_ptr<char[]> buffer, int length)
 
 void Session::LeaveRoom()
 {
-	if (room_id_ == 0)
+	if (IsInRoom() == false)
 	{
 		return;
 	}
-	room_manager_.RemoveUser(session_id_, room_id_);
 
-	// 게임중일 때
-	auto room = room_manager_.GetRoom(room_id_);
+	auto room_id = room_id_;
+	auto room = room_manager_.GetRoom(room_id);
 
-	if (room->IsPlayer(session_id_))
+	room_manager_.RemoveUser(session_id_, room_id);
+	room_id_ = 0;
+
+	std::print("UserId : {} 가 방에서 나감.\n", user_id_);
+
+	room->NtfRoomUserLeave(session_id_);
+
+	if (room->IsGameStarted() && room->IsPlayer(session_id_))
 	{
 		auto opponent_id = room->GetOpponentPlayer(session_id_);
 		packet_sender_.NtfGameOver(opponent_id, 1);
+		std::print("{}번 방 게임 종료. {} 승리 ,{} 패배\n", room_id, session_manager_.GetSession(opponent_id)->GetUserId(), user_id_);
 	}
 
-	// 매칭 상태 일 때
 	if (room->IsMatched())
 	{
 		room->EndMatch();
 	}
 
-	// 나감 전파
-	room->NtfRoomUserLeave(session_id_);
-
-	// 방장일 때
 	if (room->IsAdmin(session_id_))
 	{
 		room->ChangeAdmin();
 
-		auto admin_session_id = room->GetAdminId();
+		auto new_admin_id = room->GetAdminId();
+		packet_sender_.ResYouAreRoomAdmin(new_admin_id);
 
-		packet_sender_.ResYouAreRoomAdmin(admin_session_id);
 		room->NtfNewRoomAdmin();
 	}
+
 }

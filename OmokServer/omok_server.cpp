@@ -16,8 +16,11 @@ void OmokServer::Init(flags::args args)
 		[&](uint32_t session_id)
 		{
 			auto session = session_manager_.GetSession(session_id);
-			return session->user_id_;
+			return session->GetUserId();
 		});
+	packet_processor_.PopAndGetPacket = [&]() -> const Packet& {
+		return packet_queue_.PopAndGetPacket();
+		};
 
 	packet_processor_.Init();
 	db_processor_.Init();
@@ -30,6 +33,10 @@ void OmokServer::Start()
 
 	Poco::Net::SocketReactor reactor;
 	Poco::Net::ParallelSocketAcceptor<Session, Poco::Net::SocketReactor> acceptor(server_socket_, reactor);
+	acceptor.SavePacket = [&](std::shared_ptr<char[]> buffer, uint32_t length, uint32_t session_id)
+	{
+		packet_queue_.Save(buffer, length, session_id);
+	};
 	reactor.run();
 }
 

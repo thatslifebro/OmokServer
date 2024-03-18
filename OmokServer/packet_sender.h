@@ -47,7 +47,7 @@ public:
 
 	void NtfGameOver(uint32_t session_id, uint32_t result);
 
-	void NtfGameOverView(std::unordered_set<uint32_t> room_session_ids, uint32_t winner_id, uint32_t loser_id, uint32_t result);
+	void NtfGameOverView(std::unordered_set<uint32_t> room_session_ids, uint32_t winner_id, uint32_t loser_id);
 
 	void NtfMatchTimeout(uint32_t session_id);
 

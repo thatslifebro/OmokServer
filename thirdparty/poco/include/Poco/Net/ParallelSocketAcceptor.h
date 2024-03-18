@@ -25,6 +25,7 @@
 #include "Poco/NObserver.h"
 #include "Poco/SharedPtr.h"
 #include <vector>
+#include <functional>
 
 
 using Poco::Net::Socket;
@@ -148,6 +149,9 @@ public:
 		createServiceHandler(sock);
 	}
 
+	// 변경 사항
+	std::function<void(std::shared_ptr<char[]>, uint32_t, uint32_t)> SavePacket;
+
 protected:
 	typedef std::vector<typename ParallelReactor::Ptr> ReactorVec;
 
@@ -168,7 +172,7 @@ protected:
 			pReactor = _reactors[next];
 		}
 		pReactor->wakeUp();
-		return new ServiceHandler(socket, *pReactor);
+		return new ServiceHandler(socket, *pReactor, SavePacket);
 	}
 
 	SocketReactor* reactor(const Socket& socket)

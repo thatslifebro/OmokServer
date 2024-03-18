@@ -13,15 +13,16 @@
 class OmokServer
 {
 public:
-	RoomManager room_manager_;
-	SessionManager session_manager_;
-	PacketProcessor packet_processor_;
-	DBProcessor db_processor_;
-
 	void Init(flags::args args);
 	void Start();
 
 private:
+	RoomManager room_manager_;
+	SessionManager session_manager_;
+	PacketProcessor packet_processor_;
+	DBProcessor db_processor_;
+	PacketQueue packet_queue_;
+
 	uint16_t server_port_;
 	uint16_t max_room_num_;
 	Poco::Net::ServerSocket server_socket_;

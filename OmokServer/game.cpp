@@ -46,11 +46,14 @@ void Game::SetReady(uint32_t session_id)
 	{
 		black_ready_ = true;
 	}
+}
 
-	if (white_ready_ && black_ready_)
-	{
-		is_game_start_ = true;
-	}
+void Game::StartGameIfBothReady()
+{
+    if (white_ready_ && black_ready_)
+    {
+        is_game_start_ = true;
+    }
 }
 
 bool Game::IsReady(uint32_t session_id)

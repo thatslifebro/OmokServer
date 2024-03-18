@@ -49,6 +49,13 @@ void Room::CancelMatch()
 	opponent_id_ = 0;
 }
 
+std::tuple<uint32_t, std::string, uint32_t, std::string> Room::GetPlayerInfo() const
+{
+	auto black_user_id = game_->GetBlackSessionId();
+	auto white_user_id = game_->GetWhiteSessionId();
+	return std::make_tuple(black_user_id, GetUserId(black_user_id), white_user_id, GetUserId(white_user_id));
+}
+
 uint32_t Room::GetOpponentPlayer(uint32_t session_id)
 {
 	if (session_id == admin_id_)
@@ -63,11 +70,6 @@ uint32_t Room::GetOpponentPlayer(uint32_t session_id)
 
 bool Room::IsPlayer(uint32_t session_id)
 {
-	if (IsGameStarted() == false)
-	{
-		return false;
-	}
-
 	if (opponent_id_ == session_id || admin_id_ == session_id)
 	{
 		return true;
@@ -119,6 +121,9 @@ void Room::NetworkFunctionInit()
 	NtfPutMok = [&](uint32_t session_id, uint32_t x, uint32_t y) {
 		packet_sender_.NtfPutMok(session_ids_, session_id, x, y); };
 
-	NtfGameOverView = [&](uint32_t winner_id, uint32_t loser_id, uint32_t result) {
-		packet_sender_.NtfGameOverView(session_ids_, winner_id, loser_id, result); };
+	NtfGameOverView = [&](uint32_t winner_id, uint32_t loser_id) {
+		packet_sender_.NtfGameOverView(session_ids_, winner_id, loser_id); };
+
+	NtfPutMokTimeout = [&]() {
+		packet_sender_.NtfPutMokTimeout(session_ids_); };
 }

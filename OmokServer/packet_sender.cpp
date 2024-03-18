@@ -293,10 +293,9 @@ void PacketSender::NtfGameOver(uint32_t session_id, uint32_t result)
 	SendPacket(session_id, res_data, res_length);
 }
 
-void PacketSender::NtfGameOverView(std::unordered_set<uint32_t> room_session_ids, uint32_t winner_id, uint32_t loser_id, uint32_t result)
+void PacketSender::NtfGameOverView(std::unordered_set<uint32_t> room_session_ids, uint32_t winner_id, uint32_t loser_id)
 {
 	OmokPacket::NtfEndOmok ntf_end_omok;
-	ntf_end_omok.set_status(result);
 
 	auto [res_data, res_length] = MakeResData(PacketId::NtfEndOmok, ntf_end_omok);
 
@@ -345,9 +344,9 @@ std::tuple<std::shared_ptr<char[]>, uint16_t> PacketSender::MakeResData(PacketId
 {
 	Packet res_login_packet;
 
-	res_login_packet.packet_id_ = static_cast<uint16_t>(packet_id);
-	res_login_packet.packet_size_ = packet_body.ByteSizeLong() + PacketHeader::header_size_;
-	packet_body.SerializeToArray(res_login_packet.packet_body_, packet_body.ByteSizeLong());
+	res_login_packet.SetPacketId(static_cast<uint16_t>(packet_id));
+	res_login_packet.SetPacketSize(packet_body.ByteSizeLong() + PacketHeader::header_size_);
+	packet_body.SerializeToArray(res_login_packet.GetPacketBody(), packet_body.ByteSizeLong());
 
 	return res_login_packet.ToByteArray();
 }

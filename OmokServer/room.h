@@ -15,7 +15,6 @@ public:
 
 	void AddUser(uint16_t session_id);
 	void RemoveUser(uint16_t session_id) { session_ids_.erase(session_id); }
-	std::unordered_set<uint32_t> GetSessionIds() const { return session_ids_; }
 
 	bool IsAdmin(uint16_t session_id) const	{ return admin_id_ == session_id; }
 	uint32_t GetAdminId() const { return admin_id_; }
@@ -32,6 +31,7 @@ public:
 	void CancelMatch();
 
 	Game* GetGame() { return game_; }
+	std::tuple<uint32_t, std::string, uint32_t, std::string> GetPlayerInfo() const;
 
 	bool IsGameStarted() const { return game_->IsGameStarted(); }
 	bool IsPlayer(uint32_t session_id);
@@ -57,7 +57,8 @@ public:
 	std::function<void(uint32_t session_id, std::string chat)> NtfRoomChat;
 	std::function<void(uint32_t black_session_id, std::string black_user_id, uint32_t white_session_id, std::string white_user_id)> NtfStartOmokView;
 	std::function<void(uint32_t session_id, uint32_t x, uint32_t y)> NtfPutMok;
-	std::function<void(uint32_t winner_session_id, uint32_t loser_session_id, uint32_t result)> NtfGameOverView;
+	std::function<void(uint32_t winner_session_id, uint32_t loser_session_id)> NtfGameOverView;
+	std::function<void()> NtfPutMokTimeout;
 
 	// session_id로 부터 user_id 얻기 위한 함수
 	std::function<std::string(uint32_t)> GetUserId;

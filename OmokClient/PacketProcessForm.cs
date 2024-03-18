@@ -365,18 +365,18 @@ namespace csharp_test_client
 
             EndGame();
 
-            if(ntfEndOmok.Status==1)
+            if(imViewer)
+            {
+                DevLog.Write($"오목 GameOver: 관전 끝");
+                imViewer = false;
+            }
+            else if (ntfEndOmok.Status==1)
             {
                 DevLog.Write($"오목 GameOver: Win");
             }
             else if(ntfEndOmok.Status==0)
             {
                 DevLog.Write($"오목 GameOver: Lose");
-            }
-            else if(ntfEndOmok.Status==2)
-            {
-                DevLog.Write($"오목 GameOver: 관전 끝");
-                imViewer = false;
             }
             else
             {

@@ -14,6 +14,7 @@ public:
 
 	void SetReady(uint32_t session_id);
 	bool IsReady(uint32_t session_id);
+	void StartGameIfBothReady();
 
 	uint32_t GetWhiteSessionId() { return white_session_id_; }
 	uint32_t GetBlackSessionId() { return black_session_id_; }
@@ -21,6 +22,7 @@ public:
 	bool SetStone(uint32_t x, uint32_t y, uint32_t session_id);
 	bool CheckOmok(int x, int y);
 	void ChangeTurn();
+	bool CheckTurn(uint32_t session_id);
 
 	uint32_t WinnerId();
 	uint32_t LoserId();
@@ -41,8 +43,6 @@ private:
 	std::vector<Status> omok_board_;
 
 	bool SetStone(uint32_t x, uint32_t y, Status color);
-
-	bool CheckTurn(uint32_t session_id);
 
 	int 가로확인(int x, int y);
 	int 세로확인(int x, int y);

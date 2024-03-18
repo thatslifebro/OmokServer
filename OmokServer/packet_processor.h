@@ -10,34 +10,40 @@
 class PacketProcessor
 {
 public:
-	PacketSender packet_sender_;
-	RoomManager room_manager_;
-	SessionManager session_manager_;
-
 	void Init();
 
 	bool ProcessPacket();
 
 	void TimerCheck();
 
+	std::function<Packet()> PopAndGetPacket;
+
 private:
-	std::unordered_map<uint16_t, std::function<void(Packet) >> packet_handler_map_;
+	PacketSender packet_sender_;
+	RoomManager room_manager_;
+	SessionManager session_manager_;
+
+	std::unordered_map<uint16_t, std::function<ErrorCode(Packet) >> packet_handler_map_;
 
 	int time_count_ = 0;
 
-	void ReqLoginHandler(Packet packet);
+	ErrorCode ReqLoginHandler(Packet packet);
 
-	void ReqRoomEnterHandler(Packet packet);
+	ErrorCode ReqRoomEnterHandler(Packet packet);
 
-	void ReqRoomLeaveHandler(Packet packet);
+	ErrorCode ReqRoomLeaveHandler(Packet packet);
 
-	void ReqRoomChatHandler(Packet packet);
+	ErrorCode ReqRoomChatHandler(Packet packet);
 
-	void ReqMatchHandler(Packet packet);
+	ErrorCode ReqMatchHandler(Packet packet);
 
-	void ReqMatchRes(Packet packet);
+	ErrorCode ReqMatchResHandler(Packet packet);
 
-	void ReqReadyOmokHandler(Packet packet);
+	ErrorCode ReqReadyOmokHandler(Packet packet);
 
-	void ReqOmokPutHandler(Packet packet);
+	ErrorCode ReqOmokPutHandler(Packet packet);
+
+	bool IsValidSession(Session* session);
+
+	bool IsValidRoom(Room* room);	
 };

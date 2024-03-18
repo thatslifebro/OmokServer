@@ -13,37 +13,39 @@ bool DBProcessor::ProcessDB()
 {
 	auto packet = db_packet_queue_.PopAndGetPacket();
 	
-	if (packet.packet_size_ <= 0)
+	if (packet.IsValidSize() == false)
 	{
 		return false;
 	}
 
-	packet_handler_map_[packet.packet_id_](packet);
+	packet_handler_map_[packet.GetPacketId()](packet);
 	return true;
 }
 
 void DBProcessor::ReqLoginHandler(Packet packet)
 {
 	OmokPacket::ReqLogin req_login;
-	req_login.ParseFromArray(packet.packet_body_, packet.packet_size_ - PacketHeader::header_size_);
+	req_login.ParseFromArray(packet.GetPacketBody(), packet.GetBodySize());
 
-	auto session = session_manager_.GetSession(packet.session_id_);
+	auto session = session_manager_.GetSession(packet.GetSessionId());
 	if (session == nullptr)
 	{
 		return;
 	}
 
-	if (session->is_logged_in_ == true)
+	if (session->IsLoggedIn() == true)
 	{
 		return;
 	}
 	
 	// 로그인 처리
-	uint32_t result = 1;
+	uint32_t result = 0;
 
-	session->is_logged_in_ = true;
-	session->user_id_ = req_login.userid();
+	session->SetLoggedIn(true);
+	session->SetUserId(req_login.userid());
 
-	packet_sender_.ResLogin(session->session_id_, result);
+	packet_sender_.ResLogin(session->GetSessionId(), result);
+
+	std::print("유저 {} 로그인\n", req_login.userid());
 }
 
