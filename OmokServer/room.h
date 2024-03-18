@@ -14,12 +14,12 @@ public:
 	void Init();
 
 	void AddUser(uint16_t session_id);
-	void RemoveUser(uint16_t session_id);
-	std::unordered_set<uint32_t> GetSessionIds() const;
+	void RemoveUser(uint16_t session_id) { session_ids_.erase(session_id); }
+	std::unordered_set<uint32_t> GetSessionIds() const { return session_ids_; }
 
-	void ChangeAdmin();
 	bool IsAdmin(uint16_t session_id) const	{ return admin_id_ == session_id; }
 	uint32_t GetAdminId() const { return admin_id_; }
+	void ChangeAdmin();
 
 	bool IsOpponent(uint16_t session_id) const { return opponent_id_ == session_id; }
 	void TryMatchingWith(uint32_t opponent_id);
@@ -27,15 +27,16 @@ public:
 	bool IsTryMatching() const { return try_matching_; }
 	bool IsTryMatchingWith(uint32_t opponent_id) const { return try_matching_ && opponent_id_ == opponent_id; }
 
-	void Matched(uint32_t white_session_id, uint32_t black_session_id);
+	void MatchComplete(uint32_t white_session_id, uint32_t black_session_id);
 	bool IsMatched() const { return matched_; }
 	void CancelMatch();
 
 	Game* GetGame() { return game_; }
 
 	bool IsGameStarted() const { return game_->IsGameStarted(); }
-	uint32_t PlayerLeave(uint32_t session_id);
-	void EndGame();
+	bool IsPlayer(uint32_t session_id);
+	uint32_t GetOpponentPlayer(uint32_t session_id);
+	void EndMatch();
 
 	void TimerCheck(uint32_t time_count) { timer_->Check(time_count); }
 
@@ -48,10 +49,11 @@ public:
 	void CancelTimer() { timer_->CancelTimer(); }
 
 	//네트워크 패킷 보내는 함수
-	std::function<void(uint32_t session_id)> NtfRoomUserList;
+	std::function<void(uint32_t session_id)> ResRoomUserList;
 	std::function<void(uint32_t session_id)> NtfRoomUserEnter;
 	std::function<void(uint32_t session_id)> NtfRoomUserLeave;
-	std::function<void(uint32_t session_id)> NtfNewRoomAdmin;
+	std::function<void()> NtfNewRoomAdmin;
+	std::function<void(uint32_t session_id)> ResRoomAdmin;
 	std::function<void(uint32_t session_id, std::string chat)> NtfRoomChat;
 	std::function<void(uint32_t black_session_id, std::string black_user_id, uint32_t white_session_id, std::string white_user_id)> NtfStartOmokView;
 	std::function<void(uint32_t session_id, uint32_t x, uint32_t y)> NtfPutMok;

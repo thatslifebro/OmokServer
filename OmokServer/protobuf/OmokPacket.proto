@@ -20,7 +20,7 @@ message ResRoomEnter {
   optional UserInfo userInfo = 2;
 }
 
-message NtfRoomAdmin {
+message ResYouAreRoomAdmin {
 }
 
 message NtfNewRoomAdmin {
@@ -32,7 +32,7 @@ message UserInfo {
   optional int32 sessionId = 2;
 }
 
-message NtfRoomUserList { // resRoomEnter 이후 바로 보내기 
+message ResRoomUserList { // resRoomEnter 이후 바로 보내기 
   repeated UserInfo userInfo = 1;
 }
 

@@ -22,7 +22,7 @@ namespace CSCommon
         public const UInt16 ResRoomLeave = 1106;
         public const UInt16 NtfRoomLeaveUser = 1107;
 
-        public const UInt16 NtfRoomAdmin = 1108;
+        public const UInt16 NtfYouAreRoomAdmin = 1108;
         public const UInt16 NtfNewRoomAdmin = 1109;
 
         public const UInt16 ReqRoomChat = 1201;

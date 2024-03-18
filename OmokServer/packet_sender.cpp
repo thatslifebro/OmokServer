@@ -47,7 +47,7 @@ void PacketSender::NtfNewRoomAdmin(std::unordered_set<uint32_t> room_session_ids
 	}
 }
 
-void PacketSender::NtfNewRoomAdmin(uint32_t session_id, uint32_t admin_session_id, std::string admin_user_id)
+void PacketSender::ResRoomAdmin(uint32_t session_id, uint32_t admin_session_id, std::string admin_user_id)
 {
 	OmokPacket::UserInfo* userinfo = new OmokPacket::UserInfo();
 	userinfo->set_sessionid(admin_session_id);
@@ -62,9 +62,9 @@ void PacketSender::NtfNewRoomAdmin(uint32_t session_id, uint32_t admin_session_i
 
 }
 
-void PacketSender::NtfRoomUserList(uint32_t session_id, std::vector<std::pair<uint32_t,std::string>> user_info_vec)
+void PacketSender::ResRoomUserList(uint32_t session_id, std::vector<std::pair<uint32_t,std::string>> user_info_vec)
 {
-	OmokPacket::NtfRoomUserList ntf_room_user_list;
+	OmokPacket::ResRoomUserList res_room_user_list;
 	for (auto user_info : user_info_vec)
 	{
 		if(user_info.first == session_id)
@@ -72,13 +72,13 @@ void PacketSender::NtfRoomUserList(uint32_t session_id, std::vector<std::pair<ui
 			continue;
 		}
 
-		auto userinfo = ntf_room_user_list.add_userinfo();
+		auto userinfo = res_room_user_list.add_userinfo();
 		userinfo->set_sessionid(user_info.first);
 		userinfo->set_userid(user_info.second);
 	}
 
 	// 傈价 单捞磐 积己
-	auto [res_data, res_length] = MakeResData(PacketId::NtfRoomUserList, ntf_room_user_list);
+	auto [res_data, res_length] = MakeResData(PacketId::NtfRoomUserList, res_room_user_list);
 
 	// 傈价
 	SendPacket(session_id, res_data, res_length);
@@ -107,11 +107,11 @@ void PacketSender::NtfRoomUserEnter(std::unordered_set<uint32_t> room_session_id
 	}
 }
 
-void PacketSender::NtfRoomAdmin(uint32_t session_id)
+void PacketSender::ResYouAreRoomAdmin(uint32_t session_id)
 {
-	OmokPacket::NtfRoomAdmin ntf_room_admin;
+	OmokPacket::ResYouAreRoomAdmin res_you_are_room_admin;
 
-	auto [res_data, res_length] = MakeResData(PacketId::NtfRoomAdmin, ntf_room_admin);
+	auto [res_data, res_length] = MakeResData(PacketId::ResYouAreRoomAdmin, res_you_are_room_admin);
 
 	SendPacket(session_id, res_data, res_length);
 }

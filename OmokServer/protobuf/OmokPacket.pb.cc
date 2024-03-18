@@ -79,17 +79,17 @@ struct ResRoomEnterDefaultTypeInternal {
   };
 };
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 ResRoomEnterDefaultTypeInternal _ResRoomEnter_default_instance_;
-PROTOBUF_CONSTEXPR NtfRoomAdmin::NtfRoomAdmin(
+PROTOBUF_CONSTEXPR ResYouAreRoomAdmin::ResYouAreRoomAdmin(
     ::_pbi::ConstantInitialized) {}
-struct NtfRoomAdminDefaultTypeInternal {
-  PROTOBUF_CONSTEXPR NtfRoomAdminDefaultTypeInternal()
+struct ResYouAreRoomAdminDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR ResYouAreRoomAdminDefaultTypeInternal()
       : _instance(::_pbi::ConstantInitialized{}) {}
-  ~NtfRoomAdminDefaultTypeInternal() {}
+  ~ResYouAreRoomAdminDefaultTypeInternal() {}
   union {
-    NtfRoomAdmin _instance;
+    ResYouAreRoomAdmin _instance;
   };
 };
-PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 NtfRoomAdminDefaultTypeInternal _NtfRoomAdmin_default_instance_;
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 ResYouAreRoomAdminDefaultTypeInternal _ResYouAreRoomAdmin_default_instance_;
 PROTOBUF_CONSTEXPR NtfNewRoomAdmin::NtfNewRoomAdmin(
     ::_pbi::ConstantInitialized): _impl_{
     /*decltype(_impl_._has_bits_)*/{}
@@ -119,19 +119,19 @@ struct UserInfoDefaultTypeInternal {
   };
 };
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 UserInfoDefaultTypeInternal _UserInfo_default_instance_;
-PROTOBUF_CONSTEXPR NtfRoomUserList::NtfRoomUserList(
+PROTOBUF_CONSTEXPR ResRoomUserList::ResRoomUserList(
     ::_pbi::ConstantInitialized): _impl_{
     /*decltype(_impl_.userinfo_)*/{}
   , /*decltype(_impl_._cached_size_)*/{}} {}
-struct NtfRoomUserListDefaultTypeInternal {
-  PROTOBUF_CONSTEXPR NtfRoomUserListDefaultTypeInternal()
+struct ResRoomUserListDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR ResRoomUserListDefaultTypeInternal()
       : _instance(::_pbi::ConstantInitialized{}) {}
-  ~NtfRoomUserListDefaultTypeInternal() {}
+  ~ResRoomUserListDefaultTypeInternal() {}
   union {
-    NtfRoomUserList _instance;
+    ResRoomUserList _instance;
   };
 };
-PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 NtfRoomUserListDefaultTypeInternal _NtfRoomUserList_default_instance_;
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 ResRoomUserListDefaultTypeInternal _ResRoomUserList_default_instance_;
 PROTOBUF_CONSTEXPR NtfRoomNewUser::NtfRoomNewUser(
     ::_pbi::ConstantInitialized): _impl_{
     /*decltype(_impl_._has_bits_)*/{}
@@ -472,7 +472,7 @@ const uint32_t TableStruct_OmokPacket_2eproto::offsets[] PROTOBUF_SECTION_VARIAB
   1,
   0,
   ~0u,  // no _has_bits_
-  PROTOBUF_FIELD_OFFSET(::OmokPacket::NtfRoomAdmin, _internal_metadata_),
+  PROTOBUF_FIELD_OFFSET(::OmokPacket::ResYouAreRoomAdmin, _internal_metadata_),
   ~0u,  // no _extensions_
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
@@ -496,12 +496,12 @@ const uint32_t TableStruct_OmokPacket_2eproto::offsets[] PROTOBUF_SECTION_VARIAB
   0,
   1,
   ~0u,  // no _has_bits_
-  PROTOBUF_FIELD_OFFSET(::OmokPacket::NtfRoomUserList, _internal_metadata_),
+  PROTOBUF_FIELD_OFFSET(::OmokPacket::ResRoomUserList, _internal_metadata_),
   ~0u,  // no _extensions_
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
   ~0u,  // no _inlined_string_donated_
-  PROTOBUF_FIELD_OFFSET(::OmokPacket::NtfRoomUserList, _impl_.userinfo_),
+  PROTOBUF_FIELD_OFFSET(::OmokPacket::ResRoomUserList, _impl_.userinfo_),
   PROTOBUF_FIELD_OFFSET(::OmokPacket::NtfRoomNewUser, _impl_._has_bits_),
   PROTOBUF_FIELD_OFFSET(::OmokPacket::NtfRoomNewUser, _internal_metadata_),
   ~0u,  // no _extensions_
@@ -686,10 +686,10 @@ static const ::_pbi::MigrationSchema schemas[] PROTOBUF_SECTION_VARIABLE(protode
   { 10, 17, -1, sizeof(::OmokPacket::ResLogin)},
   { 18, 25, -1, sizeof(::OmokPacket::ReqRoomEnter)},
   { 26, 34, -1, sizeof(::OmokPacket::ResRoomEnter)},
-  { 36, -1, -1, sizeof(::OmokPacket::NtfRoomAdmin)},
+  { 36, -1, -1, sizeof(::OmokPacket::ResYouAreRoomAdmin)},
   { 42, 49, -1, sizeof(::OmokPacket::NtfNewRoomAdmin)},
   { 50, 58, -1, sizeof(::OmokPacket::UserInfo)},
-  { 60, -1, -1, sizeof(::OmokPacket::NtfRoomUserList)},
+  { 60, -1, -1, sizeof(::OmokPacket::ResRoomUserList)},
   { 67, 74, -1, sizeof(::OmokPacket::NtfRoomNewUser)},
   { 75, -1, -1, sizeof(::OmokPacket::ReqRoomLeave)},
   { 81, 88, -1, sizeof(::OmokPacket::ResRoomLeave)},
@@ -719,10 +719,10 @@ static const ::_pb::Message* const file_default_instances[] = {
   &::OmokPacket::_ResLogin_default_instance_._instance,
   &::OmokPacket::_ReqRoomEnter_default_instance_._instance,
   &::OmokPacket::_ResRoomEnter_default_instance_._instance,
-  &::OmokPacket::_NtfRoomAdmin_default_instance_._instance,
+  &::OmokPacket::_ResYouAreRoomAdmin_default_instance_._instance,
   &::OmokPacket::_NtfNewRoomAdmin_default_instance_._instance,
   &::OmokPacket::_UserInfo_default_instance_._instance,
-  &::OmokPacket::_NtfRoomUserList_default_instance_._instance,
+  &::OmokPacket::_ResRoomUserList_default_instance_._instance,
   &::OmokPacket::_NtfRoomNewUser_default_instance_._instance,
   &::OmokPacket::_ReqRoomLeave_default_instance_._instance,
   &::OmokPacket::_ResRoomLeave_default_instance_._instance,
@@ -755,46 +755,46 @@ const char descriptor_table_protodef_OmokPacket_2eproto[] PROTOBUF_SECTION_VARIA
   "\n\006roomId\030\001 \001(\005H\000\210\001\001B\t\n\007_roomId\"h\n\014ResRoo"
   "mEnter\022\023\n\006result\030\001 \001(\005H\000\210\001\001\022+\n\010userInfo\030"
   "\002 \001(\0132\024.OmokPacket.UserInfoH\001\210\001\001B\t\n\007_res"
-  "ultB\013\n\t_userInfo\"\016\n\014NtfRoomAdmin\"K\n\017NtfN"
-  "ewRoomAdmin\022+\n\010userInfo\030\001 \001(\0132\024.OmokPack"
-  "et.UserInfoH\000\210\001\001B\013\n\t_userInfo\"P\n\010UserInf"
-  "o\022\023\n\006userId\030\001 \001(\tH\000\210\001\001\022\026\n\tsessionId\030\002 \001("
-  "\005H\001\210\001\001B\t\n\007_userIdB\014\n\n_sessionId\"9\n\017NtfRo"
-  "omUserList\022&\n\010userInfo\030\001 \003(\0132\024.OmokPacke"
-  "t.UserInfo\"J\n\016NtfRoomNewUser\022+\n\010userInfo"
-  "\030\001 \001(\0132\024.OmokPacket.UserInfoH\000\210\001\001B\013\n\t_us"
-  "erInfo\"\016\n\014ReqRoomLeave\".\n\014ResRoomLeave\022\023"
-  "\n\006result\030\001 \001(\005H\000\210\001\001B\t\n\007_result\"L\n\020NtfRoo"
-  "mLeaveUser\022+\n\010userInfo\030\001 \001(\0132\024.OmokPacke"
-  "t.UserInfoH\000\210\001\001B\013\n\t_userInfo\")\n\013ReqRoomC"
-  "hat\022\021\n\004chat\030\001 \001(\tH\000\210\001\001B\007\n\005_chat\"I\n\013ResRo"
-  "omChat\022\023\n\006result\030\001 \001(\005H\000\210\001\001\022\021\n\004chat\030\002 \001("
-  "\tH\001\210\001\001B\t\n\007_resultB\007\n\005_chat\"c\n\013NtfRoomCha"
-  "t\022+\n\010userInfo\030\001 \001(\0132\024.OmokPacket.UserInf"
-  "oH\000\210\001\001\022\021\n\004chat\030\002 \001(\tH\001\210\001\001B\013\n\t_userInfoB\007"
-  "\n\005_chat\"0\n\010ReqMatch\022\026\n\tsessionId\030\001 \001(\005H\000"
-  "\210\001\001B\014\n\n_sessionId\"*\n\010ResMatch\022\023\n\006result\030"
-  "\001 \001(\005H\000\210\001\001B\t\n\007_result\"G\n\013NtfMatchReq\022+\n\010"
-  "userInfo\030\001 \001(\0132\024.OmokPacket.UserInfoH\000\210\001"
-  "\001B\013\n\t_userInfo\"-\n\013ReqMatchRes\022\023\n\006accept\030"
-  "\001 \001(\010H\000\210\001\001B\t\n\007_accept\"\016\n\014ReqReadyOmok\"\016\n"
-  "\014ResReadyOmok\"p\n\014NtfStartOmok\022\022\n\005black\030\001"
-  " \001(\010H\000\210\001\001\022\021\n\004myId\030\002 \001(\tH\001\210\001\001\022\027\n\nopponent"
-  "Id\030\003 \001(\tH\002\210\001\001B\010\n\006_blackB\007\n\005_myIdB\r\n\013_opp"
-  "onentId\"7\n\tReqPutMok\022\016\n\001x\030\001 \001(\005H\000\210\001\001\022\016\n\001"
-  "y\030\002 \001(\005H\001\210\001\001B\004\n\002_xB\004\n\002_y\"+\n\tResPutMok\022\023\n"
-  "\006result\030\001 \001(\005H\000\210\001\001B\t\n\007_result\"7\n\tNtfPutM"
-  "ok\022\016\n\001x\030\001 \001(\005H\000\210\001\001\022\016\n\001y\030\002 \001(\005H\001\210\001\001B\004\n\002_x"
-  "B\004\n\002_y\",\n\nNtfEndOmok\022\023\n\006status\030\001 \001(\005H\000\210\001"
-  "\001B\t\n\007_status\"\021\n\017NtfMatchTimeout\"\021\n\017NtfRe"
-  "adyTimeout\"\022\n\020NtfPutMokTimeout\"V\n\020NtfSta"
-  "rtOmokView\022\024\n\007blackId\030\001 \001(\tH\000\210\001\001\022\024\n\007whit"
-  "eId\030\002 \001(\tH\001\210\001\001B\n\n\010_blackIdB\n\n\010_whiteIdb\006"
-  "proto3"
+  "ultB\013\n\t_userInfo\"\024\n\022ResYouAreRoomAdmin\"K"
+  "\n\017NtfNewRoomAdmin\022+\n\010userInfo\030\001 \001(\0132\024.Om"
+  "okPacket.UserInfoH\000\210\001\001B\013\n\t_userInfo\"P\n\010U"
+  "serInfo\022\023\n\006userId\030\001 \001(\tH\000\210\001\001\022\026\n\tsessionI"
+  "d\030\002 \001(\005H\001\210\001\001B\t\n\007_userIdB\014\n\n_sessionId\"9\n"
+  "\017ResRoomUserList\022&\n\010userInfo\030\001 \003(\0132\024.Omo"
+  "kPacket.UserInfo\"J\n\016NtfRoomNewUser\022+\n\010us"
+  "erInfo\030\001 \001(\0132\024.OmokPacket.UserInfoH\000\210\001\001B"
+  "\013\n\t_userInfo\"\016\n\014ReqRoomLeave\".\n\014ResRoomL"
+  "eave\022\023\n\006result\030\001 \001(\005H\000\210\001\001B\t\n\007_result\"L\n\020"
+  "NtfRoomLeaveUser\022+\n\010userInfo\030\001 \001(\0132\024.Omo"
+  "kPacket.UserInfoH\000\210\001\001B\013\n\t_userInfo\")\n\013Re"
+  "qRoomChat\022\021\n\004chat\030\001 \001(\tH\000\210\001\001B\007\n\005_chat\"I\n"
+  "\013ResRoomChat\022\023\n\006result\030\001 \001(\005H\000\210\001\001\022\021\n\004cha"
+  "t\030\002 \001(\tH\001\210\001\001B\t\n\007_resultB\007\n\005_chat\"c\n\013NtfR"
+  "oomChat\022+\n\010userInfo\030\001 \001(\0132\024.OmokPacket.U"
+  "serInfoH\000\210\001\001\022\021\n\004chat\030\002 \001(\tH\001\210\001\001B\013\n\t_user"
+  "InfoB\007\n\005_chat\"0\n\010ReqMatch\022\026\n\tsessionId\030\001"
+  " \001(\005H\000\210\001\001B\014\n\n_sessionId\"*\n\010ResMatch\022\023\n\006r"
+  "esult\030\001 \001(\005H\000\210\001\001B\t\n\007_result\"G\n\013NtfMatchR"
+  "eq\022+\n\010userInfo\030\001 \001(\0132\024.OmokPacket.UserIn"
+  "foH\000\210\001\001B\013\n\t_userInfo\"-\n\013ReqMatchRes\022\023\n\006a"
+  "ccept\030\001 \001(\010H\000\210\001\001B\t\n\007_accept\"\016\n\014ReqReadyO"
+  "mok\"\016\n\014ResReadyOmok\"p\n\014NtfStartOmok\022\022\n\005b"
+  "lack\030\001 \001(\010H\000\210\001\001\022\021\n\004myId\030\002 \001(\tH\001\210\001\001\022\027\n\nop"
+  "ponentId\030\003 \001(\tH\002\210\001\001B\010\n\006_blackB\007\n\005_myIdB\r"
+  "\n\013_opponentId\"7\n\tReqPutMok\022\016\n\001x\030\001 \001(\005H\000\210"
+  "\001\001\022\016\n\001y\030\002 \001(\005H\001\210\001\001B\004\n\002_xB\004\n\002_y\"+\n\tResPut"
+  "Mok\022\023\n\006result\030\001 \001(\005H\000\210\001\001B\t\n\007_result\"7\n\tN"
+  "tfPutMok\022\016\n\001x\030\001 \001(\005H\000\210\001\001\022\016\n\001y\030\002 \001(\005H\001\210\001\001"
+  "B\004\n\002_xB\004\n\002_y\",\n\nNtfEndOmok\022\023\n\006status\030\001 \001"
+  "(\005H\000\210\001\001B\t\n\007_status\"\021\n\017NtfMatchTimeout\"\021\n"
+  "\017NtfReadyTimeout\"\022\n\020NtfPutMokTimeout\"V\n\020"
+  "NtfStartOmokView\022\024\n\007blackId\030\001 \001(\tH\000\210\001\001\022\024"
+  "\n\007whiteId\030\002 \001(\tH\001\210\001\001B\n\n\010_blackIdB\n\n\010_whi"
+  "teIdb\006proto3"
   ;
 static ::_pbi::once_flag descriptor_table_OmokPacket_2eproto_once;
 const ::_pbi::DescriptorTable descriptor_table_OmokPacket_2eproto = {
-    false, false, 1686, descriptor_table_protodef_OmokPacket_2eproto,
+    false, false, 1692, descriptor_table_protodef_OmokPacket_2eproto,
     "OmokPacket.proto",
     &descriptor_table_OmokPacket_2eproto_once, nullptr, 0, 30,
     schemas, file_default_instances, TableStruct_OmokPacket_2eproto::offsets,
@@ -1716,31 +1716,31 @@ void ResRoomEnter::InternalSwap(ResRoomEnter* other) {
 
 // ===================================================================
 
-class NtfRoomAdmin::_Internal {
+class ResYouAreRoomAdmin::_Internal {
  public:
 };
 
-NtfRoomAdmin::NtfRoomAdmin(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+ResYouAreRoomAdmin::ResYouAreRoomAdmin(::PROTOBUF_NAMESPACE_ID::Arena* arena,
                          bool is_message_owned)
   : ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase(arena, is_message_owned) {
-  // @@protoc_insertion_point(arena_constructor:OmokPacket.NtfRoomAdmin)
+  // @@protoc_insertion_point(arena_constructor:OmokPacket.ResYouAreRoomAdmin)
 }
-NtfRoomAdmin::NtfRoomAdmin(const NtfRoomAdmin& from)
+ResYouAreRoomAdmin::ResYouAreRoomAdmin(const ResYouAreRoomAdmin& from)
   : ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase() {
-  NtfRoomAdmin* const _this = this; (void)_this;
+  ResYouAreRoomAdmin* const _this = this; (void)_this;
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
-  // @@protoc_insertion_point(copy_constructor:OmokPacket.NtfRoomAdmin)
+  // @@protoc_insertion_point(copy_constructor:OmokPacket.ResYouAreRoomAdmin)
 }
 
 
 
 
 
-const ::PROTOBUF_NAMESPACE_ID::Message::ClassData NtfRoomAdmin::_class_data_ = {
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData ResYouAreRoomAdmin::_class_data_ = {
     ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase::CopyImpl,
     ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase::MergeImpl,
 };
-const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*NtfRoomAdmin::GetClassData() const { return &_class_data_; }
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*ResYouAreRoomAdmin::GetClassData() const { return &_class_data_; }
 
 
 
@@ -1748,7 +1748,7 @@ const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*NtfRoomAdmin::GetClassData() c
 
 
 
-::PROTOBUF_NAMESPACE_ID::Metadata NtfRoomAdmin::GetMetadata() const {
+::PROTOBUF_NAMESPACE_ID::Metadata ResYouAreRoomAdmin::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_OmokPacket_2eproto_getter, &descriptor_table_OmokPacket_2eproto_once,
       file_level_metadata_OmokPacket_2eproto[4]);
@@ -2215,28 +2215,28 @@ void UserInfo::InternalSwap(UserInfo* other) {
 
 // ===================================================================
 
-class NtfRoomUserList::_Internal {
+class ResRoomUserList::_Internal {
  public:
 };
 
-NtfRoomUserList::NtfRoomUserList(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+ResRoomUserList::ResRoomUserList(::PROTOBUF_NAMESPACE_ID::Arena* arena,
                          bool is_message_owned)
   : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
   SharedCtor(arena, is_message_owned);
-  // @@protoc_insertion_point(arena_constructor:OmokPacket.NtfRoomUserList)
+  // @@protoc_insertion_point(arena_constructor:OmokPacket.ResRoomUserList)
 }
-NtfRoomUserList::NtfRoomUserList(const NtfRoomUserList& from)
+ResRoomUserList::ResRoomUserList(const ResRoomUserList& from)
   : ::PROTOBUF_NAMESPACE_ID::Message() {
-  NtfRoomUserList* const _this = this; (void)_this;
+  ResRoomUserList* const _this = this; (void)_this;
   new (&_impl_) Impl_{
       decltype(_impl_.userinfo_){from._impl_.userinfo_}
     , /*decltype(_impl_._cached_size_)*/{}};
 
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
-  // @@protoc_insertion_point(copy_constructor:OmokPacket.NtfRoomUserList)
+  // @@protoc_insertion_point(copy_constructor:OmokPacket.ResRoomUserList)
 }
 
-inline void NtfRoomUserList::SharedCtor(
+inline void ResRoomUserList::SharedCtor(
     ::_pb::Arena* arena, bool is_message_owned) {
   (void)arena;
   (void)is_message_owned;
@@ -2246,8 +2246,8 @@ inline void NtfRoomUserList::SharedCtor(
   };
 }
 
-NtfRoomUserList::~NtfRoomUserList() {
-  // @@protoc_insertion_point(destructor:OmokPacket.NtfRoomUserList)
+ResRoomUserList::~ResRoomUserList() {
+  // @@protoc_insertion_point(destructor:OmokPacket.ResRoomUserList)
   if (auto *arena = _internal_metadata_.DeleteReturnArena<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>()) {
   (void)arena;
     return;
@@ -2255,17 +2255,17 @@ NtfRoomUserList::~NtfRoomUserList() {
   SharedDtor();
 }
 
-inline void NtfRoomUserList::SharedDtor() {
+inline void ResRoomUserList::SharedDtor() {
   GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
   _impl_.userinfo_.~RepeatedPtrField();
 }
 
-void NtfRoomUserList::SetCachedSize(int size) const {
+void ResRoomUserList::SetCachedSize(int size) const {
   _impl_._cached_size_.Set(size);
 }
 
-void NtfRoomUserList::Clear() {
-// @@protoc_insertion_point(message_clear_start:OmokPacket.NtfRoomUserList)
+void ResRoomUserList::Clear() {
+// @@protoc_insertion_point(message_clear_start:OmokPacket.ResRoomUserList)
   uint32_t cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
@@ -2274,7 +2274,7 @@ void NtfRoomUserList::Clear() {
   _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
-const char* NtfRoomUserList::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) {
+const char* ResRoomUserList::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) {
 #define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
   while (!ctx->Done(&ptr)) {
     uint32_t tag;
@@ -2316,9 +2316,9 @@ failure:
 #undef CHK_
 }
 
-uint8_t* NtfRoomUserList::_InternalSerialize(
+uint8_t* ResRoomUserList::_InternalSerialize(
     uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
-  // @@protoc_insertion_point(serialize_to_array_start:OmokPacket.NtfRoomUserList)
+  // @@protoc_insertion_point(serialize_to_array_start:OmokPacket.ResRoomUserList)
   uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
@@ -2334,12 +2334,12 @@ uint8_t* NtfRoomUserList::_InternalSerialize(
     target = ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
         _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
   }
-  // @@protoc_insertion_point(serialize_to_array_end:OmokPacket.NtfRoomUserList)
+  // @@protoc_insertion_point(serialize_to_array_end:OmokPacket.ResRoomUserList)
   return target;
 }
 
-size_t NtfRoomUserList::ByteSizeLong() const {
-// @@protoc_insertion_point(message_byte_size_start:OmokPacket.NtfRoomUserList)
+size_t ResRoomUserList::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:OmokPacket.ResRoomUserList)
   size_t total_size = 0;
 
   uint32_t cached_has_bits = 0;
@@ -2356,17 +2356,17 @@ size_t NtfRoomUserList::ByteSizeLong() const {
   return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
 }
 
-const ::PROTOBUF_NAMESPACE_ID::Message::ClassData NtfRoomUserList::_class_data_ = {
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData ResRoomUserList::_class_data_ = {
     ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSourceCheck,
-    NtfRoomUserList::MergeImpl
+    ResRoomUserList::MergeImpl
 };
-const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*NtfRoomUserList::GetClassData() const { return &_class_data_; }
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*ResRoomUserList::GetClassData() const { return &_class_data_; }
 
 
-void NtfRoomUserList::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg) {
-  auto* const _this = static_cast<NtfRoomUserList*>(&to_msg);
-  auto& from = static_cast<const NtfRoomUserList&>(from_msg);
-  // @@protoc_insertion_point(class_specific_merge_from_start:OmokPacket.NtfRoomUserList)
+void ResRoomUserList::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg) {
+  auto* const _this = static_cast<ResRoomUserList*>(&to_msg);
+  auto& from = static_cast<const ResRoomUserList&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:OmokPacket.ResRoomUserList)
   GOOGLE_DCHECK_NE(&from, _this);
   uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
@@ -2375,24 +2375,24 @@ void NtfRoomUserList::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const 
   _this->_internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
 }
 
-void NtfRoomUserList::CopyFrom(const NtfRoomUserList& from) {
-// @@protoc_insertion_point(class_specific_copy_from_start:OmokPacket.NtfRoomUserList)
+void ResRoomUserList::CopyFrom(const ResRoomUserList& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:OmokPacket.ResRoomUserList)
   if (&from == this) return;
   Clear();
   MergeFrom(from);
 }
 
-bool NtfRoomUserList::IsInitialized() const {
+bool ResRoomUserList::IsInitialized() const {
   return true;
 }
 
-void NtfRoomUserList::InternalSwap(NtfRoomUserList* other) {
+void ResRoomUserList::InternalSwap(ResRoomUserList* other) {
   using std::swap;
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
   _impl_.userinfo_.InternalSwap(&other->_impl_.userinfo_);
 }
 
-::PROTOBUF_NAMESPACE_ID::Metadata NtfRoomUserList::GetMetadata() const {
+::PROTOBUF_NAMESPACE_ID::Metadata ResRoomUserList::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_OmokPacket_2eproto_getter, &descriptor_table_OmokPacket_2eproto_once,
       file_level_metadata_OmokPacket_2eproto[7]);
@@ -6214,9 +6214,9 @@ template<> PROTOBUF_NOINLINE ::OmokPacket::ResRoomEnter*
 Arena::CreateMaybeMessage< ::OmokPacket::ResRoomEnter >(Arena* arena) {
   return Arena::CreateMessageInternal< ::OmokPacket::ResRoomEnter >(arena);
 }
-template<> PROTOBUF_NOINLINE ::OmokPacket::NtfRoomAdmin*
-Arena::CreateMaybeMessage< ::OmokPacket::NtfRoomAdmin >(Arena* arena) {
-  return Arena::CreateMessageInternal< ::OmokPacket::NtfRoomAdmin >(arena);
+template<> PROTOBUF_NOINLINE ::OmokPacket::ResYouAreRoomAdmin*
+Arena::CreateMaybeMessage< ::OmokPacket::ResYouAreRoomAdmin >(Arena* arena) {
+  return Arena::CreateMessageInternal< ::OmokPacket::ResYouAreRoomAdmin >(arena);
 }
 template<> PROTOBUF_NOINLINE ::OmokPacket::NtfNewRoomAdmin*
 Arena::CreateMaybeMessage< ::OmokPacket::NtfNewRoomAdmin >(Arena* arena) {
@@ -6226,9 +6226,9 @@ template<> PROTOBUF_NOINLINE ::OmokPacket::UserInfo*
 Arena::CreateMaybeMessage< ::OmokPacket::UserInfo >(Arena* arena) {
   return Arena::CreateMessageInternal< ::OmokPacket::UserInfo >(arena);
 }
-template<> PROTOBUF_NOINLINE ::OmokPacket::NtfRoomUserList*
-Arena::CreateMaybeMessage< ::OmokPacket::NtfRoomUserList >(Arena* arena) {
-  return Arena::CreateMessageInternal< ::OmokPacket::NtfRoomUserList >(arena);
+template<> PROTOBUF_NOINLINE ::OmokPacket::ResRoomUserList*
+Arena::CreateMaybeMessage< ::OmokPacket::ResRoomUserList >(Arena* arena) {
+  return Arena::CreateMessageInternal< ::OmokPacket::ResRoomUserList >(arena);
 }
 template<> PROTOBUF_NOINLINE ::OmokPacket::NtfRoomNewUser*
 Arena::CreateMaybeMessage< ::OmokPacket::NtfRoomNewUser >(Arena* arena) {

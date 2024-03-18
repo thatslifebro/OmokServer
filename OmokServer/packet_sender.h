@@ -7,19 +7,21 @@
 class PacketSender
 {
 public:
+	void Init(std::function<void(uint32_t, std::shared_ptr<char[]>, uint16_t)> send_packet) { SendPacket = send_packet; }
+
 	void ResLogin(uint32_t session_id, uint32_t result);
 
 	void ResRoomEnter(uint32_t session_id, std::string user_id, uint32_t result);
 
 	void NtfRoomUserEnter(std::unordered_set<uint32_t> room_session_ids, uint32_t session_id, std::string user_id);
 
-	void NtfRoomAdmin(uint32_t session_id);
+	void ResYouAreRoomAdmin(uint32_t session_id);
 
 	void NtfNewRoomAdmin(std::unordered_set<uint32_t> room_session_ids, uint32_t session_id, std::string user_id);
 
-	void NtfNewRoomAdmin(uint32_t session_id, uint32_t admin_session_is, std::string admin_user_id);
+	void ResRoomAdmin(uint32_t session_id, uint32_t admin_session_id, std::string admin_user_id);
 
-	void NtfRoomUserList(uint32_t session_id, std::vector<std::pair<uint32_t, std::string>> user_info_vec);
+	void ResRoomUserList(uint32_t session_id, std::vector<std::pair<uint32_t, std::string>> user_info_vec);
 
 	void ResRoomLeave(uint32_t session_id, uint32_t result);
 
@@ -53,9 +55,9 @@ public:
 
 	void NtfPutMokTimeout(std::unordered_set<uint32_t> room_session_ids);
 
+private:
 	std::function<void(uint32_t, std::shared_ptr<char[]>, uint16_t)> SendPacket;
 
-private:
 	template <typename T>
 	std::tuple<std::shared_ptr<char[]>, uint16_t> MakeResData(PacketId packet_id, T packet_body);
 };

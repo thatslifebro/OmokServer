@@ -5,6 +5,7 @@
 #include "packet_queue.h"
 #include "room_manager.h"
 #include "session.h"
+#include "error_code.h"
 
 class PacketProcessor
 {

@@ -3,8 +3,16 @@
 Session::Session(Poco::Net::StreamSocket& socket, Poco::Net::SocketReactor& reactor) : socket_(socket), reactor_(reactor)
 {
 	// session_id_로 Session 관리
-	SessionManager session_manager;
-	session_id_= session_manager.AddSession(this);
+	session_id_= session_manager_.AddSession(this);
+
+	packet_sender_.Init([&](uint32_t session_id, std::shared_ptr<char[]> buffer, int length) {
+		auto session = session_manager_.GetSession(session_id);
+		if (session == nullptr)
+		{
+			return;
+		}
+		session->SendPacket(buffer, length);
+		});
 
 	// 이벤트 헨들러 등록
 	reactor_.addEventHandler(socket_, Poco::Observer<Session, ReadableNotification>(*this, &Session::onReadable));
@@ -68,37 +76,25 @@ void Session::SendPacket(std::shared_ptr<char[]> buffer, int length)
 
 void Session::LeaveRoom()
 {
-	SessionManager session_manager;
-	RoomManager room_manager;
-	PacketSender packet_sender;
-	packet_sender.SendPacket = [&](uint32_t session_id, std::shared_ptr<char[]> buffer, int length) {
-		auto session = session_manager.GetSession(session_id);
-		if (session == nullptr)
-		{
-			return;
-		}
-		session->SendPacket(buffer, length);
-		};
-
 	if (room_id_ == 0)
 	{
 		return;
 	}
-	room_manager.RemoveSession(session_id_, room_id_);
+	room_manager_.RemoveUser(session_id_, room_id_);
 
 	// 게임중일 때
-	auto room = room_manager.GetRoom(room_id_);
+	auto room = room_manager_.GetRoom(room_id_);
 
-	auto opponent_id = room->PlayerLeave(session_id_);
-	if (opponent_id != 0)
+	if (room->IsPlayer(session_id_))
 	{
-		packet_sender.NtfGameOver(opponent_id, 1);
+		auto opponent_id = room->GetOpponentPlayer(session_id_);
+		packet_sender_.NtfGameOver(opponent_id, 1);
 	}
 
 	// 매칭 상태 일 때
 	if (room->IsMatched())
 	{
-		room->CancelMatch();
+		room->EndMatch();
 	}
 
 	// 나감 전파
@@ -111,7 +107,7 @@ void Session::LeaveRoom()
 
 		auto admin_session_id = room->GetAdminId();
 
-		packet_sender.NtfRoomAdmin(admin_session_id);
-		room->NtfNewRoomAdmin(admin_session_id);
+		packet_sender_.ResYouAreRoomAdmin(admin_session_id);
+		room->NtfNewRoomAdmin();
 	}
 }

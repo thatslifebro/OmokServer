@@ -67,9 +67,6 @@ extern NtfPutMokTimeoutDefaultTypeInternal _NtfPutMokTimeout_default_instance_;
 class NtfReadyTimeout;
 struct NtfReadyTimeoutDefaultTypeInternal;
 extern NtfReadyTimeoutDefaultTypeInternal _NtfReadyTimeout_default_instance_;
-class NtfRoomAdmin;
-struct NtfRoomAdminDefaultTypeInternal;
-extern NtfRoomAdminDefaultTypeInternal _NtfRoomAdmin_default_instance_;
 class NtfRoomChat;
 struct NtfRoomChatDefaultTypeInternal;
 extern NtfRoomChatDefaultTypeInternal _NtfRoomChat_default_instance_;
@@ -79,9 +76,6 @@ extern NtfRoomLeaveUserDefaultTypeInternal _NtfRoomLeaveUser_default_instance_;
 class NtfRoomNewUser;
 struct NtfRoomNewUserDefaultTypeInternal;
 extern NtfRoomNewUserDefaultTypeInternal _NtfRoomNewUser_default_instance_;
-class NtfRoomUserList;
-struct NtfRoomUserListDefaultTypeInternal;
-extern NtfRoomUserListDefaultTypeInternal _NtfRoomUserList_default_instance_;
 class NtfStartOmok;
 struct NtfStartOmokDefaultTypeInternal;
 extern NtfStartOmokDefaultTypeInternal _NtfStartOmok_default_instance_;
@@ -133,6 +127,12 @@ extern ResRoomEnterDefaultTypeInternal _ResRoomEnter_default_instance_;
 class ResRoomLeave;
 struct ResRoomLeaveDefaultTypeInternal;
 extern ResRoomLeaveDefaultTypeInternal _ResRoomLeave_default_instance_;
+class ResRoomUserList;
+struct ResRoomUserListDefaultTypeInternal;
+extern ResRoomUserListDefaultTypeInternal _ResRoomUserList_default_instance_;
+class ResYouAreRoomAdmin;
+struct ResYouAreRoomAdminDefaultTypeInternal;
+extern ResYouAreRoomAdminDefaultTypeInternal _ResYouAreRoomAdmin_default_instance_;
 class UserInfo;
 struct UserInfoDefaultTypeInternal;
 extern UserInfoDefaultTypeInternal _UserInfo_default_instance_;
@@ -145,11 +145,9 @@ template<> ::OmokPacket::NtfNewRoomAdmin* Arena::CreateMaybeMessage<::OmokPacket
 template<> ::OmokPacket::NtfPutMok* Arena::CreateMaybeMessage<::OmokPacket::NtfPutMok>(Arena*);
 template<> ::OmokPacket::NtfPutMokTimeout* Arena::CreateMaybeMessage<::OmokPacket::NtfPutMokTimeout>(Arena*);
 template<> ::OmokPacket::NtfReadyTimeout* Arena::CreateMaybeMessage<::OmokPacket::NtfReadyTimeout>(Arena*);
-template<> ::OmokPacket::NtfRoomAdmin* Arena::CreateMaybeMessage<::OmokPacket::NtfRoomAdmin>(Arena*);
 template<> ::OmokPacket::NtfRoomChat* Arena::CreateMaybeMessage<::OmokPacket::NtfRoomChat>(Arena*);
 template<> ::OmokPacket::NtfRoomLeaveUser* Arena::CreateMaybeMessage<::OmokPacket::NtfRoomLeaveUser>(Arena*);
 template<> ::OmokPacket::NtfRoomNewUser* Arena::CreateMaybeMessage<::OmokPacket::NtfRoomNewUser>(Arena*);
-template<> ::OmokPacket::NtfRoomUserList* Arena::CreateMaybeMessage<::OmokPacket::NtfRoomUserList>(Arena*);
 template<> ::OmokPacket::NtfStartOmok* Arena::CreateMaybeMessage<::OmokPacket::NtfStartOmok>(Arena*);
 template<> ::OmokPacket::NtfStartOmokView* Arena::CreateMaybeMessage<::OmokPacket::NtfStartOmokView>(Arena*);
 template<> ::OmokPacket::ReqLogin* Arena::CreateMaybeMessage<::OmokPacket::ReqLogin>(Arena*);
@@ -167,6 +165,8 @@ template<> ::OmokPacket::ResReadyOmok* Arena::CreateMaybeMessage<::OmokPacket::R
 template<> ::OmokPacket::ResRoomChat* Arena::CreateMaybeMessage<::OmokPacket::ResRoomChat>(Arena*);
 template<> ::OmokPacket::ResRoomEnter* Arena::CreateMaybeMessage<::OmokPacket::ResRoomEnter>(Arena*);
 template<> ::OmokPacket::ResRoomLeave* Arena::CreateMaybeMessage<::OmokPacket::ResRoomLeave>(Arena*);
+template<> ::OmokPacket::ResRoomUserList* Arena::CreateMaybeMessage<::OmokPacket::ResRoomUserList>(Arena*);
+template<> ::OmokPacket::ResYouAreRoomAdmin* Arena::CreateMaybeMessage<::OmokPacket::ResYouAreRoomAdmin>(Arena*);
 template<> ::OmokPacket::UserInfo* Arena::CreateMaybeMessage<::OmokPacket::UserInfo>(Arena*);
 PROTOBUF_NAMESPACE_CLOSE
 namespace OmokPacket {
@@ -830,23 +830,23 @@ class ResRoomEnter final :
 };
 // -------------------------------------------------------------------
 
-class NtfRoomAdmin final :
-    public ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase /* @@protoc_insertion_point(class_definition:OmokPacket.NtfRoomAdmin) */ {
+class ResYouAreRoomAdmin final :
+    public ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase /* @@protoc_insertion_point(class_definition:OmokPacket.ResYouAreRoomAdmin) */ {
  public:
-  inline NtfRoomAdmin() : NtfRoomAdmin(nullptr) {}
-  explicit PROTOBUF_CONSTEXPR NtfRoomAdmin(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+  inline ResYouAreRoomAdmin() : ResYouAreRoomAdmin(nullptr) {}
+  explicit PROTOBUF_CONSTEXPR ResYouAreRoomAdmin(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
 
-  NtfRoomAdmin(const NtfRoomAdmin& from);
-  NtfRoomAdmin(NtfRoomAdmin&& from) noexcept
-    : NtfRoomAdmin() {
+  ResYouAreRoomAdmin(const ResYouAreRoomAdmin& from);
+  ResYouAreRoomAdmin(ResYouAreRoomAdmin&& from) noexcept
+    : ResYouAreRoomAdmin() {
     *this = ::std::move(from);
   }
 
-  inline NtfRoomAdmin& operator=(const NtfRoomAdmin& from) {
+  inline ResYouAreRoomAdmin& operator=(const ResYouAreRoomAdmin& from) {
     CopyFrom(from);
     return *this;
   }
-  inline NtfRoomAdmin& operator=(NtfRoomAdmin&& from) noexcept {
+  inline ResYouAreRoomAdmin& operator=(ResYouAreRoomAdmin&& from) noexcept {
     if (this == &from) return *this;
     if (GetOwningArena() == from.GetOwningArena()
   #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
@@ -869,20 +869,20 @@ class NtfRoomAdmin final :
   static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
     return default_instance().GetMetadata().reflection;
   }
-  static const NtfRoomAdmin& default_instance() {
+  static const ResYouAreRoomAdmin& default_instance() {
     return *internal_default_instance();
   }
-  static inline const NtfRoomAdmin* internal_default_instance() {
-    return reinterpret_cast<const NtfRoomAdmin*>(
-               &_NtfRoomAdmin_default_instance_);
+  static inline const ResYouAreRoomAdmin* internal_default_instance() {
+    return reinterpret_cast<const ResYouAreRoomAdmin*>(
+               &_ResYouAreRoomAdmin_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
     4;
 
-  friend void swap(NtfRoomAdmin& a, NtfRoomAdmin& b) {
+  friend void swap(ResYouAreRoomAdmin& a, ResYouAreRoomAdmin& b) {
     a.Swap(&b);
   }
-  inline void Swap(NtfRoomAdmin* other) {
+  inline void Swap(ResYouAreRoomAdmin* other) {
     if (other == this) return;
   #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
     if (GetOwningArena() != nullptr &&
@@ -895,7 +895,7 @@ class NtfRoomAdmin final :
       ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
     }
   }
-  void UnsafeArenaSwap(NtfRoomAdmin* other) {
+  void UnsafeArenaSwap(ResYouAreRoomAdmin* other) {
     if (other == this) return;
     GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
     InternalSwap(other);
@@ -903,15 +903,15 @@ class NtfRoomAdmin final :
 
   // implements Message ----------------------------------------------
 
-  NtfRoomAdmin* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
-    return CreateMaybeMessage<NtfRoomAdmin>(arena);
+  ResYouAreRoomAdmin* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<ResYouAreRoomAdmin>(arena);
   }
   using ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase::CopyFrom;
-  inline void CopyFrom(const NtfRoomAdmin& from) {
+  inline void CopyFrom(const ResYouAreRoomAdmin& from) {
     ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase::CopyImpl(*this, from);
   }
   using ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase::MergeFrom;
-  void MergeFrom(const NtfRoomAdmin& from) {
+  void MergeFrom(const ResYouAreRoomAdmin& from) {
     ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase::MergeImpl(*this, from);
   }
   public:
@@ -919,10 +919,10 @@ class NtfRoomAdmin final :
   private:
   friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
   static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
-    return "OmokPacket.NtfRoomAdmin";
+    return "OmokPacket.ResYouAreRoomAdmin";
   }
   protected:
-  explicit NtfRoomAdmin(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+  explicit ResYouAreRoomAdmin(::PROTOBUF_NAMESPACE_ID::Arena* arena,
                        bool is_message_owned = false);
   public:
 
@@ -935,7 +935,7 @@ class NtfRoomAdmin final :
 
   // accessors -------------------------------------------------------
 
-  // @@protoc_insertion_point(class_scope:OmokPacket.NtfRoomAdmin)
+  // @@protoc_insertion_point(class_scope:OmokPacket.ResYouAreRoomAdmin)
  private:
   class _Internal;
 
@@ -1279,24 +1279,24 @@ class UserInfo final :
 };
 // -------------------------------------------------------------------
 
-class NtfRoomUserList final :
-    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:OmokPacket.NtfRoomUserList) */ {
+class ResRoomUserList final :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:OmokPacket.ResRoomUserList) */ {
  public:
-  inline NtfRoomUserList() : NtfRoomUserList(nullptr) {}
-  ~NtfRoomUserList() override;
-  explicit PROTOBUF_CONSTEXPR NtfRoomUserList(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+  inline ResRoomUserList() : ResRoomUserList(nullptr) {}
+  ~ResRoomUserList() override;
+  explicit PROTOBUF_CONSTEXPR ResRoomUserList(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
 
-  NtfRoomUserList(const NtfRoomUserList& from);
-  NtfRoomUserList(NtfRoomUserList&& from) noexcept
-    : NtfRoomUserList() {
+  ResRoomUserList(const ResRoomUserList& from);
+  ResRoomUserList(ResRoomUserList&& from) noexcept
+    : ResRoomUserList() {
     *this = ::std::move(from);
   }
 
-  inline NtfRoomUserList& operator=(const NtfRoomUserList& from) {
+  inline ResRoomUserList& operator=(const ResRoomUserList& from) {
     CopyFrom(from);
     return *this;
   }
-  inline NtfRoomUserList& operator=(NtfRoomUserList&& from) noexcept {
+  inline ResRoomUserList& operator=(ResRoomUserList&& from) noexcept {
     if (this == &from) return *this;
     if (GetOwningArena() == from.GetOwningArena()
   #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
@@ -1319,20 +1319,20 @@ class NtfRoomUserList final :
   static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
     return default_instance().GetMetadata().reflection;
   }
-  static const NtfRoomUserList& default_instance() {
+  static const ResRoomUserList& default_instance() {
     return *internal_default_instance();
   }
-  static inline const NtfRoomUserList* internal_default_instance() {
-    return reinterpret_cast<const NtfRoomUserList*>(
-               &_NtfRoomUserList_default_instance_);
+  static inline const ResRoomUserList* internal_default_instance() {
+    return reinterpret_cast<const ResRoomUserList*>(
+               &_ResRoomUserList_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
     7;
 
-  friend void swap(NtfRoomUserList& a, NtfRoomUserList& b) {
+  friend void swap(ResRoomUserList& a, ResRoomUserList& b) {
     a.Swap(&b);
   }
-  inline void Swap(NtfRoomUserList* other) {
+  inline void Swap(ResRoomUserList* other) {
     if (other == this) return;
   #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
     if (GetOwningArena() != nullptr &&
@@ -1345,7 +1345,7 @@ class NtfRoomUserList final :
       ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
     }
   }
-  void UnsafeArenaSwap(NtfRoomUserList* other) {
+  void UnsafeArenaSwap(ResRoomUserList* other) {
     if (other == this) return;
     GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
     InternalSwap(other);
@@ -1353,14 +1353,14 @@ class NtfRoomUserList final :
 
   // implements Message ----------------------------------------------
 
-  NtfRoomUserList* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
-    return CreateMaybeMessage<NtfRoomUserList>(arena);
+  ResRoomUserList* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<ResRoomUserList>(arena);
   }
   using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
-  void CopyFrom(const NtfRoomUserList& from);
+  void CopyFrom(const ResRoomUserList& from);
   using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
-  void MergeFrom( const NtfRoomUserList& from) {
-    NtfRoomUserList::MergeImpl(*this, from);
+  void MergeFrom( const ResRoomUserList& from) {
+    ResRoomUserList::MergeImpl(*this, from);
   }
   private:
   static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg);
@@ -1378,15 +1378,15 @@ class NtfRoomUserList final :
   void SharedCtor(::PROTOBUF_NAMESPACE_ID::Arena* arena, bool is_message_owned);
   void SharedDtor();
   void SetCachedSize(int size) const final;
-  void InternalSwap(NtfRoomUserList* other);
+  void InternalSwap(ResRoomUserList* other);
 
   private:
   friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
   static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
-    return "OmokPacket.NtfRoomUserList";
+    return "OmokPacket.ResRoomUserList";
   }
   protected:
-  explicit NtfRoomUserList(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+  explicit ResRoomUserList(::PROTOBUF_NAMESPACE_ID::Arena* arena,
                        bool is_message_owned = false);
   public:
 
@@ -1420,7 +1420,7 @@ class NtfRoomUserList final :
   const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::OmokPacket::UserInfo >&
       userinfo() const;
 
-  // @@protoc_insertion_point(class_scope:OmokPacket.NtfRoomUserList)
+  // @@protoc_insertion_point(class_scope:OmokPacket.ResRoomUserList)
  private:
   class _Internal;
 
@@ -5085,7 +5085,7 @@ inline void ResRoomEnter::set_allocated_userinfo(::OmokPacket::UserInfo* userinf
 
 // -------------------------------------------------------------------
 
-// NtfRoomAdmin
+// ResYouAreRoomAdmin
 
 // -------------------------------------------------------------------
 
@@ -5283,45 +5283,45 @@ inline void UserInfo::set_sessionid(int32_t value) {
 
 // -------------------------------------------------------------------
 
-// NtfRoomUserList
+// ResRoomUserList
 
 // repeated .OmokPacket.UserInfo userInfo = 1;
-inline int NtfRoomUserList::_internal_userinfo_size() const {
+inline int ResRoomUserList::_internal_userinfo_size() const {
   return _impl_.userinfo_.size();
 }
-inline int NtfRoomUserList::userinfo_size() const {
+inline int ResRoomUserList::userinfo_size() const {
   return _internal_userinfo_size();
 }
-inline void NtfRoomUserList::clear_userinfo() {
+inline void ResRoomUserList::clear_userinfo() {
   _impl_.userinfo_.Clear();
 }
-inline ::OmokPacket::UserInfo* NtfRoomUserList::mutable_userinfo(int index) {
-  // @@protoc_insertion_point(field_mutable:OmokPacket.NtfRoomUserList.userInfo)
+inline ::OmokPacket::UserInfo* ResRoomUserList::mutable_userinfo(int index) {
+  // @@protoc_insertion_point(field_mutable:OmokPacket.ResRoomUserList.userInfo)
   return _impl_.userinfo_.Mutable(index);
 }
 inline ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::OmokPacket::UserInfo >*
-NtfRoomUserList::mutable_userinfo() {
-  // @@protoc_insertion_point(field_mutable_list:OmokPacket.NtfRoomUserList.userInfo)
+ResRoomUserList::mutable_userinfo() {
+  // @@protoc_insertion_point(field_mutable_list:OmokPacket.ResRoomUserList.userInfo)
   return &_impl_.userinfo_;
 }
-inline const ::OmokPacket::UserInfo& NtfRoomUserList::_internal_userinfo(int index) const {
+inline const ::OmokPacket::UserInfo& ResRoomUserList::_internal_userinfo(int index) const {
   return _impl_.userinfo_.Get(index);
 }
-inline const ::OmokPacket::UserInfo& NtfRoomUserList::userinfo(int index) const {
-  // @@protoc_insertion_point(field_get:OmokPacket.NtfRoomUserList.userInfo)
+inline const ::OmokPacket::UserInfo& ResRoomUserList::userinfo(int index) const {
+  // @@protoc_insertion_point(field_get:OmokPacket.ResRoomUserList.userInfo)
   return _internal_userinfo(index);
 }
-inline ::OmokPacket::UserInfo* NtfRoomUserList::_internal_add_userinfo() {
+inline ::OmokPacket::UserInfo* ResRoomUserList::_internal_add_userinfo() {
   return _impl_.userinfo_.Add();
 }
-inline ::OmokPacket::UserInfo* NtfRoomUserList::add_userinfo() {
+inline ::OmokPacket::UserInfo* ResRoomUserList::add_userinfo() {
   ::OmokPacket::UserInfo* _add = _internal_add_userinfo();
-  // @@protoc_insertion_point(field_add:OmokPacket.NtfRoomUserList.userInfo)
+  // @@protoc_insertion_point(field_add:OmokPacket.ResRoomUserList.userInfo)
   return _add;
 }
 inline const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::OmokPacket::UserInfo >&
-NtfRoomUserList::userinfo() const {
-  // @@protoc_insertion_point(field_list:OmokPacket.NtfRoomUserList.userInfo)
+ResRoomUserList::userinfo() const {
+  // @@protoc_insertion_point(field_list:OmokPacket.ResRoomUserList.userInfo)
   return _impl_.userinfo_;
 }
 

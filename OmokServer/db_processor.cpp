@@ -2,13 +2,9 @@
 
 void DBProcessor::Init()
 {
-	packet_sender_.SendPacket = [&](uint32_t session_id, std::shared_ptr<char[]> buffer, int length) {
+	packet_sender_.Init([&](uint32_t session_id, std::shared_ptr<char[]> buffer, int length) {
 		auto session = session_manager_.GetSession(session_id);
-		if (session == nullptr)
-		{
-			return;
-		}
-		session->SendPacket(buffer, length); };
+		session->SendPacket(buffer, length); });
 
 	packet_handler_map_.insert(std::make_pair(static_cast<uint16_t>(PacketId::ReqLogin), [&](Packet packet) { ReqLoginHandler(packet); }));
 }

@@ -30,6 +30,10 @@ public:
 	void SendPacket(std::shared_ptr<char[]> buffer, int length);
 
 private:
+	SessionManager session_manager_;
+	RoomManager room_manager_;
+	PacketSender packet_sender_;
+
 	Poco::Net::StreamSocket socket_;
 	Poco::Net::SocketReactor& reactor_;
 	std::string peer_address_;

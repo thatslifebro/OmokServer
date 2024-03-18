@@ -5,25 +5,21 @@
 class RoomManager
 {
 public:
-	void Init(uint16_t max_room_num);
+	void Init(uint16_t max_room_num, std::function<void(uint32_t session_id, std::shared_ptr<char[]> buffer, int length)> SendPacket, std::function<std::string(uint32_t session_id)> GetUserId);
 
-	bool AddSession(uint32_t session_id, uint16_t room_id);
+	void AddUser(uint32_t session_id, uint16_t room_id) { room_vec_[room_id - 1]->AddUser(session_id);  }
 
-	bool RemoveSession(uint32_t session_id, uint16_t room_id);
+	void RemoveUser(uint32_t session_id, uint16_t room_id) { room_vec_[room_id - 1]->RemoveUser(session_id); }
 
 	Room* GetRoom(uint16_t room_id);
 
 	std::vector<Room*> GetAllRooms();
 
-	std::function<std::string(uint32_t)> GetUserId;
-
-	std::function<void(uint32_t, std::shared_ptr<char[]>, uint16_t)> SendPacket;
-
 private:
 	static uint16_t max_room_num_;
 	//TODO static 사용하지 않거나 혹은 사용해야할 이유를 알려주세요 (답변작성)
 	// 
-	// ROOM 객체를 정해진 수만큼 생성하고 관리하기 위해 static을 사용했습니다.
-	// 데이터 베이스에 방의 정보를 저장 할 수 있다면 static을 사용하지 않아도 될 것 같습니다.
+	// room_vec_를 이용해 Room에 접근하는 곳이 DBProcessor, PacketProcessor, Session 인데
+	// 모두 같은 Room 정보를 얻기 위해 static으로 선언했습니다.
 	static std::vector<Room*> room_vec_; // room_id - 1 = index
 };

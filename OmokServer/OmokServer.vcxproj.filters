@@ -43,6 +43,7 @@
     <ClInclude Include="session_manager.h" />
     <ClInclude Include="types.h" />
     <ClInclude Include="flags.h" />
+    <ClInclude Include="error_code.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="protobuf\OmokPacket.proto">

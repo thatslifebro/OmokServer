@@ -10,7 +10,7 @@ enum class PacketId
 	ReqRoomLeave = 1105,
 	ResRoomLeave = 1106,
 	NtfRoomLeaveUser = 1107,
-	NtfRoomAdmin = 1108,
+	ResYouAreRoomAdmin = 1108,
 	NtfNewRoomAdmin = 1109,
 
 	ReqRoomChat = 1201,

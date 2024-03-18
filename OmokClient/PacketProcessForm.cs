@@ -28,7 +28,7 @@ namespace csharp_test_client
             PacketFuncDic.Add(PacketID.ResLogin, PacketProcess_Loginin);
 
             PacketFuncDic.Add(PacketID.ResRoomEnter, PacketProcess_RoomEnterResponse);
-            PacketFuncDic.Add(PacketID.NtfRoomAdmin, PacketProcess_RoomAdminNotify);
+            PacketFuncDic.Add(PacketID.NtfYouAreRoomAdmin, PacketProcess_YouAreRoomAdminNotify);
             PacketFuncDic.Add(PacketID.NtfNewRoomAdmin, PacketProcess_NewRoomAdminNotify);
             PacketFuncDic.Add(PacketID.NtfRoomUserList, PacketProcess_RoomUserListNotify);
             PacketFuncDic.Add(PacketID.NtfRoomNewUser, PacketProcess_RoomNewUserNotify);
@@ -150,7 +150,7 @@ namespace csharp_test_client
 
         }
 
-        void PacketProcess_RoomAdminNotify(byte[] bodyData)
+        void PacketProcess_YouAreRoomAdminNotify(byte[] bodyData)
         {
             AdminToTop(myUserID);
             DevLog.Write("당신이 방장입니다.");
@@ -181,9 +181,9 @@ namespace csharp_test_client
 
         void PacketProcess_RoomUserListNotify(byte[] bodyData)
         {
-            var ntfRoomUserList = new NtfRoomUserList();
-            ntfRoomUserList.MergeFrom(bodyData);
-            foreach (var userinfo in ntfRoomUserList.UserInfo)
+            var resRoomUserList = new ResRoomUserList();
+            resRoomUserList.MergeFrom(bodyData);
+            foreach (var userinfo in resRoomUserList.UserInfo)
             {
                 RoomUserInfo.Add(userinfo.UserId, userinfo.SessionId);
                 listBoxRoomUserList.Items.Add(userinfo.UserId);

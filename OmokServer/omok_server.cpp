@@ -7,18 +7,17 @@ void OmokServer::Init(flags::args args)
 	Poco::Net::ServerSocket server_socket(server_port_);
 	server_socket_ = server_socket;
 
-	room_manager_.SendPacket = [&](uint32_t session_id, std::shared_ptr<char[]> buffer, int length)
+	room_manager_.Init(max_room_num_,
+		[&](uint32_t session_id, std::shared_ptr<char[]> buffer, int length)
 		{
 			auto session = session_manager_.GetSession(session_id);
 			session->SendPacket(buffer, length);
-		};
-
-	room_manager_.GetUserId = [&] (uint32_t session_id)
+		},
+		[&](uint32_t session_id)
 		{
 			auto session = session_manager_.GetSession(session_id);
 			return session->user_id_;
-		};
-	room_manager_.Init(max_room_num_);
+		});
 
 	packet_processor_.Init();
 	db_processor_.Init();

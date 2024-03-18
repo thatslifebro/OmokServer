@@ -30,38 +30,38 @@ namespace OmokPacket {
             "X3Jlc3VsdCIuCgxSZXFSb29tRW50ZXISEwoGcm9vbUlkGAEgASgFSACIAQFC",
             "CQoHX3Jvb21JZCJoCgxSZXNSb29tRW50ZXISEwoGcmVzdWx0GAEgASgFSACI",
             "AQESKwoIdXNlckluZm8YAiABKAsyFC5PbW9rUGFja2V0LlVzZXJJbmZvSAGI",
-            "AQFCCQoHX3Jlc3VsdEILCglfdXNlckluZm8iDgoMTnRmUm9vbUFkbWluIksK",
-            "D050Zk5ld1Jvb21BZG1pbhIrCgh1c2VySW5mbxgBIAEoCzIULk9tb2tQYWNr",
-            "ZXQuVXNlckluZm9IAIgBAUILCglfdXNlckluZm8iUAoIVXNlckluZm8SEwoG",
-            "dXNlcklkGAEgASgJSACIAQESFgoJc2Vzc2lvbklkGAIgASgFSAGIAQFCCQoH",
-            "X3VzZXJJZEIMCgpfc2Vzc2lvbklkIjkKD050ZlJvb21Vc2VyTGlzdBImCgh1",
-            "c2VySW5mbxgBIAMoCzIULk9tb2tQYWNrZXQuVXNlckluZm8iSgoOTnRmUm9v",
-            "bU5ld1VzZXISKwoIdXNlckluZm8YASABKAsyFC5PbW9rUGFja2V0LlVzZXJJ",
-            "bmZvSACIAQFCCwoJX3VzZXJJbmZvIg4KDFJlcVJvb21MZWF2ZSIuCgxSZXNS",
-            "b29tTGVhdmUSEwoGcmVzdWx0GAEgASgFSACIAQFCCQoHX3Jlc3VsdCJMChBO",
-            "dGZSb29tTGVhdmVVc2VyEisKCHVzZXJJbmZvGAEgASgLMhQuT21va1BhY2tl",
-            "dC5Vc2VySW5mb0gAiAEBQgsKCV91c2VySW5mbyIpCgtSZXFSb29tQ2hhdBIR",
-            "CgRjaGF0GAEgASgJSACIAQFCBwoFX2NoYXQiSQoLUmVzUm9vbUNoYXQSEwoG",
-            "cmVzdWx0GAEgASgFSACIAQESEQoEY2hhdBgCIAEoCUgBiAEBQgkKB19yZXN1",
-            "bHRCBwoFX2NoYXQiYwoLTnRmUm9vbUNoYXQSKwoIdXNlckluZm8YASABKAsy",
-            "FC5PbW9rUGFja2V0LlVzZXJJbmZvSACIAQESEQoEY2hhdBgCIAEoCUgBiAEB",
-            "QgsKCV91c2VySW5mb0IHCgVfY2hhdCIwCghSZXFNYXRjaBIWCglzZXNzaW9u",
-            "SWQYASABKAVIAIgBAUIMCgpfc2Vzc2lvbklkIioKCFJlc01hdGNoEhMKBnJl",
-            "c3VsdBgBIAEoBUgAiAEBQgkKB19yZXN1bHQiRwoLTnRmTWF0Y2hSZXESKwoI",
-            "dXNlckluZm8YASABKAsyFC5PbW9rUGFja2V0LlVzZXJJbmZvSACIAQFCCwoJ",
-            "X3VzZXJJbmZvIi0KC1JlcU1hdGNoUmVzEhMKBmFjY2VwdBgBIAEoCEgAiAEB",
-            "QgkKB19hY2NlcHQiDgoMUmVxUmVhZHlPbW9rIg4KDFJlc1JlYWR5T21vayJw",
-            "CgxOdGZTdGFydE9tb2sSEgoFYmxhY2sYASABKAhIAIgBARIRCgRteUlkGAIg",
-            "ASgJSAGIAQESFwoKb3Bwb25lbnRJZBgDIAEoCUgCiAEBQggKBl9ibGFja0IH",
-            "CgVfbXlJZEINCgtfb3Bwb25lbnRJZCI3CglSZXFQdXRNb2sSDgoBeBgBIAEo",
-            "BUgAiAEBEg4KAXkYAiABKAVIAYgBAUIECgJfeEIECgJfeSIrCglSZXNQdXRN",
-            "b2sSEwoGcmVzdWx0GAEgASgFSACIAQFCCQoHX3Jlc3VsdCI3CglOdGZQdXRN",
-            "b2sSDgoBeBgBIAEoBUgAiAEBEg4KAXkYAiABKAVIAYgBAUIECgJfeEIECgJf",
-            "eSIsCgpOdGZFbmRPbW9rEhMKBnN0YXR1cxgBIAEoBUgAiAEBQgkKB19zdGF0",
-            "dXMiEQoPTnRmTWF0Y2hUaW1lb3V0IhEKD050ZlJlYWR5VGltZW91dCISChBO",
-            "dGZQdXRNb2tUaW1lb3V0IlYKEE50ZlN0YXJ0T21va1ZpZXcSFAoHYmxhY2tJ",
-            "ZBgBIAEoCUgAiAEBEhQKB3doaXRlSWQYAiABKAlIAYgBAUIKCghfYmxhY2tJ",
-            "ZEIKCghfd2hpdGVJZGIGcHJvdG8z"));
+            "AQFCCQoHX3Jlc3VsdEILCglfdXNlckluZm8iFAoSUmVzWW91QXJlUm9vbUFk",
+            "bWluIksKD050Zk5ld1Jvb21BZG1pbhIrCgh1c2VySW5mbxgBIAEoCzIULk9t",
+            "b2tQYWNrZXQuVXNlckluZm9IAIgBAUILCglfdXNlckluZm8iUAoIVXNlcklu",
+            "Zm8SEwoGdXNlcklkGAEgASgJSACIAQESFgoJc2Vzc2lvbklkGAIgASgFSAGI",
+            "AQFCCQoHX3VzZXJJZEIMCgpfc2Vzc2lvbklkIjkKD1Jlc1Jvb21Vc2VyTGlz",
+            "dBImCgh1c2VySW5mbxgBIAMoCzIULk9tb2tQYWNrZXQuVXNlckluZm8iSgoO",
+            "TnRmUm9vbU5ld1VzZXISKwoIdXNlckluZm8YASABKAsyFC5PbW9rUGFja2V0",
+            "LlVzZXJJbmZvSACIAQFCCwoJX3VzZXJJbmZvIg4KDFJlcVJvb21MZWF2ZSIu",
+            "CgxSZXNSb29tTGVhdmUSEwoGcmVzdWx0GAEgASgFSACIAQFCCQoHX3Jlc3Vs",
+            "dCJMChBOdGZSb29tTGVhdmVVc2VyEisKCHVzZXJJbmZvGAEgASgLMhQuT21v",
+            "a1BhY2tldC5Vc2VySW5mb0gAiAEBQgsKCV91c2VySW5mbyIpCgtSZXFSb29t",
+            "Q2hhdBIRCgRjaGF0GAEgASgJSACIAQFCBwoFX2NoYXQiSQoLUmVzUm9vbUNo",
+            "YXQSEwoGcmVzdWx0GAEgASgFSACIAQESEQoEY2hhdBgCIAEoCUgBiAEBQgkK",
+            "B19yZXN1bHRCBwoFX2NoYXQiYwoLTnRmUm9vbUNoYXQSKwoIdXNlckluZm8Y",
+            "ASABKAsyFC5PbW9rUGFja2V0LlVzZXJJbmZvSACIAQESEQoEY2hhdBgCIAEo",
+            "CUgBiAEBQgsKCV91c2VySW5mb0IHCgVfY2hhdCIwCghSZXFNYXRjaBIWCglz",
+            "ZXNzaW9uSWQYASABKAVIAIgBAUIMCgpfc2Vzc2lvbklkIioKCFJlc01hdGNo",
+            "EhMKBnJlc3VsdBgBIAEoBUgAiAEBQgkKB19yZXN1bHQiRwoLTnRmTWF0Y2hS",
+            "ZXESKwoIdXNlckluZm8YASABKAsyFC5PbW9rUGFja2V0LlVzZXJJbmZvSACI",
+            "AQFCCwoJX3VzZXJJbmZvIi0KC1JlcU1hdGNoUmVzEhMKBmFjY2VwdBgBIAEo",
+            "CEgAiAEBQgkKB19hY2NlcHQiDgoMUmVxUmVhZHlPbW9rIg4KDFJlc1JlYWR5",
+            "T21vayJwCgxOdGZTdGFydE9tb2sSEgoFYmxhY2sYASABKAhIAIgBARIRCgRt",
+            "eUlkGAIgASgJSAGIAQESFwoKb3Bwb25lbnRJZBgDIAEoCUgCiAEBQggKBl9i",
+            "bGFja0IHCgVfbXlJZEINCgtfb3Bwb25lbnRJZCI3CglSZXFQdXRNb2sSDgoB",
+            "eBgBIAEoBUgAiAEBEg4KAXkYAiABKAVIAYgBAUIECgJfeEIECgJfeSIrCglS",
+            "ZXNQdXRNb2sSEwoGcmVzdWx0GAEgASgFSACIAQFCCQoHX3Jlc3VsdCI3CglO",
+            "dGZQdXRNb2sSDgoBeBgBIAEoBUgAiAEBEg4KAXkYAiABKAVIAYgBAUIECgJf",
+            "eEIECgJfeSIsCgpOdGZFbmRPbW9rEhMKBnN0YXR1cxgBIAEoBUgAiAEBQgkK",
+            "B19zdGF0dXMiEQoPTnRmTWF0Y2hUaW1lb3V0IhEKD050ZlJlYWR5VGltZW91",
+            "dCISChBOdGZQdXRNb2tUaW1lb3V0IlYKEE50ZlN0YXJ0T21va1ZpZXcSFAoH",
+            "YmxhY2tJZBgBIAEoCUgAiAEBEhQKB3doaXRlSWQYAiABKAlIAYgBAUIKCghf",
+            "YmxhY2tJZEIKCghfd2hpdGVJZGIGcHJvdG8z"));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { },
           new pbr::GeneratedClrTypeInfo(null, null, new pbr::GeneratedClrTypeInfo[] {
@@ -69,10 +69,10 @@ namespace OmokPacket {
             new pbr::GeneratedClrTypeInfo(typeof(global::OmokPacket.ResLogin), global::OmokPacket.ResLogin.Parser, new[]{ "Result" }, new[]{ "Result" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::OmokPacket.ReqRoomEnter), global::OmokPacket.ReqRoomEnter.Parser, new[]{ "RoomId" }, new[]{ "RoomId" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::OmokPacket.ResRoomEnter), global::OmokPacket.ResRoomEnter.Parser, new[]{ "Result", "UserInfo" }, new[]{ "Result", "UserInfo" }, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::OmokPacket.NtfRoomAdmin), global::OmokPacket.NtfRoomAdmin.Parser, null, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::OmokPacket.ResYouAreRoomAdmin), global::OmokPacket.ResYouAreRoomAdmin.Parser, null, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::OmokPacket.NtfNewRoomAdmin), global::OmokPacket.NtfNewRoomAdmin.Parser, new[]{ "UserInfo" }, new[]{ "UserInfo" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::OmokPacket.UserInfo), global::OmokPacket.UserInfo.Parser, new[]{ "UserId", "SessionId" }, new[]{ "UserId", "SessionId" }, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::OmokPacket.NtfRoomUserList), global::OmokPacket.NtfRoomUserList.Parser, new[]{ "UserInfo" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::OmokPacket.ResRoomUserList), global::OmokPacket.ResRoomUserList.Parser, new[]{ "UserInfo" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::OmokPacket.NtfRoomNewUser), global::OmokPacket.NtfRoomNewUser.Parser, new[]{ "UserInfo" }, new[]{ "UserInfo" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::OmokPacket.ReqRoomLeave), global::OmokPacket.ReqRoomLeave.Parser, null, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::OmokPacket.ResRoomLeave), global::OmokPacket.ResRoomLeave.Parser, new[]{ "Result" }, new[]{ "Result" }, null, null, null),
@@ -1009,16 +1009,16 @@ namespace OmokPacket {
 
   }
 
-  public sealed partial class NtfRoomAdmin : pb::IMessage<NtfRoomAdmin>
+  public sealed partial class ResYouAreRoomAdmin : pb::IMessage<ResYouAreRoomAdmin>
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
   #endif
   {
-    private static readonly pb::MessageParser<NtfRoomAdmin> _parser = new pb::MessageParser<NtfRoomAdmin>(() => new NtfRoomAdmin());
+    private static readonly pb::MessageParser<ResYouAreRoomAdmin> _parser = new pb::MessageParser<ResYouAreRoomAdmin>(() => new ResYouAreRoomAdmin());
     private pb::UnknownFieldSet _unknownFields;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public static pb::MessageParser<NtfRoomAdmin> Parser { get { return _parser; } }
+    public static pb::MessageParser<ResYouAreRoomAdmin> Parser { get { return _parser; } }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
@@ -1034,7 +1034,7 @@ namespace OmokPacket {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public NtfRoomAdmin() {
+    public ResYouAreRoomAdmin() {
       OnConstruction();
     }
 
@@ -1042,25 +1042,25 @@ namespace OmokPacket {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public NtfRoomAdmin(NtfRoomAdmin other) : this() {
+    public ResYouAreRoomAdmin(ResYouAreRoomAdmin other) : this() {
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public NtfRoomAdmin Clone() {
-      return new NtfRoomAdmin(this);
+    public ResYouAreRoomAdmin Clone() {
+      return new ResYouAreRoomAdmin(this);
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public override bool Equals(object other) {
-      return Equals(other as NtfRoomAdmin);
+      return Equals(other as ResYouAreRoomAdmin);
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public bool Equals(NtfRoomAdmin other) {
+    public bool Equals(ResYouAreRoomAdmin other) {
       if (ReferenceEquals(other, null)) {
         return false;
       }
@@ -1120,7 +1120,7 @@ namespace OmokPacket {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public void MergeFrom(NtfRoomAdmin other) {
+    public void MergeFrom(ResYouAreRoomAdmin other) {
       if (other == null) {
         return;
       }
@@ -1615,16 +1615,16 @@ namespace OmokPacket {
   /// <summary>
   /// resRoomEnter 이후 바로 보내기 
   /// </summary>
-  public sealed partial class NtfRoomUserList : pb::IMessage<NtfRoomUserList>
+  public sealed partial class ResRoomUserList : pb::IMessage<ResRoomUserList>
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
   #endif
   {
-    private static readonly pb::MessageParser<NtfRoomUserList> _parser = new pb::MessageParser<NtfRoomUserList>(() => new NtfRoomUserList());
+    private static readonly pb::MessageParser<ResRoomUserList> _parser = new pb::MessageParser<ResRoomUserList>(() => new ResRoomUserList());
     private pb::UnknownFieldSet _unknownFields;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public static pb::MessageParser<NtfRoomUserList> Parser { get { return _parser; } }
+    public static pb::MessageParser<ResRoomUserList> Parser { get { return _parser; } }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
@@ -1640,7 +1640,7 @@ namespace OmokPacket {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public NtfRoomUserList() {
+    public ResRoomUserList() {
       OnConstruction();
     }
 
@@ -1648,15 +1648,15 @@ namespace OmokPacket {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public NtfRoomUserList(NtfRoomUserList other) : this() {
+    public ResRoomUserList(ResRoomUserList other) : this() {
       userInfo_ = other.userInfo_.Clone();
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public NtfRoomUserList Clone() {
-      return new NtfRoomUserList(this);
+    public ResRoomUserList Clone() {
+      return new ResRoomUserList(this);
     }
 
     /// <summary>Field number for the "userInfo" field.</summary>
@@ -1673,12 +1673,12 @@ namespace OmokPacket {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public override bool Equals(object other) {
-      return Equals(other as NtfRoomUserList);
+      return Equals(other as ResRoomUserList);
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public bool Equals(NtfRoomUserList other) {
+    public bool Equals(ResRoomUserList other) {
       if (ReferenceEquals(other, null)) {
         return false;
       }
@@ -1743,7 +1743,7 @@ namespace OmokPacket {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public void MergeFrom(NtfRoomUserList other) {
+    public void MergeFrom(ResRoomUserList other) {
       if (other == null) {
         return;
       }

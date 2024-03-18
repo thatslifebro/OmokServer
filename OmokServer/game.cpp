@@ -2,13 +2,13 @@
 
 bool Game::SetStone(uint32_t x, uint32_t y, uint32_t session_id)
 {
-	if (!CheckTurn(session_id) || !IsGameStarted())
-	{
-		return false;
-	}
-
     if (x > 18 || y > 18)
     {
+        return false;
+    }
+
+	if (!CheckTurn(session_id) || !IsGameStarted())
+	{
 		return false;
 	}
 
@@ -91,7 +91,6 @@ bool Game::SetStone(uint32_t x, uint32_t y, Status color)
 		}
         else
         {
-            CheckOmok(x, y);
             ChangeTurn();
             return true;
         }
@@ -126,10 +125,9 @@ bool Game::CheckTurn(uint32_t session_id)
 		return false;
 	}
 }
-
 bool Game::CheckOmok(int x, int y)
 {
-    if (가로확인(x, y) == 5)        // 같은 돌 개수가 5개면 (6목이상이면 게임 계속) 
+    if (가로확인(x, y) == 5)
     {
         is_game_start_ = false;
         return true;
@@ -155,6 +153,8 @@ bool Game::CheckOmok(int x, int y)
 
     return false;
 }
+
+#pragma region 오목확인
 
 int Game::가로확인(int x, int y)      // ㅡ 확인
 {
@@ -256,6 +256,8 @@ int Game::역사선확인(int x, int y)     // ＼ 확인
     return 같은돌개수;
 }
 
+#pragma endregion
+
 bool Game::CheckSamSam(int x, int y)
 {
 	int check = 0;
@@ -272,6 +274,8 @@ bool Game::CheckSamSam(int x, int y)
 
     return false;
 }
+
+#pragma region 삼삼확인
 
 int Game::가로삼삼확인(int x, int y)    // 가로 (ㅡ) 확인
 {
@@ -466,67 +470,29 @@ int Game::역사선삼삼확인(int x, int y)    // 역사선 (＼) 확인
     return 0;
 }
 
-uint32_t Game::GetOpponentId(uint32_t session_id)
-{
-	if (session_id == white_session_id_)
-	{
-		return black_session_id_;
-	}
-	else if (session_id == black_session_id_)
-	{
-		return white_session_id_;
-	}
-	else
-	{
-		return 0;
-	}
-}
-
-uint32_t Game::GetWhiteSessionId()
-{
-	return white_session_id_;
-}
-
-uint32_t Game::GetBlackSessionId()
-{
-	return black_session_id_;
-}
+#pragma endregion
 
 uint32_t Game::WinnerId()
 {
-    if (is_game_start_)
-    {
-        return 0;
-    }
-    else
+	if (turn_ == Turn::WHITE_TURN)
 	{
-		if (turn_ == Turn::WHITE_TURN)
-		{
-			return black_session_id_;
-		}
-		else
-		{
-			return white_session_id_;
-		}
+		return black_session_id_;
+	}
+	else
+	{
+		return white_session_id_;
 	}
 }
 
 uint32_t Game::LoserId()
 {
-	if (is_game_start_)
+	if (turn_ == Turn::WHITE_TURN)
 	{
-		return 0;
+		return white_session_id_;
 	}
 	else
 	{
-		if (turn_ == Turn::WHITE_TURN)
-		{
-			return white_session_id_;
-		}
-		else
-		{
-			return black_session_id_;
-		}
+		return black_session_id_;
 	}
 }
 
