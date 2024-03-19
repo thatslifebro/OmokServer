@@ -29,6 +29,7 @@ private:
 	uint16_t max_room_num_;
 
 	Poco::Net::ServerSocket server_socket_;
+	Poco::Net::SocketReactor reactor_;
 
 	clock_t start_time_ = clock();
 

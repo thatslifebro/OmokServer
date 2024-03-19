@@ -6,7 +6,23 @@ int main(int argc, char** argv)
 	const flags::args args(argc, argv);
 
 	OmokServer server;
-	server.Init(args);
-	server.Start();
+	try
+	{
+		server.Init(args);
+		server.Start();
+	}
+	catch (Poco::Exception& e)
+	{
+		std::print("PocoException: {}\n", e.displayText());
+	}
+	catch (std::exception& e)
+	{
+		std::print("Exception: {}\n", e.what());
+	}
+	catch (...)
+	{
+		std::print("Unknown exception\n");
+	}
+
 }
 

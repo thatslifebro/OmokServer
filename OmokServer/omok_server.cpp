@@ -4,7 +4,7 @@ void OmokServer::Init(flags::args args)
 {
 	auto [server_port, max_room_num] = ParseConfig(args);
 
-	Poco::Net::ServerSocket server_socket(server_port);
+	Poco::Net::ServerSocket server_socket(server_port); // exception throw 발생 가능
 	server_socket_ = server_socket;
 
 	room_manager_.Init(max_room_num,
@@ -34,9 +34,9 @@ void OmokServer::Init(flags::args args)
 
 	packet_processor_.Init();
 
-	db_processor_.InitDBPacketQueueFunctions( [&]() -> const Packet& { return db_packet_queue_.PopAndGetPacket(); });
+	db_processor_.InitDBPacketQueueFunctions([&]() -> const Packet& { return db_packet_queue_.PopAndGetPacket(); });
 
-	db_processor_.InitSessionManagerFunctions( [&](uint32_t session_id) { return session_manager_.GetSession(session_id); });
+	db_processor_.InitSessionManagerFunctions([&](uint32_t session_id) { return session_manager_.GetSession(session_id); });
 
 	db_processor_.Init();
 }
@@ -111,11 +111,16 @@ std::tuple<uint16_t, uint16_t> OmokServer::ParseConfig(flags::args args)
 	const auto room_num = args.get<uint16_t>("room_num");
 	if (!room_num)
 	{
-		max_room_num = MAX_ROOM_NUM;
+		max_room_num = MIN_ROOM_NUM;
 	}
 	else
 	{
 		max_room_num = *room_num;
+	}
+
+	if (max_room_num < MIN_ROOM_NUM || max_room_num > MAX_ROOM_NUM)
+	{
+		throw std::runtime_error(std::format("Invalid room number. It should be between {} and {}\n", MIN_ROOM_NUM, MAX_ROOM_NUM));
 	}
 
 	return std::make_tuple(server_port, max_room_num);
