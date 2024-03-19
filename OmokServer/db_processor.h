@@ -7,6 +7,7 @@
 
 #include "session.h"
 #include "packet_queue.h"
+#include "error_code.h"
 
 class DBProcessor
 {
@@ -20,10 +21,12 @@ public:
 	bool ProcessDB();
 
 private:
-	std::unordered_map<uint16_t, std::function<void(Packet) >> packet_handler_map_;
+	std::unordered_map<uint16_t, std::function<ErrorCode(Packet) >> packet_handler_map_;
 	PacketSender packet_sender_;
 
-	void ReqLoginHandler(Packet packet);
+	ErrorCode ReqLoginHandler(Packet packet);
+
+	bool IsValidSession(Session* session);
 
 	std::function<const Packet& ()> PopAndGetPacket_;
 

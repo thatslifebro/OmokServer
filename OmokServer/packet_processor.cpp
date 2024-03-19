@@ -65,7 +65,7 @@ ErrorCode PacketProcessor::ReqRoomEnterHandler(Packet packet)
 	auto session = GetSession_(packet.GetSessionId());
 	if (IsValidSession(session) == false)
 	{
-		return ErrorCode::InvalidSessionId;
+		return ErrorCode::InvalidSession;
 	}	
 
 	auto session_id = session->GetSessionId();
@@ -123,7 +123,7 @@ ErrorCode PacketProcessor::ReqRoomLeaveHandler(Packet packet)
 	auto session = GetSession_(packet.GetSessionId());
 	if (IsValidSession(session) == false)
 	{
-		return ErrorCode::InvalidSessionId;
+		return ErrorCode::InvalidSession;
 	}
 
 	auto session_id = session->GetSessionId();
@@ -188,7 +188,7 @@ ErrorCode PacketProcessor::ReqRoomChatHandler(Packet packet)
 	auto session = GetSession_(packet.GetSessionId());
 	if (session == nullptr)
 	{
-		return ErrorCode::InvalidSessionId;
+		return ErrorCode::InvalidSession;
 	}
 
 	auto session_id = session->GetSessionId();
@@ -223,7 +223,7 @@ ErrorCode PacketProcessor::ReqMatchHandler(Packet packet)
 	auto session = GetSession_(packet.GetSessionId());
 	if (IsValidSession(session) == false)
 	{
-		return ErrorCode::InvalidSessionId;
+		return ErrorCode::InvalidSession;
 	}
 
 	auto session_id = session->GetSessionId();
@@ -233,7 +233,7 @@ ErrorCode PacketProcessor::ReqMatchHandler(Packet packet)
 
 	if (IsValidSession(opponent_session) == false)
 	{
-		return ErrorCode::InvalidSessionId;
+		return ErrorCode::InvalidSession;
 	}
 
 	if (session->IsLoggedIn() == false)
@@ -291,7 +291,7 @@ ErrorCode PacketProcessor::ReqMatchResHandler(Packet packet)
 	auto session = GetSession_(packet.GetSessionId());
 	if (IsValidSession(session) == false)
 	{
-		return ErrorCode::InvalidSessionId;
+		return ErrorCode::InvalidSession;
 	}
 
 	auto session_id = session->GetSessionId();
@@ -344,7 +344,7 @@ ErrorCode PacketProcessor::ReqReadyOmokHandler(Packet packet)
 	auto session = GetSession_(packet.GetSessionId());
 	if (IsValidSession(session) == false)
 	{
-		return ErrorCode::InvalidSessionId;
+		return ErrorCode::InvalidSession;
 	}
 
 	auto session_id = session->GetSessionId();
@@ -415,7 +415,7 @@ ErrorCode PacketProcessor::ReqOmokPutHandler(Packet packet)
 	auto session = GetSession_(packet.GetSessionId());
 	if (IsValidSession(session) == false)
 	{
-		return ErrorCode::InvalidSessionId;
+		return ErrorCode::InvalidSession;
 	}
 
 	auto session_id = session->GetSessionId();

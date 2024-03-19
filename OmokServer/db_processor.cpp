@@ -6,7 +6,7 @@ void DBProcessor::Init()
 		auto session = GetSession_(session_id);
 		session->SendPacket(buffer, length); });
 
-	packet_handler_map_.insert(std::make_pair(static_cast<uint16_t>(PacketId::ReqLogin), [&](Packet packet) { ReqLoginHandler(packet); }));
+	packet_handler_map_.insert(std::make_pair(static_cast<uint16_t>(PacketId::ReqLogin), [&](Packet packet) { return ReqLoginHandler(packet); }));
 }
 
 bool DBProcessor::ProcessDB()
@@ -18,34 +18,47 @@ bool DBProcessor::ProcessDB()
 		return false;
 	}
 
-	packet_handler_map_[packet.GetPacketId()](packet);
+	auto error_code = packet_handler_map_[packet.GetPacketId()](packet);
+	if (error_code != ErrorCode::None)
+	{
+		std::print("PacketId : {} 처리 중 에러 발생. ErrorCode : {}\n", packet.GetPacketId(), static_cast<int>(error_code));
+	}
+
 	return true;
 }
 
-void DBProcessor::ReqLoginHandler(Packet packet)
+ErrorCode DBProcessor::ReqLoginHandler(Packet packet)
 {
 	OmokPacket::ReqLogin req_login;
 	req_login.ParseFromArray(packet.GetPacketBody(), packet.GetBodySize());
 
 	auto session = GetSession_(packet.GetSessionId());
-	if (session == nullptr)
+	if (IsValidSession(session) == false)
 	{
-		return;
+		return ErrorCode::InvalidSession;
 	}
 
 	if (session->IsLoggedIn() == true)
 	{
-		return;
+		return ErrorCode::AlreadyLoggedIn;
 	}
-	
-	// 로그인 처리
-	uint32_t result = 0;
 
 	session->SetLoggedIn(true);
 	session->SetUserId(req_login.userid());
 
-	packet_sender_.ResLogin(session->GetSessionId(), result);
+	packet_sender_.ResLogin(session->GetSessionId(), 0);
 
 	std::print("유저 {} 로그인\n", req_login.userid());
+
+	return ErrorCode::None;
 }
 
+bool DBProcessor::IsValidSession(Session* session)
+{
+	if (session == nullptr)
+	{
+		return false;
+	}
+
+	return true;
+}

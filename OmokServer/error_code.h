@@ -3,7 +3,7 @@
 enum class ErrorCode
 {
 	None = 0,
-	InvalidSessionId = 1001,
+	InvalidSession = 1001,
 	InvalidRoomId = 1002,
 	NotLoggedIn = 1003,
 	AlreadyInRoom = 1004,
@@ -18,6 +18,7 @@ enum class ErrorCode
 	GameNotStarted = 1013,
 	NotYourTurn = 1014,
 	PutMokFail = 1015,
+	AlreadyLoggedIn = 1016,
 
 	TimeOut = 3001,
 };
