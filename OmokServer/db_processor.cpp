@@ -2,7 +2,7 @@
 
 void DBProcessor::Init()
 {
-	packet_sender_.Init([&](uint32_t session_id, std::shared_ptr<char[]> buffer, int length) {
+	packet_sender_.InitSendPacketFunc([&](uint32_t session_id, std::shared_ptr<char[]> buffer, int length) {
 		auto session = GetSession_(session_id);
 		session->SendPacket(buffer, length); });
 
@@ -29,8 +29,7 @@ bool DBProcessor::ProcessDB()
 
 ErrorCode DBProcessor::ReqLoginHandler(Packet packet)
 {
-	OmokPacket::ReqLogin req_login;
-	req_login.ParseFromArray(packet.GetPacketBody(), packet.GetBodySize());
+	auto user_id = ReqLoginPacketData(packet);
 
 	auto session = GetSession_(packet.GetSessionId());
 	if (IsValidSession(session) == false)
@@ -43,14 +42,29 @@ ErrorCode DBProcessor::ReqLoginHandler(Packet packet)
 		return ErrorCode::AlreadyLoggedIn;
 	}
 
-	session->SetLoggedIn(true);
-	session->SetUserId(req_login.userid());
+	std::print("유저 {} 로그인\n", user_id);
 
-	packet_sender_.ResLogin(session->GetSessionId(), 0);
-
-	std::print("유저 {} 로그인\n", req_login.userid());
+	ReqLoginProcess(session, user_id);
 
 	return ErrorCode::None;
+}
+
+std::string DBProcessor::ReqLoginPacketData(Packet packet)
+{
+	OmokPacket::ReqLogin req_login;
+	req_login.ParseFromArray(packet.GetPacketBody(), packet.GetBodySize());
+
+	auto user_id = req_login.userid();
+
+	return user_id;
+}
+
+void DBProcessor::ReqLoginProcess(Session* session, std::string user_id)
+{
+	session->SetLoggedIn(true);
+	session->SetUserId(user_id);
+
+	packet_sender_.ResLogin(session->GetSessionId(), 0);
 }
 
 bool DBProcessor::IsValidSession(Session* session)

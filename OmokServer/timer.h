@@ -12,7 +12,6 @@ public:
 
 	void SetRepeatedTimer(uint32_t time_count, uint32_t duration, std::function<void()> callback);
 
-	// 타이머를 같은 방식으로 한번 더 설정
 	void SetSameWithPreviousTimer(uint32_t time_count);
 
 	void CancelTimer() { is_on_ = false; }

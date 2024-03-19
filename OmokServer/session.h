@@ -26,7 +26,7 @@ public:
 
 	void SendPacket(std::shared_ptr<char[]> buffer, int length);
 
-	bool IsLoggedIn() { return is_logged_in_; }
+	bool IsLoggedIn() const { return is_logged_in_; }
 
 	void SetLoggedIn(bool is_logged_in) { is_logged_in_ = is_logged_in; }
 
@@ -36,15 +36,13 @@ public:
 
 	void SetRoomId(uint16_t room_id) { room_id_ = room_id; }
 
-	uint16_t GetRoomId() { return room_id_; }
+	uint16_t GetRoomId() const { return room_id_; }
 
-	bool IsInRoom() { return room_id_ != 0; }
+	bool IsInRoom() const { return room_id_ != 0; }
 
 	void SetSessionId(uint32_t session_id) { session_id_ = session_id; }
 
-	uint32_t GetSessionId() { return session_id_; }
-
-	
+	uint32_t GetSessionId() const { return session_id_; }
 
 private:
 	PacketSender packet_sender_;

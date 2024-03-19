@@ -7,7 +7,7 @@
 class PacketSender
 {
 public:
-	void Init(std::function<void(uint32_t, std::shared_ptr<char[]>, uint16_t)> send_packet) { SendPacket = send_packet; }
+	void InitSendPacketFunc(std::function<void(uint32_t, std::shared_ptr<char[]>, uint16_t)> SendPacket) { SendPacket_ = SendPacket; }
 
 	void ResLogin(uint32_t session_id, uint32_t result);
 
@@ -56,7 +56,7 @@ public:
 	void NtfPutMokTimeout(std::unordered_set<uint32_t> room_session_ids);
 
 private:
-	std::function<void(uint32_t, std::shared_ptr<char[]>, uint16_t)> SendPacket;
+	std::function<void(uint32_t, std::shared_ptr<char[]>, uint16_t)> SendPacket_;
 
 	template <typename T>
 	std::tuple<std::shared_ptr<char[]>, uint16_t> MakeResData(PacketId packet_id, T packet_body);

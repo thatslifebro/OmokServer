@@ -12,10 +12,9 @@ Session::Session(Poco::Net::StreamSocket& socket, Poco::Net::SocketReactor& reac
 	GetRoom_(GetRoom), RemoveUser_(RemoveUser),
 	AddSession_(AddSession_), RemoveSession_(RemoveSession_), GetSession_(GetSession_)
 {
-	// session_id_로 Session 관리
-	session_id_= AddSession_(this);
+	session_id_ = AddSession_(this);
 
-	packet_sender_.Init([GetSession_](uint32_t session_id, std::shared_ptr<char[]> buffer, int length) {
+	packet_sender_.InitSendPacketFunc([GetSession_](uint32_t session_id, std::shared_ptr<char[]> buffer, int length) {
 		auto session = GetSession_(session_id);
 		if (session == nullptr)
 		{
@@ -24,21 +23,20 @@ Session::Session(Poco::Net::StreamSocket& socket, Poco::Net::SocketReactor& reac
 		session->SendPacket(buffer, length);
 		});
 
-	// 이벤트 헨들러 등록
 	reactor_.addEventHandler(socket_, Poco::Observer<Session, ReadableNotification>(*this, &Session::onReadable));
 
-	// 클라이언트 주소 저장
 	peer_address_ = socket_.peerAddress().toString();
 	std::print("Connection from {}\n", peer_address_);
 }
 
 Session::~Session()
 {
-	// 이벤트 핸들러 제거
 	reactor_.removeEventHandler(socket_, Poco::Observer<Session, ReadableNotification>(*this, &Session::onReadable));
 
-	// room 에서 제거
-	LeaveRoom();
+	if (IsInRoom())
+	{
+		LeaveRoom();
+	}
 
 	RemoveSession_(session_id_);
 
@@ -58,12 +56,13 @@ void Session::onReadable(ReadableNotification* pNotification)
 			std::print("Received {} bytes from {}\n", n, peer_address_);
 			SavePacket_(buffer, n, session_id_);
 		}
-		else {
+		else
+		{
 			socket_.shutdown();
 			delete this;
 		}
 	}
-	catch (Poco::Exception& exc)
+	catch (Poco::Exception& e)
 	{
 		socket_.shutdown();
 		delete this;
@@ -77,11 +76,6 @@ void Session::SendPacket(std::shared_ptr<char[]> buffer, int length)
 
 void Session::LeaveRoom()
 {
-	if (IsInRoom() == false)
-	{
-		return;
-	}
-
 	auto room_id = room_id_;
 	auto room = GetRoom_(room_id);
 
@@ -90,7 +84,7 @@ void Session::LeaveRoom()
 
 	std::print("UserId : {} 가 방에서 나감.\n", user_id_);
 
-	room->NtfRoomUserLeave(session_id_);
+	room->NtfRoomUserLeave_(session_id_);
 
 	if (room->IsGameStarted() && room->IsPlayer(session_id_))
 	{
@@ -113,7 +107,7 @@ void Session::LeaveRoom()
 			auto new_admin_id = room->GetAdminId();
 			packet_sender_.ResYouAreRoomAdmin(new_admin_id);
 
-			room->NtfNewRoomAdmin();
+			room->NtfNewRoomAdmin_();
 		}
 	}
 }

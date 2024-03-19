@@ -10,7 +10,6 @@
 #include "db_processor.h"
 #include "flags.h"
 #include "session_manager.h"
-
 class OmokServer
 {
 public:
@@ -25,9 +24,6 @@ private:
 	PacketQueue packet_queue_;
 	DBPacketQueue db_packet_queue_;
 
-	uint16_t server_port_;
-	uint16_t max_room_num_;
-
 	Poco::Net::ServerSocket server_socket_;
 	Poco::Net::SocketReactor reactor_;
 
@@ -37,4 +33,13 @@ private:
 	void DBProcessorStart();
 
 	std::tuple<uint16_t, uint16_t> ParseConfig(flags::args args);
+
+	uint16_t ParseConfigPort(flags::args args);
+	uint16_t ParseConfigRoomNum(flags::args args);
+
+	void InitRoomManager(uint16_t room_num);
+	void InitPacketProcessor();
+	void InitDBProcessor();
+
+	void InitAcceptor(Poco::Net::ParallelSocketAcceptor<Session, Poco::Net::SocketReactor>& acceptor);
 };

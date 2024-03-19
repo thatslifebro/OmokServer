@@ -7,7 +7,7 @@ void PacketSender::ResLogin(uint32_t session_id, uint32_t result)
 
 	auto [res_data, res_length] = MakeResData(PacketId::ResLogin, res_login);
 
-	SendPacket(session_id, res_data, res_length);
+	SendPacket_(session_id, res_data, res_length);
 }
 
 void PacketSender::ResRoomEnter(uint32_t session_id, std::string user_id, uint32_t result)
@@ -22,7 +22,7 @@ void PacketSender::ResRoomEnter(uint32_t session_id, std::string user_id, uint32
 
 	auto [res_data, res_length] = MakeResData(PacketId::ResRoomEnter, res_room_enter);
 
-	SendPacket(session_id, res_data, res_length);
+	SendPacket_(session_id, res_data, res_length);
 }
 
 void PacketSender::NtfNewRoomAdmin(std::unordered_set<uint32_t> room_session_ids, uint32_t admin_session_id, std::string admin_user_id)
@@ -43,7 +43,7 @@ void PacketSender::NtfNewRoomAdmin(std::unordered_set<uint32_t> room_session_ids
 			continue;
 		}
 
-		SendPacket(session_id, res_data, res_length);
+		SendPacket_(session_id, res_data, res_length);
 	}
 }
 
@@ -58,7 +58,7 @@ void PacketSender::ResRoomAdmin(uint32_t session_id, uint32_t admin_session_id, 
 
 	auto [res_data, res_length] = MakeResData(PacketId::NtfNewRoomAdmin, ntf_new_room_admin);
 
-	SendPacket(session_id, res_data, res_length);
+	SendPacket_(session_id, res_data, res_length);
 
 }
 
@@ -77,11 +77,9 @@ void PacketSender::ResRoomUserList(uint32_t session_id, std::vector<std::pair<ui
 		userinfo->set_userid(user_info.second);
 	}
 
-	// 전송 데이터 생성
 	auto [res_data, res_length] = MakeResData(PacketId::NtfRoomUserList, res_room_user_list);
 
-	// 전송
-	SendPacket(session_id, res_data, res_length);
+	SendPacket_(session_id, res_data, res_length);
 }
 
 void PacketSender::NtfRoomUserEnter(std::unordered_set<uint32_t> room_session_ids, uint32_t session_id, std::string user_id)
@@ -97,13 +95,12 @@ void PacketSender::NtfRoomUserEnter(std::unordered_set<uint32_t> room_session_id
 
 	for (auto other_session_id : room_session_ids)
 	{
-		//자신에겐 보내지 않음
 		if (other_session_id == session_id)
 		{
 			continue;
 		}
 
-		SendPacket(other_session_id, res_data, res_length);
+		SendPacket_(other_session_id, res_data, res_length);
 	}
 }
 
@@ -113,7 +110,7 @@ void PacketSender::ResYouAreRoomAdmin(uint32_t session_id)
 
 	auto [res_data, res_length] = MakeResData(PacketId::ResYouAreRoomAdmin, res_you_are_room_admin);
 
-	SendPacket(session_id, res_data, res_length);
+	SendPacket_(session_id, res_data, res_length);
 }
 
 void PacketSender::ResRoomLeave(uint32_t session_id, uint32_t result)
@@ -123,7 +120,7 @@ void PacketSender::ResRoomLeave(uint32_t session_id, uint32_t result)
 
 	auto [res_data, res_length] = MakeResData(PacketId::ResRoomLeave, res_room_leave);
 
-	SendPacket(session_id, res_data, res_length);
+	SendPacket_(session_id, res_data, res_length);
 }
 
 void PacketSender::NtfRoomUserLeave(std::unordered_set<uint32_t> room_session_ids, uint32_t session_id, std::string user_id)
@@ -144,7 +141,7 @@ void PacketSender::NtfRoomUserLeave(std::unordered_set<uint32_t> room_session_id
 			continue;
 		}
 
-		SendPacket(other_session_id, res_data, res_length);
+		SendPacket_(other_session_id, res_data, res_length);
 	}
 }
 
@@ -156,7 +153,7 @@ void PacketSender::ResRoomChat(uint32_t session_id, uint32_t result, std::string
 
 	auto [res_data, res_length] = MakeResData(PacketId::ResRoomChat, res_room_chat);
 
-	SendPacket(session_id, res_data, res_length);
+	SendPacket_(session_id, res_data, res_length);
 }
 
 void PacketSender::NtfRoomChat(std::unordered_set<uint32_t> room_session_ids, uint32_t session_id, std::string user_id, std::string chat)
@@ -178,7 +175,7 @@ void PacketSender::NtfRoomChat(std::unordered_set<uint32_t> room_session_ids, ui
 			continue;
 		}
 
-		SendPacket(other_session_id, res_data, res_length);
+		SendPacket_(other_session_id, res_data, res_length);
 	}
 }
 
@@ -189,7 +186,7 @@ void PacketSender::ResMatch(uint32_t admin_session_id, uint32_t result)
 
 	auto [res_data, res_length] = MakeResData(PacketId::ResMatch, res_match);
 
-	SendPacket(admin_session_id, res_data, res_length);
+	SendPacket_(admin_session_id, res_data, res_length);
 }
 
 void PacketSender::NtfMatchReq(uint32_t opponent_session_id, uint32_t admin_session_id, std::string admin_user_id)
@@ -203,7 +200,7 @@ void PacketSender::NtfMatchReq(uint32_t opponent_session_id, uint32_t admin_sess
 
 	auto [res_data, res_length] = MakeResData(PacketId::NtfMatchReq, ntf_match_req);
 
-	SendPacket(opponent_session_id, res_data, res_length);
+	SendPacket_(opponent_session_id, res_data, res_length);
 }
 
 void PacketSender::ResReadyOmok(uint32_t session_id)
@@ -212,12 +209,11 @@ void PacketSender::ResReadyOmok(uint32_t session_id)
 
 	auto [res_data, res_length] = MakeResData(PacketId::ResReadyOmok, res_ready_omok);
 
-	SendPacket(session_id, res_data, res_length);
+	SendPacket_(session_id, res_data, res_length);
 }
 
 void PacketSender::NtfStartOmok(uint32_t balck_session_id, std::string black_user_id, uint32_t white_session_id, std::string white_user_id)
 {
-	// 흑백 정보 및 게임 참여자 ID 전파
 	OmokPacket::NtfStartOmok ntf_start_omok_black;
 	OmokPacket::NtfStartOmok ntf_start_omok_white;
 
@@ -232,8 +228,8 @@ void PacketSender::NtfStartOmok(uint32_t balck_session_id, std::string black_use
 	auto [res_data_black, res_length_black] = MakeResData(PacketId::NtfStartOmok, ntf_start_omok_black);
 	auto [res_data_white, res_length_white] = MakeResData(PacketId::NtfStartOmok, ntf_start_omok_white);
 
-	SendPacket(balck_session_id, res_data_black, res_length_black);
-	SendPacket(white_session_id, res_data_white, res_length_white);
+	SendPacket_(balck_session_id, res_data_black, res_length_black);
+	SendPacket_(white_session_id, res_data_white, res_length_white);
 }
 
 void PacketSender::NtfStartOmokView(std::unordered_set<uint32_t> room_session_ids, uint32_t black_session_id, std::string balck_user_id, uint32_t white_session_id, std::string white_user_id)
@@ -250,7 +246,7 @@ void PacketSender::NtfStartOmokView(std::unordered_set<uint32_t> room_session_id
 			continue;
 		}	
 
-		SendPacket(session_id, res_data, res_length);
+		SendPacket_(session_id, res_data, res_length);
 	}
 }
 
@@ -261,7 +257,7 @@ void PacketSender::ResPutMok(uint32_t session_id, uint32_t result)
 
 	auto [res_data, res_length] = MakeResData(PacketId::ResPutMok, res_put_mok);
 
-	SendPacket(session_id, res_data, res_length);
+	SendPacket_(session_id, res_data, res_length);
 }
 
 void PacketSender::NtfPutMok(std::unordered_set<uint32_t> room_session_ids, uint32_t session_id, uint32_t x, uint32_t y)
@@ -279,7 +275,7 @@ void PacketSender::NtfPutMok(std::unordered_set<uint32_t> room_session_ids, uint
 			continue;
 		}
 
-		SendPacket(other_session_id, res_data, res_length);
+		SendPacket_(other_session_id, res_data, res_length);
 	}
 }
 
@@ -290,7 +286,7 @@ void PacketSender::NtfGameOver(uint32_t session_id, uint32_t result)
 
 	auto [res_data, res_length] = MakeResData(PacketId::NtfEndOmok, ntf_end_omok);
 
-	SendPacket(session_id, res_data, res_length);
+	SendPacket_(session_id, res_data, res_length);
 }
 
 void PacketSender::NtfGameOverView(std::unordered_set<uint32_t> room_session_ids, uint32_t winner_id, uint32_t loser_id)
@@ -306,7 +302,7 @@ void PacketSender::NtfGameOverView(std::unordered_set<uint32_t> room_session_ids
 			continue;
 		}
 
-		SendPacket(session_id, res_data, res_length);
+		SendPacket_(session_id, res_data, res_length);
 	}
 }
 
@@ -316,7 +312,7 @@ void PacketSender::NtfMatchTimeout(uint32_t session_id)
 
 	auto [res_data, res_length] = MakeResData(PacketId::NtfMatchTimeout, ntf_match_timeout);
 
-	SendPacket(session_id, res_data, res_length);
+	SendPacket_(session_id, res_data, res_length);
 }
 
 void PacketSender::NtfReadyTimeout(uint32_t session_id)
@@ -325,7 +321,7 @@ void PacketSender::NtfReadyTimeout(uint32_t session_id)
 
 	auto [res_data, res_length] = MakeResData(PacketId::NtfReadyTimeout, ntf_ready_timeout);
 
-	SendPacket(session_id, res_data, res_length);
+	SendPacket_(session_id, res_data, res_length);
 }
 
 void PacketSender::NtfPutMokTimeout(std::unordered_set<uint32_t> room_session_ids)
@@ -335,7 +331,7 @@ void PacketSender::NtfPutMokTimeout(std::unordered_set<uint32_t> room_session_id
 	auto [res_data, res_length] = MakeResData(PacketId::NtfPutMokTimeout, ntf_put_mok_timeout);
 	for (auto session_id : room_session_ids)
 	{
-		SendPacket(session_id, res_data, res_length);
+		SendPacket_(session_id, res_data, res_length);
 	}
 }
 

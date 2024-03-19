@@ -9,9 +9,10 @@
 class Room
 {
 public:
-	Room(uint16_t room_id) : room_id_(room_id) { timer_ = new Timer(); }
+	Room(uint16_t room_id) : room_id_(room_id) {}
 
-	void Init();
+	void Init(std::function<void(uint32_t, std::shared_ptr<char[]>, uint16_t)> SendPacket,
+		std::function<std::string(uint32_t)> GetUserId);
 
 	void AddUser(uint16_t session_id);
 	void RemoveUser(uint16_t session_id) { session_ids_.erase(session_id); }
@@ -50,27 +51,20 @@ public:
 	void CancelTimer() { timer_->CancelTimer(); }
 
 	//네트워크 패킷 보내는 함수
-	std::function<void(uint32_t session_id)> ResRoomUserList;
-	std::function<void(uint32_t session_id)> NtfRoomUserEnter;
-	std::function<void(uint32_t session_id)> NtfRoomUserLeave;
-	std::function<void()> NtfNewRoomAdmin;
-	std::function<void(uint32_t session_id)> ResRoomAdmin;
-	std::function<void(uint32_t session_id, std::string chat)> NtfRoomChat;
-	std::function<void(uint32_t black_session_id, std::string black_user_id, uint32_t white_session_id, std::string white_user_id)> NtfStartOmokView;
-	std::function<void(uint32_t session_id, uint32_t x, uint32_t y)> NtfPutMok;
-	std::function<void(uint32_t winner_session_id, uint32_t loser_session_id)> NtfGameOverView;
-	std::function<void()> NtfPutMokTimeout;
-
-	// session_id로 부터 user_id 얻기 위한 함수
-	std::function<std::string(uint32_t)> GetUserId;
-
-	// PacketSender에게 SendPacket 함수를 넘겨주기 위한 함수
-	std::function<void(uint32_t, std::shared_ptr<char[]>, uint16_t)> SendPacket;
+	std::function<void(uint32_t session_id)> ResRoomUserList_;
+	std::function<void(uint32_t session_id)> NtfRoomUserEnter_;
+	std::function<void(uint32_t session_id)> NtfRoomUserLeave_;
+	std::function<void()> NtfNewRoomAdmin_;
+	std::function<void(uint32_t session_id, std::string chat)> NtfRoomChat_;
+	std::function<void(uint32_t black_session_id, std::string black_user_id, uint32_t white_session_id, std::string white_user_id)> NtfStartOmokView_;
+	std::function<void(uint32_t session_id, uint32_t x, uint32_t y)> NtfPutMok_;
+	std::function<void(uint32_t winner_session_id, uint32_t loser_session_id)> NtfGameOverView_;
+	std::function<void()> NtfPutMokTimeout_;
 
 private:
 	PacketSender packet_sender_;
 
-	Timer* timer_;
+	Timer* timer_ = nullptr;
 
 	const uint16_t room_id_;
 	std::unordered_set<uint32_t> session_ids_;
@@ -83,5 +77,7 @@ private:
 	
 	Game* game_ = nullptr;
 
-	void NetworkFunctionInit();
+	std::function<std::string(uint32_t)> GetUserId_;
+
+	void InitNetworkFunctions();
 };

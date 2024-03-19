@@ -6,7 +6,6 @@
 #include <functional>
 
 #include "session.h"
-#include "packet_queue.h"
 #include "error_code.h"
 
 class DBProcessor
@@ -25,6 +24,8 @@ private:
 	PacketSender packet_sender_;
 
 	ErrorCode ReqLoginHandler(Packet packet);
+	std::string ReqLoginPacketData(Packet packet);
+	void ReqLoginProcess(Session* session, std::string user_id);
 
 	bool IsValidSession(Session* session);
 

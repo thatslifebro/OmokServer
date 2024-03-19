@@ -1,14 +1,14 @@
 #include "room_manager.h"
 
-void RoomManager::Init(uint16_t max_room_num, std::function<void(uint32_t session_id, std::shared_ptr<char[]> buffer, int length)> SendPacket, std::function<std::string(uint32_t session_id)> GetUserId)
+void RoomManager::Init(uint16_t max_room_num,
+	std::function<void(uint32_t session_id, std::shared_ptr<char[]> buffer, int length)> SendPacket,
+	std::function<std::string(uint32_t session_id)> GetUserId)
 {
 	max_room_num_ = max_room_num;
 	for (int i = 1; i <= max_room_num_; ++i)
 	{
 		auto room = new Room(i);
-		room->GetUserId = GetUserId;
-		room->SendPacket = SendPacket;
-		room->Init();
+		room->Init(SendPacket, GetUserId);
 
 		room_vec_.push_back(room);
 	}

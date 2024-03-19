@@ -19,10 +19,5 @@ int main(int argc, char** argv)
 	{
 		std::print("Exception: {}\n", e.what());
 	}
-	catch (...)
-	{
-		std::print("Unknown exception\n");
-	}
-
 }
 

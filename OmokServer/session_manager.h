@@ -4,7 +4,7 @@
 
 class Session;
 
-class SessionManager // todo:: 이것도 가능할까 static 없애기
+class SessionManager
 {
 public:
 	int AddSession(Session* session);
