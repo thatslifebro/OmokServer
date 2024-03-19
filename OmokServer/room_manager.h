@@ -16,10 +16,6 @@ public:
 	std::vector<Room*> GetAllRooms();
 
 private:
-	static uint16_t max_room_num_;
-	//TODO static 사용하지 않거나 혹은 사용해야할 이유를 알려주세요 (답변작성)
-	// 
-	// room_vec_를 이용해 Room에 접근하는 곳이 DBProcessor, PacketProcessor, Session 인데
-	// 모두 같은 Room 정보를 얻기 위해 static으로 선언했습니다.
-	static std::vector<Room*> room_vec_; // room_id - 1 = index
+	uint16_t max_room_num_;
+	std::vector<Room*> room_vec_; // room_id - 1 = index
 };

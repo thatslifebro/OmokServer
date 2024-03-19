@@ -19,6 +19,7 @@ public:
 	bool IsAdmin(uint16_t session_id) const	{ return admin_id_ == session_id; }
 	uint32_t GetAdminId() const { return admin_id_; }
 	void ChangeAdmin();
+	bool IsEmpty() const { return session_ids_.empty(); }
 
 	bool IsOpponent(uint16_t session_id) const { return opponent_id_ == session_id; }
 	void TryMatchingWith(uint32_t opponent_id);

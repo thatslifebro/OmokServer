@@ -1,6 +1,5 @@
 #include "session_manager.h"
 
-std::unordered_map<uint32_t, Session*> SessionManager::session_map_;
 std::mutex SessionManager::session_map_mutex_;
 
 int SessionManager::AddSession(Session* session)

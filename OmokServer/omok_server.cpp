@@ -2,12 +2,12 @@
 
 void OmokServer::Init(flags::args args)
 {
-	ParseConfig(args);
+	auto [server_port, max_room_num] = ParseConfig(args);
 
-	Poco::Net::ServerSocket server_socket(server_port_);
+	Poco::Net::ServerSocket server_socket(server_port);
 	server_socket_ = server_socket;
 
-	room_manager_.Init(max_room_num_,
+	room_manager_.Init(max_room_num,
 		[&](uint32_t session_id, std::shared_ptr<char[]> buffer, int length)
 		{
 			auto session = session_manager_.GetSession(session_id);
@@ -18,11 +18,26 @@ void OmokServer::Init(flags::args args)
 			auto session = session_manager_.GetSession(session_id);
 			return session->GetUserId();
 		});
-	packet_processor_.PopAndGetPacket = [&]() -> const Packet& {
-		return packet_queue_.PopAndGetPacket();
-		};
+
+	packet_processor_.InitPacketQueueFunctions(
+		[&]() { return packet_queue_.PopAndGetPacket(); },
+		[&](const Packet& packet) {	db_packet_queue_.PushPacket(packet); });
+
+	packet_processor_.InitRoomManagerFunctions(
+		[&](uint32_t session_id, uint16_t room_id) { room_manager_.AddUser(session_id, room_id); },
+		[&](uint32_t session_id, uint16_t room_id) { room_manager_.RemoveUser(session_id, room_id); },
+		[&](uint16_t room_id) { return room_manager_.GetRoom(room_id); },
+		[&]() { return room_manager_.GetAllRooms(); });
+
+	packet_processor_.InitSessionManagerFunctions(
+		[&](uint32_t session_id) { return session_manager_.GetSession(session_id); });
 
 	packet_processor_.Init();
+
+	db_processor_.InitDBPacketQueueFunctions( [&]() -> const Packet& { return db_packet_queue_.PopAndGetPacket(); });
+
+	db_processor_.InitSessionManagerFunctions( [&](uint32_t session_id) { return session_manager_.GetSession(session_id); });
+
 	db_processor_.Init();
 }
 
@@ -33,10 +48,15 @@ void OmokServer::Start()
 
 	Poco::Net::SocketReactor reactor;
 	Poco::Net::ParallelSocketAcceptor<Session, Poco::Net::SocketReactor> acceptor(server_socket_, reactor);
-	acceptor.SavePacket = [&](std::shared_ptr<char[]> buffer, uint32_t length, uint32_t session_id)
-	{
-		packet_queue_.Save(buffer, length, session_id);
-	};
+
+	acceptor.Init([&](
+		std::shared_ptr<char[]> buffer, uint32_t length, uint32_t session_id) { packet_queue_.Save(buffer, length, session_id); },
+		[&](uint32_t session_id, uint16_t room_id) { room_manager_.RemoveUser(session_id, room_id);	},
+		[&](uint16_t room_id) {	return room_manager_.GetRoom(room_id); },
+		[&](Session* session) { return session_manager_.AddSession(session); },
+		[&](uint32_t session_id) { session_manager_.RemoveSession(session_id); },
+		[&](uint32_t session_id) { return session_manager_.GetSession(session_id); });
+
 	reactor.run();
 }
 
@@ -72,26 +92,31 @@ void OmokServer::DBProcessorStart()
 	}
 }
 
-void OmokServer::ParseConfig(flags::args args)
+std::tuple<uint16_t, uint16_t> OmokServer::ParseConfig(flags::args args)
 {
-	const auto server_port = args.get<uint16_t>("port");
+	const auto port = args.get<uint16_t>("port");
 
-	if (!server_port)
+	uint16_t server_port;
+	uint16_t max_room_num;
+
+	if (!port)
 	{
-		server_port_ = SERVER_PORT;
+		server_port = SERVER_PORT;
 	}
 	else
 	{
-		server_port_ = *server_port;
+		server_port = *port;
 	}
 
-	const auto max_room_num = args.get<uint16_t>("room_num");
-	if (!max_room_num)
+	const auto room_num = args.get<uint16_t>("room_num");
+	if (!room_num)
 	{
-		max_room_num_ = MAX_ROOM_NUM;
+		max_room_num = MAX_ROOM_NUM;
 	}
 	else
 	{
-		max_room_num_ = *max_room_num;
+		max_room_num = *room_num;
 	}
+
+	return std::make_tuple(server_port, max_room_num);
 }

@@ -3,7 +3,7 @@
 void PacketProcessor::Init()
 {
 	packet_sender_.Init([&](uint32_t session_id, std::shared_ptr<char[]> buffer, int length) {
-		auto session = session_manager_.GetSession(session_id);
+		auto session = GetSession_(session_id);
 		session->SendPacket(buffer, length);
 		});
 
@@ -18,9 +18,23 @@ void PacketProcessor::Init()
 	packet_handler_map_.insert(std::make_pair(static_cast<uint16_t>(PacketId::ReqMatchRes), [&](Packet packet) -> ErrorCode { return ReqMatchResHandler(packet); }));
 }
 
+void PacketProcessor::InitPacketQueueFunctions(std::function<const Packet& ()> PopAndGetPacket, std::function<void(const Packet&)> PushDBPacket)
+{
+	PopAndGetPacket_ = PopAndGetPacket;
+	PushDBPacket_ = PushDBPacket;
+}
+
+void PacketProcessor::InitRoomManagerFunctions(std::function<void(uint32_t session_id, uint16_t room_id)> AddUser, std::function<void(uint32_t session_id, uint16_t room_id)> RemoveUser, std::function<Room* (uint16_t room_id)> GetRoom, std::function<std::vector<Room*>()> GetAllRooms)
+{
+	AddUser_ = AddUser;
+	RemoveUser_ = RemoveUser;
+	GetRoom_ = GetRoom;
+	GetAllRooms_ = GetAllRooms;
+}
+
 bool PacketProcessor::ProcessPacket() // todo : bool 리턴 해야하나
 {
-	auto packet = PopAndGetPacket();
+	auto packet = PopAndGetPacket_();
 	if (packet.IsValidSize() == false)
 	{
 		return false;
@@ -37,8 +51,7 @@ bool PacketProcessor::ProcessPacket() // todo : bool 리턴 해야하나
 
 ErrorCode PacketProcessor::ReqLoginHandler(Packet packet)
 {
-	DBPacketQueue db_packet_queue_; // todo : function으로 받아서 하면 좋을 듯.
-	db_packet_queue_.PushPacket(packet);
+	PushDBPacket_(packet);
 
 	return ErrorCode::None;
 }
@@ -49,7 +62,7 @@ ErrorCode PacketProcessor::ReqRoomEnterHandler(Packet packet)
 	req_room_enter.ParseFromArray(packet.GetPacketBody(), packet.GetBodySize());
 	auto room_id = req_room_enter.roomid();
 
-	auto session = session_manager_.GetSession(packet.GetSessionId());
+	auto session = GetSession_(packet.GetSessionId());
 	if (IsValidSession(session) == false)
 	{
 		return ErrorCode::InvalidSessionId;
@@ -57,7 +70,7 @@ ErrorCode PacketProcessor::ReqRoomEnterHandler(Packet packet)
 
 	auto session_id = session->GetSessionId();
 	auto user_id = session->GetUserId();
-	auto room = room_manager_.GetRoom(room_id);
+	auto room = GetRoom_(room_id);
 
 	if (IsValidRoom(room) == false)
 	{
@@ -83,7 +96,7 @@ ErrorCode PacketProcessor::ReqRoomEnterHandler(Packet packet)
 		return ErrorCode::RoomGameStarted;
 	}
 
-	room_manager_.AddUser(session_id, room_id);
+	AddUser_(session_id, room_id);
 	session->SetRoomId(room_id);
 
 	std::print("UserId : {} 가 방 {}번에 입장함.\n", user_id, room_id);
@@ -107,7 +120,7 @@ ErrorCode PacketProcessor::ReqRoomEnterHandler(Packet packet)
 
 ErrorCode PacketProcessor::ReqRoomLeaveHandler(Packet packet)
 {
-	auto session = session_manager_.GetSession(packet.GetSessionId());
+	auto session = GetSession_(packet.GetSessionId());
 	if (IsValidSession(session) == false)
 	{
 		return ErrorCode::InvalidSessionId;
@@ -115,7 +128,7 @@ ErrorCode PacketProcessor::ReqRoomLeaveHandler(Packet packet)
 
 	auto session_id = session->GetSessionId();
 	auto room_id = session->GetRoomId();
-	auto room = room_manager_.GetRoom(room_id);
+	auto room = GetRoom_(room_id);
 
 	if (session->IsLoggedIn() == false)
 	{
@@ -129,7 +142,7 @@ ErrorCode PacketProcessor::ReqRoomLeaveHandler(Packet packet)
 		return ErrorCode::NotInRoom;
 	}
 
-	room_manager_.RemoveUser(session_id, room_id);
+	RemoveUser_(session_id, room_id);
 	session->SetRoomId(0);
 
 	std::print("UserId : {} 가 방에서 나감.\n", session->GetUserId());
@@ -142,7 +155,7 @@ ErrorCode PacketProcessor::ReqRoomLeaveHandler(Packet packet)
 		auto opponent_id = room->GetOpponentPlayer(session_id);
 		packet_sender_.NtfGameOver(opponent_id, 1);
 		packet_sender_.NtfGameOver(session_id, 0);
-		std::print("{}번 방 게임 종료. {} 승리 ,{} 패배\n", room_id, session_manager_.GetSession(opponent_id)->GetUserId(), session->GetUserId());
+		std::print("{}번 방 게임 종료. {} 승리 ,{} 패배\n", room_id, GetSession_(opponent_id)->GetUserId(), session->GetUserId());
 	}
 
 	if (room->IsMatched())
@@ -154,10 +167,13 @@ ErrorCode PacketProcessor::ReqRoomLeaveHandler(Packet packet)
 	{
 		room->ChangeAdmin();
 
-		auto new_admin_id = room->GetAdminId();
-		packet_sender_.ResYouAreRoomAdmin(new_admin_id);
+		if (room->IsEmpty() == false)
+		{
+			auto new_admin_id = room->GetAdminId();
+			packet_sender_.ResYouAreRoomAdmin(new_admin_id);
 
-		room->NtfNewRoomAdmin();
+			room->NtfNewRoomAdmin();
+		}
 	}
 
 	return ErrorCode::None;
@@ -169,14 +185,14 @@ ErrorCode PacketProcessor::ReqRoomChatHandler(Packet packet)
 	req_room_chat.ParseFromArray(packet.GetPacketBody(), packet.GetBodySize());
 	auto chat = req_room_chat.chat();
 
-	auto session = session_manager_.GetSession(packet.GetSessionId());
+	auto session = GetSession_(packet.GetSessionId());
 	if (session == nullptr)
 	{
 		return ErrorCode::InvalidSessionId;
 	}
 
 	auto session_id = session->GetSessionId();
-	auto room = room_manager_.GetRoom(session->GetRoomId());
+	auto room = GetRoom_(session->GetRoomId());
 
 	if (session->IsLoggedIn() == false)
 	{
@@ -204,7 +220,7 @@ ErrorCode PacketProcessor::ReqMatchHandler(Packet packet)
 	OmokPacket::ReqMatch req_match;
 	req_match.ParseFromArray(packet.GetPacketBody(), packet.GetBodySize());
 
-	auto session = session_manager_.GetSession(packet.GetSessionId());
+	auto session = GetSession_(packet.GetSessionId());
 	if (IsValidSession(session) == false)
 	{
 		return ErrorCode::InvalidSessionId;
@@ -212,8 +228,8 @@ ErrorCode PacketProcessor::ReqMatchHandler(Packet packet)
 
 	auto session_id = session->GetSessionId();
 	auto opponent_id = req_match.sessionid();
-	auto opponent_session = session_manager_.GetSession(opponent_id);
-	auto room = room_manager_.GetRoom(session->GetRoomId());
+	auto opponent_session = GetSession_(opponent_id);
+	auto room = GetRoom_(session->GetRoomId());
 
 	if (IsValidSession(opponent_session) == false)
 	{
@@ -272,14 +288,14 @@ ErrorCode PacketProcessor::ReqMatchResHandler(Packet packet)
 	req_match_res.ParseFromArray(packet.GetPacketBody(), packet.GetBodySize());
 	auto accept = req_match_res.accept();
 
-	auto session = session_manager_.GetSession(packet.GetSessionId());
+	auto session = GetSession_(packet.GetSessionId());
 	if (IsValidSession(session) == false)
 	{
 		return ErrorCode::InvalidSessionId;
 	}
 
 	auto session_id = session->GetSessionId();
-	auto room = room_manager_.GetRoom(session->GetRoomId());
+	auto room = GetRoom_(session->GetRoomId());
 	auto admin_id = room->GetAdminId();
 
 	if (room->IsTryMatchingWith(session_id) == false)
@@ -325,14 +341,14 @@ ErrorCode PacketProcessor::ReqMatchResHandler(Packet packet)
 
 ErrorCode PacketProcessor::ReqReadyOmokHandler(Packet packet)
 {
-	auto session = session_manager_.GetSession(packet.GetSessionId());
+	auto session = GetSession_(packet.GetSessionId());
 	if (IsValidSession(session) == false)
 	{
 		return ErrorCode::InvalidSessionId;
 	}
 
 	auto session_id = session->GetSessionId();
-	auto room = room_manager_.GetRoom(session->GetRoomId());
+	auto room = GetRoom_(session->GetRoomId());
 	auto game = room->GetGame();
 
 	if (session->IsInRoom() == false)
@@ -373,7 +389,7 @@ ErrorCode PacketProcessor::ReqReadyOmokHandler(Packet packet)
 
 		room->NtfStartOmokView(black_session_id, black_user_id, white_session_id, white_user_id);
 
-		room->SetRepeatedTimer(time_count_, PUT_MOK_TIMEOUT, [&]()
+		room->SetRepeatedTimer(time_count_, PUT_MOK_TIMEOUT, [room]()
 			{
 				if (room->IsGameStarted())
 				{
@@ -396,14 +412,14 @@ ErrorCode PacketProcessor::ReqOmokPutHandler(Packet packet)
 	auto x = req_put_mok.x();
 	auto y = req_put_mok.y();
 
-	auto session = session_manager_.GetSession(packet.GetSessionId());
+	auto session = GetSession_(packet.GetSessionId());
 	if (IsValidSession(session) == false)
 	{
 		return ErrorCode::InvalidSessionId;
 	}
 
 	auto session_id = session->GetSessionId();
-	auto room = room_manager_.GetRoom(session->GetRoomId());
+	auto room = GetRoom_(session->GetRoomId());
 	auto game = room->GetGame();
 	
 	if (room->IsGameStarted() == false)
@@ -449,7 +465,7 @@ ErrorCode PacketProcessor::ReqOmokPutHandler(Packet packet)
 			//게임 종료 처리
 			room->EndMatch();
 
-			std::print("{}번 방 게임 종료. {} 승리 ,{} 패배\n", session->GetRoomId(), session_manager_.GetSession(winner_id)->GetUserId(), session_manager_.GetSession(loser_id)->GetUserId());
+			std::print("{}번 방 게임 종료. {} 승리 ,{} 패배\n", session->GetRoomId(), GetSession_(winner_id)->GetUserId(), GetSession_(loser_id)->GetUserId());
 		}
 		else
 		{
@@ -466,7 +482,7 @@ void PacketProcessor::TimerCheck()
 	time_count_++;
 	
 	//1초마다 타이머 10개 체크 (방당 하나이기 때문)
-	auto room_list = room_manager_.GetAllRooms();
+	auto room_list = GetAllRooms_();
 	for (auto room : room_list)
 	{
 		room->TimerCheck(time_count_);

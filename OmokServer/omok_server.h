@@ -9,6 +9,7 @@
 #include "packet_processor.h"
 #include "db_processor.h"
 #include "flags.h"
+#include "session_manager.h"
 
 class OmokServer
 {
@@ -22,9 +23,11 @@ private:
 	PacketProcessor packet_processor_;
 	DBProcessor db_processor_;
 	PacketQueue packet_queue_;
+	DBPacketQueue db_packet_queue_;
 
 	uint16_t server_port_;
 	uint16_t max_room_num_;
+
 	Poco::Net::ServerSocket server_socket_;
 
 	clock_t start_time_ = clock();
@@ -32,5 +35,5 @@ private:
 	void PacketProcessorStart();
 	void DBProcessorStart();
 
-	void ParseConfig(flags::args args);
+	std::tuple<uint16_t, uint16_t> ParseConfig(flags::args args);
 };

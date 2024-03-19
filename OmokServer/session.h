@@ -6,21 +6,23 @@
 #include "Poco/Net/SocketReactor.h"
 #include "Poco/Net/ParallelSocketAcceptor.h"
 
-#include "packet_queue.h"
-#include "session_manager.h"
-#include "room_manager.h"
+#include "room.h"
 #include "packet_sender.h"
 
 class Session
 {
 public:
-	Session(Poco::Net::StreamSocket& socket, Poco::Net::SocketReactor& reactor, std::function<void(std::shared_ptr<char[]>, uint32_t, uint32_t)> SavePacket);
+	Session(Poco::Net::StreamSocket& socket, Poco::Net::SocketReactor& reactor,
+		std::function<void(std::shared_ptr<char[]>, uint32_t, uint32_t)> SavePacket,
+		std::function<void(uint32_t session_id, uint16_t room_id)> RemoveUser,
+		std::function<Room* (uint16_t room_id)> GetRoom,
+		std::function<int(Session* session)> AddSession_,
+		std::function<void(uint32_t session_id)> RemoveSession_,
+		std::function<Session* (uint32_t session_id)> GetSession_);
 
 	~Session();
 
 	void onReadable(ReadableNotification* pNotification);
-
-	//void SavePacket(std::shared_ptr<char[]> buffer, uint32_t length);
 
 	void SendPacket(std::shared_ptr<char[]> buffer, int length);
 
@@ -42,11 +44,9 @@ public:
 
 	uint32_t GetSessionId() { return session_id_; }
 
-	std::function<void(std::shared_ptr<char[]>, uint32_t, uint32_t)> SavePacket;
+	
 
 private:
-	SessionManager session_manager_;
-	RoomManager room_manager_;
 	PacketSender packet_sender_;
 
 	uint32_t session_id_;
@@ -58,5 +58,15 @@ private:
 	Poco::Net::SocketReactor& reactor_;
 	std::string peer_address_;
 
+	std::function<void(std::shared_ptr<char[]>, uint32_t, uint32_t)> SavePacket_;
+
+	std::function<void(uint32_t session_id, uint16_t room_id)> RemoveUser_;
+	std::function<Room* (uint16_t room_id)> GetRoom_;
+
+	std::function<int(Session* session)> AddSession_;
+	std::function<void(uint32_t session_id)> RemoveSession_;
+	std::function<Session* (uint32_t session_id)> GetSession_;
+
 	void LeaveRoom();
+
 };

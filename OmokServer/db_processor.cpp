@@ -3,7 +3,7 @@
 void DBProcessor::Init()
 {
 	packet_sender_.Init([&](uint32_t session_id, std::shared_ptr<char[]> buffer, int length) {
-		auto session = session_manager_.GetSession(session_id);
+		auto session = GetSession_(session_id);
 		session->SendPacket(buffer, length); });
 
 	packet_handler_map_.insert(std::make_pair(static_cast<uint16_t>(PacketId::ReqLogin), [&](Packet packet) { ReqLoginHandler(packet); }));
@@ -11,7 +11,7 @@ void DBProcessor::Init()
 
 bool DBProcessor::ProcessDB()
 {
-	auto packet = db_packet_queue_.PopAndGetPacket();
+	auto packet = PopAndGetPacket_();
 	
 	if (packet.IsValidSize() == false)
 	{
@@ -27,7 +27,7 @@ void DBProcessor::ReqLoginHandler(Packet packet)
 	OmokPacket::ReqLogin req_login;
 	req_login.ParseFromArray(packet.GetPacketBody(), packet.GetBodySize());
 
-	auto session = session_manager_.GetSession(packet.GetSessionId());
+	auto session = GetSession_(packet.GetSessionId());
 	if (session == nullptr)
 	{
 		return;

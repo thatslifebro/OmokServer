@@ -36,6 +36,9 @@ using Poco::NObserver;
 using Poco::AutoPtr;
 
 
+// 변경 사항
+class Room;
+
 namespace Poco {
 namespace Net {
 
@@ -150,7 +153,20 @@ public:
 	}
 
 	// 변경 사항
-	std::function<void(std::shared_ptr<char[]>, uint32_t, uint32_t)> SavePacket;
+	void Init(std::function<void(std::shared_ptr<char[]>, uint32_t, uint32_t)> SavePacket,
+		std::function<void(uint32_t session_id, uint16_t room_id)> RemoveUser,
+		std::function<Room* (uint16_t room_id)> GetRoom,
+		std::function<int(ServiceHandler* session)> AddSession,
+		std::function<void(uint32_t session_id)> RemoveSession,
+		std::function<ServiceHandler* (uint32_t session_id)> GetSession)
+	{
+		SavePacket_ = SavePacket;
+		RemoveUser_ = RemoveUser;
+		GetRoom_ = GetRoom;
+		AddSession_ = AddSession;
+		RemoveSession_ = RemoveSession;
+		GetSession_ = GetSession;
+	}
 
 protected:
 	typedef std::vector<typename ParallelReactor::Ptr> ReactorVec;
@@ -172,7 +188,7 @@ protected:
 			pReactor = _reactors[next];
 		}
 		pReactor->wakeUp();
-		return new ServiceHandler(socket, *pReactor, SavePacket);
+		return new ServiceHandler(socket, *pReactor, SavePacket_, RemoveUser_, GetRoom_, AddSession_, RemoveSession_, GetSession_);// 변경 사항
 	}
 
 	SocketReactor* reactor(const Socket& socket)
@@ -242,6 +258,14 @@ private:
 	unsigned       _threads;
 	ReactorVec     _reactors;
 	std::size_t    _next;
+
+	// 변경 사항
+	std::function<void(std::shared_ptr<char[]>, uint32_t, uint32_t)> SavePacket_;
+	std::function<void(uint32_t session_id, uint16_t room_id)> RemoveUser_;
+	std::function<Room* (uint16_t room_id)> GetRoom_;
+	std::function<int(ServiceHandler* session)> AddSession_;
+	std::function<void(uint32_t session_id)> RemoveSession_;
+	std::function<ServiceHandler* (uint32_t session_id)> GetSession_;
 };
 
 
