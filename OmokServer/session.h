@@ -14,11 +14,7 @@ class Session
 public:
 	Session(Poco::Net::StreamSocket& socket, Poco::Net::SocketReactor& reactor,
 		std::function<void(std::shared_ptr<char[]>, uint32_t, uint32_t)> SaveByteArray,
-		std::function<void(Packet packet)> SavePacket,
-		std::function<int(Session* session)> AddSession,
-		std::function<Session* (uint32_t session_id)> GetSession,
-		std::function<Room*(uint32_t room_id)> GetRoom,
-		std::function<void(uint32_t session_id, uint32_t room_id)> RemoveUser);
+		std::function<void(Packet packet)> SavePacket);
 
 	~Session();
 
@@ -45,7 +41,7 @@ public:
 	uint32_t GetSessionId() const { return session_id_; }
 
 private:
-	PacketSender packet_sender_;
+	HANDLE h_event_object_;
 
 	uint32_t session_id_;
 	std::string user_id_;
@@ -59,12 +55,6 @@ private:
 	std::function<void(std::shared_ptr<char[]>, uint32_t, uint32_t)> SaveByteArray_;
 	std::function<void(Packet packet)> SavePacket_;
 
-	std::function<int(Session* session)> AddSession_;
-	std::function<Session* (uint32_t session_id)> GetSession_;
-
-	std::function<Room* (uint32_t room_id)> GetRoom_;
-	std::function<void(uint32_t session_id, uint32_t room_id)> RemoveUser_;
-
-	void LeaveRoom();
-	void RemoveSession();
+	void AddSessionReq();
+	void RemoveSessionReq();
 };

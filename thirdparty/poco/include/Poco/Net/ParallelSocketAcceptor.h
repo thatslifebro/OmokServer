@@ -37,7 +37,6 @@ using Poco::AutoPtr;
 
 
 // 변경 사항
-class Room;
 class Packet;
 
 namespace Poco {
@@ -155,18 +154,11 @@ public:
 
 	// 변경 사항
 	void Init(std::function<void(std::shared_ptr<char[]>, uint32_t, uint32_t)> SaveByteArray,
-		std::function<void(Packet packet)> SavePacket,
-		std::function<int(ServiceHandler* session)> AddSession,
-		std::function<ServiceHandler* (uint32_t session_id)> GetSession,
-		std::function<Room*(uint32_t room_id)> GetRoom,
-		std::function<void(uint32_t session_id, uint32_t room_id)> RemoveUser)
+		std::function<void(Packet packet)> SavePacket
+		)
 	{
 		SaveByteArray_ = SaveByteArray;
 		SavePacket_ = SavePacket;
-		AddSession_ = AddSession;
-		GetSession_ = GetSession;
-		GetRoom_ = GetRoom;
-		RemoveUser_ = RemoveUser;
 	}
 
 protected:
@@ -189,7 +181,7 @@ protected:
 			pReactor = _reactors[next];
 		}
 		pReactor->wakeUp();
-		return new ServiceHandler(socket, *pReactor, SaveByteArray_, SavePacket_, AddSession_, GetSession_, GetRoom_, RemoveUser_);// 변경 사항
+		return new ServiceHandler(socket, *pReactor, SaveByteArray_, SavePacket_);// 변경 사항
 	}
 
 	SocketReactor* reactor(const Socket& socket)
@@ -263,11 +255,6 @@ private:
 	// 변경 사항
 	std::function<void(std::shared_ptr<char[]>, uint32_t, uint32_t)> SaveByteArray_;
 	std::function<void(Packet packet)> SavePacket_;
-	std::function<int(ServiceHandler* session)> AddSession_;
-	std::function<ServiceHandler* (uint32_t session_id)> GetSession_;
-	std::function<Room* (uint32_t room_id)> GetRoom_;
-	std::function<void(uint32_t session_id, uint32_t room_id)> RemoveUser_;
-
 };
 
 

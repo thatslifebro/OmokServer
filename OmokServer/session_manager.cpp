@@ -1,12 +1,9 @@
 #include "session_manager.h"
 
-std::mutex SessionManager::session_map_mutex_;
-
 int SessionManager::AddSession(Session* session)
 {
 	auto session_id = FindEmptySessionId();
 
-	std::lock_guard<std::mutex> lock(session_map_mutex_);
 	session_map_.insert({ session_id, session });
 
 	return session_id;
@@ -14,7 +11,9 @@ int SessionManager::AddSession(Session* session)
 
 void SessionManager::RemoveSession(uint32_t session_id)
 {
-	std::lock_guard<std::mutex> lock(session_map_mutex_);
+	auto session = GetSession(session_id);
+	delete session;
+
 	session_map_.erase(session_id);
 }
 

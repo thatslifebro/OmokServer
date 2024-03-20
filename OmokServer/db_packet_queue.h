@@ -1,7 +1,7 @@
 #pragma once
 #include<concurrent_queue.h>
 
-#include "packet_info.h"
+#include "packet.h"
 #include "concurrent_queue.h"
 
 class DBPacketQueue

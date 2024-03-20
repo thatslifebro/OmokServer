@@ -19,8 +19,9 @@ public:
 		std::function<Room* (uint32_t room_id)> GetRoom,
 		std::function<std::vector<Room*>()> GetAllRooms);
 
-	void InitSessionManagerFunctions(std::function<Session* (uint32_t session_id)> GetSession,
-		std::function<void(uint32_t)> RemoveSession) { GetSession_ = GetSession; RemoveSession_ = RemoveSession; }
+	void InitSessionManagerFunctions(std::function<uint32_t(Session*)> AddSession,
+		std::function<Session* (uint32_t session_id)> GetSession,
+		std::function<void(uint32_t)> RemoveSession);
 
 	bool ProcessPacket();
 
@@ -75,7 +76,9 @@ private:
 	void ReqOmokPutProcess(uint32_t session_id, Room* room, Game* game, uint32_t x, uint32_t y);
 	ErrorCode ReqOmokPutErrorCheck(uint32_t session_id, Room* room, Game* game, uint32_t x, uint32_t y);
 
+	ErrorCode ReqAddSession(Packet packet);
 	ErrorCode ReqRemoveSession(Packet packet);
+	void RemoveSessionRoomLeaveProcess(Session* session, uint32_t session_id, Room* room, uint32_t room_id);
 
 	bool IsValidSession(Session* session);
 
@@ -89,6 +92,7 @@ private:
 	std::function<Room*(uint32_t room_id)> GetRoom_;
 	std::function<std::vector<Room*>()> GetAllRooms_;
 
+	std::function<uint32_t(Session*)> AddSession_;
 	std::function<Session* (uint32_t session_id)>  GetSession_;
 	std::function<void(uint32_t)> RemoveSession_;
 };

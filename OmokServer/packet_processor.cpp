@@ -16,6 +16,7 @@ void PacketProcessor::Init()
 	packet_handler_map_.insert(std::make_pair(static_cast<uint16_t>(PacketId::ReqReadyOmok), [&](Packet packet) -> ErrorCode { return ReqReadyOmokHandler(packet); }));
 	packet_handler_map_.insert(std::make_pair(static_cast<uint16_t>(PacketId::ReqPutMok), [&](Packet packet) -> ErrorCode { return ReqOmokPutHandler(packet); }));
 	packet_handler_map_.insert(std::make_pair(static_cast<uint16_t>(PacketId::ReqMatchRes), [&](Packet packet) -> ErrorCode { return ReqMatchResHandler(packet); }));
+	packet_handler_map_.insert(std::make_pair(static_cast<uint16_t>(PacketId::ReqAddSession), [&](Packet packet) -> ErrorCode { return ReqAddSession(packet); }));
 	packet_handler_map_.insert(std::make_pair(static_cast<uint16_t>(PacketId::ReqRemoveSession), [&](Packet packet) -> ErrorCode { return ReqRemoveSession(packet); }));
 }
 
@@ -31,6 +32,15 @@ void PacketProcessor::InitRoomManagerFunctions(std::function<void(uint32_t sessi
 	RemoveUser_ = RemoveUser;
 	GetRoom_ = GetRoom;
 	GetAllRooms_ = GetAllRooms;
+}
+
+void PacketProcessor::InitSessionManagerFunctions(std::function<uint32_t(Session*)> AddSession,
+	std::function<Session* (uint32_t session_id)> GetSession,
+	std::function<void(uint32_t)> RemoveSession)
+{
+	AddSession_ = AddSession;
+	GetSession_ = GetSession;
+	RemoveSession_ = RemoveSession;
 }
 
 bool PacketProcessor::ProcessPacket()
@@ -639,12 +649,70 @@ ErrorCode PacketProcessor::ReqOmokPutErrorCheck(uint32_t session_id, Room* room,
 	return ErrorCode::None;
 }
 
+ErrorCode PacketProcessor::ReqAddSession(Packet packet)
+{
+	uint64_t session_addr;
+	memcpy(&session_addr, packet.GetPacketBody(), sizeof(session_addr));
+
+	auto session = reinterpret_cast<Session*>(session_addr);
+
+	auto session_id = AddSession_(session);
+	session->SetSessionId(session_id);
+
+	return ErrorCode::None;
+}
+
 ErrorCode PacketProcessor::ReqRemoveSession(Packet packet)
 {
 	auto session_id = packet.GetSessionId();
+	auto session = GetSession_(session_id);
+
+	if (session->IsInRoom())
+	{
+		auto room_id = session->GetRoomId();
+		auto room = GetRoom_(room_id);
+		
+		std::print("UserId : {} 가 방에서 나감.\n", session->GetUserId());
+
+		RemoveSessionRoomLeaveProcess(session, session_id, room, room_id);
+	}
+
 	RemoveSession_(session_id);
 
 	return ErrorCode::None;
+}
+
+void PacketProcessor::RemoveSessionRoomLeaveProcess(Session* session, uint32_t session_id, Room* room, uint32_t room_id)
+{
+	RemoveUser_(session_id, room_id);
+	session->SetRoomId(0);
+
+	room->NtfRoomUserLeave_(session_id);
+
+	if (room->IsGameStarted() && room->IsPlayer(session_id))
+	{
+		auto opponent_id = room->GetOpponentPlayer(session_id);
+		packet_sender_.NtfGameOver(opponent_id, 1);
+		std::print("{}번 방 게임 종료. {} 승리 ,{} 패배\n", room_id, GetSession_(opponent_id)->GetUserId(), session->GetUserId());
+	}
+
+	if (room->IsMatched())
+	{
+		room->EndMatch();
+	}
+
+	if (room->IsAdmin(session_id))
+	{
+		room->ChangeAdmin();
+
+		if (room->IsEmpty() == false)
+		{
+			auto new_admin_id = room->GetAdminId();
+			packet_sender_.ResYouAreRoomAdmin(new_admin_id);
+
+			room->NtfNewRoomAdmin_();
+		}
+	}
 }
 
 void PacketProcessor::TimerCheck()

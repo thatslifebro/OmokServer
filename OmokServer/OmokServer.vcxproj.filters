@@ -15,7 +15,7 @@
     <ClCompile Include="packet_queue.cpp" />
     <ClCompile Include="packet_sender.cpp" />
     <ClCompile Include="db_processor.cpp" />
-    <ClCompile Include="packet_info.cpp" />
+    <ClCompile Include="packet.cpp" />
     <ClCompile Include="packet_id.h" />
     <ClCompile Include="game.cpp" />
     <ClCompile Include="room.cpp" />
@@ -29,7 +29,7 @@
     <ClInclude Include="protobuf\OmokPacket.pb.h">
       <Filter>protobuf</Filter>
     </ClInclude>
-    <ClInclude Include="packet_info.h" />
+    <ClInclude Include="packet.h" />
     <ClInclude Include="omok_server.h" />
     <ClInclude Include="packet_queue.h" />
     <ClInclude Include="packet_processor.h" />

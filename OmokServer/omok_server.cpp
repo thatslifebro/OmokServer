@@ -138,10 +138,11 @@ void OmokServer::InitPacketProcessor()
 
 	packet_processor_.InitRoomManagerFunctions(AddUser, RemoveUser, GetRoom, GetAllRooms);
 
+	auto AddSession = [&](Session* session) { return session_manager_.AddSession(session); };
 	auto GetSession = [&](uint32_t session_id) { return session_manager_.GetSession(session_id); };
 	auto RemoveSession = [&](uint32_t session_id) { session_manager_.RemoveSession(session_id); };
 
-	packet_processor_.InitSessionManagerFunctions(GetSession, RemoveSession);
+	packet_processor_.InitSessionManagerFunctions(AddSession, GetSession, RemoveSession);
 
 	packet_processor_.Init();
 }
@@ -163,10 +164,6 @@ void OmokServer::InitAcceptor(Poco::Net::ParallelSocketAcceptor<Session, Poco::N
 {
 	auto SaveByteArray = [&](std::shared_ptr<char[]> buffer, uint32_t length, uint32_t session_id) { packet_queue_.SaveByteArray(buffer, length, session_id); };
 	auto SavePacket = [&](Packet packet) { packet_queue_.SavePacket(packet); };
-	auto AddSession = [&](Session* session) { return session_manager_.AddSession(session); };
-	auto GetSession = [&](uint32_t session_id) { return session_manager_.GetSession(session_id); };
-	auto GetRoom = [&](uint32_t room_id) { return room_manager_.GetRoom(room_id); };
-	auto RemoveUser = [&](uint32_t session_id, uint32_t room_id) { room_manager_.RemoveUser(session_id, room_id); };
 
-	acceptor.Init(SaveByteArray, SavePacket, AddSession, GetSession, GetRoom, RemoveUser);
+	acceptor.Init(SaveByteArray, SavePacket);
 }

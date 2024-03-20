@@ -1,4 +1,4 @@
-#include "packet_info.h"
+#include "packet.h"
 
 std::tuple<char*, uint16_t> Packet::GetByteArray()
 {

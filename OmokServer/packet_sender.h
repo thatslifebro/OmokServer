@@ -1,8 +1,10 @@
 #pragma once
+#include <print>
+
 #include "protobuf/OmokPacket.pb.h"
 
 #include "packet_id.h"
-#include "packet_info.h"
+#include "packet.h"
 
 class PacketSender
 {
@@ -37,7 +39,7 @@ public:
 
 	void ResReadyOmok(uint32_t session_id);
 
-	void NtfStartOmok(uint32_t balck_session_id, std::string black_user_id, uint32_t white_session_id, std::string white_user_id);
+	void NtfStartOmok(uint32_t black_session_id, std::string black_user_id, uint32_t white_session_id, std::string white_user_id);
 
 	void NtfStartOmokView(std::unordered_set<uint32_t> room_session_ids, uint32_t black_session_id, std::string balck_user_id, uint32_t white_session_id, std::string white_user_id);
 

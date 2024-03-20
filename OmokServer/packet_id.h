@@ -38,5 +38,6 @@ enum class PacketId
 
 	NtfStartOmokView = 1701,
 
-	ReqRemoveSession = 2001,
+	ReqAddSession = 2001,
+	ReqRemoveSession = 2002,
 };
