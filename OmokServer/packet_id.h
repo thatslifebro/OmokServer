@@ -37,4 +37,6 @@ enum class PacketId
 	NtfPutMokTimeout = 1603,
 
 	NtfStartOmokView = 1701,
+
+	ReqRemoveSession = 2001,
 };

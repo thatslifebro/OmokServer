@@ -1,20 +1,20 @@
 #include "session.h"
 
 Session::Session(Poco::Net::StreamSocket& socket, Poco::Net::SocketReactor& reactor,
-	std::function<void(std::shared_ptr<char[]>, uint32_t, uint32_t)> SavePacket,
-	std::function<void(uint32_t session_id, uint16_t room_id)> RemoveUser,
-	std::function<Room* (uint16_t room_id)> GetRoom,
-	std::function<int(Session* session)> AddSession_,
-	std::function<void(uint32_t session_id)> RemoveSession_,
-	std::function<Session* (uint32_t session_id)> GetSession_)
+	std::function<void(std::shared_ptr<char[]>, uint32_t, uint32_t)> SaveByteArray,
+	std::function<void(Packet packet)> SavePacket,
+	std::function<int(Session* session)> AddSession,
+	std::function<Session* (uint32_t session_id)> GetSession,
+	std::function<Room* (uint32_t room_id)> GetRoom,
+	std::function<void(uint32_t session_id, uint16_t room_id)> RemoveUser)
 	: socket_(socket), reactor_(reactor),
-	SavePacket_(SavePacket),
-	GetRoom_(GetRoom), RemoveUser_(RemoveUser),
-	AddSession_(AddSession_), RemoveSession_(RemoveSession_), GetSession_(GetSession_)
+	SaveByteArray_(SaveByteArray), SavePacket_(SavePacket),
+	AddSession_(AddSession), GetSession_(GetSession),
+	GetRoom_(GetRoom), RemoveUser_(RemoveUser)
 {
 	session_id_ = AddSession_(this);
 
-	packet_sender_.InitSendPacketFunc([GetSession_](uint32_t session_id, char* buffer, int length) {
+	packet_sender_.InitSendPacketFunc([&](uint32_t session_id, char* buffer, int length) {
 		auto session = GetSession_(session_id);
 		if (session == nullptr)
 		{
@@ -38,7 +38,7 @@ Session::~Session()
 		LeaveRoom();
 	}
 
-	RemoveSession_(session_id_);
+	RemoveSession();
 
 	std::print("Connection from {} closed\n", peer_address_);
 }
@@ -54,7 +54,7 @@ void Session::onReadable(ReadableNotification* pNotification)
 		if (n > 0)
 		{
 			std::print("Received {} bytes from {}\n", n, peer_address_);
-			SavePacket_(buffer, n, session_id_);
+			SaveByteArray_(buffer, n, session_id_);
 		}
 		else
 		{
@@ -110,4 +110,14 @@ void Session::LeaveRoom()
 			room->NtfNewRoomAdmin_();
 		}
 	}
+}
+
+void Session::RemoveSession()
+{
+	Packet packet;
+	packet.SetPacketId(static_cast<uint16_t>(PacketId::ReqRemoveSession));
+	packet.SetPacketSize(PacketHeader::HEADER_SIZE);
+	packet.SetSessionId(session_id_);
+
+	SavePacket_(packet);
 }

@@ -38,6 +38,7 @@ using Poco::AutoPtr;
 
 // 변경 사항
 class Room;
+class Packet;
 
 namespace Poco {
 namespace Net {
@@ -153,19 +154,19 @@ public:
 	}
 
 	// 변경 사항
-	void Init(std::function<void(std::shared_ptr<char[]>, uint32_t, uint32_t)> SavePacket,
-		std::function<void(uint32_t session_id, uint16_t room_id)> RemoveUser,
-		std::function<Room* (uint16_t room_id)> GetRoom,
+	void Init(std::function<void(std::shared_ptr<char[]>, uint32_t, uint32_t)> SaveByteArray,
+		std::function<void(Packet packet)> SavePacket,
 		std::function<int(ServiceHandler* session)> AddSession,
-		std::function<void(uint32_t session_id)> RemoveSession,
-		std::function<ServiceHandler* (uint32_t session_id)> GetSession)
+		std::function<ServiceHandler* (uint32_t session_id)> GetSession,
+		std::function<Room*(uint32_t room_id)> GetRoom,
+		std::function<void(uint32_t session_id, uint16_t room_id)> RemoveUser)
 	{
+		SaveByteArray_ = SaveByteArray;
 		SavePacket_ = SavePacket;
-		RemoveUser_ = RemoveUser;
-		GetRoom_ = GetRoom;
 		AddSession_ = AddSession;
-		RemoveSession_ = RemoveSession;
 		GetSession_ = GetSession;
+		GetRoom_ = GetRoom;
+		RemoveUser_ = RemoveUser;
 	}
 
 protected:
@@ -188,7 +189,7 @@ protected:
 			pReactor = _reactors[next];
 		}
 		pReactor->wakeUp();
-		return new ServiceHandler(socket, *pReactor, SavePacket_, RemoveUser_, GetRoom_, AddSession_, RemoveSession_, GetSession_);// 변경 사항
+		return new ServiceHandler(socket, *pReactor, SaveByteArray_, SavePacket_, AddSession_, GetSession_, GetRoom_, RemoveUser_);// 변경 사항
 	}
 
 	SocketReactor* reactor(const Socket& socket)
@@ -260,12 +261,13 @@ private:
 	std::size_t    _next;
 
 	// 변경 사항
-	std::function<void(std::shared_ptr<char[]>, uint32_t, uint32_t)> SavePacket_;
-	std::function<void(uint32_t session_id, uint16_t room_id)> RemoveUser_;
-	std::function<Room* (uint16_t room_id)> GetRoom_;
+	std::function<void(std::shared_ptr<char[]>, uint32_t, uint32_t)> SaveByteArray_;
+	std::function<void(Packet packet)> SavePacket_;
 	std::function<int(ServiceHandler* session)> AddSession_;
-	std::function<void(uint32_t session_id)> RemoveSession_;
 	std::function<ServiceHandler* (uint32_t session_id)> GetSession_;
+	std::function<Room* (uint32_t room_id)> GetRoom_;
+	std::function<void(uint32_t session_id, uint16_t room_id)> RemoveUser_;
+
 };
 
 

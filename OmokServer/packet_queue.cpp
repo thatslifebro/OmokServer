@@ -1,7 +1,6 @@
 #include "packet_queue.h"
 
-
-void PacketQueue::Save(std::shared_ptr<char[]> buffer, uint32_t length, uint32_t session_id)
+void PacketQueue::SaveByteArray(std::shared_ptr<char[]> buffer, uint32_t length, uint32_t session_id)
 {
 	if (length < PacketHeader::HEADER_SIZE)
 	{
@@ -15,7 +14,12 @@ void PacketQueue::Save(std::shared_ptr<char[]> buffer, uint32_t length, uint32_t
 	packet_queue_.push(packet);
 }
 
-const Packet& PacketQueue::PopAndGetPacket()
+void PacketQueue::SavePacket(Packet packet)
+{
+	packet_queue_.push(packet);
+}
+
+Packet PacketQueue::PopAndGetPacket()
 {
 	if (packet_queue_.empty())
 	{
@@ -28,7 +32,7 @@ const Packet& PacketQueue::PopAndGetPacket()
 	return packet;
 }
 
-const Packet& DBPacketQueue::PopAndGetPacket()
+Packet DBPacketQueue::PopAndGetPacket()
 {
 	if (db_packet_queue_.empty())
 	{

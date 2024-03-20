@@ -16,6 +16,7 @@ void PacketProcessor::Init()
 	packet_handler_map_.insert(std::make_pair(static_cast<uint16_t>(PacketId::ReqReadyOmok), [&](Packet packet) -> ErrorCode { return ReqReadyOmokHandler(packet); }));
 	packet_handler_map_.insert(std::make_pair(static_cast<uint16_t>(PacketId::ReqPutMok), [&](Packet packet) -> ErrorCode { return ReqOmokPutHandler(packet); }));
 	packet_handler_map_.insert(std::make_pair(static_cast<uint16_t>(PacketId::ReqMatchRes), [&](Packet packet) -> ErrorCode { return ReqMatchResHandler(packet); }));
+	packet_handler_map_.insert(std::make_pair(static_cast<uint16_t>(PacketId::ReqRemoveSession), [&](Packet packet) -> ErrorCode { return ReqRemoveSession(packet); }));
 }
 
 void PacketProcessor::InitPacketQueueFunctions(std::function<const Packet& ()> PopAndGetPacket, std::function<void(const Packet&)> PushDBPacket)
@@ -628,6 +629,14 @@ ErrorCode PacketProcessor::ReqOmokPutErrorCheck(uint32_t session_id, Room* room,
 		packet_sender_.ResPutMok(session_id, static_cast<uint32_t>(ErrorCode::PutMokFail));
 		return ErrorCode::PutMokFail;
 	}
+
+	return ErrorCode::None;
+}
+
+ErrorCode PacketProcessor::ReqRemoveSession(Packet packet)
+{
+	auto session_id = packet.GetSessionId();
+	RemoveSession_(session_id);
 
 	return ErrorCode::None;
 }
