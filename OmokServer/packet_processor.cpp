@@ -19,13 +19,13 @@ void PacketProcessor::Init()
 	packet_handler_map_.insert(std::make_pair(static_cast<uint16_t>(PacketId::ReqRemoveSession), [&](Packet packet) -> ErrorCode { return ReqRemoveSession(packet); }));
 }
 
-void PacketProcessor::InitPacketQueueFunctions(std::function<const Packet& ()> PopAndGetPacket, std::function<void(const Packet&)> PushDBPacket)
+void PacketProcessor::InitPacketQueueFunctions(std::function<Packet()> PopAndGetPacket, std::function<void(Packet)> PushDBPacket)
 {
 	PopAndGetPacket_ = PopAndGetPacket;
 	PushDBPacket_ = PushDBPacket;
 }
 
-void PacketProcessor::InitRoomManagerFunctions(std::function<void(uint32_t session_id, uint16_t room_id)> AddUser, std::function<void(uint32_t session_id, uint16_t room_id)> RemoveUser, std::function<Room* (uint16_t room_id)> GetRoom, std::function<std::vector<Room*>()> GetAllRooms)
+void PacketProcessor::InitRoomManagerFunctions(std::function<void(uint32_t session_id, uint32_t room_id)> AddUser, std::function<void(uint32_t session_id, uint32_t room_id)> RemoveUser, std::function<Room* (uint32_t room_id)> GetRoom, std::function<std::vector<Room*>()> GetAllRooms)
 {
 	AddUser_ = AddUser;
 	RemoveUser_ = RemoveUser;
@@ -41,10 +41,16 @@ bool PacketProcessor::ProcessPacket()
 		return false;
 	}
 
-	auto result = packet_handler_map_[packet.GetPacketId()](packet);
-	if (result != ErrorCode::None)
+	if (packet_handler_map_.find(packet.GetPacketId()) == packet_handler_map_.end())
 	{
-		std::print("PacketId : {} 처리 중 에러 발생. ErrorCode : {}\n", packet.GetPacketId(), static_cast<int>(result));
+		std::print("PacketId : {} 처리 함수 없음.\n", packet.GetPacketId());
+		return false;
+	}
+
+	auto error_code = packet_handler_map_[packet.GetPacketId()](packet);
+	if (error_code != ErrorCode::None)
+	{
+		std::print("PacketId : {} 처리 중 에러 발생. ErrorCode : {}\n", packet.GetPacketId(), static_cast<int>(error_code));
 	}
 
 	return true;	

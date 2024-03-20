@@ -14,7 +14,7 @@ void RoomManager::Init(uint16_t max_room_num,
 	}
 }
 
-Room* RoomManager::GetRoom(uint16_t room_id)
+Room* RoomManager::GetRoom(uint32_t room_id)
 {
 	if (room_id > max_room_num_ || room_id < 1)
 	{

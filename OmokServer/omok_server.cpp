@@ -127,13 +127,13 @@ void OmokServer::InitRoomManager(uint16_t room_num)
 void OmokServer::InitPacketProcessor()
 {
 	auto PopAndGetPacket = [&]() { return packet_queue_.PopAndGetPacket(); };
-	auto PushPacket = [&](const Packet& packet) { db_packet_queue_.PushPacket(packet); };
+	auto PushPacket = [&](Packet packet) { db_packet_queue_.PushPacket(packet); };
 
 	packet_processor_.InitPacketQueueFunctions(PopAndGetPacket, PushPacket);
 
-	auto AddUser = [&](uint32_t session_id, uint16_t room_id) { room_manager_.AddUser(session_id, room_id); };
-	auto RemoveUser = [&](uint32_t session_id, uint16_t room_id) { room_manager_.RemoveUser(session_id, room_id); };
-	auto GetRoom = [&](uint16_t room_id) { return room_manager_.GetRoom(room_id); };
+	auto AddUser = [&](uint32_t session_id, uint32_t room_id) { room_manager_.AddUser(session_id, room_id); };
+	auto RemoveUser = [&](uint32_t session_id, uint32_t room_id) { room_manager_.RemoveUser(session_id, room_id); };
+	auto GetRoom = [&](uint32_t room_id) { return room_manager_.GetRoom(room_id); };
 	auto GetAllRooms = [&]() { return room_manager_.GetAllRooms(); };
 
 	packet_processor_.InitRoomManagerFunctions(AddUser, RemoveUser, GetRoom, GetAllRooms);
@@ -165,8 +165,8 @@ void OmokServer::InitAcceptor(Poco::Net::ParallelSocketAcceptor<Session, Poco::N
 	auto SavePacket = [&](Packet packet) { packet_queue_.SavePacket(packet); };
 	auto AddSession = [&](Session* session) { return session_manager_.AddSession(session); };
 	auto GetSession = [&](uint32_t session_id) { return session_manager_.GetSession(session_id); };
-	auto GetRoom = [&](uint16_t room_id) { return room_manager_.GetRoom(room_id); };
-	auto RemoveUser = [&](uint32_t session_id, uint16_t room_id) { room_manager_.RemoveUser(session_id, room_id); };
+	auto GetRoom = [&](uint32_t room_id) { return room_manager_.GetRoom(room_id); };
+	auto RemoveUser = [&](uint32_t session_id, uint32_t room_id) { room_manager_.RemoveUser(session_id, room_id); };
 
 	acceptor.Init(SaveByteArray, SavePacket, AddSession, GetSession, GetRoom, RemoveUser);
 }

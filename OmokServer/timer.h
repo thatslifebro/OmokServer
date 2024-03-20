@@ -10,7 +10,7 @@ public:
 
 	void SetTimer(uint32_t time_count, uint32_t duration, std::function<void()> callback);
 
-	void SetRepeatedTimer(uint32_t time_count, uint32_t duration, std::function<void()> callback);
+	void SetRepeatedTimer(uint32_t time_count, uint16_t duration, std::function<void()> callback);
 
 	void SetSameWithPreviousTimer(uint32_t time_count);
 

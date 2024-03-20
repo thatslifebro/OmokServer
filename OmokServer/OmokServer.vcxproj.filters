@@ -23,6 +23,7 @@
     <ClCompile Include="session.cpp" />
     <ClCompile Include="session_manager.cpp" />
     <ClCompile Include="timer.cpp" />
+    <ClCompile Include="db_packet_queue.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="protobuf\OmokPacket.pb.h">
@@ -45,6 +46,7 @@
     <ClInclude Include="flags.h" />
     <ClInclude Include="error_code.h" />
     <ClInclude Include="packet_header.h" />
+    <ClInclude Include="db_packet_queue.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="protobuf\OmokPacket.proto">

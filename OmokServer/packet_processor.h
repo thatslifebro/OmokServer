@@ -12,11 +12,11 @@ class PacketProcessor
 public:
 	void Init();
 
-	void InitPacketQueueFunctions(std::function<const Packet& ()> PopAndGetPacket, std::function<void(const Packet&)> PushDBPacket);
+	void InitPacketQueueFunctions(std::function<Packet()> PopAndGetPacket, std::function<void(Packet)> PushDBPacket);
 
-	void InitRoomManagerFunctions(std::function<void(uint32_t session_id, uint16_t room_id)> AddUser,
-		std::function<void(uint32_t session_id, uint16_t room_id)> RemoveUser,
-		std::function<Room* (uint16_t room_id)> GetRoom,
+	void InitRoomManagerFunctions(std::function<void(uint32_t session_id, uint32_t room_id)> AddUser,
+		std::function<void(uint32_t session_id, uint32_t room_id)> RemoveUser,
+		std::function<Room* (uint32_t room_id)> GetRoom,
 		std::function<std::vector<Room*>()> GetAllRooms);
 
 	void InitSessionManagerFunctions(std::function<Session* (uint32_t session_id)> GetSession,
@@ -81,12 +81,12 @@ private:
 
 	bool IsValidRoom(Room* room);
 
-	std::function<const Packet& ()> PopAndGetPacket_;
-	std::function<void(const Packet&)> PushDBPacket_;
+	std::function<Packet()> PopAndGetPacket_;
+	std::function<void(Packet)> PushDBPacket_;
 
-	std::function<void(uint32_t session_id, uint16_t room_id)> AddUser_;
-	std::function<void(uint32_t session_id, uint16_t room_id)> RemoveUser_;
-	std::function<Room*(uint16_t room_id)> GetRoom_;
+	std::function<void(uint32_t session_id, uint32_t room_id)> AddUser_;
+	std::function<void(uint32_t session_id, uint32_t room_id)> RemoveUser_;
+	std::function<Room*(uint32_t room_id)> GetRoom_;
 	std::function<std::vector<Room*>()> GetAllRooms_;
 
 	std::function<Session* (uint32_t session_id)>  GetSession_;

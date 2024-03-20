@@ -8,7 +8,7 @@ void Timer::SetTimer(uint32_t time_count, uint32_t duration, std::function<void(
 	is_repeated_ = false;
 }
 
-void Timer::SetRepeatedTimer(uint32_t time_count, uint32_t duration, std::function<void()> callback)
+void Timer::SetRepeatedTimer(uint32_t time_count, uint16_t duration, std::function<void()> callback)
 {
 	time_count_ = time_count + duration;
 	duration_ = duration;

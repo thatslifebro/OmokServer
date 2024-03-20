@@ -9,20 +9,20 @@
 class Room
 {
 public:
-	Room(uint16_t room_id) : room_id_(room_id) {}
+	Room(uint32_t room_id) : room_id_(room_id) {}
 
 	void Init(std::function<void(uint32_t, char*, uint16_t)> SendPacket,
 		std::function<std::string(uint32_t)> GetUserId);
 
-	void AddUser(uint16_t session_id);
-	void RemoveUser(uint16_t session_id) { session_ids_.erase(session_id); }
+	void AddUser(uint32_t session_id);
+	void RemoveUser(uint32_t session_id) { session_ids_.erase(session_id); }
 
-	bool IsAdmin(uint16_t session_id) const	{ return admin_id_ == session_id; }
+	bool IsAdmin(uint32_t session_id) const	{ return admin_id_ == session_id; }
 	uint32_t GetAdminId() const { return admin_id_; }
 	void ChangeAdmin();
 	bool IsEmpty() const { return session_ids_.empty(); }
 
-	bool IsOpponent(uint16_t session_id) const { return opponent_id_ == session_id; }
+	bool IsOpponent(uint32_t session_id) const { return opponent_id_ == session_id; }
 	void TryMatchingWith(uint32_t opponent_id);
 
 	bool IsTryMatching() const { return try_matching_; }
@@ -42,9 +42,9 @@ public:
 
 	void TimerCheck(uint32_t time_count) { timer_->Check(time_count); }
 
-	void SetTimer(uint32_t time_count, uint32_t duration, std::function<void()> callback) { timer_->SetTimer(time_count, duration, callback); }
+	void SetTimer(uint32_t time_count, uint16_t duration, std::function<void()> callback) { timer_->SetTimer(time_count, duration, callback); }
 
-	void SetRepeatedTimer(uint32_t time_count, uint32_t duration, std::function<void()> callback) { timer_->SetRepeatedTimer(time_count, duration, callback); }
+	void SetRepeatedTimer(uint32_t time_count, uint16_t duration, std::function<void()> callback) { timer_->SetRepeatedTimer(time_count, duration, callback); }
 
 	void SetSameWithPreviousTimer(uint32_t time_count) { timer_->SetSameWithPreviousTimer(time_count); }
 
@@ -66,7 +66,7 @@ private:
 
 	Timer* timer_ = nullptr;
 
-	const uint16_t room_id_;
+	const uint32_t room_id_;
 	std::unordered_set<uint32_t> session_ids_;
 
 	uint32_t admin_id_ = 0;

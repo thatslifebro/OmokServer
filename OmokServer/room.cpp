@@ -13,7 +13,7 @@ void Room::Init(std::function<void(uint32_t, char*, uint16_t)> SendPacket,
 	InitNetworkFunctions();	
 }
 
-void Room::AddUser(uint16_t session_id)
+void Room::AddUser(uint32_t session_id)
 {
 	if (session_ids_.empty())
 	{

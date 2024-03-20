@@ -204,7 +204,7 @@ void PacketSender::ResMatch(uint32_t admin_session_id, uint32_t result)
 void PacketSender::NtfMatchReq(uint32_t opponent_session_id, uint32_t admin_session_id, std::string admin_user_id)
 {
 	OmokPacket::UserInfo* userinfo = new OmokPacket::UserInfo();
-	userinfo->set_sessionid(opponent_session_id);
+	userinfo->set_sessionid(admin_session_id);
 	userinfo->set_userid(admin_user_id);
 
 	OmokPacket::NtfMatchReq ntf_match_req;
@@ -365,8 +365,8 @@ std::tuple<char*, uint16_t> PacketSender::MakeResData(Packet packet, PacketId pa
 	auto body_size = packet_body.ByteSizeLong();
 
 	packet.SetPacketId(static_cast<uint16_t>(packet_id));
-	packet.SetPacketSize(body_size + PacketHeader::HEADER_SIZE);
-	packet_body.SerializeToArray(packet.GetPacketBody(), body_size);
+	packet.SetPacketSize(static_cast<uint16_t>(body_size) + PacketHeader::HEADER_SIZE);
+	packet_body.SerializeToArray(packet.GetPacketBody(), static_cast<uint16_t>(body_size));
 
 	return packet.GetByteArray();
 }

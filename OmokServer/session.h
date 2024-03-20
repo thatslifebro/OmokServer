@@ -18,7 +18,7 @@ public:
 		std::function<int(Session* session)> AddSession,
 		std::function<Session* (uint32_t session_id)> GetSession,
 		std::function<Room*(uint32_t room_id)> GetRoom,
-		std::function<void(uint32_t session_id, uint16_t room_id)> RemoveUser);
+		std::function<void(uint32_t session_id, uint32_t room_id)> RemoveUser);
 
 	~Session();
 
@@ -34,9 +34,9 @@ public:
 
 	std::string GetUserId() { return user_id_; }
 
-	void SetRoomId(uint16_t room_id) { room_id_ = room_id; }
+	void SetRoomId(uint32_t room_id) { room_id_ = room_id; }
 
-	uint16_t GetRoomId() const { return room_id_; }
+	uint32_t GetRoomId() const { return room_id_; }
 
 	bool IsInRoom() const { return room_id_ != 0; }
 
@@ -50,7 +50,7 @@ private:
 	uint32_t session_id_;
 	std::string user_id_;
 	bool is_logged_in_ = false;
-	uint16_t room_id_ = 0;
+	uint32_t room_id_ = 0;
 
 	Poco::Net::StreamSocket socket_;
 	Poco::Net::SocketReactor& reactor_;
@@ -63,7 +63,7 @@ private:
 	std::function<Session* (uint32_t session_id)> GetSession_;
 
 	std::function<Room* (uint32_t room_id)> GetRoom_;
-	std::function<void(uint32_t session_id, uint16_t room_id)> RemoveUser_;
+	std::function<void(uint32_t session_id, uint32_t room_id)> RemoveUser_;
 
 	void LeaveRoom();
 	void RemoveSession();

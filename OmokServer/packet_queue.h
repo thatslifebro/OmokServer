@@ -2,10 +2,10 @@
 #include<mutex>
 #include<queue>
 #include<print>
-
-#include "Poco/Net/StreamSocket.h"
+#include<concurrent_queue.h>
 
 #include "packet_info.h"
+#include "concurrent_queue.h"
 
 class PacketQueue
 {
@@ -17,16 +17,5 @@ public:
 	Packet PopAndGetPacket();
 	
 private:
-	std::queue<Packet> packet_queue_;
-};
-
-class DBPacketQueue
-{
-public:
-	void PushPacket(Packet packet){ db_packet_queue_.push(packet); }
-
-	Packet PopAndGetPacket();
-
-private:
-	std::queue<Packet> db_packet_queue_;
+	Concurrency::concurrent_queue<Packet> packet_queue_;
 };

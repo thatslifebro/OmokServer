@@ -7,13 +7,14 @@
 
 #include "session.h"
 #include "error_code.h"
+#include "db_packet_queue.h"
 
 class DBProcessor
 {
 public:
 	void Init();
 
-	void InitDBPacketQueueFunctions(std::function<const Packet& ()> PopAndGetPacket) { PopAndGetPacket_ = PopAndGetPacket; }
+	void InitDBPacketQueueFunctions(std::function<Packet()> PopAndGetPacket) { PopAndGetPacket_ = PopAndGetPacket; }
 
 	void InitSessionManagerFunctions(std::function<Session* (uint32_t session_id)> GetSession) { GetSession_ = GetSession; }
 
@@ -29,7 +30,7 @@ private:
 
 	bool IsValidSession(Session* session);
 
-	std::function<const Packet& ()> PopAndGetPacket_;
+	std::function<Packet()> PopAndGetPacket_;
 
 	std::function<Session* (uint32_t session_id)>  GetSession_;
 };
