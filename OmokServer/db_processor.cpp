@@ -2,7 +2,7 @@
 
 void DBProcessor::Init()
 {
-	packet_sender_.InitSendPacketFunc([&](uint32_t session_id, std::shared_ptr<char[]> buffer, int length) {
+	packet_sender_.InitSendPacketFunc([&](uint32_t session_id, char* buffer, int length) {
 		auto session = GetSession_(session_id);
 		session->SendPacket(buffer, length); });
 

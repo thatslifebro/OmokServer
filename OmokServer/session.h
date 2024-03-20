@@ -24,7 +24,7 @@ public:
 
 	void onReadable(ReadableNotification* pNotification);
 
-	void SendPacket(std::shared_ptr<char[]> buffer, int length);
+	void SendPacket(char* buffer, int length);
 
 	bool IsLoggedIn() const { return is_logged_in_; }
 

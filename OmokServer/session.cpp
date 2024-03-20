@@ -14,7 +14,7 @@ Session::Session(Poco::Net::StreamSocket& socket, Poco::Net::SocketReactor& reac
 {
 	session_id_ = AddSession_(this);
 
-	packet_sender_.InitSendPacketFunc([GetSession_](uint32_t session_id, std::shared_ptr<char[]> buffer, int length) {
+	packet_sender_.InitSendPacketFunc([GetSession_](uint32_t session_id, char* buffer, int length) {
 		auto session = GetSession_(session_id);
 		if (session == nullptr)
 		{
@@ -69,9 +69,9 @@ void Session::onReadable(ReadableNotification* pNotification)
 	}
 }
 
-void Session::SendPacket(std::shared_ptr<char[]> buffer, int length)
+void Session::SendPacket(char* buffer, int length)
 {
-	socket_.sendBytes(buffer.get(), length);
+	socket_.sendBytes(buffer, length);
 }
 
 void Session::LeaveRoom()

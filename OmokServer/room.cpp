@@ -1,6 +1,6 @@
 #include "room.h"
 
-void Room::Init(std::function<void(uint32_t, std::shared_ptr<char[]>, uint16_t)> SendPacket,
+void Room::Init(std::function<void(uint32_t, char*, uint16_t)> SendPacket,
 	std::function<std::string(uint32_t)> GetUserId)
 {
 	timer_ = new Timer();

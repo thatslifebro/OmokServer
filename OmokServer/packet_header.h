@@ -1,14 +1,20 @@
 #pragma once
 #include <memory>
 
-struct PacketHeader
+class PacketHeader
 {
-	static const uint16_t header_size_ = 4;
+public:
+	static const uint16_t HEADER_SIZE = 4;
 
+	uint16_t& GetPacketId() { return packet_id_; }
+
+	uint16_t& GetPacketSize() { return packet_size_; }
+
+	void SetPacketId(uint16_t packet_id) { packet_id_ = packet_id; }
+
+	void SetPacketSize(uint16_t packet_size) { packet_size_ = packet_size; }
+
+private:
 	uint16_t packet_id_;
 	uint16_t packet_size_;
-
-	PacketHeader(uint16_t packet_id, uint16_t packet_size_) : packet_id_(packet_id), packet_size_(packet_size_) {}
-
-	std::shared_ptr<char[]> HeaderToByteArray();
 };

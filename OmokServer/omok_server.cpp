@@ -109,7 +109,7 @@ uint16_t OmokServer::ParseConfigRoomNum(flags::args args)
 
 void OmokServer::InitRoomManager(uint16_t room_num)
 {
-	auto SendPacket = [&](uint32_t session_id, std::shared_ptr<char[]> buffer, int length)
+	auto SendPacket = [&](uint32_t session_id, char* buffer, int length)
 		{
 			auto session = session_manager_.GetSession(session_id);
 			session->SendPacket(buffer, length);

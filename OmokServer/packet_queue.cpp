@@ -3,14 +3,14 @@
 
 void PacketQueue::Save(std::shared_ptr<char[]> buffer, uint32_t length, uint32_t session_id)
 {
-	if (length < PacketHeader::header_size_)
+	if (length < PacketHeader::HEADER_SIZE)
 	{
 		return;
 	}
 
 	Packet packet;
 	packet.SetSessionId(session_id);
-	packet.FromByteArray(buffer);
+	packet.ParseData(buffer);
 
 	packet_queue_.push(packet);
 }

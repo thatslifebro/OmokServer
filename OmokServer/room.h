@@ -11,7 +11,7 @@ class Room
 public:
 	Room(uint16_t room_id) : room_id_(room_id) {}
 
-	void Init(std::function<void(uint32_t, std::shared_ptr<char[]>, uint16_t)> SendPacket,
+	void Init(std::function<void(uint32_t, char*, uint16_t)> SendPacket,
 		std::function<std::string(uint32_t)> GetUserId);
 
 	void AddUser(uint16_t session_id);

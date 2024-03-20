@@ -1,7 +1,7 @@
 #include "room_manager.h"
 
 void RoomManager::Init(uint16_t max_room_num,
-	std::function<void(uint32_t session_id, std::shared_ptr<char[]> buffer, int length)> SendPacket,
+	std::function<void(uint32_t session_id, char* buffer, int length)> SendPacket,
 	std::function<std::string(uint32_t session_id)> GetUserId)
 {
 	max_room_num_ = max_room_num;
