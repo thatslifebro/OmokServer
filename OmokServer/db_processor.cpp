@@ -9,7 +9,7 @@ void DBProcessor::Init()
 	packet_handler_map_.insert(std::make_pair(static_cast<uint16_t>(PacketId::ReqLogin), [&](Packet packet) { return ReqLoginHandler(packet); }));
 }
 
-bool DBProcessor::ProcessDB()
+bool DBProcessor::ProcessDBPacket()
 {
 	auto packet = PopAndGetPacket_();
 	

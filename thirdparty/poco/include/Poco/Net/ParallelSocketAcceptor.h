@@ -153,12 +153,12 @@ public:
 	}
 
 	// 변경 사항
-	void Init(std::function<void(std::shared_ptr<char[]>, uint32_t, uint32_t)> SaveByteArray,
-		std::function<void(Packet packet)> SavePacket
+	void Init(std::function<void(std::shared_ptr<char[]>, uint32_t, uint32_t)> PushPacketFromData,
+		std::function<void(Packet packet)> PushPacket
 		)
 	{
-		SaveByteArray_ = SaveByteArray;
-		SavePacket_ = SavePacket;
+		PushPacketFromData_ = PushPacketFromData;
+		PushPacket_ = PushPacket;
 	}
 
 protected:
@@ -181,7 +181,7 @@ protected:
 			pReactor = _reactors[next];
 		}
 		pReactor->wakeUp();
-		return new ServiceHandler(socket, *pReactor, SaveByteArray_, SavePacket_);// 변경 사항
+		return new ServiceHandler(socket, *pReactor, PushPacketFromData_, PushPacket_);// 변경 사항
 	}
 
 	SocketReactor* reactor(const Socket& socket)
@@ -253,8 +253,8 @@ private:
 	std::size_t    _next;
 
 	// 변경 사항
-	std::function<void(std::shared_ptr<char[]>, uint32_t, uint32_t)> SaveByteArray_;
-	std::function<void(Packet packet)> SavePacket_;
+	std::function<void(std::shared_ptr<char[]>, uint32_t, uint32_t)> PushPacketFromData_;
+	std::function<void(Packet packet)> PushPacket_;
 };
 
 

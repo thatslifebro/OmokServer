@@ -1,6 +1,5 @@
 #pragma once
 #include "room.h"
-#include "constants.h"
 
 class RoomManager
 {

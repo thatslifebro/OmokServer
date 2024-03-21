@@ -2,9 +2,8 @@
 #include <functional>
 #include <unordered_map>
 
-#include "packet_queue.h"
-#include "room_manager.h"
 #include "session.h"
+#include "room.h"
 #include "error_code.h"
 
 class PacketProcessor
@@ -43,46 +42,39 @@ private:
 	ErrorCode ReqRoomEnterErrorCheck(Session* session, uint32_t session_id, std::string user_id, Room* room);
 
 	ErrorCode ReqRoomLeaveHandler(Packet packet);
-
 	void ReqRoomLeaveProcess(Session* session, uint32_t session_id, Room* room, uint32_t room_id);
 	ErrorCode ReqRoomLeaveErrorCheck(Session* session, uint32_t session_id);
 
 	ErrorCode ReqRoomChatHandler(Packet packet);
-
 	std::string ReqRoomChatPacketData(Packet packet);
 	void ReqRoomChatProcess(uint32_t session_id, std::string chat, Room* room);
 	ErrorCode ReqRoomChatErrorCheck(Session* session, uint32_t session_id);
 
 	ErrorCode ReqMatchHandler(Packet packet);
-
 	uint32_t ReqMatchPacketData(Packet packet);
 	void ReqMatchProcess(uint32_t session_id, Session* session, uint32_t opponent_id, Session* opponent_session, Room* room);
 	ErrorCode ReqMatchErrorCheck(uint32_t session_id, Session* session, uint32_t opponent_id, Session* opponent_session, Room* room);
 
 	ErrorCode ReqMatchResHandler(Packet packet);
-
 	bool ReqMatchResPacketData(Packet packet);
 	void ReqMatchResProcess(uint32_t session_id, Session* session, uint32_t admin_id, bool accept, Room* room);
 	ErrorCode ReqMatchResErrorCheck(uint32_t session_id, uint32_t admin_id, Room* room);
 
 	ErrorCode ReqReadyOmokHandler(Packet packet);
-
 	void ReqReadyOmokProcess(uint32_t session_id, Session* session, Room* room, Game* game);
 	ErrorCode ReqReadyOmokErrorCheck(uint32_t session_id, Session* session, Room* room, Game* game);
 
 	ErrorCode ReqOmokPutHandler(Packet packet);
-
 	std::tuple<uint32_t, uint32_t> ReqOmokPutPacketData(Packet packet);
 	void ReqOmokPutProcess(uint32_t session_id, Room* room, Game* game, uint32_t x, uint32_t y);
 	ErrorCode ReqOmokPutErrorCheck(uint32_t session_id, Room* room, Game* game, uint32_t x, uint32_t y);
 
 	ErrorCode ReqAddSession(Packet packet);
+
 	ErrorCode ReqRemoveSession(Packet packet);
-	void RemoveSessionRoomLeaveProcess(Session* session, uint32_t session_id, Room* room, uint32_t room_id);
+	void ReqRemoveSessionRoomLeaveProcess(Session* session, uint32_t session_id, Room* room, uint32_t room_id);
 
 	bool IsValidSession(Session* session);
-
-	bool IsValidRoom(Room* room);
 
 	std::function<Packet()> PopAndGetPacket_;
 	std::function<void(Packet)> PushDBPacket_;

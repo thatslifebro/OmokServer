@@ -2,6 +2,7 @@
 
 void OmokServer::Init(flags::args args)
 {
+	std::print("Server Initializing...\n");
 	auto [server_port, room_num] = ParseConfig(args);
 
 	Poco::Net::ServerSocket server_socket(server_port); // exception throw 발생 가능
@@ -12,10 +13,13 @@ void OmokServer::Init(flags::args args)
 	InitPacketProcessor();
 
 	InitDBProcessor();
+
+	std::print("Server Initializing Complete\n");
 }
 
 void OmokServer::Start()
 {
+	std::print("Server Starting...\n");
 	std::jthread packet_processor_thread(&OmokServer::PacketProcessorStart, this);
 	std::jthread db_processor_thread(&OmokServer::DBProcessorStart, this);
 
@@ -24,7 +28,10 @@ void OmokServer::Start()
 
 	InitAcceptor(acceptor);
 
+	std::print("Server is Started\n");
+	
 	reactor.run();
+	
 }
 
 void OmokServer::PacketProcessorStart()
@@ -50,7 +57,7 @@ void OmokServer::DBProcessorStart()
 {
 	while (true)
 	{
-		auto process = db_processor_.ProcessDB();
+		auto process = db_processor_.ProcessDBPacket();
 		if (!process)
 		{
 			std::this_thread::sleep_for(std::chrono::milliseconds(1));
@@ -162,8 +169,8 @@ void OmokServer::InitDBProcessor()
 
 void OmokServer::InitAcceptor(Poco::Net::ParallelSocketAcceptor<Session, Poco::Net::SocketReactor>& acceptor)
 {
-	auto SaveByteArray = [&](std::shared_ptr<char[]> buffer, uint32_t length, uint32_t session_id) { packet_queue_.SaveByteArray(buffer, length, session_id); };
-	auto SavePacket = [&](Packet packet) { packet_queue_.SavePacket(packet); };
+	auto PushPacketFromData = [&](std::shared_ptr<char[]> buffer, uint32_t length, uint32_t session_id) { packet_queue_.PushPacketFromData(buffer, length, session_id); };
+	auto PushPacket = [&](Packet packet) { packet_queue_.PushPacket(packet); };
 
-	acceptor.Init(SaveByteArray, SavePacket);
+	acceptor.Init(PushPacketFromData, PushPacket);
 }

@@ -4,8 +4,7 @@ void PacketProcessor::Init()
 {
 	packet_sender_.InitSendPacketFunc([&](uint32_t session_id, char* buffer, int length) {
 		auto session = GetSession_(session_id);
-		session->SendPacket(buffer, length);
-		});
+		session->SendPacket(buffer, length); });
 
 	//handler 등록
 	packet_handler_map_.insert(std::make_pair(static_cast<uint16_t>(PacketId::ReqLogin), [&](Packet packet) -> ErrorCode { return ReqLoginHandler(packet); }));
@@ -133,7 +132,7 @@ void PacketProcessor::ReqRoomEnterProcess(uint32_t session_id, Session* session,
 
 ErrorCode PacketProcessor::ReqRoomEnterErrorCheck(Session* session, uint32_t session_id, std::string user_id, Room* room)
 {
-	if (IsValidRoom(room) == false)
+	if (room == nullptr)
 	{
 		packet_sender_.ResRoomEnter(session_id, user_id, static_cast<int>(ErrorCode::InvalidRoomId));
 		return ErrorCode::InvalidRoomId;
@@ -674,7 +673,7 @@ ErrorCode PacketProcessor::ReqRemoveSession(Packet packet)
 		
 		std::print("UserId : {} 가 방에서 나감.\n", session->GetUserId());
 
-		RemoveSessionRoomLeaveProcess(session, session_id, room, room_id);
+		ReqRemoveSessionRoomLeaveProcess(session, session_id, room, room_id);
 	}
 
 	RemoveSession_(session_id);
@@ -682,7 +681,7 @@ ErrorCode PacketProcessor::ReqRemoveSession(Packet packet)
 	return ErrorCode::None;
 }
 
-void PacketProcessor::RemoveSessionRoomLeaveProcess(Session* session, uint32_t session_id, Room* room, uint32_t room_id)
+void PacketProcessor::ReqRemoveSessionRoomLeaveProcess(Session* session, uint32_t session_id, Room* room, uint32_t room_id)
 {
 	RemoveUser_(session_id, room_id);
 	session->SetRoomId(0);
@@ -719,7 +718,6 @@ void PacketProcessor::TimerCheck()
 {
 	time_count_++;
 	
-	//1초마다 타이머 10개 체크 (방당 하나이기 때문)
 	auto room_list = GetAllRooms_();
 	for (auto room : room_list)
 	{
@@ -730,15 +728,6 @@ void PacketProcessor::TimerCheck()
 bool PacketProcessor::IsValidSession(Session* session)
 {
 	if (session == nullptr)
-	{
-		return false;
-	}
-	return true;
-}
-
-bool PacketProcessor::IsValidRoom(Room* room)
-{
-	if (room == nullptr)
 	{
 		return false;
 	}

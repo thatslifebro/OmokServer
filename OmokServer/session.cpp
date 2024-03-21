@@ -1,9 +1,9 @@
 #include "session.h"
 
 Session::Session(Poco::Net::StreamSocket& socket, Poco::Net::SocketReactor& reactor,
-	std::function<void(std::shared_ptr<char[]>, uint32_t, uint32_t)> SaveByteArray,
-	std::function<void(Packet packet)> SavePacket) : socket_(socket), reactor_(reactor),
-	SaveByteArray_(SaveByteArray), SavePacket_(SavePacket)
+	std::function<void(std::shared_ptr<char[]>, uint32_t, uint32_t)> PushPacketFromData,
+	std::function<void(Packet packet)> PushPacket) : socket_(socket), reactor_(reactor),
+	PushPacketFromData_(PushPacketFromData), PushPacket_(PushPacket)
 {
 	AddSessionReq();
 
@@ -29,7 +29,7 @@ void Session::onReadable(ReadableNotification* pNotification)
 		if (n > 0)
 		{
 			std::print("Received {} bytes from {}\n", n, peer_address_);
-			SaveByteArray_(buffer, n, session_id_);
+			PushPacketFromData_(buffer, n, session_id_);
 		}
 		else
 		{
@@ -57,7 +57,7 @@ void Session::AddSessionReq()
 	auto session_addr = uint64_t(this);
 	memcpy(packet.GetPacketBody(), &session_addr, sizeof(this));
 
-	SavePacket_(packet);
+	PushPacket_(packet);
 }
 
 void Session::RemoveSessionReq()
@@ -73,5 +73,5 @@ void Session::RemoveSessionReq()
 	packet.SetPacketSize(PacketHeader::HEADER_SIZE);
 	packet.SetSessionId(session_id_);
 
-	SavePacket_(packet);
+	PushPacket_(packet);
 }

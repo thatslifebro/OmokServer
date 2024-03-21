@@ -1,6 +1,5 @@
 #pragma once
 #include <print>
-#include <ctime>
 
 #include <Poco/Net/SocketReactor.h>
 #include <Poco/Net/ServerSocket.h>
@@ -8,8 +7,12 @@
 
 #include "packet_processor.h"
 #include "db_processor.h"
-#include "flags.h"
 #include "session_manager.h"
+#include "room_manager.h"
+#include "packet_queue.h"
+#include "db_packet_queue.h"
+#include "flags.h"
+
 class OmokServer
 {
 public:
@@ -17,10 +20,10 @@ public:
 	void Start();
 
 private:
-	RoomManager room_manager_;
-	SessionManager session_manager_;
 	PacketProcessor packet_processor_;
 	DBProcessor db_processor_;
+	SessionManager session_manager_;
+	RoomManager room_manager_;
 	PacketQueue packet_queue_;
 	DBPacketQueue db_packet_queue_;
 

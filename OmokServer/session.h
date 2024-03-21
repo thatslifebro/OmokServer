@@ -1,20 +1,18 @@
 #pragma once
 #include <functional>
-#include <unordered_map>
 #include <print>
 
 #include "Poco/Net/SocketReactor.h"
 #include "Poco/Net/ParallelSocketAcceptor.h"
 
-#include "room.h"
-#include "packet_sender.h"
+#include "packet.h"
 
 class Session
 {
 public:
 	Session(Poco::Net::StreamSocket& socket, Poco::Net::SocketReactor& reactor,
-		std::function<void(std::shared_ptr<char[]>, uint32_t, uint32_t)> SaveByteArray,
-		std::function<void(Packet packet)> SavePacket);
+		std::function<void(std::shared_ptr<char[]>, uint32_t, uint32_t)> PushPacketFromData,
+		std::function<void(Packet packet)> PushPacket);
 
 	~Session();
 
@@ -52,8 +50,8 @@ private:
 	Poco::Net::SocketReactor& reactor_;
 	std::string peer_address_;
 
-	std::function<void(std::shared_ptr<char[]>, uint32_t, uint32_t)> SaveByteArray_;
-	std::function<void(Packet packet)> SavePacket_;
+	std::function<void(std::shared_ptr<char[]>, uint32_t, uint32_t)> PushPacketFromData_;
+	std::function<void(Packet packet)> PushPacket_;
 
 	void AddSessionReq();
 	void RemoveSessionReq();

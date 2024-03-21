@@ -368,5 +368,5 @@ std::tuple<char*, uint16_t> PacketSender::MakeResData(Packet packet, PacketId pa
 	packet.SetPacketSize(static_cast<uint16_t>(body_size) + PacketHeader::HEADER_SIZE);
 	packet_body.SerializeToArray(packet.GetPacketBody(), static_cast<uint16_t>(body_size));
 
-	return packet.GetByteArray();
+	return std::make_tuple(packet.GetPacketByteArray(), packet.GetPacketSize());
 }

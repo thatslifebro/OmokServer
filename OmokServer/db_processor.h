@@ -1,13 +1,10 @@
 #pragma once
 #include <unordered_map>
-#include <string>
-#include <queue>
-#include <mutex>
 #include <functional>
 
 #include "session.h"
 #include "error_code.h"
-#include "db_packet_queue.h"
+#include "packet_sender.h"
 
 class DBProcessor
 {
@@ -18,7 +15,7 @@ public:
 
 	void InitSessionManagerFunctions(std::function<Session* (uint32_t session_id)> GetSession) { GetSession_ = GetSession; }
 
-	bool ProcessDB();
+	bool ProcessDBPacket();
 
 private:
 	std::unordered_map<uint16_t, std::function<ErrorCode(Packet) >> packet_handler_map_;

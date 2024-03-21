@@ -1,6 +1,6 @@
 #include "packet_queue.h"
 
-void PacketQueue::SaveByteArray(std::shared_ptr<char[]> buffer, uint32_t length, uint32_t session_id)
+void PacketQueue::PushPacketFromData(std::shared_ptr<char[]> buffer, uint32_t length, uint32_t session_id)
 {
 	if (length < PacketHeader::HEADER_SIZE || length > MAX_PACKET_SIZE)
 	{
@@ -14,7 +14,7 @@ void PacketQueue::SaveByteArray(std::shared_ptr<char[]> buffer, uint32_t length,
 	packet_queue_.push(packet);
 }
 
-void PacketQueue::SavePacket(Packet packet)
+void PacketQueue::PushPacket(Packet packet)
 {
 	packet_queue_.push(packet);
 }
