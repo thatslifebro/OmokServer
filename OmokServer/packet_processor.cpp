@@ -25,10 +25,10 @@ void PacketProcessor::InitPacketQueueFunctions(std::function<Packet()> PopAndGet
 	PushDBPacket_ = PushDBPacket;
 }
 
-void PacketProcessor::InitRoomManagerFunctions(std::function<void(uint32_t session_id, uint32_t room_id)> AddUser, std::function<void(uint32_t session_id, uint32_t room_id)> RemoveUser, std::function<Room* (uint32_t room_id)> GetRoom, std::function<std::vector<Room*>()> GetAllRooms)
+void PacketProcessor::InitRoomManagerFunctions(std::function<void(uint32_t session_id, uint32_t room_id)> UserEnterRoom, std::function<void(uint32_t session_id, uint32_t room_id)> UserLeaveRoom, std::function<Room* (uint32_t room_id)> GetRoom, std::function<std::vector<Room*>()> GetAllRooms)
 {
-	AddUser_ = AddUser;
-	RemoveUser_ = RemoveUser;
+	UserEnterRoom_ = UserEnterRoom;
+	UserLeaveRoom_ = UserLeaveRoom;
 	GetRoom_ = GetRoom;
 	GetAllRooms_ = GetAllRooms;
 }
@@ -111,7 +111,7 @@ uint32_t PacketProcessor::ReqRoomEnterPacketData(Packet packet)
 
 void PacketProcessor::ReqRoomEnterProcess(uint32_t session_id, Session* session, std::string user_id, uint32_t room_id, Room* room)
 {
-	AddUser_(session_id, room_id);
+	UserEnterRoom_(session_id, room_id);
 	session->SetRoomId(room_id);
 
 	packet_sender_.ResRoomEnter(session_id, user_id, 0);
@@ -186,7 +186,7 @@ ErrorCode PacketProcessor::ReqRoomLeaveHandler(Packet packet)
 
 void PacketProcessor::ReqRoomLeaveProcess(Session* session, uint32_t session_id, Room* room, uint32_t room_id)
 {
-	RemoveUser_(session_id, room_id);
+	UserLeaveRoom_(session_id, room_id);
 	session->SetRoomId(0);
 
 	packet_sender_.ResRoomLeave(session_id, 0);
@@ -673,7 +673,7 @@ ErrorCode PacketProcessor::ReqRemoveSession(Packet packet)
 
 void PacketProcessor::ReqRemoveSessionRoomLeaveProcess(Session* session, uint32_t session_id, Room* room, uint32_t room_id)
 {
-	RemoveUser_(session_id, room_id);
+	UserLeaveRoom_(session_id, room_id);
 	session->SetRoomId(0);
 
 	room->NtfRoomUserLeave(session_id);

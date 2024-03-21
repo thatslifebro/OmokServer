@@ -138,12 +138,12 @@ void OmokServer::InitPacketProcessor()
 
 	packet_processor_.InitPacketQueueFunctions(PopAndGetPacket, PushPacket);
 
-	auto AddUser = [&](uint32_t session_id, uint32_t room_id) { room_manager_.AddUser(session_id, room_id); };
-	auto RemoveUser = [&](uint32_t session_id, uint32_t room_id) { room_manager_.RemoveUser(session_id, room_id); };
+	auto UserEnterRoom = [&](uint32_t session_id, uint32_t room_id) { room_manager_.UserEnterRoom(session_id, room_id); };
+	auto UserLeaveRoom = [&](uint32_t session_id, uint32_t room_id) { room_manager_.UserLeaveRoom(session_id, room_id); };
 	auto GetRoom = [&](uint32_t room_id) { return room_manager_.GetRoom(room_id); };
 	auto GetAllRooms = [&]() { return room_manager_.GetAllRooms(); };
 
-	packet_processor_.InitRoomManagerFunctions(AddUser, RemoveUser, GetRoom, GetAllRooms);
+	packet_processor_.InitRoomManagerFunctions(UserEnterRoom, UserLeaveRoom, GetRoom, GetAllRooms);
 
 	auto AddSession = [&](Session* session) { return session_manager_.AddSession(session); };
 	auto GetSession = [&](uint32_t session_id) { return session_manager_.GetSession(session_id); };

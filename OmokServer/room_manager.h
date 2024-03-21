@@ -8,9 +8,9 @@ public:
 		std::function<void(uint32_t session_id, char* buffer, int length)> SendPacket,
 		std::function<std::string(uint32_t session_id)> GetUserId);
 
-	void AddUser(uint32_t session_id, uint32_t room_id) { room_vec_[room_id - 1]->AddUser(session_id);  }
+	void UserEnterRoom(uint32_t session_id, uint32_t room_id) { room_vec_[room_id - 1]->AddUser(session_id);  }
 
-	void RemoveUser(uint32_t session_id, uint32_t room_id) { room_vec_[room_id - 1]->RemoveUser(session_id); }
+	void UserLeaveRoom(uint32_t session_id, uint32_t room_id) { room_vec_[room_id - 1]->RemoveUser(session_id); }
 
 	Room* GetRoom(uint32_t room_id);
 
