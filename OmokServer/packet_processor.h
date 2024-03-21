@@ -76,6 +76,10 @@ private:
 
 	bool IsValidSession(Session* session);
 
+	void NotifyOthersEndGame(Room* room, uint32_t room_id, uint32_t session_id);
+
+	void ChangeAdminProcess(Room* room);
+
 	std::function<Packet()> PopAndGetPacket_;
 	std::function<void(Packet)> PushDBPacket_;
 

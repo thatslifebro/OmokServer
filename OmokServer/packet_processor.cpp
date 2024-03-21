@@ -194,13 +194,8 @@ void PacketProcessor::ReqRoomLeaveProcess(Session* session, uint32_t session_id,
 
 	if (room->IsGameStarted() && room->IsPlayer(session_id))
 	{
-		auto opponent_id = room->GetOpponentPlayer(session_id);
-		packet_sender_.NtfGameOver(opponent_id, 1);
 		packet_sender_.NtfGameOver(session_id, 0);
-
-		room->NtfGameOverView_(opponent_id, session_id);
-
-		std::print("{}번 방 게임 종료. {} 승리 ,{} 패배\n", room_id, GetSession_(opponent_id)->GetUserId(), session->GetUserId());
+		NotifyOthersEndGame(room, room_id, session_id);
 	}
 
 	if (room->IsMatched() && room->IsPlayer(session_id))
@@ -210,15 +205,7 @@ void PacketProcessor::ReqRoomLeaveProcess(Session* session, uint32_t session_id,
 
 	if (room->IsAdmin(session_id))
 	{
-		room->ChangeAdmin();
-
-		if (room->IsEmpty() == false)
-		{
-			auto new_admin_id = room->GetAdminId();
-			packet_sender_.ResYouAreRoomAdmin(new_admin_id);
-
-			room->NtfNewRoomAdmin_();
-		}
+		ChangeAdminProcess(room);
 	}
 }
 
@@ -693,12 +680,7 @@ void PacketProcessor::ReqRemoveSessionRoomLeaveProcess(Session* session, uint32_
 
 	if (room->IsGameStarted() && room->IsPlayer(session_id))
 	{
-		auto opponent_id = room->GetOpponentPlayer(session_id);
-		packet_sender_.NtfGameOver(opponent_id, 1);
-
-		room->NtfGameOverView_(opponent_id, session_id);
-
-		std::print("{}번 방 게임 종료. {} 승리 ,{} 패배\n", room_id, GetSession_(opponent_id)->GetUserId(), session->GetUserId());
+		NotifyOthersEndGame(room, room_id, session_id);
 	}
 
 	if (room->IsMatched() && room->IsPlayer(session_id))
@@ -708,15 +690,30 @@ void PacketProcessor::ReqRemoveSessionRoomLeaveProcess(Session* session, uint32_
 
 	if (room->IsAdmin(session_id))
 	{
-		room->ChangeAdmin();
+		ChangeAdminProcess(room);
+	}
+}
 
-		if (room->IsEmpty() == false)
-		{
-			auto new_admin_id = room->GetAdminId();
-			packet_sender_.ResYouAreRoomAdmin(new_admin_id);
+void PacketProcessor::NotifyOthersEndGame(Room* room, uint32_t room_id, uint32_t session_id)
+{
+	auto opponent_id = room->GetOpponentPlayer(session_id);
+	packet_sender_.NtfGameOver(opponent_id, 1);
 
-			room->NtfNewRoomAdmin_();
-		}
+	room->NtfGameOverView_(opponent_id, session_id);
+
+	std::print("{}번 방 게임 종료. {} 승리 ,{} 패배\n", room_id, GetSession_(opponent_id)->GetUserId(), GetSession_(session_id)->GetUserId());
+}
+
+void PacketProcessor::ChangeAdminProcess(Room* room)
+{
+	room->ChangeAdmin();
+
+	if (room->IsEmpty() == false)
+	{
+		auto new_admin_id = room->GetAdminId();
+		packet_sender_.ResYouAreRoomAdmin(new_admin_id);
+
+		room->NtfNewRoomAdmin_();
 	}
 }
 
