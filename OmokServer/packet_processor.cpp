@@ -115,7 +115,7 @@ void PacketProcessor::ReqRoomEnterProcess(uint32_t session_id, Session* session,
 	session->SetRoomId(room_id);
 
 	packet_sender_.ResRoomEnter(session_id, user_id, 0);
-	room->ResRoomUserList_(session_id);
+	room->ResRoomUserList(session_id);
 
 	if (room->IsAdmin(session_id))
 	{
@@ -127,7 +127,7 @@ void PacketProcessor::ReqRoomEnterProcess(uint32_t session_id, Session* session,
 		packet_sender_.ResRoomAdmin(session_id, admin_id, GetSession_(admin_id)->GetUserId());
 	}
 
-	room->NtfRoomUserEnter_(session_id);
+	room->NtfRoomUserEnter(session_id);
 }
 
 ErrorCode PacketProcessor::ReqRoomEnterErrorCheck(Session* session, uint32_t session_id, std::string user_id, Room* room)
@@ -190,7 +190,7 @@ void PacketProcessor::ReqRoomLeaveProcess(Session* session, uint32_t session_id,
 	session->SetRoomId(0);
 
 	packet_sender_.ResRoomLeave(session_id, 0);
-	room->NtfRoomUserLeave_(session_id);
+	room->NtfRoomUserLeave(session_id);
 
 	if (room->IsGameStarted() && room->IsPlayer(session_id))
 	{
@@ -267,7 +267,7 @@ void PacketProcessor::ReqRoomChatProcess(uint32_t session_id, std::string chat, 
 {
 	packet_sender_.ResRoomChat(session_id, 0, chat);
 
-	room->NtfRoomChat_(session_id, chat);
+	room->NtfRoomChat(session_id, chat);
 }
 
 ErrorCode PacketProcessor::ReqRoomChatErrorCheck(Session* session, uint32_t session_id)
@@ -501,7 +501,7 @@ void PacketProcessor::ReqReadyOmokProcess(uint32_t session_id, Session* session,
 
 		packet_sender_.NtfStartOmok(black_session_id, black_user_id, white_session_id, white_user_id);
 
-		room->NtfStartOmokView_(black_session_id, black_user_id, white_session_id, white_user_id);
+		room->NtfStartOmokView(black_session_id, black_user_id, white_session_id, white_user_id);
 
 		room->SetRepeatedTimer(time_count_, PUT_MOK_TIMEOUT, [room]()
 			{
@@ -510,7 +510,7 @@ void PacketProcessor::ReqReadyOmokProcess(uint32_t session_id, Session* session,
 					auto game = room->GetGame();
 					game->ChangeTurn();
 
-					room->NtfPutMokTimeout_();
+					room->NtfPutMokTimeout();
 					std::print("PutMok 시간 초과\n");
 				}
 			});
@@ -587,7 +587,7 @@ void PacketProcessor::ReqOmokPutProcess(uint32_t session_id, Room* room, Game* g
 	packet_sender_.ResPutMok(session_id, 0);
 	room->CancelTimer();
 
-	room->NtfPutMok_(session_id, x, y);
+	room->NtfPutMok(session_id, x, y);
 
 	if (game->CheckOmok(x, y) == true)
 	{
@@ -597,7 +597,7 @@ void PacketProcessor::ReqOmokPutProcess(uint32_t session_id, Room* room, Game* g
 		packet_sender_.NtfGameOver(winner_id, 1);
 		packet_sender_.NtfGameOver(loser_id, 0);
 
-		room->NtfGameOverView_(winner_id, loser_id);
+		room->NtfGameOverView(winner_id, loser_id);
 
 		//게임 종료 처리
 		room->EndMatch();
@@ -676,7 +676,7 @@ void PacketProcessor::ReqRemoveSessionRoomLeaveProcess(Session* session, uint32_
 	RemoveUser_(session_id, room_id);
 	session->SetRoomId(0);
 
-	room->NtfRoomUserLeave_(session_id);
+	room->NtfRoomUserLeave(session_id);
 
 	if (room->IsGameStarted() && room->IsPlayer(session_id))
 	{
@@ -699,7 +699,7 @@ void PacketProcessor::NotifyOthersEndGame(Room* room, uint32_t room_id, uint32_t
 	auto opponent_id = room->GetOpponentPlayer(session_id);
 	packet_sender_.NtfGameOver(opponent_id, 1);
 
-	room->NtfGameOverView_(opponent_id, session_id);
+	room->NtfGameOverView(opponent_id, session_id);
 
 	std::print("{}번 방 게임 종료. {} 승리 ,{} 패배\n", room_id, GetSession_(opponent_id)->GetUserId(), GetSession_(session_id)->GetUserId());
 }
@@ -713,7 +713,7 @@ void PacketProcessor::ChangeAdminProcess(Room* room)
 		auto new_admin_id = room->GetAdminId();
 		packet_sender_.ResYouAreRoomAdmin(new_admin_id);
 
-		room->NtfNewRoomAdmin_();
+		room->NtfNewRoomAdmin();
 	}
 }
 

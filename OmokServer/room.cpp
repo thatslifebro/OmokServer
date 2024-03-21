@@ -9,8 +9,6 @@ void Room::Init(std::function<void(uint32_t, char*, uint16_t)> SendPacket,
 	packet_sender_.InitSendPacketFunc(SendPacket);
 
 	GetUserId_ = GetUserId;
-
-	InitNetworkFunctions();	
 }
 
 void Room::AddUser(uint32_t session_id)
@@ -94,37 +92,58 @@ void Room::EndMatch()
 	CancelMatch();
 }
 
-void Room::InitNetworkFunctions()
+void Room::ResRoomUserList(uint32_t session_id)
 {
-	ResRoomUserList_ = [&](uint32_t session_id)
+		std::vector<std::pair<uint32_t, std::string>> user_list;
+		for (auto other_session_id : session_ids_)
 		{
-			std::vector<std::pair<uint32_t, std::string>> user_list;
-			for (auto other_session_id : session_ids_)
+			if (other_session_id == session_id)
 			{
-				if (other_session_id == session_id)
-				{
-					continue;
-				}
+			continue;
+		}
 
-				user_list.push_back(std::make_pair(other_session_id, GetUserId_(other_session_id)));
-			}
-			packet_sender_.ResRoomUserList(session_id, user_list);
-		};
+		user_list.push_back(std::make_pair(other_session_id, GetUserId_(other_session_id)));
+	}
+	packet_sender_.ResRoomUserList(session_id, user_list);
 
-	NtfRoomUserEnter_ = [&](uint32_t session_id) { packet_sender_.NtfRoomUserEnter(session_ids_, session_id, GetUserId_(session_id)); };
+}
 
-	NtfRoomUserLeave_ = [&](uint32_t session_id) { packet_sender_.NtfRoomUserLeave(session_ids_, session_id, GetUserId_(session_id)); };
+void Room::NtfRoomUserEnter(uint32_t session_id)
+{
+	packet_sender_.NtfRoomUserEnter(session_ids_, session_id, GetUserId_(session_id));
+}
 
-	NtfNewRoomAdmin_ = [&] { packet_sender_.NtfNewRoomAdmin(session_ids_, admin_id_, GetUserId_(admin_id_)); };
+void Room::NtfRoomUserLeave(uint32_t session_id)
+{
+	packet_sender_.NtfRoomUserLeave(session_ids_, session_id, GetUserId_(session_id));
+}
 
-	NtfRoomChat_ = [&](uint32_t session_id, std::string chat) { packet_sender_.NtfRoomChat(session_ids_, session_id, GetUserId_(session_id), chat); };
+void Room::NtfNewRoomAdmin()
+{
+	packet_sender_.NtfNewRoomAdmin(session_ids_, admin_id_, GetUserId_(admin_id_));
+}
 
-	NtfStartOmokView_ = [&](uint32_t black_session_id, std::string balck_user_id, uint32_t white_session_id, std::string white_user_id) 
-		{ packet_sender_.NtfStartOmokView(session_ids_, black_session_id, balck_user_id, white_session_id, white_user_id); };
+void Room::NtfRoomChat(uint32_t session_id, std::string chat)
+{
+	packet_sender_.NtfRoomChat(session_ids_, session_id, GetUserId_(session_id), chat);
+}
 
-	NtfPutMok_ = [&](uint32_t session_id, uint32_t x, uint32_t y) { packet_sender_.NtfPutMok(session_ids_, session_id, x, y); };
+void Room::NtfStartOmokView(uint32_t black_session_id, std::string black_user_id, uint32_t white_session_id, std::string white_user_id)
+{
+	packet_sender_.NtfStartOmokView(session_ids_, black_session_id, black_user_id, white_session_id, white_user_id);
+}
 
-	NtfGameOverView_ = [&](uint32_t winner_id, uint32_t loser_id) { packet_sender_.NtfGameOverView(session_ids_, winner_id, loser_id); };
+void Room::NtfPutMok(uint32_t session_id, uint32_t x, uint32_t y)
+{
+	packet_sender_.NtfPutMok(session_ids_, session_id, x, y);
+}
 
-	NtfPutMokTimeout_ = [&]{ packet_sender_.NtfPutMokTimeout(session_ids_); };
+void Room::NtfGameOverView(uint32_t winner_session_id, uint32_t loser_session_id)
+{
+	packet_sender_.NtfGameOverView(session_ids_, winner_session_id, loser_session_id);
+}
+
+void Room::NtfPutMokTimeout()
+{
+	packet_sender_.NtfPutMokTimeout(session_ids_);
 }
