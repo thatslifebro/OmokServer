@@ -708,7 +708,6 @@ void PacketProcessor::ChangeAdminProcess(Room* room)
 {
 	room->ChangeAdmin();
 
-
 	if (room->IsEmpty() == false)
 	{
 		auto new_admin_id = room->GetAdminId();
