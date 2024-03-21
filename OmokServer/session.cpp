@@ -36,7 +36,7 @@ void Session::onReadable(ReadableNotification* pNotification)
 			RemoveSessionReq();
 		}
 	}
-	catch (Poco::Exception& e)
+	catch (Poco::Exception&)
 	{
 		RemoveSessionReq();
 	}

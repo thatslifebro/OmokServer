@@ -197,10 +197,13 @@ void PacketProcessor::ReqRoomLeaveProcess(Session* session, uint32_t session_id,
 		auto opponent_id = room->GetOpponentPlayer(session_id);
 		packet_sender_.NtfGameOver(opponent_id, 1);
 		packet_sender_.NtfGameOver(session_id, 0);
+
+		room->NtfGameOverView_(opponent_id, session_id);
+
 		std::print("{}번 방 게임 종료. {} 승리 ,{} 패배\n", room_id, GetSession_(opponent_id)->GetUserId(), session->GetUserId());
 	}
 
-	if (room->IsMatched())
+	if (room->IsMatched() && room->IsPlayer(session_id))
 	{
 		room->EndMatch();
 	}
@@ -692,10 +695,13 @@ void PacketProcessor::ReqRemoveSessionRoomLeaveProcess(Session* session, uint32_
 	{
 		auto opponent_id = room->GetOpponentPlayer(session_id);
 		packet_sender_.NtfGameOver(opponent_id, 1);
+
+		room->NtfGameOverView_(opponent_id, session_id);
+
 		std::print("{}번 방 게임 종료. {} 승리 ,{} 패배\n", room_id, GetSession_(opponent_id)->GetUserId(), session->GetUserId());
 	}
 
-	if (room->IsMatched())
+	if (room->IsMatched() && room->IsPlayer(session_id))
 	{
 		room->EndMatch();
 	}

@@ -245,7 +245,7 @@ void PacketSender::NtfStartOmok(uint32_t black_session_id, std::string black_use
 
 	Packet packet2;
 	auto [res_data_white, res_length_white] = MakeResData(packet2, PacketId::NtfStartOmok, ntf_start_omok_white);
-	SendPacket_(white_session_id, res_data_black, res_length_black);
+	SendPacket_(white_session_id, res_data_white, res_length_white);
 }
 
 void PacketSender::NtfStartOmokView(std::unordered_set<uint32_t> room_session_ids, uint32_t black_session_id, std::string balck_user_id, uint32_t white_session_id, std::string white_user_id)
