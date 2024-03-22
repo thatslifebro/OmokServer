@@ -177,6 +177,13 @@
     <ClCompile Include="main.cpp" />
     <ClCompile Include="omok_server.cpp" />
     <ClCompile Include="packet.cpp" />
+    <ClCompile Include="packet_handler\match_req_handler.cpp" />
+    <ClCompile Include="packet_handler\match_res_handler.cpp" />
+    <ClCompile Include="packet_handler\put_mok_handler.cpp" />
+    <ClCompile Include="packet_handler\ready_handler.cpp" />
+    <ClCompile Include="packet_handler\room_chat_handler.cpp" />
+    <ClCompile Include="packet_handler\room_enter_handler.cpp" />
+    <ClCompile Include="packet_handler\room_leave_handler.cpp" />
     <ClCompile Include="packet_processor.cpp" />
     <ClCompile Include="packet_id.h" />
     <ClCompile Include="packet_queue.cpp" />
@@ -196,6 +203,13 @@
     <ClInclude Include="flags.h" />
     <ClInclude Include="game.h" />
     <ClInclude Include="omok_server.h" />
+    <ClInclude Include="packet_handler\match_req_handler.h" />
+    <ClInclude Include="packet_handler\match_res_handler.h" />
+    <ClInclude Include="packet_handler\put_mok_handler.h" />
+    <ClInclude Include="packet_handler\ready_handler.h" />
+    <ClInclude Include="packet_handler\room_chat_handler.h" />
+    <ClInclude Include="packet_handler\room_enter_handler.h" />
+    <ClInclude Include="packet_handler\room_leave_handler.h" />
     <ClInclude Include="packet_header.h" />
     <ClInclude Include="packet_queue.h" />
     <ClInclude Include="packet.h" />

@@ -6,10 +6,20 @@
 #include "room.h"
 #include "error_code.h"
 
+#include "packet_handler/room_enter_handler.h"
+#include "packet_handler/room_leave_handler.h"
+#include "packet_handler/room_chat_handler.h"
+#include "packet_handler/match_req_handler.h"
+#include "packet_handler/match_res_handler.h"
+#include "packet_handler/ready_handler.h"
+#include "packet_handler/put_mok_handler.h"
+
 class PacketProcessor
 {
 public:
 	void Init();
+	void InitPacketHandler();
+	void InitSaveHandleRequestFunc();
 
 	void InitPacketQueueFunctions(std::function<Packet()> PopAndGetPacket, std::function<void(Packet)> PushDBPacket);
 
@@ -29,55 +39,25 @@ public:
 private:
 	PacketSender packet_sender_;
 
+	RoomEnterHandler room_enter_handler_;
+	RoomLeaveHandler room_leave_handler_;
+	RoomChatHandler room_chat_handler_;
+	MatchReqHandler match_req_handler_;
+	MatchResHandler match_res_handler_;
+	ReadyHandler ready_handler_;
+	PutMokHandler put_mok_handler_;
+
 	std::unordered_map<uint16_t, std::function<ErrorCode(Packet) >> packet_handler_map_;
 
-	int time_count_ = 0;
+	uint32_t time_count_ = 0;
 
 	ErrorCode ReqLoginHandler(Packet packet);
-
-	ErrorCode ReqRoomEnterHandler(Packet packet);
-
-	uint32_t ReqRoomEnterPacketData(Packet packet);
-	void ReqRoomEnterProcess(uint32_t session_id, Session* session, std::string user_id, uint32_t room_id, Room* room);
-	ErrorCode ReqRoomEnterErrorCheck(Session* session, uint32_t session_id, std::string user_id, Room* room);
-
-	ErrorCode ReqRoomLeaveHandler(Packet packet);
-	void ReqRoomLeaveProcess(Session* session, uint32_t session_id, Room* room, uint32_t room_id);
-	ErrorCode ReqRoomLeaveErrorCheck(Session* session, uint32_t session_id);
-
-	ErrorCode ReqRoomChatHandler(Packet packet);
-	std::string ReqRoomChatPacketData(Packet packet);
-	void ReqRoomChatProcess(uint32_t session_id, std::string chat, Room* room);
-	ErrorCode ReqRoomChatErrorCheck(Session* session, uint32_t session_id);
-
-	ErrorCode ReqMatchHandler(Packet packet);
-	uint32_t ReqMatchPacketData(Packet packet);
-	void ReqMatchProcess(uint32_t session_id, Session* session, uint32_t opponent_id, Session* opponent_session, Room* room);
-	ErrorCode ReqMatchErrorCheck(uint32_t session_id, Session* session, uint32_t opponent_id, Session* opponent_session, Room* room);
-
-	ErrorCode ReqMatchResHandler(Packet packet);
-	bool ReqMatchResPacketData(Packet packet);
-	void ReqMatchResProcess(uint32_t session_id, Session* session, uint32_t admin_id, bool accept, Room* room);
-	ErrorCode ReqMatchResErrorCheck(uint32_t session_id, uint32_t admin_id, Room* room);
-
-	ErrorCode ReqReadyOmokHandler(Packet packet);
-	void ReqReadyOmokProcess(uint32_t session_id, Session* session, Room* room, Game* game);
-	ErrorCode ReqReadyOmokErrorCheck(uint32_t session_id, Session* session, Room* room, Game* game);
-
-	ErrorCode ReqOmokPutHandler(Packet packet);
-	std::tuple<uint32_t, uint32_t> ReqOmokPutPacketData(Packet packet);
-	void ReqOmokPutProcess(uint32_t session_id, Room* room, Game* game, uint32_t x, uint32_t y);
-	ErrorCode ReqOmokPutErrorCheck(uint32_t session_id, Room* room, Game* game, uint32_t x, uint32_t y);
 
 	ErrorCode ReqAddSession(Packet packet);
 
 	ErrorCode ReqRemoveSession(Packet packet);
 	void ReqRemoveSessionRoomLeaveProcess(Session* session, uint32_t session_id, Room* room, uint32_t room_id);
-
-	bool IsValidSession(Session* session);
-
 	void NotifyOthersEndGame(Room* room, uint32_t room_id, uint32_t session_id);
-
 	void ChangeAdminProcess(Room* room);
 
 	std::function<Packet()> PopAndGetPacket_;

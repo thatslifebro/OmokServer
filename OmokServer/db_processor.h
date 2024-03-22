@@ -25,8 +25,6 @@ private:
 	std::string ReqLoginPacketData(Packet packet);
 	void ReqLoginProcess(Session* session, std::string user_id);
 
-	bool IsValidSession(Session* session);
-
 	std::function<Packet()> PopAndGetPacket_;
 
 	std::function<Session* (uint32_t session_id)>  GetSession_;

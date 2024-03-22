@@ -28,7 +28,7 @@ void Session::onReadable(ReadableNotification* pNotification)
 
 		if (n > 0)
 		{
-			std::print("Received {} bytes from {}\n", n, peer_address_);
+			//std::print("Received {} bytes from {}\n", n, peer_address_);
 			PushPacketFromData_(buffer, n, session_id_);
 		}
 		else

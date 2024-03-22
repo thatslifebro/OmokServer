@@ -32,7 +32,7 @@ ErrorCode DBProcessor::ReqLoginHandler(Packet packet)
 	auto user_id = ReqLoginPacketData(packet);
 
 	auto session = GetSession_(packet.GetSessionId());
-	if (IsValidSession(session) == false)
+	if (session == nullptr)
 	{
 		return ErrorCode::InvalidSession;
 	}
@@ -65,14 +65,4 @@ void DBProcessor::ReqLoginProcess(Session* session, std::string user_id)
 	session->SetUserId(user_id);
 
 	packet_sender_.ResLogin(session->GetSessionId(), 0);
-}
-
-bool DBProcessor::IsValidSession(Session* session)
-{
-	if (session == nullptr)
-	{
-		return false;
-	}
-
-	return true;
 }

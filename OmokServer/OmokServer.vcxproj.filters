@@ -4,6 +4,9 @@
     <Filter Include="protobuf">
       <UniqueIdentifier>{3ee701b8-f7e1-4be9-9add-8c724c00ed1a}</UniqueIdentifier>
     </Filter>
+    <Filter Include="packet_handler">
+      <UniqueIdentifier>{6380794e-6966-493f-a140-b2706665e053}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="protobuf\OmokPacket.pb.cc">
@@ -24,6 +27,27 @@
     <ClCompile Include="session_manager.cpp" />
     <ClCompile Include="timer.cpp" />
     <ClCompile Include="db_packet_queue.cpp" />
+    <ClCompile Include="packet_handler\match_res_handler.cpp">
+      <Filter>packet_handler</Filter>
+    </ClCompile>
+    <ClCompile Include="packet_handler\put_mok_handler.cpp">
+      <Filter>packet_handler</Filter>
+    </ClCompile>
+    <ClCompile Include="packet_handler\ready_handler.cpp">
+      <Filter>packet_handler</Filter>
+    </ClCompile>
+    <ClCompile Include="packet_handler\room_chat_handler.cpp">
+      <Filter>packet_handler</Filter>
+    </ClCompile>
+    <ClCompile Include="packet_handler\room_enter_handler.cpp">
+      <Filter>packet_handler</Filter>
+    </ClCompile>
+    <ClCompile Include="packet_handler\room_leave_handler.cpp">
+      <Filter>packet_handler</Filter>
+    </ClCompile>
+    <ClCompile Include="packet_handler\match_req_handler.cpp">
+      <Filter>packet_handler</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="protobuf\OmokPacket.pb.h">
@@ -47,6 +71,27 @@
     <ClInclude Include="error_code.h" />
     <ClInclude Include="packet_header.h" />
     <ClInclude Include="db_packet_queue.h" />
+    <ClInclude Include="packet_handler\match_req_handler.h">
+      <Filter>packet_handler</Filter>
+    </ClInclude>
+    <ClInclude Include="packet_handler\match_res_handler.h">
+      <Filter>packet_handler</Filter>
+    </ClInclude>
+    <ClInclude Include="packet_handler\put_mok_handler.h">
+      <Filter>packet_handler</Filter>
+    </ClInclude>
+    <ClInclude Include="packet_handler\ready_handler.h">
+      <Filter>packet_handler</Filter>
+    </ClInclude>
+    <ClInclude Include="packet_handler\room_chat_handler.h">
+      <Filter>packet_handler</Filter>
+    </ClInclude>
+    <ClInclude Include="packet_handler\room_enter_handler.h">
+      <Filter>packet_handler</Filter>
+    </ClInclude>
+    <ClInclude Include="packet_handler\room_leave_handler.h">
+      <Filter>packet_handler</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="protobuf\OmokPacket.proto">
