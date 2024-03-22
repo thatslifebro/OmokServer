@@ -1,56 +1,91 @@
-# OmokServer
+# Omok Server
+
+## 서버 구성
+
+### 1. 네트워크 라이브러리 (외부 라이브러리)
+Poco - ParallelSocketAcceptor 사용
+
+클라이언트 접속 처리는 싱글 스레드. 그 이후의 이벤트들을 멀티스레드로 처리. 
+
+### 2. 데이터 직렬화 (외부 라이브러리)
+Google Protocol Buffer (protobuf)
+
+### 3. 패킷 구성
+packet_size(2byte) + packet id(2byte) + body(protobuf)
+
+### 4. 쓰레드 구성
+- main thread (1) : Init, 스레드 생성, Run
+- Poco ParallellSocketAcceptor (n) : 멀티스레드로 네트워크 이벤트 처리 및 PacketQueue에 패킷 저장
+- PacketProcessor (1) : PacketQueue에 저장되는 패킷을 처리, 타이머 처리, DBPacketQueue에 패킷 저장, 응답 Packet 전송
+- DBProcessor (1) : PacketProcessor가 저장한 패킷을 처리, 응답 Packet 전송
 
 
-#### 서버
-
-Poco 라이브러리에 parellel reactor 이용해서 네트워크 처리
-
-protocol buffer 이용해서 데이터 주고 받아 보았고
-
-패킷 body를 protobuf로 만들고 패킷 헤더(size, packet id) 를 달아 테스트 클라이언트와 통신
-
-기능 구현
-
+### 5. 기능 구현
 - 로그인
 - 방 입장, 나가기, 채팅
-- 매칭
+- 방장의 매칭 요청, 수락 및 거절
 - 게임 준비
-- 오목 두기
-- 연결 끊김 처리 및 게임 종료 처리
-- 게임 룰 서버에 구현
-- 타이머
-- 관전 기능
+- 오목 두기(룰 체크)
+- 관전
+- 타임아웃 (매칭 요청 응답(15초), 준비완료(20초), 돌 두기(30초))
+- 결과 전송
 
-방에서 게임은 하나만 이루어짐.
+-------
 
-방장이 방에 있는 사람중 한명에게 매칭 요청을 보내 상대방이 수락하면 매칭.(15초 timeout)
+## 주요 클래스
 
-준비완료 버튼을 둘다 누르면 게임 시작. (20초 timeout)
+### Server
+서버 init, start
 
-바둑돌을 두지 않으면 상대에게 턴이 넘어감 (30초 timeout)
+### Session 
+- client의 접속시 생성되는 객체
+- connect & disconnect 시 PacketQueue에 내부 패킷 저장 (PacketProcessor에서 처리)
+- client가 보낸 데이터를 읽어 PacketQueue에 통신 패킷 저장
+- clinet에 데이터 전송.
 
-게임을 하지 않는 인원은 관전자가 됨.
+### PacketProcessor
+- PacketQueue에 저장된 패킷을 순서대로 처리.
+- 로직 처리 후 응답 패킷 전송.
+- 1초마다 증가되는 time_count_를 통해 타임아웃 처리.
+- DB를 거쳐야 한다면 DBPacketQueue에 저장.
 
-### 파일
+### DBProcessor
+- DBPacketQueue에 저장된 패킷을 순서대로 처리.
+- DB 처리 후 응답 패킷 전송.
+- 현재는 DB연결 없음. 로그인 확인만 처리중.
 
-db_processor : 데이터베이스에 접근하는 클래스 (실제 db사용은 안하고 있고, 로그인 확인만 처리중)
+### SessionManager
+- Session 객체를 관리.
 
-game : 게임 진행
+### RoomManager
+- Room 객체를 관리.
+- 서버 시작시 Room의 개수를 받아 그 개수만큼 Room 객체 미리 생성.
 
-omok_server : 서버 init, start 정의
+### Room
+- unordered_set(session_id 보관), Timer 객체, Game 객체 포함.
+- 유저 관리, 타임아웃 처리, 게임 진행.
 
-packet_id : 패킷 ID 정의
+### Timer
+- Room 객체에 포함되어 있음
+- PacketProcessor에서 모든 방의 타이머를 체크해 callback 함수를 실행.
+- 1초마다 증가되는 time_count_를 통해 Timer에 callback 함수와 실행될 time_count_를 저장. 
 
-packet_info : 패킷 및 헤더 정의
+### Game
+- 오목 게임 진행
+- 현재 게임 상태 및 룰 체크
 
-packet_processor : packet_queue에서 패킷 가져와 처리하는 클래스
+### Packet
+- 헤더 정보와 protobuf 데이터를 포함하는 클래스
+- 데이터 직렬화 및 역직렬화 (헤더 : big-endian, protobuf : little-endian)
 
-packet_queue : 각 세션에서 온 패킷을 저장하는 곳. / db 처리를 위한 패킷 큐도 따로 만들어서 처리중
+----
 
-packet_sender : 서버에서 보낼 패킷을 만들고 보내는 곳.
+## 클라이언트
 
-room, room_manager : 방과 방 관리
+C# winform으로 만들어진 클라이언트
 
-session.h, session_manager.h : 세션 정의와 세션 관리 클래스
+https://github.com/jacking75/omok_clients
 
-timer : 방마다 있는 타이머
+CSharp_OmokClient_2를 기반.
+
+protobuf 이용해서 패킷 직렬화 및 역직렬화.
